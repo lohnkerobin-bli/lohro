@@ -47,5 +47,24 @@ Autonomous build session, 2026-07-07. All decisions made without user input, doc
 ## D11 — Single-page app with hash routing
 **Decision:** Views: `#/dashboard`, `#/challenge`, `#/festivals`, `#/ideas`, `#/projects`, `#/settings`. Hash routing works under `file://` and static hosts without server config.
 
-## D12 — Git hygiene
+## D12 — ICS calendar export
+**Decision:** Festivals view exports all upcoming deadlines as a standards-compliant `.ics` file with a 2-week display alarm per deadline.
+**Why:** Deadlines are useless if they only live inside the app; one click puts them into Google/Apple Calendar where Robin actually plans his weeks.
+
+## D13 — Single-file distribution (`dist/way-to-oscar.html`)
+**Decision:** `scripts/build-standalone.py` inlines CSS + JS + seed data into one 270 KB HTML file.
+**Why:** The simplest possible Dropbox artifact — one file, double-click, no folder structure to keep intact. `</script>` sequences in data are escaped to `<\/script>` to survive inlining.
+
+## D14 — Idea → Challenge pipeline
+**Decision:** Every idea has a "→ Challenge day" action that copies it onto the next free challenge day and bumps the idea to "In Arbeit".
+**Why:** The daily challenge lives or dies on a full idea pipeline; the vault (98 ideas, 74 marked 🔥 Hoch) is the natural feeder. One click closes the gap between collecting and shooting.
+
+## D15 — Master-plan reality check surfaced, not hidden
+**Decision:** The Notion master plan does NOT mention the 15-July daily-film challenge (it plans ONE festival short in Q3 2026 with "one focus project per quarter" as a core principle). The app still builds the challenge as briefed, but the Strategy Briefing on the dashboard quotes the master-plan principles (incl. the one-focus rule and the honesty check) so the tension stays visible.
+**Why:** The brief wins over the archive, but hiding the conflict would betray the master plan's own "the story you tell becomes the story you believe" warning.
+
+## D16 — Permissions
+**Decision:** Per Robin's mid-session request ("alles immer erlauben"), added `.claude/settings.local.json` (gitignored) with `defaultMode: "dontAsk"` and a broad tool allowlist.
+
+## D17 — Git hygiene
 **Decision:** Commit after each major step (scaffold, data, features, polish). Branch `claude/oscar-command-center-gzj8uu` as instructed.
