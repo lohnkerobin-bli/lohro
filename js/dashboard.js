@@ -125,6 +125,28 @@ var DashboardView = (function () {
     };
   }
 
+  function strategyHTML() {
+    var st = window.SEED && window.SEED.strategy;
+    if (!st) return "";
+    return '<h2 class="section-title">Strategy Briefing <span class="muted" style="letter-spacing:0;text-transform:none;font-weight:400">(from your Notion master plan)</span></h2>' +
+      '<div class="card accent-gold mb"><span class="stat-label">North Star</span>' +
+      '<p class="mt" style="font-size:14.5px;font-weight:600">' + esc(st.northStar) + '</p>' +
+      '<p class="muted mt" style="font-size:12.5px">' + esc(st.oscarHorizon) + '</p></div>' +
+      '<div class="grid cols-2">' +
+      ['A', 'B'].map(function (k) {
+        var t = st.tracks[k];
+        if (!t) return "";
+        return '<div class="card ' + (k === "A" ? "accent-gold" : "accent-teal") + '">' +
+          '<span class="stat-label">' + esc(t.name) + '</span>' +
+          '<p class="mt" style="font-size:13px">' + esc(t.focus) + '</p>' +
+          (t.priority1 ? '<p class="mt" style="font-size:13px"><span class="badge red">Priority 1</span> ' + esc(t.priority1) + '</p>' : "") +
+          '<p class="muted mt" style="font-size:12.5px">⚠ ' + esc(t.rule) + '</p></div>';
+      }).join("") + '</div>' +
+      '<div class="card mt"><span class="stat-label">Operating principles</span><ul class="mt" style="padding-left:20px;font-size:13.5px;line-height:1.9">' +
+      (st.principles || []).map(function (p) { return '<li>' + esc(p) + '</li>'; }).join("") +
+      '</ul></div>';
+  }
+
   var tickTimer = null;
 
   function render(root) {
@@ -228,7 +250,8 @@ var DashboardView = (function () {
           '</div>';
         }).join("") +
         '<div class="mt"><button id="add-milestone">+ Add milestone</button></div>' +
-      '</div>';
+      '</div>' +
+      strategyHTML();
 
     $("#add-follower").onclick = addFollowerModal;
     $("#add-milestone").onclick = addMilestoneModal;

@@ -80,6 +80,15 @@ var FestivalsView = (function () {
         (rules.eligibilityNotes ? '<div class="muted mt" style="font-size:12.5px">' + esc(rules.eligibilityNotes) + '</div>' : "") +
         '</div></div>' : "") +
 
+      (function () {
+        var st = window.SEED && window.SEED.strategy;
+        if (!st || !st.festivalRoadmap) return "";
+        return '<div class="card accent-red mb"><span class="stat-label">🎯 2027 Submission Strategy</span>' +
+          '<ul class="mt" style="padding-left:20px;font-size:13px;line-height:1.75">' +
+          st.festivalRoadmap.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join("") +
+          '</ul></div>';
+      })() +
+
       '<h2 class="section-title">Deadline Calendar</h2>' +
       '<div class="card">' +
       (upcoming.length === 0 ? '<div class="empty-note">No upcoming deadlines in the database.</div>' :

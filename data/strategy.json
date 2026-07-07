@@ -1,0 +1,42 @@
+{
+  "source": "Notion: WAY TO OSCAR — MASTER PLAN (Apr 2026) + LOHRO Editor Bible",
+  "northStar": "A short film wins a qualifying festival award → Oscar shortlist 2028–2030. Personal brand grows until the brand itself opens doors.",
+  "oscarHorizon": "Oscar-win horizon: 10–15 years (Chris Overton: 12). The 2028 countdown targets the first realistic shortlist window.",
+  "tracks": {
+    "A": {
+      "name": "Track A — Oscar (festival films + mentors)",
+      "focus": "Festival short \"Der Junge im Nebel\" (10–15 min, visual/low-dialogue or German + English subs). Shoot Q3 2026, post + grade Q4, submissions from Q4 2026 (Solothurn 2027, Winterthur). Budget CHF 2–3k for 10–15 submissions.",
+      "priority1": "Mentor track: 30-name list, 4-line cold mails, expect 2 meetings from 30 mails. Mentorship comes from results, not from asking.",
+      "rule": "Premiere status at top festivals is sacred. Wrong order = disqualification. Tier 1 world premiere first (Clermont, Locarno, Sundance, Berlinale), then Tier 2 parallel, then Swiss premiere (Solothurn/Winterthur)."
+    },
+    "B": {
+      "name": "Track B — Personal Brand (1M followers)",
+      "focus": "Daily Instagram posting + weekly YouTube series \"Way to Oscar — Real\". Making-of docs of the festival short, livestreams, Filmmeetup St. Gallen.",
+      "rule": "80% niche focus (Way to Oscar / storytelling), 20% experiments. Platform order: YouTube → Instagram → TikTok → LinkedIn. Relevance over virality."
+    }
+  },
+  "principles": [
+    "\"What if it goes right?\" — the operating mentality",
+    "One focus project per quarter — too many projects is the #1 danger",
+    "3h/day Oscar track must REALLY be Oscar track (daily reels are muscle B, the short film is muscle A)",
+    "Monthly honesty check: closer to the Oscar, or only closer to more followers?",
+    "Cut on emotion, not on grammar",
+    "Speedstart: start tasks immediately, find the way while moving",
+    "Super Mario effect: treat failures as learning levels",
+    "The story you tell becomes the story you believe — track staging vs reality honestly"
+  ],
+  "festivalRoadmap": [
+    "The qualifying window for the 2028 ceremony runs ~Oct 2026 – Sep 2027: a qualifying AWARD must be won inside it. Winterthur/Interfilm/Uppsala editions in late 2027 spill into the next cycle.",
+    "The autumn 2026 deadline cluster is do-or-die: SXSW (1 Oct), Clermont (24 Sep), Sundance (28 Sep), Tampere (3 Nov), Berlinale (4 Nov), Aspen (13 Nov), Krakow (30 Nov), Tribeca (1 Dec), Visions du Réel (13 Dec). You need 1–2 festival-grade films locked by mid-September 2026.",
+    "Manage premiere status as a portfolio: Berlinale, Locarno & Visions du Réel demand premieres; Clermont, Sundance, Palm Springs, Tampere & Raindance don't. Reserve one unscreened 'premiere film' per strict festival; circulate the rest widely.",
+    "Swiss home advantage: Locarno (Swiss-only Pardino d'Oro qualifies!), Winterthur (Best Swiss Film qualifies), Visions du Réel and Fantoche are on the Academy list — far better odds than open competitions. Aspen's 'Best Short Short' (<10 min) is a structural edge for daily-challenge films.",
+    "Re-verify against the official oscars.org qualifying list every spring — festival marketing lies by omission (e.g. Encounters Bristol advertises qualifying status but is absent from the 99th list)."
+  ],
+  "keyDates": [
+    { "date": "2026-07-15", "label": "Daily Short Film Challenge starts" },
+    { "date": "2026-09-30", "label": "Festival short principal photography done (Q3 window)" },
+    { "date": "2026-12-31", "label": "Post + festival-grade color done; first submissions out" },
+    { "date": "2027-01-31", "label": "Attend Solothurner Filmtage (selected or not)" },
+    { "date": "2027-03-31", "label": "Goal: 1 short in the festival circuit + 1 mentor relationship" }
+  ]
+}

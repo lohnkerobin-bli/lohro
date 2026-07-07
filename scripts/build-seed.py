@@ -24,6 +24,7 @@ def main():
     youtube = load("notion-youtube.json", [])
     films = load("notion-films.json", [])
     festivals = load("festivals.json", {"academyRules": None, "festivals": []})
+    strategy = load("strategy.json", None)
 
     now = datetime.datetime.now().isoformat(timespec="seconds")
 
@@ -120,6 +121,7 @@ def main():
         "ideas": ideas,
         "projects": projects,
         "festivals": festivals,
+        "strategy": strategy,
     }
 
     out = os.path.join(DATA, "seed.js")

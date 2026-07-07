@@ -1,0 +1,573 @@
+{
+  "generated": "2026-07-07",
+  "academyRules": {
+    "runtimeLimitMinutes": 40,
+    "qualificationPaths": [
+      "Win a qualifying award at a festival on the Academy's annually published Short Film Qualifying Festival List (no theatrical run needed). Only the specific awards named on the list qualify.",
+      "Complete a paid-admission theatrical release of at least 7 consecutive days (or qualifying multi-city exhibition) in one of the approved US metro areas (Los Angeles County, City of New York, Bay Area, Chicago, Miami, Atlanta) within the eligibility period.",
+      "Win a Gold, Silver or Bronze Medal in the Student Academy Awards (student films only)."
+    ],
+    "eligibilityNotes": "A short film = 40 minutes or less including credits. For the 99th Academy Awards (2027 ceremony) the shorts qualifying period runs 1 Oct 2025 - 30 Sep 2026, with Academy entry deadlines of 13 Aug 2026 (for films qualifying by 30 Jun 2026) and 8 Oct 2026 (for films qualifying 1 Jul - 30 Sep 2026). For Robin's target, the 100th Academy Awards (ceremony 5 Mar 2028), the qualifying period is expected to run 1 Oct 2026 - 30 Sep 2027 (estimated from the 99th-edition pattern; the 100th rules and festival list will be published around April/May 2027). Practical consequence: a festival AWARD must be WON between ~Oct 2026 and ~Sep 2027 - so target festivals whose 2026/27 editions take place inside that window (Sundance Jan 2027 through TIFF Sep 2027). Festivals held Oct-Dec 2027 push a film into the 101st Awards (2029 ceremony). Once qualified, the film must not have been publicly exhibited online/TV before its qualifying run in some paths; festival-award path is exempt from prior non-theatrical exhibition restrictions.",
+    "sources": [
+      "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf",
+      "https://www.oscars.org/sites/oscars/files/2026-05/99th%20Documentary%20Short%20Rules.pdf",
+      "https://www.oscars.org/oscars/rules-eligibility",
+      "https://press.oscars.org/news/awards-rules-and-campaign-promotional-regulations-approved-99th-oscarsr",
+      "https://deadline.com/2026/04/oscar-cermeony-dates-2027-2028-1236783778/"
+    ]
+  },
+  "festivals": [
+    {
+      "id": "locarno-pardi-di-domani",
+      "name": "Locarno Film Festival - Pardi di domani",
+      "country": "Switzerland",
+      "city": "Locarno",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation", "documentary"],
+      "festivalDates": { "start": "2027-08-04", "end": "2027-08-14", "estimated": true },
+      "deadlines": [
+        { "type": "early", "date": "2027-02-18", "feeAmount": 35, "feeCurrency": "CHF", "estimated": true },
+        { "type": "regular", "date": "2027-04-08", "feeAmount": 55, "feeCurrency": "CHF", "estimated": true },
+        { "type": "late", "date": "2027-04-22", "feeAmount": 75, "feeCurrency": "CHF", "estimated": true }
+      ],
+      "maxRuntimeMin": 59,
+      "premiereRequirement": "World or international premiere required; film must be completed within ~12 months of the festival.",
+      "platform": "Own portal (locarnofestival.ch film submission)",
+      "url": "https://www.locarnofestival.ch/Film-Submission.html",
+      "tier": 1,
+      "strategyNotes": "Home-country flagship with a dedicated Swiss competition (Concorso Nazionale) reserved for filmmakers without a feature - a realistic top-tier entry for Robin. Both the Pardino d'Oro for Best Swiss Short and Best International Short are Oscar-qualifying. Save an unshown, strongest film for this: premiere status is mandatory. 2026 deadlines were 19 Feb / 9 Apr / 23 Apr; 2027 extrapolated.",
+      "sources": [
+        "https://www.locarnofestival.ch/Film-Submission.html",
+        "https://www.locarnofestival.ch/extra/rules-regulations.html",
+        "https://asianfilmfestivals.com/2025/12/29/locarno-film-festival-call-for-entry-2026/",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "kurzfilmtage-winterthur",
+      "name": "Internationale Kurzfilmtage Winterthur",
+      "country": "Switzerland",
+      "city": "Winterthur",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation"],
+      "festivalDates": { "start": "2027-11-02", "end": "2027-11-07", "estimated": true },
+      "deadlines": [
+        { "type": "early", "date": "2027-05-23", "feeAmount": 15, "feeCurrency": "CHF", "estimated": true },
+        { "type": "final", "date": "2027-07-11", "feeAmount": 25, "feeCurrency": "CHF", "estimated": true }
+      ],
+      "maxRuntimeMin": 40,
+      "premiereRequirement": "No world premiere required; recent films only (completed in the two calendar years before the festival). Swiss Competition allows up to 40 min, International Competition up to 30 min.",
+      "platform": "FilmFreeway / Shortfilmdepot",
+      "url": "https://www.kurzfilmtage.ch/en/industry/film-submissions",
+      "tier": 2,
+      "strategyNotes": "Switzerland's biggest short film festival, 30 min from St. Gallen. Grand Prize (International) and Best Swiss Film are Oscar-qualifying (documentaries excluded). The 2026 edition deadline is 12 Jul 2026 - too early for films shot from 15 Jul - so target the Nov 2027 edition; note a Nov 2027 win falls in the 101st Oscars window (2029 ceremony), not the 100th.",
+      "sources": [
+        "https://www.kurzfilmtage.ch/en/industry/film-submissions",
+        "https://filmfreeway.com/InternationaleKurzfilmtageWinterthur",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "clermont-ferrand",
+      "name": "Clermont-Ferrand International Short Film Festival",
+      "country": "France",
+      "city": "Clermont-Ferrand",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation", "documentary"],
+      "festivalDates": { "start": "2027-01-29", "end": "2027-02-06", "estimated": false },
+      "deadlines": [
+        { "type": "early", "date": "2026-07-09", "feeAmount": 13, "feeCurrency": "EUR", "estimated": false },
+        { "type": "final", "date": "2026-09-24", "feeAmount": 13, "feeCurrency": "EUR", "estimated": false }
+      ],
+      "maxRuntimeMin": 40,
+      "premiereRequirement": "No premiere requirement; films must be completed after 1 Oct 2025. The two deadlines are keyed to completion date (later-completed films use the 24 Sep deadline).",
+      "platform": "Shortfilmdepot (exclusively)",
+      "url": "https://www.lecourt-clermont.org/en/pros/submit-a-film/",
+      "tier": 1,
+      "strategyNotes": "The world's largest short film festival and market - the single most important shorts-only event. Grand Prix (International) is Oscar-qualifying and the Feb 2027 edition sits perfectly inside the expected 100th-Oscars window. No premiere requirement means Robin can submit his best July-Sept 2026 film by 24 Sep 2026 even after other screenings. Notification 3 Dec 2026.",
+      "sources": [
+        "https://www.lecourt-clermont.org/en/pros/submit-a-film/",
+        "https://asianfilmfestivals.com/2026/05/12/clermont-ferrand-international-short-film-festival-call-for-entry-2027/",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "sundance",
+      "name": "Sundance Film Festival",
+      "country": "USA",
+      "city": "Boulder (from 2027)",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation", "documentary"],
+      "festivalDates": { "start": "2027-01-21", "end": "2027-02-02", "estimated": true },
+      "deadlines": [
+        { "type": "early", "date": "2026-07-13", "feeAmount": 55, "feeCurrency": "USD", "estimated": false },
+        { "type": "regular", "date": "2026-08-17", "feeAmount": 75, "feeCurrency": "USD", "estimated": true },
+        { "type": "final", "date": "2026-09-28", "feeAmount": 95, "feeCurrency": "USD", "estimated": true }
+      ],
+      "maxRuntimeMin": 50,
+      "premiereRequirement": "No premiere status required for short films (unusual among top festivals).",
+      "platform": "FilmFreeway",
+      "url": "https://www.sundance.org/festivals/sundance-film-festival/submit/",
+      "tier": 1,
+      "strategyNotes": "Short Film Grand Jury Prize plus four jury awards (Intl Fiction, US Fiction, Animation, Nonfiction) are all Oscar-qualifying, and the Jan 2027 edition opens the 100th-Oscars window. Early deadline 13 Jul 2026 is days away - Robin will likely use the official/late deadlines (Aug/Sep 2026) for his first strong films. Acceptance rate is under 1%, but shorts need no premiere status so there is no downside to trying. Note Oscar runtime cap is 40 min even though Sundance accepts up to 50.",
+      "sources": [
+        "https://www.sundance.org/festivals/sundance-film-festival/submit/",
+        "https://www.sundance.org/wp-content/uploads/2026/06/2027_Submissions_FAQ.pdf",
+        "https://filmfreeway.com/Sundance",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "tiff",
+      "name": "Toronto International Film Festival (Short Cuts)",
+      "country": "Canada",
+      "city": "Toronto",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation", "documentary"],
+      "festivalDates": { "start": "2027-09-09", "end": "2027-09-19", "estimated": true },
+      "deadlines": [
+        { "type": "regular", "date": "2027-04-15", "feeAmount": 60, "feeCurrency": "CAD", "estimated": true },
+        { "type": "final", "date": "2027-05-15", "feeAmount": 100, "feeCurrency": "CAD", "estimated": true }
+      ],
+      "maxRuntimeMin": 40,
+      "premiereRequirement": "Canadian premiere required at minimum; world/international premieres strongly preferred for Short Cuts.",
+      "platform": "Own portal (tiff.net/submissions)",
+      "url": "https://tiff.net/submissions",
+      "tier": 1,
+      "strategyNotes": "Best International Short Film award is Oscar-qualifying and the Sep 2027 edition is the LAST big chance inside the expected 100th-Oscars window (win by ~19 Sep, window closes 30 Sep 2027). Submissions for 2027 open ~late Feb 2027. Hold back a premiere-fresh film made in early 2027 for TIFF rather than burning it at smaller festivals.",
+      "sources": [
+        "https://tiff.net/submissions",
+        "https://filmfreeway.com/TIFF",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "palm-springs-shortfest",
+      "name": "Palm Springs International ShortFest",
+      "country": "USA",
+      "city": "Palm Springs",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation", "documentary"],
+      "festivalDates": { "start": "2027-06-22", "end": "2027-06-28", "estimated": true },
+      "deadlines": [
+        { "type": "early", "date": "2026-11-01", "feeAmount": 45, "feeCurrency": "USD", "estimated": true },
+        { "type": "final", "date": "2027-02-06", "feeAmount": 75, "feeCurrency": "USD", "estimated": true }
+      ],
+      "maxRuntimeMin": 40,
+      "premiereRequirement": "No premiere requirement; films completed 2026 or 2027 eligible for the 2027 edition.",
+      "platform": "FilmFreeway",
+      "url": "https://www.psfilmfest.org/submissions",
+      "tier": 1,
+      "strategyNotes": "Largest shorts festival in North America with FIVE Oscar-qualifying awards (Best of Fest, Live Action, Animation, Documentary, plus student) - statistically one of the best qualification odds among prestige festivals. June 2027 edition is inside the 100th-Oscars window, no premiere requirement, so it works as a second chance for films already premiered in Europe. Also BAFTA- and Goya-qualifying.",
+      "sources": [
+        "https://www.psfilmfest.org/submissions",
+        "https://filmfreeway.com/PalmSpringsInternationalShortFest",
+        "https://asianfilmfestivals.com/2025/10/24/shortfest-palm-springs-international-short-film-festival-call-for-entry-2026/",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "berlinale-shorts",
+      "name": "Berlinale Shorts (Berlin International Film Festival)",
+      "country": "Germany",
+      "city": "Berlin",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation", "documentary"],
+      "festivalDates": { "start": "2027-02-11", "end": "2027-02-21", "estimated": true },
+      "deadlines": [
+        { "type": "final", "date": "2026-11-04", "feeAmount": 75, "feeCurrency": "EUR", "estimated": false }
+      ],
+      "maxRuntimeMin": 30,
+      "premiereRequirement": "World or international premiere required (German films: world premiere).",
+      "platform": "Own portal (berlinale.de film entry)",
+      "url": "https://www.berlinale.de/en/film-entry/guidelines/berlinale-shorts.html",
+      "tier": 1,
+      "strategyNotes": "Golden Bear for Best Short Film is Oscar-qualifying; Feb 2027 edition sits inside the 100th-Oscars window. Single deadline 4 Nov 2026, EUR 75, max 30 min, and premiere status is mandatory - so Robin must reserve an unscreened autumn 2026 film for this slot and decide Berlinale-vs-Clermont premiere strategy per film (Clermont has no premiere rule, Berlinale does).",
+      "sources": [
+        "https://www.berlinale.de/en/film-entry/guidelines/berlinale-shorts.html",
+        "https://www.berlinale.de/en/film-entry/submission/start.html",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "oberhausen",
+      "name": "International Short Film Festival Oberhausen",
+      "country": "Germany",
+      "city": "Oberhausen",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation", "documentary"],
+      "festivalDates": { "start": "2027-04-29", "end": "2027-05-04", "estimated": true },
+      "deadlines": [
+        { "type": "final", "date": "2027-01-15", "feeAmount": 10, "feeCurrency": "EUR", "estimated": true }
+      ],
+      "maxRuntimeMin": 45,
+      "premiereRequirement": "German premiere required for the International Competition; no world premiere needed.",
+      "platform": "Own portal (kurzfilmtage.filmchief.com)",
+      "url": "https://www.kurzfilmtage.de/en/festival/submission/",
+      "tier": 2,
+      "strategyNotes": "One of the oldest short film festivals in the world; Grand Prize of the City of Oberhausen is Oscar-qualifying and the May 2027 edition is inside the 100th window. Strong fit for experimental/artistic work - if Robin's daily-film practice produces formally adventurous pieces, this is their natural top target. Call opens autumn 2026; deadline typically mid-January.",
+      "sources": [
+        "https://www.kurzfilmtage.de/en/festival/submission/",
+        "https://www.kurzfilmtage.de/en/festival/regulations/",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "annecy",
+      "name": "Annecy International Animation Film Festival",
+      "country": "France",
+      "city": "Annecy",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["animation"],
+      "festivalDates": { "start": "2027-06-13", "end": "2027-06-19", "estimated": true },
+      "deadlines": [
+        { "type": "final", "date": "2027-02-15", "feeAmount": 0, "feeCurrency": "EUR", "estimated": true }
+      ],
+      "maxRuntimeMin": null,
+      "premiereRequirement": "French premiere expected for official short competition; world premiere not required.",
+      "platform": "Own portal (Annecy Network)",
+      "url": "https://www.annecyfestival.com/en/take-part/submit-film",
+      "tier": 1,
+      "strategyNotes": "THE world animation festival; Cristal for a Short Film and the Jury Award are Oscar-qualifying, and June 2027 is inside the 100th window. Only relevant if Robin produces animated shorts - if any of his daily films are animation or hybrid-animation, this is the highest-value target with free submission. Call opens fall 2026 with a mid-February shorts deadline.",
+      "sources": [
+        "https://www.annecyfestival.com/en/take-part/submit-film",
+        "https://www.animation-festivals.com/festivals/annecy-international-animated-film-festival/",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "tampere",
+      "name": "Tampere Film Festival",
+      "country": "Finland",
+      "city": "Tampere",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation", "documentary"],
+      "festivalDates": { "start": "2027-03-10", "end": "2027-03-14", "estimated": false },
+      "deadlines": [
+        { "type": "early", "date": "2026-09-01", "feeAmount": 14, "feeCurrency": "EUR", "estimated": true },
+        { "type": "final", "date": "2026-11-03", "feeAmount": 24, "feeCurrency": "EUR", "estimated": true }
+      ],
+      "maxRuntimeMin": 30,
+      "premiereRequirement": "No world premiere required; films completed 1 Jan 2025 or later eligible. Finnish premiere expected.",
+      "platform": "FilmFreeway / Shortfilmdepot",
+      "url": "https://tamperefilmfestival.fi/en/",
+      "tier": 2,
+      "strategyNotes": "One of Europe's 'big three' shorts festivals (with Clermont and Oberhausen). Grand Prix, Best Fiction and Best Documentary of the International Competition are all Oscar-qualifying - three qualifying awards, March 2027, squarely inside the 100th window. Cheap entry and an early-bird deadline of 1 Sep 2026 that Robin's first wave of films (July-Aug 2026) can realistically hit.",
+      "sources": [
+        "https://tamperefilmfestival.fi/en/call-for-entries-submissions-for-the-2027-competitions-now-open/",
+        "https://tamperefilmfestival.fi/en/industry/competitions/regulations-international-competition-2027/",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "krakow",
+      "name": "Krakow Film Festival",
+      "country": "Poland",
+      "city": "Krakow",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation", "documentary"],
+      "festivalDates": { "start": "2027-05-31", "end": "2027-06-07", "estimated": false },
+      "deadlines": [
+        { "type": "early", "date": "2026-11-30", "feeAmount": 18, "feeCurrency": "EUR", "estimated": true },
+        { "type": "final", "date": "2027-01-31", "feeAmount": 28, "feeCurrency": "EUR", "estimated": true }
+      ],
+      "maxRuntimeMin": 30,
+      "premiereRequirement": "Polish premiere required for competition; no world premiere needed.",
+      "platform": "FilmFreeway / own entry system",
+      "url": "https://www.krakowfilmfestival.pl/en/",
+      "tier": 2,
+      "strategyNotes": "Four Oscar-qualifying short awards (Golden Dragon plus Silver Dragons for animated, documentary and fiction shorts) - among the widest qualification surfaces in Europe, and the May/June 2027 edition is inside the 100th window. Also feature-doc Oscar-qualifying, EFA- and BAFTA-recognised. Early deadline (Nov 2026) is for films completed before ~31 Oct 2026; later-completed films use the Jan 2027 deadline.",
+      "sources": [
+        "https://www.krakowfilmfestival.pl/en/call-for-submissions-opens-for-the-66th-krakow-film-festival/",
+        "https://festagent.com/en/festivals/krakow",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "vienna-shorts",
+      "name": "Vienna Shorts - International Short Film Festival",
+      "country": "Austria",
+      "city": "Vienna",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation", "documentary"],
+      "festivalDates": { "start": "2027-05-25", "end": "2027-05-30", "estimated": true },
+      "deadlines": [
+        { "type": "regular", "date": "2027-01-05", "feeAmount": 12, "feeCurrency": "EUR", "estimated": true },
+        { "type": "late", "date": "2027-01-31", "feeAmount": 22, "feeCurrency": "EUR", "estimated": true }
+      ],
+      "maxRuntimeMin": 30,
+      "premiereRequirement": "Austrian premiere required for competitions; no world premiere needed.",
+      "platform": "FilmFreeway",
+      "url": "https://www.viennashorts.com/en/festival/submissions",
+      "tier": 2,
+      "strategyNotes": "Nearby German-speaking qualifier: the Vienna Short Film Award and ASIFA Austria Award (animation) are Oscar-qualifying, and late May 2027 is inside the 100th window. Modest fees and a fixed-jury city festival that is friendly to emerging European voices - a sensible mid-tier bet for Robin's strongest 2026 films.",
+      "sources": [
+        "https://www.viennashorts.com/en/festival/submissions",
+        "https://filmfreeway.com/viennashorts",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "interfilm-berlin",
+      "name": "Interfilm International Short Film Festival Berlin",
+      "country": "Germany",
+      "city": "Berlin",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation"],
+      "festivalDates": { "start": "2027-11-09", "end": "2027-11-14", "estimated": true },
+      "deadlines": [
+        { "type": "final", "date": "2027-05-28", "feeAmount": 8, "feeCurrency": "EUR", "estimated": true }
+      ],
+      "maxRuntimeMin": 20,
+      "premiereRequirement": "No premiere requirement; films produced within roughly the last two years.",
+      "platform": "Shortfilmdepot",
+      "url": "https://www.interfilm.de/en/service/submit-films-at-interfilm/",
+      "tier": 3,
+      "strategyNotes": "Cheap (EUR 8) qualifier for Best Live Action and Best Animation in the International Competition, max 20 min - well suited to Robin's short daily-film format. Caveat: the Nov 2027 edition falls AFTER the expected 100th-Oscars cutoff (30 Sep 2027), so a win there feeds the 101st Awards (2029); the Nov 2026 edition's deadline (29 May 2026) has already passed.",
+      "sources": [
+        "https://www.interfilm.de/en/service/submit-films-at-interfilm/",
+        "https://asianfilmfestivals.com/2026/02/28/interfilm-international-short-film-festival-berlin-call-for-entry-2026/",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "aspen-shortsfest",
+      "name": "Aspen Shortsfest",
+      "country": "USA",
+      "city": "Aspen",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation", "documentary"],
+      "festivalDates": { "start": "2027-04-06", "end": "2027-04-11", "estimated": true },
+      "deadlines": [
+        { "type": "regular", "date": "2026-09-25", "feeAmount": 55, "feeCurrency": "USD", "estimated": true },
+        { "type": "final", "date": "2026-11-13", "feeAmount": 65, "feeCurrency": "USD", "estimated": true }
+      ],
+      "maxRuntimeMin": 40,
+      "premiereRequirement": "No world premiere required (regional premiere preferred).",
+      "platform": "FilmFreeway",
+      "url": "https://aspenfilm.org/our-festivals/shortsfest/",
+      "tier": 2,
+      "strategyNotes": "Shorts-only Oscar qualifier with FIVE qualifying awards (Animation, Comedy, Documentary, Drama, and Short Short for films under 10 minutes). The 'Best Short Short' category is a rare, perfect match for a daily-shorts practice - a sub-10-minute gem has a dedicated qualifying lane here. 2027 cycle opened 1 Jul 2026 on FilmFreeway; April 2027 edition is inside the 100th window.",
+      "sources": [
+        "https://aspenfilm.org/our-festivals/shortsfest/",
+        "https://filmfreeway.com/AspenShortsfest",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "tribeca",
+      "name": "Tribeca Festival",
+      "country": "USA",
+      "city": "New York",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation", "documentary"],
+      "festivalDates": { "start": "2027-06-09", "end": "2027-06-20", "estimated": true },
+      "deadlines": [
+        { "type": "early", "date": "2026-12-01", "feeAmount": 50, "feeCurrency": "USD", "estimated": true },
+        { "type": "regular", "date": "2027-01-05", "feeAmount": 60, "feeCurrency": "USD", "estimated": true },
+        { "type": "final", "date": "2027-02-16", "feeAmount": 70, "feeCurrency": "USD", "estimated": true }
+      ],
+      "maxRuntimeMin": 40,
+      "premiereRequirement": "New York premiere required at minimum; world/international premiere preferred for competition.",
+      "platform": "Own portal (Tribeca extranet / Eventival)",
+      "url": "https://tribecafilm.com/festival/submissions",
+      "tier": 2,
+      "strategyNotes": "Best Narrative Short, Best Animated Short and Best Short Documentary are all Oscar-qualifying; June 2027 is inside the 100th window. High US-industry visibility for a filmmaker building toward an Oscar campaign. Keep at least NY-premiere status for the submitted film.",
+      "sources": [
+        "https://tribecafilm.com/festival/submissions",
+        "https://extranet.tribecafilm.com/submissions/",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "sxsw",
+      "name": "SXSW Film & TV Festival",
+      "country": "USA",
+      "city": "Austin",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation", "documentary"],
+      "festivalDates": { "start": "2027-03-12", "end": "2027-03-18", "estimated": true },
+      "deadlines": [
+        { "type": "early", "date": "2026-08-25", "feeAmount": 50, "feeCurrency": "USD", "estimated": true },
+        { "type": "regular", "date": "2026-09-15", "feeAmount": 60, "feeCurrency": "USD", "estimated": true },
+        { "type": "final", "date": "2026-10-01", "feeAmount": 70, "feeCurrency": "USD", "estimated": true }
+      ],
+      "maxRuntimeMin": 40,
+      "premiereRequirement": "No strict world-premiere rule for shorts, but premieres are strongly favored in programming; submission link must stay live through March 2027.",
+      "platform": "Own portal (sxsw.com film submissions)",
+      "url": "https://sxsw.com/apply/film-submissions/",
+      "tier": 2,
+      "strategyNotes": "Jury awards in Narrative, Documentary and Animated shorts competitions are Oscar-qualifying; March 2027 edition is inside the 100th window. Submissions opened 28 Jul 2026 and close 1 Oct 2026 - a tight but feasible target for Robin's best July-Sept 2026 film. Strong genre/comedy/innovative-format sensibility fits unconventional daily-film work.",
+      "sources": [
+        "https://sxsw.com/apply/film-submissions/",
+        "https://support.sxsw.com/hc/en-us/articles/206421055-What-are-the-submission-deadlines-for-the-2027-Film-TV-Festival",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "raindance",
+      "name": "Raindance Film Festival",
+      "country": "United Kingdom",
+      "city": "London",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation", "documentary"],
+      "festivalDates": { "start": "2027-06-16", "end": "2027-06-25", "estimated": true },
+      "deadlines": [
+        { "type": "early", "date": "2026-12-07", "feeAmount": 25, "feeCurrency": "GBP", "estimated": true },
+        { "type": "regular", "date": "2027-01-18", "feeAmount": 35, "feeCurrency": "GBP", "estimated": true },
+        { "type": "final", "date": "2027-03-08", "feeAmount": 45, "feeCurrency": "GBP", "estimated": true }
+      ],
+      "maxRuntimeMin": 45,
+      "premiereRequirement": "No world premiere required; films completed after 1 Jan 2025 eligible for 2027.",
+      "platform": "FilmFreeway",
+      "url": "https://raindance.org/festival/submit/films/",
+      "tier": 3,
+      "strategyNotes": "Three Oscar-qualifying short awards (Live Action, Animated, Documentary) with confirmed 2027 deadlines (7 Dec 2026 / 18 Jan / 8 Mar 2027) and relaxed eligibility - a good safety-net qualifier inside the 100th window for films that have already screened elsewhere. Indie-spirited programming favors bold low-budget work.",
+      "sources": [
+        "https://raindance.org/festival/submit/films/",
+        "https://filmfreeway.com/Raindance",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "uppsala",
+      "name": "Uppsala Short Film Festival",
+      "country": "Sweden",
+      "city": "Uppsala",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation", "documentary"],
+      "festivalDates": { "start": "2027-10-18", "end": "2027-10-24", "estimated": true },
+      "deadlines": [
+        { "type": "final", "date": "2027-05-31", "feeAmount": 15, "feeCurrency": "EUR", "estimated": true }
+      ],
+      "maxRuntimeMin": 40,
+      "premiereRequirement": "No world premiere required; production year within the last two calendar years.",
+      "platform": "FilmFreeway / Shortfilmdepot",
+      "url": "https://shortfilmfestival.com/en/",
+      "tier": 3,
+      "strategyNotes": "Scandinavia's premier shorts festival; the Uppsala Grand Prix is Oscar-qualifying (plus EFA and BAFTA recognition). Timing caveat: the Oct 2027 edition falls just AFTER the expected 100th-Oscars cutoff, so treat it as a 101st-Awards (2029) qualifier for films finished in 2027. Deadline ~31 May 2027 for that edition.",
+      "sources": [
+        "https://shortfilmfestival.com/en/anmala-film/",
+        "https://asianfilmfestivals.com/2026/01/02/uppsala-short-film-festival-call-for-entry-2026/",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "curtas-vila-do-conde",
+      "name": "Curtas Vila do Conde - International Film Festival",
+      "country": "Portugal",
+      "city": "Vila do Conde",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["live-action", "animation"],
+      "festivalDates": { "start": "2027-07-10", "end": "2027-07-18", "estimated": true },
+      "deadlines": [
+        { "type": "early", "date": "2026-12-31", "feeAmount": 5, "feeCurrency": "EUR", "estimated": true },
+        { "type": "regular", "date": "2027-02-28", "feeAmount": 10, "feeCurrency": "EUR", "estimated": true }
+      ],
+      "maxRuntimeMin": 60,
+      "premiereRequirement": "Portuguese premiere required for competition; no world premiere needed. Films produced in the previous two years eligible.",
+      "platform": "FilmFreeway / own portal",
+      "url": "https://www.festival.curtas.pt/en/info/call-for-entries/",
+      "tier": 2,
+      "strategyNotes": "Confirmed on the Oscar qualifying list through 2027: the International Competition Grand Prix qualifies for Live Action and Animated shorts. July 2027 edition lands inside the 100th window - one of the last European qualification chances of the cycle after Palm Springs and before TIFF. Cinephile-leaning, auteur-friendly selection.",
+      "sources": [
+        "https://www.festival.curtas.pt/en/detail-news/oscar-qualifying-film-festival-2025-2027-en/",
+        "https://filmfreeway.com/curtasviladoconde",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "visions-du-reel",
+      "name": "Visions du Reel - International Film Festival Nyon",
+      "country": "Switzerland",
+      "city": "Nyon",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["documentary"],
+      "festivalDates": { "start": "2027-04-09", "end": "2027-04-18", "estimated": true },
+      "deadlines": [
+        { "type": "early", "date": "2026-11-04", "feeAmount": 30, "feeCurrency": "CHF", "estimated": true },
+        { "type": "final", "date": "2026-12-13", "feeAmount": 40, "feeCurrency": "CHF", "estimated": true }
+      ],
+      "maxRuntimeMin": 40,
+      "premiereRequirement": "World, international or European premiere required for competition films.",
+      "platform": "Own portal (visionsdureel.ch); call opens 8 Sep 2026",
+      "url": "https://www.visionsdureel.ch/en/call-for-entries/",
+      "tier": 2,
+      "strategyNotes": "Switzerland's top documentary festival and an Oscar qualifier via the Jury Prize for Best Short Film in the Medium Length & Short Film Competition. If any of Robin's daily films lean documentary/essayistic, this home-turf April 2027 event is inside the 100th window - but requires at least a European premiere, so keep the chosen doc short unscreened in Europe.",
+      "sources": [
+        "https://www.visionsdureel.ch/en/call-for-entries/",
+        "https://www.visionsdureel.ch/en/program/section/international-medium-length-short-film-competition/",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "fantoche",
+      "name": "Fantoche International Animation Film Festival",
+      "country": "Switzerland",
+      "city": "Baden",
+      "oscarQualifying": true,
+      "qualifyingCategories": ["animation"],
+      "festivalDates": { "start": "2027-09-07", "end": "2027-09-12", "estimated": true },
+      "deadlines": [
+        { "type": "final", "date": "2027-05-02", "feeAmount": 0, "feeCurrency": "CHF", "estimated": true }
+      ],
+      "maxRuntimeMin": 40,
+      "premiereRequirement": "No world premiere required; films completed within roughly the previous 18 months.",
+      "platform": "FilmFreeway / direct entry template",
+      "url": "https://www.fantoche.ch/en",
+      "tier": 3,
+      "strategyNotes": "Swiss animation qualifier 40 minutes from Zurich: Best Film - International Competition is on the Academy list. Its early-September 2027 edition is one of the very last award dates inside the expected 100th-Oscars window (closes 30 Sep 2027). Only relevant for animated work; fee low/none (unconfirmed).",
+      "sources": [
+        "https://www.fantoche.ch/en",
+        "https://filmfreeway.com/Fantoche",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    },
+    {
+      "id": "encounters-bristol",
+      "name": "Encounters Film Festival",
+      "country": "United Kingdom",
+      "city": "Bristol",
+      "oscarQualifying": false,
+      "qualifyingCategories": [],
+      "festivalDates": { "start": "2027-09-21", "end": "2027-09-26", "estimated": true },
+      "deadlines": [
+        { "type": "final", "date": "2027-05-18", "feeAmount": 20, "feeCurrency": "GBP", "estimated": true }
+      ],
+      "maxRuntimeMin": 40,
+      "premiereRequirement": "No premiere requirement; films completed in the previous two years.",
+      "platform": "FilmFreeway",
+      "url": "https://www.encounters.film/submissions",
+      "tier": 3,
+      "strategyNotes": "IMPORTANT: although Encounters markets itself as Oscar-qualifying (it was from 2010), it does NOT appear on the Academy's official 99th Awards shorts qualifying festival list (published May 2026). Re-verify against the 100th list (due ~spring 2027) before spending a premiere here. Still BAFTA- and EFA-qualifying, so useful for a broader awards strategy.",
+      "sources": [
+        "https://www.encounters.film/submissions",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf",
+        "https://en.wikipedia.org/wiki/Encounters_Film_Festival"
+      ]
+    },
+    {
+      "id": "solothurner-filmtage",
+      "name": "Solothurner Filmtage",
+      "country": "Switzerland",
+      "city": "Solothurn",
+      "oscarQualifying": false,
+      "qualifyingCategories": [],
+      "festivalDates": { "start": "2027-01-20", "end": "2027-01-27", "estimated": false },
+      "deadlines": [
+        { "type": "final", "date": "2026-10-31", "feeAmount": 0, "feeCurrency": "CHF", "estimated": true }
+      ],
+      "maxRuntimeMin": null,
+      "premiereRequirement": "Swiss films/co-productions only; recent completion required. Premiere not mandatory.",
+      "platform": "Own portal (solothurnerfilmtage.ch)",
+      "url": "https://www.solothurnerfilmtage.ch/",
+      "tier": 3,
+      "strategyNotes": "Not on the Academy qualifying list, but it is THE showcase of Swiss filmmaking (62nd edition 20-27 Jan 2027) and the gateway to the Swiss Film Award, Swiss press, funders (BAK, SRG) and producers Robin will need for a sustained Oscar campaign. Submit his best 2026 shorts for national visibility and industry allies, not for Oscar qualification.",
+      "sources": [
+        "https://www.solothurnerfilmtage.ch/",
+        "https://www.swissfilms.ch/de/festival/solothurner-filmtage/f5b527457c4c4da686e8f5a4351d2a88",
+        "https://www.oscars.org/sites/oscars/files/2026-05/99AA_Shorts%20Qualifying%20Festivals.pdf"
+      ]
+    }
+  ]
+}
