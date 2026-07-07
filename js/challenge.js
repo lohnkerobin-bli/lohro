@@ -83,9 +83,17 @@ var ChallengeView = (function () {
         '<div class="card accent-teal"><span class="stat-label">Published</span><div class="stat-value">' + published.length + '</div></div>' +
         '<div class="card accent-blue"><span class="stat-label">Days elapsed</span><div class="stat-value">' + elapsed + '</div></div>' +
         '<div class="card accent-red"><span class="stat-label">Hit rate</span><div class="stat-value">' + rate + '<span class="unit">%</span></div></div>' +
-        '<div class="card accent-gold"><span class="stat-label">Days planned ahead</span><div class="stat-value">' +
-          days.filter(function (d) { return d > today && s.challengeDays[d] && s.challengeDays[d].title; }).length +
-        '</div></div>' +
+        (function () {
+          var horizon = 0;
+          for (var i = 1; i <= 14; i++) {
+            var dd = addDays(today, i);
+            if (dd >= start && s.challengeDays[dd] && (s.challengeDays[dd].title || s.challengeDays[dd].idea)) horizon++;
+          }
+          var cls = horizon >= 10 ? "teal" : horizon >= 5 ? "gold" : "red";
+          return '<div class="card accent-gold"><span class="stat-label">Planned next 14 days</span>' +
+            '<div class="stat-value">' + horizon + '<span class="unit">/14</span></div>' +
+            '<div class="stat-hint"><span class="badge ' + cls + '">' + (horizon >= 10 ? "healthy pipeline" : horizon >= 5 ? "plan more" : "pipeline empty") + '</span> Editor Bible: plan 2 weeks ahead</div></div>';
+        })() +
       '</div>' +
 
       '<h2 class="section-title">Day Board</h2>' +

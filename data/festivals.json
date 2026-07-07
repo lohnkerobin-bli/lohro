@@ -23,12 +23,38 @@
       "country": "Switzerland",
       "city": "Locarno",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation", "documentary"],
-      "festivalDates": { "start": "2027-08-04", "end": "2027-08-14", "estimated": true },
+      "qualifyingCategories": [
+        "live-action",
+        "animation",
+        "documentary"
+      ],
+      "festivalDates": {
+        "start": "2027-08-04",
+        "end": "2027-08-14",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "early", "date": "2027-02-18", "feeAmount": 35, "feeCurrency": "CHF", "estimated": true },
-        { "type": "regular", "date": "2027-04-08", "feeAmount": 55, "feeCurrency": "CHF", "estimated": true },
-        { "type": "late", "date": "2027-04-22", "feeAmount": 75, "feeCurrency": "CHF", "estimated": true }
+        {
+          "type": "early",
+          "date": "2027-02-18",
+          "feeAmount": 35,
+          "feeCurrency": "CHF",
+          "estimated": true
+        },
+        {
+          "type": "regular",
+          "date": "2027-04-08",
+          "feeAmount": 55,
+          "feeCurrency": "CHF",
+          "estimated": true
+        },
+        {
+          "type": "late",
+          "date": "2027-04-22",
+          "feeAmount": 75,
+          "feeCurrency": "CHF",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 59,
       "premiereRequirement": "World or international premiere required; film must be completed within ~12 months of the festival.",
@@ -49,11 +75,30 @@
       "country": "Switzerland",
       "city": "Winterthur",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation"],
-      "festivalDates": { "start": "2027-11-02", "end": "2027-11-07", "estimated": true },
+      "qualifyingCategories": [
+        "live-action",
+        "animation"
+      ],
+      "festivalDates": {
+        "start": "2027-11-02",
+        "end": "2027-11-07",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "early", "date": "2027-05-23", "feeAmount": 15, "feeCurrency": "CHF", "estimated": true },
-        { "type": "final", "date": "2027-07-11", "feeAmount": 25, "feeCurrency": "CHF", "estimated": true }
+        {
+          "type": "early",
+          "date": "2027-05-23",
+          "feeAmount": 15,
+          "feeCurrency": "CHF",
+          "estimated": true
+        },
+        {
+          "type": "final",
+          "date": "2027-07-11",
+          "feeAmount": 25,
+          "feeCurrency": "CHF",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 40,
       "premiereRequirement": "No world premiere required; recent films only (completed in the two calendar years before the festival). Swiss Competition allows up to 40 min, International Competition up to 30 min.",
@@ -73,11 +118,31 @@
       "country": "France",
       "city": "Clermont-Ferrand",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation", "documentary"],
-      "festivalDates": { "start": "2027-01-29", "end": "2027-02-06", "estimated": false },
+      "qualifyingCategories": [
+        "live-action",
+        "animation",
+        "documentary"
+      ],
+      "festivalDates": {
+        "start": "2027-01-29",
+        "end": "2027-02-06",
+        "estimated": false
+      },
       "deadlines": [
-        { "type": "early", "date": "2026-07-09", "feeAmount": 13, "feeCurrency": "EUR", "estimated": false },
-        { "type": "final", "date": "2026-09-24", "feeAmount": 13, "feeCurrency": "EUR", "estimated": false }
+        {
+          "type": "early",
+          "date": "2026-07-09",
+          "feeAmount": 13,
+          "feeCurrency": "EUR",
+          "estimated": false
+        },
+        {
+          "type": "final",
+          "date": "2026-09-24",
+          "feeAmount": 13,
+          "feeCurrency": "EUR",
+          "estimated": false
+        }
       ],
       "maxRuntimeMin": 40,
       "premiereRequirement": "No premiere requirement; films must be completed after 1 Oct 2025. The two deadlines are keyed to completion date (later-completed films use the 24 Sep deadline).",
@@ -97,19 +162,45 @@
       "country": "USA",
       "city": "Boulder (from 2027)",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation", "documentary"],
-      "festivalDates": { "start": "2027-01-21", "end": "2027-02-02", "estimated": true },
+      "qualifyingCategories": [
+        "live-action",
+        "animation",
+        "documentary"
+      ],
+      "festivalDates": {
+        "start": "2027-01-21",
+        "end": "2027-01-30",
+        "estimated": false
+      },
       "deadlines": [
-        { "type": "early", "date": "2026-07-13", "feeAmount": 55, "feeCurrency": "USD", "estimated": false },
-        { "type": "regular", "date": "2026-08-17", "feeAmount": 75, "feeCurrency": "USD", "estimated": true },
-        { "type": "final", "date": "2026-09-28", "feeAmount": 95, "feeCurrency": "USD", "estimated": true }
+        {
+          "type": "early",
+          "date": "2026-07-13",
+          "feeAmount": 55,
+          "feeCurrency": "USD",
+          "estimated": false
+        },
+        {
+          "type": "regular",
+          "date": "2026-08-17",
+          "feeAmount": 75,
+          "feeCurrency": "USD",
+          "estimated": true
+        },
+        {
+          "type": "final",
+          "date": "2026-09-28",
+          "feeAmount": 95,
+          "feeCurrency": "USD",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 50,
       "premiereRequirement": "No premiere status required for short films (unusual among top festivals).",
       "platform": "FilmFreeway",
       "url": "https://www.sundance.org/festivals/sundance-film-festival/submit/",
       "tier": 1,
-      "strategyNotes": "Short Film Grand Jury Prize plus four jury awards (Intl Fiction, US Fiction, Animation, Nonfiction) are all Oscar-qualifying, and the Jan 2027 edition opens the 100th-Oscars window. Early deadline 13 Jul 2026 is days away - Robin will likely use the official/late deadlines (Aug/Sep 2026) for his first strong films. Acceptance rate is under 1%, but shorts need no premiere status so there is no downside to trying. Note Oscar runtime cap is 40 min even though Sundance accepts up to 50.",
+      "strategyNotes": "Short Film Grand Jury Prize plus four jury awards (Intl Fiction, US Fiction, Animation, Nonfiction) are all Oscar-qualifying, and the Jan 2027 edition opens the 100th-Oscars window. Early deadline 13 Jul 2026 is days away - Robin will likely use the official/late deadlines (Aug/Sep 2026) for his first strong films. Acceptance rate is under 1%, but shorts need no premiere status so there is no downside to trying. Note Oscar runtime cap is 40 min even though Sundance accepts up to 50. Confirmed: accepted shorts must be delivered by 21 Dec 2026.",
       "sources": [
         "https://www.sundance.org/festivals/sundance-film-festival/submit/",
         "https://www.sundance.org/wp-content/uploads/2026/06/2027_Submissions_FAQ.pdf",
@@ -123,11 +214,31 @@
       "country": "Canada",
       "city": "Toronto",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation", "documentary"],
-      "festivalDates": { "start": "2027-09-09", "end": "2027-09-19", "estimated": true },
+      "qualifyingCategories": [
+        "live-action",
+        "animation",
+        "documentary"
+      ],
+      "festivalDates": {
+        "start": "2027-09-09",
+        "end": "2027-09-19",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "regular", "date": "2027-04-15", "feeAmount": 60, "feeCurrency": "CAD", "estimated": true },
-        { "type": "final", "date": "2027-05-15", "feeAmount": 100, "feeCurrency": "CAD", "estimated": true }
+        {
+          "type": "regular",
+          "date": "2027-04-15",
+          "feeAmount": 60,
+          "feeCurrency": "CAD",
+          "estimated": true
+        },
+        {
+          "type": "final",
+          "date": "2027-05-15",
+          "feeAmount": 100,
+          "feeCurrency": "CAD",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 40,
       "premiereRequirement": "Canadian premiere required at minimum; world/international premieres strongly preferred for Short Cuts.",
@@ -147,11 +258,31 @@
       "country": "USA",
       "city": "Palm Springs",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation", "documentary"],
-      "festivalDates": { "start": "2027-06-22", "end": "2027-06-28", "estimated": true },
+      "qualifyingCategories": [
+        "live-action",
+        "animation",
+        "documentary"
+      ],
+      "festivalDates": {
+        "start": "2027-06-22",
+        "end": "2027-06-28",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "early", "date": "2026-11-01", "feeAmount": 45, "feeCurrency": "USD", "estimated": true },
-        { "type": "final", "date": "2027-02-06", "feeAmount": 75, "feeCurrency": "USD", "estimated": true }
+        {
+          "type": "early",
+          "date": "2026-11-01",
+          "feeAmount": 45,
+          "feeCurrency": "USD",
+          "estimated": true
+        },
+        {
+          "type": "final",
+          "date": "2027-02-06",
+          "feeAmount": 75,
+          "feeCurrency": "USD",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 40,
       "premiereRequirement": "No premiere requirement; films completed 2026 or 2027 eligible for the 2027 edition.",
@@ -172,10 +303,24 @@
       "country": "Germany",
       "city": "Berlin",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation", "documentary"],
-      "festivalDates": { "start": "2027-02-11", "end": "2027-02-21", "estimated": true },
+      "qualifyingCategories": [
+        "live-action",
+        "animation",
+        "documentary"
+      ],
+      "festivalDates": {
+        "start": "2027-02-11",
+        "end": "2027-02-21",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "final", "date": "2026-11-04", "feeAmount": 75, "feeCurrency": "EUR", "estimated": false }
+        {
+          "type": "final",
+          "date": "2026-11-04",
+          "feeAmount": 75,
+          "feeCurrency": "EUR",
+          "estimated": false
+        }
       ],
       "maxRuntimeMin": 30,
       "premiereRequirement": "World or international premiere required (German films: world premiere).",
@@ -195,10 +340,24 @@
       "country": "Germany",
       "city": "Oberhausen",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation", "documentary"],
-      "festivalDates": { "start": "2027-04-29", "end": "2027-05-04", "estimated": true },
+      "qualifyingCategories": [
+        "live-action",
+        "animation",
+        "documentary"
+      ],
+      "festivalDates": {
+        "start": "2027-04-29",
+        "end": "2027-05-04",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "final", "date": "2027-01-15", "feeAmount": 10, "feeCurrency": "EUR", "estimated": true }
+        {
+          "type": "final",
+          "date": "2027-01-15",
+          "feeAmount": 10,
+          "feeCurrency": "EUR",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 45,
       "premiereRequirement": "German premiere required for the International Competition; no world premiere needed.",
@@ -218,10 +377,22 @@
       "country": "France",
       "city": "Annecy",
       "oscarQualifying": true,
-      "qualifyingCategories": ["animation"],
-      "festivalDates": { "start": "2027-06-13", "end": "2027-06-19", "estimated": true },
+      "qualifyingCategories": [
+        "animation"
+      ],
+      "festivalDates": {
+        "start": "2027-06-13",
+        "end": "2027-06-19",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "final", "date": "2027-02-15", "feeAmount": 0, "feeCurrency": "EUR", "estimated": true }
+        {
+          "type": "final",
+          "date": "2027-02-15",
+          "feeAmount": 0,
+          "feeCurrency": "EUR",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": null,
       "premiereRequirement": "French premiere expected for official short competition; world premiere not required.",
@@ -241,11 +412,31 @@
       "country": "Finland",
       "city": "Tampere",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation", "documentary"],
-      "festivalDates": { "start": "2027-03-10", "end": "2027-03-14", "estimated": false },
+      "qualifyingCategories": [
+        "live-action",
+        "animation",
+        "documentary"
+      ],
+      "festivalDates": {
+        "start": "2027-03-10",
+        "end": "2027-03-14",
+        "estimated": false
+      },
       "deadlines": [
-        { "type": "early", "date": "2026-09-01", "feeAmount": 14, "feeCurrency": "EUR", "estimated": true },
-        { "type": "final", "date": "2026-11-03", "feeAmount": 24, "feeCurrency": "EUR", "estimated": true }
+        {
+          "type": "early",
+          "date": "2026-09-01",
+          "feeAmount": 14,
+          "feeCurrency": "EUR",
+          "estimated": true
+        },
+        {
+          "type": "final",
+          "date": "2026-11-03",
+          "feeAmount": 24,
+          "feeCurrency": "EUR",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 30,
       "premiereRequirement": "No world premiere required; films completed 1 Jan 2025 or later eligible. Finnish premiere expected.",
@@ -265,11 +456,31 @@
       "country": "Poland",
       "city": "Krakow",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation", "documentary"],
-      "festivalDates": { "start": "2027-05-31", "end": "2027-06-07", "estimated": false },
+      "qualifyingCategories": [
+        "live-action",
+        "animation",
+        "documentary"
+      ],
+      "festivalDates": {
+        "start": "2027-05-31",
+        "end": "2027-06-07",
+        "estimated": false
+      },
       "deadlines": [
-        { "type": "early", "date": "2026-11-30", "feeAmount": 18, "feeCurrency": "EUR", "estimated": true },
-        { "type": "final", "date": "2027-01-31", "feeAmount": 28, "feeCurrency": "EUR", "estimated": true }
+        {
+          "type": "early",
+          "date": "2026-11-30",
+          "feeAmount": 18,
+          "feeCurrency": "EUR",
+          "estimated": true
+        },
+        {
+          "type": "final",
+          "date": "2027-01-31",
+          "feeAmount": 28,
+          "feeCurrency": "EUR",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 30,
       "premiereRequirement": "Polish premiere required for competition; no world premiere needed.",
@@ -289,11 +500,31 @@
       "country": "Austria",
       "city": "Vienna",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation", "documentary"],
-      "festivalDates": { "start": "2027-05-25", "end": "2027-05-30", "estimated": true },
+      "qualifyingCategories": [
+        "live-action",
+        "animation",
+        "documentary"
+      ],
+      "festivalDates": {
+        "start": "2027-05-25",
+        "end": "2027-05-30",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "regular", "date": "2027-01-05", "feeAmount": 12, "feeCurrency": "EUR", "estimated": true },
-        { "type": "late", "date": "2027-01-31", "feeAmount": 22, "feeCurrency": "EUR", "estimated": true }
+        {
+          "type": "regular",
+          "date": "2027-01-05",
+          "feeAmount": 12,
+          "feeCurrency": "EUR",
+          "estimated": true
+        },
+        {
+          "type": "late",
+          "date": "2027-01-31",
+          "feeAmount": 22,
+          "feeCurrency": "EUR",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 30,
       "premiereRequirement": "Austrian premiere required for competitions; no world premiere needed.",
@@ -313,10 +544,23 @@
       "country": "Germany",
       "city": "Berlin",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation"],
-      "festivalDates": { "start": "2027-11-09", "end": "2027-11-14", "estimated": true },
+      "qualifyingCategories": [
+        "live-action",
+        "animation"
+      ],
+      "festivalDates": {
+        "start": "2027-11-09",
+        "end": "2027-11-14",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "final", "date": "2027-05-28", "feeAmount": 8, "feeCurrency": "EUR", "estimated": true }
+        {
+          "type": "final",
+          "date": "2027-05-28",
+          "feeAmount": 8,
+          "feeCurrency": "EUR",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 20,
       "premiereRequirement": "No premiere requirement; films produced within roughly the last two years.",
@@ -336,11 +580,31 @@
       "country": "USA",
       "city": "Aspen",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation", "documentary"],
-      "festivalDates": { "start": "2027-04-06", "end": "2027-04-11", "estimated": true },
+      "qualifyingCategories": [
+        "live-action",
+        "animation",
+        "documentary"
+      ],
+      "festivalDates": {
+        "start": "2027-04-06",
+        "end": "2027-04-11",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "regular", "date": "2026-09-25", "feeAmount": 55, "feeCurrency": "USD", "estimated": true },
-        { "type": "final", "date": "2026-11-13", "feeAmount": 65, "feeCurrency": "USD", "estimated": true }
+        {
+          "type": "regular",
+          "date": "2026-09-25",
+          "feeAmount": 55,
+          "feeCurrency": "USD",
+          "estimated": true
+        },
+        {
+          "type": "final",
+          "date": "2026-11-13",
+          "feeAmount": 65,
+          "feeCurrency": "USD",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 40,
       "premiereRequirement": "No world premiere required (regional premiere preferred).",
@@ -360,12 +624,38 @@
       "country": "USA",
       "city": "New York",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation", "documentary"],
-      "festivalDates": { "start": "2027-06-09", "end": "2027-06-20", "estimated": true },
+      "qualifyingCategories": [
+        "live-action",
+        "animation",
+        "documentary"
+      ],
+      "festivalDates": {
+        "start": "2027-06-09",
+        "end": "2027-06-20",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "early", "date": "2026-12-01", "feeAmount": 50, "feeCurrency": "USD", "estimated": true },
-        { "type": "regular", "date": "2027-01-05", "feeAmount": 60, "feeCurrency": "USD", "estimated": true },
-        { "type": "final", "date": "2027-02-16", "feeAmount": 70, "feeCurrency": "USD", "estimated": true }
+        {
+          "type": "early",
+          "date": "2026-12-01",
+          "feeAmount": 50,
+          "feeCurrency": "USD",
+          "estimated": true
+        },
+        {
+          "type": "regular",
+          "date": "2027-01-05",
+          "feeAmount": 60,
+          "feeCurrency": "USD",
+          "estimated": true
+        },
+        {
+          "type": "final",
+          "date": "2027-02-16",
+          "feeAmount": 70,
+          "feeCurrency": "USD",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 40,
       "premiereRequirement": "New York premiere required at minimum; world/international premiere preferred for competition.",
@@ -385,12 +675,38 @@
       "country": "USA",
       "city": "Austin",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation", "documentary"],
-      "festivalDates": { "start": "2027-03-12", "end": "2027-03-18", "estimated": true },
+      "qualifyingCategories": [
+        "live-action",
+        "animation",
+        "documentary"
+      ],
+      "festivalDates": {
+        "start": "2027-03-12",
+        "end": "2027-03-18",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "early", "date": "2026-08-25", "feeAmount": 50, "feeCurrency": "USD", "estimated": true },
-        { "type": "regular", "date": "2026-09-15", "feeAmount": 60, "feeCurrency": "USD", "estimated": true },
-        { "type": "final", "date": "2026-10-01", "feeAmount": 70, "feeCurrency": "USD", "estimated": true }
+        {
+          "type": "early",
+          "date": "2026-08-25",
+          "feeAmount": 50,
+          "feeCurrency": "USD",
+          "estimated": true
+        },
+        {
+          "type": "regular",
+          "date": "2026-09-15",
+          "feeAmount": 60,
+          "feeCurrency": "USD",
+          "estimated": true
+        },
+        {
+          "type": "final",
+          "date": "2026-10-01",
+          "feeAmount": 70,
+          "feeCurrency": "USD",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 40,
       "premiereRequirement": "No strict world-premiere rule for shorts, but premieres are strongly favored in programming; submission link must stay live through March 2027.",
@@ -410,12 +726,38 @@
       "country": "United Kingdom",
       "city": "London",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation", "documentary"],
-      "festivalDates": { "start": "2027-06-16", "end": "2027-06-25", "estimated": true },
+      "qualifyingCategories": [
+        "live-action",
+        "animation",
+        "documentary"
+      ],
+      "festivalDates": {
+        "start": "2027-06-16",
+        "end": "2027-06-25",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "early", "date": "2026-12-07", "feeAmount": 25, "feeCurrency": "GBP", "estimated": true },
-        { "type": "regular", "date": "2027-01-18", "feeAmount": 35, "feeCurrency": "GBP", "estimated": true },
-        { "type": "final", "date": "2027-03-08", "feeAmount": 45, "feeCurrency": "GBP", "estimated": true }
+        {
+          "type": "early",
+          "date": "2026-12-07",
+          "feeAmount": 25,
+          "feeCurrency": "GBP",
+          "estimated": true
+        },
+        {
+          "type": "regular",
+          "date": "2027-01-18",
+          "feeAmount": 35,
+          "feeCurrency": "GBP",
+          "estimated": true
+        },
+        {
+          "type": "final",
+          "date": "2027-03-08",
+          "feeAmount": 45,
+          "feeCurrency": "GBP",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 45,
       "premiereRequirement": "No world premiere required; films completed after 1 Jan 2025 eligible for 2027.",
@@ -435,10 +777,24 @@
       "country": "Sweden",
       "city": "Uppsala",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation", "documentary"],
-      "festivalDates": { "start": "2027-10-18", "end": "2027-10-24", "estimated": true },
+      "qualifyingCategories": [
+        "live-action",
+        "animation",
+        "documentary"
+      ],
+      "festivalDates": {
+        "start": "2027-10-18",
+        "end": "2027-10-24",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "final", "date": "2027-05-31", "feeAmount": 15, "feeCurrency": "EUR", "estimated": true }
+        {
+          "type": "final",
+          "date": "2027-05-31",
+          "feeAmount": 15,
+          "feeCurrency": "EUR",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 40,
       "premiereRequirement": "No world premiere required; production year within the last two calendar years.",
@@ -458,11 +814,30 @@
       "country": "Portugal",
       "city": "Vila do Conde",
       "oscarQualifying": true,
-      "qualifyingCategories": ["live-action", "animation"],
-      "festivalDates": { "start": "2027-07-10", "end": "2027-07-18", "estimated": true },
+      "qualifyingCategories": [
+        "live-action",
+        "animation"
+      ],
+      "festivalDates": {
+        "start": "2027-07-10",
+        "end": "2027-07-18",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "early", "date": "2026-12-31", "feeAmount": 5, "feeCurrency": "EUR", "estimated": true },
-        { "type": "regular", "date": "2027-02-28", "feeAmount": 10, "feeCurrency": "EUR", "estimated": true }
+        {
+          "type": "early",
+          "date": "2026-12-31",
+          "feeAmount": 5,
+          "feeCurrency": "EUR",
+          "estimated": true
+        },
+        {
+          "type": "regular",
+          "date": "2027-02-28",
+          "feeAmount": 10,
+          "feeCurrency": "EUR",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 60,
       "premiereRequirement": "Portuguese premiere required for competition; no world premiere needed. Films produced in the previous two years eligible.",
@@ -482,11 +857,29 @@
       "country": "Switzerland",
       "city": "Nyon",
       "oscarQualifying": true,
-      "qualifyingCategories": ["documentary"],
-      "festivalDates": { "start": "2027-04-09", "end": "2027-04-18", "estimated": true },
+      "qualifyingCategories": [
+        "documentary"
+      ],
+      "festivalDates": {
+        "start": "2027-04-09",
+        "end": "2027-04-18",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "early", "date": "2026-11-04", "feeAmount": 30, "feeCurrency": "CHF", "estimated": true },
-        { "type": "final", "date": "2026-12-13", "feeAmount": 40, "feeCurrency": "CHF", "estimated": true }
+        {
+          "type": "early",
+          "date": "2026-11-04",
+          "feeAmount": 30,
+          "feeCurrency": "CHF",
+          "estimated": true
+        },
+        {
+          "type": "final",
+          "date": "2026-12-13",
+          "feeAmount": 40,
+          "feeCurrency": "CHF",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 40,
       "premiereRequirement": "World, international or European premiere required for competition films.",
@@ -506,10 +899,22 @@
       "country": "Switzerland",
       "city": "Baden",
       "oscarQualifying": true,
-      "qualifyingCategories": ["animation"],
-      "festivalDates": { "start": "2027-09-07", "end": "2027-09-12", "estimated": true },
+      "qualifyingCategories": [
+        "animation"
+      ],
+      "festivalDates": {
+        "start": "2027-09-07",
+        "end": "2027-09-12",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "final", "date": "2027-05-02", "feeAmount": 0, "feeCurrency": "CHF", "estimated": true }
+        {
+          "type": "final",
+          "date": "2027-05-02",
+          "feeAmount": 0,
+          "feeCurrency": "CHF",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 40,
       "premiereRequirement": "No world premiere required; films completed within roughly the previous 18 months.",
@@ -530,9 +935,19 @@
       "city": "Bristol",
       "oscarQualifying": false,
       "qualifyingCategories": [],
-      "festivalDates": { "start": "2027-09-21", "end": "2027-09-26", "estimated": true },
+      "festivalDates": {
+        "start": "2027-09-21",
+        "end": "2027-09-26",
+        "estimated": true
+      },
       "deadlines": [
-        { "type": "final", "date": "2027-05-18", "feeAmount": 20, "feeCurrency": "GBP", "estimated": true }
+        {
+          "type": "final",
+          "date": "2027-05-18",
+          "feeAmount": 20,
+          "feeCurrency": "GBP",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": 40,
       "premiereRequirement": "No premiere requirement; films completed in the previous two years.",
@@ -553,9 +968,19 @@
       "city": "Solothurn",
       "oscarQualifying": false,
       "qualifyingCategories": [],
-      "festivalDates": { "start": "2027-01-20", "end": "2027-01-27", "estimated": false },
+      "festivalDates": {
+        "start": "2027-01-20",
+        "end": "2027-01-27",
+        "estimated": false
+      },
       "deadlines": [
-        { "type": "final", "date": "2026-10-31", "feeAmount": 0, "feeCurrency": "CHF", "estimated": true }
+        {
+          "type": "final",
+          "date": "2026-10-31",
+          "feeAmount": 0,
+          "feeCurrency": "CHF",
+          "estimated": true
+        }
       ],
       "maxRuntimeMin": null,
       "premiereRequirement": "Swiss films/co-productions only; recent completion required. Premiere not mandatory.",
