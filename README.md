@@ -23,7 +23,10 @@ Built for Kollektiv Oskar — Robin, Simon & Jasmin.
 No build, no install, no server needed:
 
 1. **Double-click `index.html`** — works straight from disk (also from a Dropbox folder), or
-2. serve it locally for a nicer URL: `npx serve .` or `python3 -m http.server 8080` → http://localhost:8080
+2. **single file:** `dist/way-to-oscar.html` is the whole app (CSS, JS, all data) in ONE file — the easiest thing to drop into Dropbox and share, or
+3. serve it locally for a nicer URL: `npx serve .` or `python3 -m http.server 8080` → http://localhost:8080
+
+Rebuild the single file after changes: `python3 scripts/build-standalone.py`
 
 Everything is plain HTML/CSS/JS. Works on desktop and mobile browsers.
 

@@ -1,3 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>WAY TO OSCAR — Command Center</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
+<style>
+/* ============================================================
+   WAY TO OSCAR — Command Center
+   Cinematic dark design system
+   ============================================================ */
+
+:root {
+  --true-black: #0A0A0A;
+  --black-raise: #121212;
+  --black-panel: #161618;
+  --black-card: #1C1C1F;
+  --black-line: #2A2A2E;
+  --set-red: #E63946;
+  --set-red-dim: #B02A35;
+  --stage-teal: #2A9D8F;
+  --stage-blue: #457B9D;
+  --cream: #F1FAEE;
+  --cream-dim: #C9CFC6;
+  --cream-faint: #8F958D;
+  --gold: #D4AF37;
+
+  --font-display: "Futura", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 4px 24px rgba(0,0,0,.55);
+  --pad: clamp(14px, 3vw, 28px);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scrollbar-color: var(--black-line) var(--true-black); }
+
+body {
+  background: var(--true-black);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* subtle film-grain / vignette backdrop */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 120% 90% at 50% -10%, rgba(69,123,157,.10), transparent 55%),
+    radial-gradient(ellipse 100% 80% at 90% 110%, rgba(230,57,70,.06), transparent 55%);
+  z-index: 0;
+}
+
+#app-shell { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 100vh; }
+
+/* ---------- Top bar ---------- */
+#topbar {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  padding: 14px var(--pad);
+  border-bottom: 1px solid var(--black-line);
+  background: rgba(10,10,10,.85);
+  backdrop-filter: blur(8px);
+  position: sticky; top: 0; z-index: 50;
+}
+.brand { display: flex; align-items: center; gap: 12px; cursor: pointer; user-select: none; }
+.brand-mark {
+  width: 42px; height: 42px; display: grid; place-items: center;
+  font-size: 22px;
+  background: linear-gradient(145deg, var(--black-card), var(--black-raise));
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  box-shadow: 0 0 18px rgba(212,175,55,.15);
+}
+.brand-text { display: flex; flex-direction: column; }
+.brand-title {
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 17px; letter-spacing: .18em;
+}
+.brand-sub { font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--cream-faint); }
+
+#main-nav { display: flex; gap: 4px; flex-wrap: wrap; margin-left: auto; }
+#main-nav a {
+  color: var(--cream-dim); text-decoration: none;
+  font-size: 12.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  padding: 8px 13px; border-radius: 7px;
+  border: 1px solid transparent;
+  transition: color .15s, background .15s;
+  white-space: nowrap;
+}
+#main-nav a:hover { color: var(--cream); background: var(--black-panel); }
+#main-nav a.active {
+  color: var(--cream);
+  background: linear-gradient(145deg, rgba(230,57,70,.18), rgba(230,57,70,.08));
+  border-color: rgba(230,57,70,.45);
+}
+
+/* ---------- Main / footer ---------- */
+#view { flex: 1; padding: calc(var(--pad) * 1.1) var(--pad) 60px; max-width: 1280px; width: 100%; margin: 0 auto; }
+#footer {
+  display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  padding: 14px var(--pad);
+  border-top: 1px solid var(--black-line);
+  color: var(--cream-faint); font-size: 12px; letter-spacing: .04em;
+}
+
+/* ---------- Typography ---------- */
+h1.view-title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4vw, 34px);
+  font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.view-sub { color: var(--cream-faint); font-size: 13.5px; margin-bottom: 26px; }
+h2.section-title {
+  font-family: var(--font-display);
+  font-size: 14px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--cream-dim);
+  display: flex; align-items: center; gap: 10px;
+  margin: 30px 0 14px;
+}
+h2.section-title::after { content: ""; flex: 1; height: 1px; background: var(--black-line); }
+
+/* ---------- Cards / grid ---------- */
+.grid { display: grid; gap: 16px; }
+.grid.cols-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.grid.cols-3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.grid.cols-4 { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+
+.card {
+  background: linear-gradient(160deg, var(--black-card), var(--black-panel));
+  border: 1px solid var(--black-line);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+}
+.card.accent-red { border-top: 2px solid var(--set-red); }
+.card.accent-teal { border-top: 2px solid var(--stage-teal); }
+.card.accent-blue { border-top: 2px solid var(--stage-blue); }
+.card.accent-gold { border-top: 2px solid var(--gold); }
+
+.stat-label { font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--cream-faint); }
+.stat-value { font-family: var(--font-display); font-size: clamp(26px, 3.4vw, 40px); font-weight: 800; line-height: 1.15; margin: 4px 0 2px; }
+.stat-hint { font-size: 12px; color: var(--cream-faint); }
+.stat-value .unit { font-size: .45em; color: var(--cream-dim); font-weight: 600; letter-spacing: .06em; }
+
+/* ---------- Buttons / inputs ---------- */
+button, .btn {
+  font-family: var(--font-body);
+  font-size: 12.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--cream);
+  background: var(--black-card);
+  border: 1px solid var(--black-line);
+  border-radius: var(--radius-sm);
+  padding: 9px 15px;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, transform .05s;
+}
+button:hover, .btn:hover { border-color: var(--cream-faint); }
+button:active { transform: translateY(1px); }
+button.primary { background: var(--set-red); border-color: var(--set-red); }
+button.primary:hover { background: var(--set-red-dim); }
+button.teal { background: var(--stage-teal); border-color: var(--stage-teal); color: #06211E; }
+button.blue { background: var(--stage-blue); border-color: var(--stage-blue); }
+button.ghost { background: transparent; }
+button.small { padding: 5px 10px; font-size: 11px; }
+button.danger:hover { border-color: var(--set-red); color: var(--set-red); }
+
+input, select, textarea {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--cream);
+  background: var(--black-raise);
+  border: 1px solid var(--black-line);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  width: 100%;
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--stage-blue); }
+textarea { resize: vertical; min-height: 70px; }
+label.field { display: block; margin-bottom: 12px; }
+label.field > span { display: block; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--cream-faint); margin-bottom: 5px; }
+
+/* ---------- Badges / chips ---------- */
+.badge {
+  display: inline-block;
+  font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 99px;
+  border: 1px solid var(--black-line);
+  color: var(--cream-dim);
+  background: var(--black-raise);
+  white-space: nowrap;
+}
+.badge.red   { color: #FF8B94; border-color: rgba(230,57,70,.5);  background: rgba(230,57,70,.12); }
+.badge.teal  { color: #7EDCD2; border-color: rgba(42,157,143,.5); background: rgba(42,157,143,.12); }
+.badge.blue  { color: #9DC6E0; border-color: rgba(69,123,157,.55);background: rgba(69,123,157,.14); }
+.badge.gold  { color: #EBD489; border-color: rgba(212,175,55,.5); background: rgba(212,175,55,.10); }
+.badge.gray  { color: var(--cream-faint); }
+
+/* ---------- Tables ---------- */
+.table-wrap { overflow-x: auto; border: 1px solid var(--black-line); border-radius: var(--radius); }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 640px; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--black-line); vertical-align: top; }
+th {
+  font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--cream-faint);
+  background: var(--black-raise); position: sticky; top: 0;
+}
+tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: rgba(255,255,255,.025); }
+
+/* ---------- Progress bars ---------- */
+.progress {
+  height: 8px; border-radius: 99px; background: var(--black-raise);
+  border: 1px solid var(--black-line); overflow: hidden;
+}
+.progress > div { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--stage-teal), var(--stage-blue)); transition: width .4s ease; }
+.progress.red > div { background: linear-gradient(90deg, var(--set-red-dim), var(--set-red)); }
+.progress.gold > div { background: linear-gradient(90deg, #A8842A, var(--gold)); }
+
+/* ---------- Countdown ---------- */
+.countdown { display: flex; gap: 14px; flex-wrap: wrap; }
+.countdown .unit-box {
+  flex: 1; min-width: 70px;
+  text-align: center;
+  background: var(--black-raise);
+  border: 1px solid var(--black-line);
+  border-radius: var(--radius-sm);
+  padding: 12px 6px;
+}
+.countdown .num { font-family: var(--font-display); font-size: clamp(24px, 3vw, 36px); font-weight: 800; color: var(--gold); }
+.countdown .lbl { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--cream-faint); }
+
+/* ---------- Challenge day grid ---------- */
+.day-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.day-cell {
+  border: 1px solid var(--black-line);
+  border-radius: var(--radius-sm);
+  background: var(--black-panel);
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: border-color .15s, transform .1s;
+  min-height: 86px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.day-cell:hover { border-color: var(--cream-faint); transform: translateY(-1px); }
+.day-cell .d-date { font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--cream-faint); display: flex; justify-content: space-between; }
+.day-cell .d-title { font-size: 13px; font-weight: 600; line-height: 1.3; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.day-cell.today { border-color: var(--gold); box-shadow: 0 0 14px rgba(212,175,55,.14); }
+.day-cell.published { border-left: 3px solid var(--stage-teal); }
+.day-cell.editing, .day-cell.shooting { border-left: 3px solid var(--stage-blue); }
+.day-cell.planned { border-left: 3px solid var(--cream-faint); }
+.day-cell.skipped { opacity: .45; border-left: 3px solid var(--set-red-dim); }
+.day-cell.future { opacity: .6; border-style: dashed; }
+.day-cell.empty .d-title { color: var(--cream-faint); font-style: italic; font-weight: 400; }
+
+/* ---------- Timeline (festival roadmap) ---------- */
+.timeline { position: relative; margin-left: 10px; padding-left: 26px; border-left: 2px solid var(--black-line); }
+.timeline-item { position: relative; padding: 0 0 22px; }
+.timeline-item::before {
+  content: ""; position: absolute; left: -33px; top: 5px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--stage-blue); border: 2px solid var(--true-black);
+}
+.timeline-item.past::before { background: var(--black-line); }
+.timeline-item.urgent::before { background: var(--set-red); box-shadow: 0 0 10px rgba(230,57,70,.6); }
+.timeline-item .tl-date { font-family: var(--font-mono); font-size: 12px; color: var(--gold); letter-spacing: .04em; }
+.timeline-item.past .tl-date { color: var(--cream-faint); }
+.timeline-item .tl-title { font-weight: 700; font-size: 14.5px; margin: 2px 0; }
+.timeline-item .tl-meta { font-size: 12.5px; color: var(--cream-faint); }
+
+/* ---------- Modal ---------- */
+#modal-root:empty { display: none; }
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(0,0,0,.72);
+  backdrop-filter: blur(3px);
+  display: grid; place-items: center;
+  padding: 18px;
+  animation: fadeIn .15s ease;
+}
+.modal {
+  background: var(--black-panel);
+  border: 1px solid var(--black-line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%; max-width: 560px;
+  max-height: 88vh; overflow-y: auto;
+  padding: 24px;
+  animation: rise .18s ease;
+}
+.modal h3 { font-family: var(--font-display); letter-spacing: .1em; text-transform: uppercase; font-size: 16px; margin-bottom: 16px; }
+.modal .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; flex-wrap: wrap; }
+@keyframes fadeIn { from { opacity: 0; } }
+@keyframes rise { from { transform: translateY(10px); opacity: 0; } }
+
+/* ---------- Toast ---------- */
+#toast-root { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.toast {
+  background: var(--black-card); border: 1px solid var(--stage-teal);
+  color: var(--cream); border-radius: 8px; padding: 10px 18px;
+  font-size: 13px; box-shadow: var(--shadow);
+  animation: rise .2s ease;
+}
+.toast.error { border-color: var(--set-red); }
+
+/* ---------- Misc ---------- */
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.row.between { justify-content: space-between; }
+.muted { color: var(--cream-faint); }
+.mono { font-family: var(--font-mono); }
+.mt { margin-top: 14px; } .mb { margin-bottom: 14px; }
+.clickable { cursor: pointer; }
+.filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
+.filter-bar select, .filter-bar input { width: auto; min-width: 130px; }
+.empty-note { color: var(--cream-faint); font-style: italic; padding: 18px 4px; }
+a { color: var(--stage-blue); }
+a:hover { color: var(--cream); }
+
+.milestone-row { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--black-line); }
+.milestone-row:last-child { border-bottom: none; }
+.milestone-row input[type=checkbox] { width: 17px; height: 17px; accent-color: var(--stage-teal); flex-shrink: 0; }
+.milestone-row.done .m-title { text-decoration: line-through; color: var(--cream-faint); }
+.milestone-row .m-title { flex: 1; font-size: 14px; }
+.milestone-row .m-date { font-family: var(--font-mono); font-size: 12px; color: var(--cream-faint); white-space: nowrap; }
+
+/* sparkline chart */
+.chart-box svg { width: 100%; height: auto; display: block; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 720px) {
+  #topbar { padding: 10px 12px; gap: 10px; }
+  .brand-sub { display: none; }
+  #main-nav { width: 100%; margin-left: 0; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 2px; }
+  #main-nav a { padding: 7px 10px; font-size: 11.5px; }
+  #view { padding: 16px 12px 60px; }
+  table { min-width: 560px; }
+  .modal { padding: 18px; }
+}
+
+</style>
+</head>
+<body>
+<div id="app-shell">
+  <header id="topbar">
+    <div class="brand" onclick="location.hash='#/dashboard'">
+      <div class="brand-mark">🏆</div>
+      <div class="brand-text">
+        <span class="brand-title">WAY TO OSCAR</span>
+        <span class="brand-sub">Command Center · Kollektiv Oskar</span>
+      </div>
+    </div>
+    <nav id="main-nav">
+      <a href="#/dashboard" data-route="dashboard">Dashboard</a>
+      <a href="#/challenge" data-route="challenge">Daily Challenge</a>
+      <a href="#/festivals" data-route="festivals">Festivals</a>
+      <a href="#/ideas" data-route="ideas">Ideas</a>
+      <a href="#/projects" data-route="projects">Projects</a>
+      <a href="#/settings" data-route="settings">Data &amp; Settings</a>
+    </nav>
+  </header>
+  <main id="view"></main>
+  <footer id="footer">
+    <span>“Every day one film closer.” — Lohro</span>
+    <span id="footer-status"></span>
+  </footer>
+</div>
+<div id="modal-root"></div>
+<div id="toast-root"></div>
+
+<script>
 /* AUTO-GENERATED by scripts/build-seed.py — do not edit by hand.
    Canonical data lives in data/*.json. Regenerate: python3 scripts/build-seed.py */
 window.SEED = {
@@ -3456,3 +3836,1406 @@ window.SEED = {
   ]
  }
 };
+
+</script>
+<script>
+/* ============ util.js — helpers, DOM, dates, modal, toast ============ */
+"use strict";
+
+function $(sel, root) { return (root || document).querySelector(sel); }
+function $$(sel, root) { return Array.from((root || document).querySelectorAll(sel)); }
+
+function esc(s) {
+  if (s === null || s === undefined) return "";
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+}
+
+function el(html) {
+  var t = document.createElement("template");
+  t.innerHTML = html.trim();
+  return t.content.firstElementChild;
+}
+
+function uid(prefix) {
+  return (prefix || "id") + "-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 7);
+}
+
+/* ---------- dates ---------- */
+function todayISO() {
+  var d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+}
+function parseISO(iso) {
+  if (!iso) return null;
+  var p = String(iso).slice(0, 10).split("-");
+  return new Date(+p[0], +p[1] - 1, +p[2]);
+}
+function fmtDate(iso, opts) {
+  var d = parseISO(iso);
+  if (!d || isNaN(d)) return "—";
+  return d.toLocaleDateString("en-GB", opts || { day: "numeric", month: "short", year: "numeric" });
+}
+function fmtDateShort(iso) { return fmtDate(iso, { day: "numeric", month: "short" }); }
+function addDays(iso, n) {
+  var d = parseISO(iso);
+  d.setDate(d.getDate() + n);
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+}
+function daysBetween(isoA, isoB) {
+  var a = parseISO(isoA), b = parseISO(isoB);
+  return Math.round((b - a) / 86400000);
+}
+function weekdayShort(iso) {
+  var d = parseISO(iso);
+  return d.toLocaleDateString("en-GB", { weekday: "short" });
+}
+function fmtNum(n) {
+  if (n === null || n === undefined || isNaN(n)) return "—";
+  return Number(n).toLocaleString("en-US");
+}
+function fmtCompact(n) {
+  if (n === null || n === undefined || isNaN(n)) return "—";
+  if (n >= 1000000) return (n / 1000000).toFixed(n % 1000000 === 0 ? 0 : 1) + "M";
+  if (n >= 1000) return (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1) + "K";
+  return String(n);
+}
+
+/* ---------- modal ---------- */
+function openModal(innerHTML, opts) {
+  closeModal();
+  var root = $("#modal-root");
+  var backdrop = el('<div class="modal-backdrop"><div class="modal">' + innerHTML + "</div></div>");
+  backdrop.addEventListener("mousedown", function (e) {
+    if (e.target === backdrop && !(opts && opts.sticky)) closeModal();
+  });
+  root.appendChild(backdrop);
+  var firstInput = $("input, textarea, select", backdrop);
+  if (firstInput) setTimeout(function () { firstInput.focus(); }, 30);
+  return backdrop;
+}
+function closeModal() { $("#modal-root").innerHTML = ""; }
+document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeModal(); });
+
+/* ---------- toast ---------- */
+function toast(msg, isError) {
+  var t = el('<div class="toast' + (isError ? " error" : "") + '">' + esc(msg) + "</div>");
+  $("#toast-root").appendChild(t);
+  setTimeout(function () { t.remove(); }, 2600);
+}
+
+/* ---------- tiny SVG line chart ---------- */
+function sparkline(points, opts) {
+  // points: [{x: number(ms or index), y: number}] sorted by x
+  opts = opts || {};
+  var w = opts.width || 600, h = opts.height || 160, pad = 26;
+  if (!points || points.length === 0) return '<div class="empty-note">No data points yet.</div>';
+  var xs = points.map(function (p) { return p.x; });
+  var ys = points.map(function (p) { return p.y; });
+  var minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs);
+  var minY = 0, maxY = Math.max(Math.max.apply(null, ys), opts.goal || 0, 10);
+  if (maxX === minX) maxX = minX + 1;
+  function X(v) { return pad + ((v - minX) / (maxX - minX)) * (w - pad * 2); }
+  function Y(v) { return h - pad - ((v - minY) / (maxY - minY)) * (h - pad * 2); }
+  var path = points.map(function (p, i) { return (i === 0 ? "M" : "L") + X(p.x).toFixed(1) + " " + Y(p.y).toFixed(1); }).join(" ");
+  var dots = points.map(function (p) {
+    return '<circle cx="' + X(p.x).toFixed(1) + '" cy="' + Y(p.y).toFixed(1) + '" r="3.2" fill="#2A9D8F"/>';
+  }).join("");
+  var goalLine = "";
+  if (opts.goal) {
+    goalLine = '<line x1="' + pad + '" x2="' + (w - pad) + '" y1="' + Y(opts.goal).toFixed(1) + '" y2="' + Y(opts.goal).toFixed(1) +
+      '" stroke="#D4AF37" stroke-dasharray="5 5" stroke-width="1.2" opacity=".8"/>' +
+      '<text x="' + (w - pad) + '" y="' + (Y(opts.goal) - 6).toFixed(1) + '" text-anchor="end" fill="#D4AF37" font-size="11">Goal ' + fmtCompact(opts.goal) + "</text>";
+  }
+  var area = path + " L" + X(maxX).toFixed(1) + " " + Y(minY).toFixed(1) + " L" + X(minX).toFixed(1) + " " + Y(minY).toFixed(1) + " Z";
+  return '<svg viewBox="0 0 ' + w + " " + h + '" preserveAspectRatio="xMidYMid meet" role="img">' +
+    '<defs><linearGradient id="sparkfill" x1="0" y1="0" x2="0" y2="1">' +
+    '<stop offset="0%" stop-color="#2A9D8F" stop-opacity=".35"/><stop offset="100%" stop-color="#2A9D8F" stop-opacity="0"/></linearGradient></defs>' +
+    '<path d="' + area + '" fill="url(#sparkfill)"/>' +
+    goalLine +
+    '<path d="' + path + '" fill="none" stroke="#2A9D8F" stroke-width="2.2" stroke-linejoin="round"/>' +
+    dots + "</svg>";
+}
+
+/* ---------- download / upload ---------- */
+function downloadJSON(obj, filename) {
+  var blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+function pickJSONFile(cb) {
+  var input = document.createElement("input");
+  input.type = "file";
+  input.accept = ".json,application/json";
+  input.onchange = function () {
+    var f = input.files[0];
+    if (!f) return;
+    var r = new FileReader();
+    r.onload = function () {
+      try { cb(null, JSON.parse(r.result), f.name); }
+      catch (e) { cb(e); }
+    };
+    r.readAsText(f);
+  };
+  input.click();
+}
+
+</script>
+<script>
+/* ============ store.js — state, persistence, export/import ============ */
+"use strict";
+
+var Store = (function () {
+  var LS_KEY = "way-to-oscar-data-v1";
+  var state = null;
+  var listeners = [];
+
+  function defaults() {
+    return {
+      meta: {
+        app: "way-to-oscar-command-center",
+        schemaVersion: 1,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        seedVersion: (window.SEED && window.SEED.version) || 0
+      },
+      settings: {
+        userName: "Robin",
+        oscarCeremonyDate: "2028-03-05",
+        oscarCeremonyLabel: "Academy Awards 2028 (target, date TBC)",
+        challengeStart: "2026-07-15",
+        followerGoal: 1000000,
+        followerGoalDate: "2026-12-31"
+      },
+      followers: [],       // {id, date, platform, count, updatedAt}
+      milestones: [],      // {id, title, date, done, track, updatedAt}
+      challengeDays: {},   // "YYYY-MM-DD": {date, title, idea, status, link, learnings, updatedAt}
+      ideas: [],           // {id, title, categories[], status, energy, notes, source, createdAt, updatedAt}
+      projects: [],        // {id, title, type, status, owner, notes, targetDate, link, updatedAt}
+      festivalPlans: {}    // festivalId: {status, filmTitle, deadlineType, notes, updatedAt}
+    };
+  }
+
+  function defaultMilestones() {
+    var now = new Date().toISOString();
+    return [
+      { id: "ms-challenge-start", title: "Start Daily Short Film Challenge", date: "2026-07-15", done: false, track: "A", updatedAt: now },
+      { id: "ms-ig-100k", title: "Instagram 100K followers", date: "2026-09-30", done: false, track: "B", updatedAt: now },
+      { id: "ms-ig-500k", title: "Instagram 500K followers", date: "2026-11-15", done: false, track: "B", updatedAt: now },
+      { id: "ms-ig-1m", title: "Instagram 1M followers", date: "2026-12-31", done: false, track: "B", updatedAt: now },
+      { id: "ms-best-short", title: "Pick 3 best challenge shorts for festival cut", date: "2026-10-31", done: false, track: "A", updatedAt: now },
+      { id: "ms-festival-short", title: "Produce festival-grade short film", date: "2027-01-31", done: false, track: "A", updatedAt: now },
+      { id: "ms-first-submissions", title: "First wave of festival submissions", date: "2027-03-01", done: false, track: "A", updatedAt: now },
+      { id: "ms-festival-win", title: "Win at an Oscar-qualifying festival", date: "2027-10-31", done: false, track: "A", updatedAt: now },
+      { id: "ms-oscar-entry", title: "Submit short for Oscar consideration", date: "2027-11-30", done: false, track: "A", updatedAt: now }
+    ];
+  }
+
+  function seedInto(s) {
+    var seed = window.SEED || {};
+    if (Array.isArray(seed.ideas) && s.ideas.length === 0) {
+      s.ideas = seed.ideas.map(function (i) {
+        return {
+          id: i.id || uid("idea"),
+          title: i.title || "(untitled)",
+          categories: i.categories || [],
+          status: i.status || "Neu",
+          energy: i.energy || null,
+          notes: i.notes || "",
+          source: i.source || "notion",
+          createdAt: i.createdAt || new Date().toISOString(),
+          updatedAt: i.updatedAt || new Date().toISOString()
+        };
+      });
+    }
+    if (Array.isArray(seed.projects) && s.projects.length === 0) {
+      s.projects = seed.projects.slice();
+    }
+    if (s.milestones.length === 0) s.milestones = defaultMilestones();
+    return s;
+  }
+
+  function load() {
+    var raw = null;
+    try { raw = localStorage.getItem(LS_KEY); } catch (e) { /* file:// storage may be partitioned but still works */ }
+    if (raw) {
+      try {
+        state = JSON.parse(raw);
+        // fill any missing top-level keys after schema evolution
+        var d = defaults();
+        Object.keys(d).forEach(function (k) { if (state[k] === undefined) state[k] = d[k]; });
+        Object.keys(d.settings).forEach(function (k) { if (state.settings[k] === undefined) state.settings[k] = d.settings[k]; });
+        return;
+      } catch (e) { console.error("Corrupt localStorage, resetting", e); }
+    }
+    state = seedInto(defaults());
+    persist();
+  }
+
+  function persist() {
+    state.meta.updatedAt = new Date().toISOString();
+    try { localStorage.setItem(LS_KEY, JSON.stringify(state)); }
+    catch (e) { toast("Warning: could not save to browser storage", true); }
+    listeners.forEach(function (fn) { fn(state); });
+  }
+
+  /* ---------- festivals (static reference from seed) ---------- */
+  function festivals() {
+    return (window.SEED && window.SEED.festivals && window.SEED.festivals.festivals) || [];
+  }
+  function academyRules() {
+    return (window.SEED && window.SEED.festivals && window.SEED.festivals.academyRules) || null;
+  }
+
+  /* ---------- export / import ---------- */
+  function exportSnapshot() {
+    var snap = JSON.parse(JSON.stringify(state));
+    snap.meta.exportedAt = new Date().toISOString();
+    snap.meta.exportedBy = state.settings.userName || "unknown";
+    return snap;
+  }
+
+  function validateSnapshot(obj) {
+    return obj && typeof obj === "object" && obj.meta && obj.meta.app === "way-to-oscar-command-center";
+  }
+
+  function importReplace(obj) {
+    if (!validateSnapshot(obj)) throw new Error("Not a WAY TO OSCAR data file");
+    var d = defaults();
+    Object.keys(d).forEach(function (k) { if (obj[k] === undefined) obj[k] = d[k]; });
+    state = obj;
+    persist();
+  }
+
+  function newer(a, b) {
+    var ta = a && a.updatedAt ? a.updatedAt : "";
+    var tb = b && b.updatedAt ? b.updatedAt : "";
+    return tb > ta ? b : a;
+  }
+
+  function mergeById(mine, theirs) {
+    var map = {};
+    mine.forEach(function (x) { map[x.id] = x; });
+    theirs.forEach(function (x) {
+      if (!x || !x.id) return;
+      map[x.id] = map[x.id] ? newer(map[x.id], x) : x;
+    });
+    return Object.keys(map).map(function (k) { return map[k]; });
+  }
+
+  function importMerge(obj) {
+    if (!validateSnapshot(obj)) throw new Error("Not a WAY TO OSCAR data file");
+    state.ideas = mergeById(state.ideas, obj.ideas || []);
+    state.projects = mergeById(state.projects, obj.projects || []);
+    state.milestones = mergeById(state.milestones, obj.milestones || []);
+    state.followers = mergeById(state.followers, obj.followers || []);
+    var days = obj.challengeDays || {};
+    Object.keys(days).forEach(function (dkey) {
+      state.challengeDays[dkey] = state.challengeDays[dkey] ? newer(state.challengeDays[dkey], days[dkey]) : days[dkey];
+    });
+    var plans = obj.festivalPlans || {};
+    Object.keys(plans).forEach(function (fid) {
+      state.festivalPlans[fid] = state.festivalPlans[fid] ? newer(state.festivalPlans[fid], plans[fid]) : plans[fid];
+    });
+    // settings: theirs win only if their file is newer overall
+    if ((obj.meta.updatedAt || "") > (state.meta.updatedAt || "")) {
+      state.settings = Object.assign({}, state.settings, obj.settings || {});
+    }
+    persist();
+  }
+
+  function resetToSeed() {
+    try { localStorage.removeItem(LS_KEY); } catch (e) {}
+    state = seedInto(defaults());
+    persist();
+  }
+
+  load();
+
+  return {
+    get: function () { return state; },
+    save: persist,
+    onChange: function (fn) { listeners.push(fn); },
+    festivals: festivals,
+    academyRules: academyRules,
+    exportSnapshot: exportSnapshot,
+    importReplace: importReplace,
+    importMerge: importMerge,
+    resetToSeed: resetToSeed,
+    defaultMilestones: defaultMilestones
+  };
+})();
+
+</script>
+<script>
+/* ============ dashboard.js — countdown, followers, milestones ============ */
+"use strict";
+
+var DashboardView = (function () {
+
+  function countdownHTML(targetISO) {
+    var now = new Date();
+    var target = parseISO(targetISO);
+    var ms = target - now;
+    if (ms < 0) ms = 0;
+    var days = Math.floor(ms / 86400000);
+    var hours = Math.floor((ms % 86400000) / 3600000);
+    var mins = Math.floor((ms % 3600000) / 60000);
+    var secs = Math.floor((ms % 60000) / 1000);
+    function box(n, l) {
+      return '<div class="unit-box"><div class="num">' + n + '</div><div class="lbl">' + l + "</div></div>";
+    }
+    return box(days, "days") + box(hours, "hours") + box(mins, "min") + box(secs, "sec");
+  }
+
+  function latestFollowers(platform) {
+    var s = Store.get();
+    var pts = s.followers.filter(function (f) { return f.platform === platform; })
+      .sort(function (a, b) { return a.date < b.date ? -1 : 1; });
+    return pts.length ? pts[pts.length - 1] : null;
+  }
+
+  function growthProjection() {
+    var s = Store.get();
+    var pts = s.followers.filter(function (f) { return f.platform === "instagram"; })
+      .sort(function (a, b) { return a.date < b.date ? -1 : 1; });
+    if (pts.length < 2) return null;
+    var first = pts[0], last = pts[pts.length - 1];
+    var days = Math.max(daysBetween(first.date, last.date), 1);
+    var perDay = (last.count - first.count) / days;
+    if (perDay <= 0) return { perDay: perDay, eta: null };
+    var remaining = s.settings.followerGoal - last.count;
+    var etaDays = Math.ceil(remaining / perDay);
+    return { perDay: perDay, eta: addDays(last.date, etaDays), etaDays: etaDays };
+  }
+
+  function challengeStats() {
+    var s = Store.get();
+    var start = s.settings.challengeStart;
+    var today = todayISO();
+    var days = Object.keys(s.challengeDays).map(function (k) { return s.challengeDays[k]; });
+    var published = days.filter(function (d) { return d.status === "published"; }).length;
+    var elapsed = Math.max(0, daysBetween(start, today) + 1);
+    if (today < start) elapsed = 0;
+    // streak: consecutive published days ending today or yesterday
+    var streak = 0;
+    var cursor = today;
+    if (!(s.challengeDays[cursor] && s.challengeDays[cursor].status === "published")) cursor = addDays(today, -1);
+    while (s.challengeDays[cursor] && s.challengeDays[cursor].status === "published") {
+      streak++;
+      cursor = addDays(cursor, -1);
+    }
+    return { published: published, elapsed: elapsed, streak: streak, started: today >= start };
+  }
+
+  function nextDeadlines(limit) {
+    var today = todayISO();
+    var rows = [];
+    Store.festivals().forEach(function (f) {
+      (f.deadlines || []).forEach(function (d) {
+        if (d.date && d.date >= today) rows.push({ festival: f, deadline: d });
+      });
+    });
+    rows.sort(function (a, b) { return a.deadline.date < b.deadline.date ? -1 : 1; });
+    // one (earliest) deadline per festival
+    var seen = {}, out = [];
+    rows.forEach(function (r) {
+      if (seen[r.festival.id]) return;
+      seen[r.festival.id] = true;
+      out.push(r);
+    });
+    return out.slice(0, limit || 5);
+  }
+
+  function addFollowerModal() {
+    var html =
+      '<h3>Add follower data point</h3>' +
+      '<label class="field"><span>Platform</span><select id="f-platform">' +
+      '<option value="instagram">Instagram (@lohro)</option>' +
+      '<option value="youtube">YouTube (Way to Oscar)</option>' +
+      '<option value="tiktok">TikTok</option></select></label>' +
+      '<label class="field"><span>Date</span><input type="date" id="f-date" value="' + todayISO() + '"></label>' +
+      '<label class="field"><span>Follower count</span><input type="number" id="f-count" min="0" placeholder="e.g. 12500"></label>' +
+      '<div class="modal-actions"><button class="ghost" onclick="closeModal()">Cancel</button>' +
+      '<button class="primary" id="f-save">Save</button></div>';
+    openModal(html);
+    $("#f-save").onclick = function () {
+      var count = parseInt($("#f-count").value, 10);
+      if (isNaN(count) || count < 0) { toast("Enter a valid count", true); return; }
+      Store.get().followers.push({
+        id: uid("fol"), date: $("#f-date").value || todayISO(),
+        platform: $("#f-platform").value, count: count,
+        updatedAt: new Date().toISOString()
+      });
+      Store.save();
+      closeModal(); toast("Follower data point saved");
+      App.render();
+    };
+  }
+
+  function addMilestoneModal() {
+    var html =
+      '<h3>Add milestone</h3>' +
+      '<label class="field"><span>Title</span><input id="m-title" placeholder="e.g. Sign a festival mentor"></label>' +
+      '<label class="field"><span>Target date</span><input type="date" id="m-date"></label>' +
+      '<label class="field"><span>Track</span><select id="m-track">' +
+      '<option value="A">Track A — Festival films</option>' +
+      '<option value="B">Track B — Personal brand</option></select></label>' +
+      '<div class="modal-actions"><button class="ghost" onclick="closeModal()">Cancel</button>' +
+      '<button class="primary" id="m-save">Save</button></div>';
+    openModal(html);
+    $("#m-save").onclick = function () {
+      var title = $("#m-title").value.trim();
+      if (!title) { toast("Title required", true); return; }
+      Store.get().milestones.push({
+        id: uid("ms"), title: title, date: $("#m-date").value || null,
+        done: false, track: $("#m-track").value, updatedAt: new Date().toISOString()
+      });
+      Store.save(); closeModal(); toast("Milestone added"); App.render();
+    };
+  }
+
+  function todayStripHTML() {
+    var s = Store.get();
+    var today = todayISO();
+    var start = s.settings.challengeStart;
+    var parts = [];
+    // challenge status today
+    if (today >= start) {
+      var dayNum = daysBetween(start, today) + 1;
+      var entry = s.challengeDays[today];
+      var done = entry && entry.status === "published";
+      parts.push('<span>🎬 <strong>Day ' + dayNum + '</strong> — ' +
+        (done ? '<span class="badge teal">published ✓</span>'
+          : entry && entry.title ? '<span class="badge blue">' + esc(entry.status) + ": " + esc(entry.title) + '</span>'
+          : '<span class="badge red">no film logged yet</span>') +
+        ' <a href="#/challenge">log →</a></span>');
+    } else {
+      parts.push('<span>🎬 Challenge starts <strong>' + fmtDate(start) + '</strong> — ' + daysBetween(today, start) + ' days to prepare</span>');
+    }
+    // most urgent deadline
+    var next = nextDeadlines(1)[0];
+    if (next) {
+      var d = daysBetween(today, next.deadline.date);
+      parts.push('<span>⏰ Next deadline: <strong>' + esc(next.festival.name) + '</strong> in ' +
+        '<span class="badge ' + (d <= 21 ? "red" : "gray") + '">' + d + ' days</span> <a href="#/festivals">plan →</a></span>');
+    }
+    // principle of the day
+    var st = window.SEED && window.SEED.strategy;
+    if (st && st.principles && st.principles.length) {
+      var doy = Math.floor((parseISO(today) - new Date(parseISO(today).getFullYear(), 0, 0)) / 86400000);
+      parts.push('<span class="muted">💭 ' + esc(st.principles[doy % st.principles.length]) + '</span>');
+    }
+    return '<div class="card mb" style="padding:12px 18px"><div class="row" style="gap:22px;font-size:13.5px">' +
+      parts.join("") + '</div></div>';
+  }
+
+  function strategyHTML() {
+    var st = window.SEED && window.SEED.strategy;
+    if (!st) return "";
+    return '<h2 class="section-title">Strategy Briefing <span class="muted" style="letter-spacing:0;text-transform:none;font-weight:400">(from your Notion master plan)</span></h2>' +
+      '<div class="card accent-gold mb"><span class="stat-label">North Star</span>' +
+      '<p class="mt" style="font-size:14.5px;font-weight:600">' + esc(st.northStar) + '</p>' +
+      '<p class="muted mt" style="font-size:12.5px">' + esc(st.oscarHorizon) + '</p></div>' +
+      '<div class="grid cols-2">' +
+      ['A', 'B'].map(function (k) {
+        var t = st.tracks[k];
+        if (!t) return "";
+        return '<div class="card ' + (k === "A" ? "accent-gold" : "accent-teal") + '">' +
+          '<span class="stat-label">' + esc(t.name) + '</span>' +
+          '<p class="mt" style="font-size:13px">' + esc(t.focus) + '</p>' +
+          (t.priority1 ? '<p class="mt" style="font-size:13px"><span class="badge red">Priority 1</span> ' + esc(t.priority1) + '</p>' : "") +
+          '<p class="muted mt" style="font-size:12.5px">⚠ ' + esc(t.rule) + '</p></div>';
+      }).join("") + '</div>' +
+      '<div class="card mt"><span class="stat-label">Operating principles</span><ul class="mt" style="padding-left:20px;font-size:13.5px;line-height:1.9">' +
+      (st.principles || []).map(function (p) { return '<li>' + esc(p) + '</li>'; }).join("") +
+      '</ul></div>';
+  }
+
+  var tickTimer = null;
+
+  function render(root) {
+    var s = Store.get();
+    var ig = latestFollowers("instagram");
+    var yt = latestFollowers("youtube");
+    var proj = growthProjection();
+    var ch = challengeStats();
+    var goal = s.settings.followerGoal;
+    var igCount = ig ? ig.count : 0;
+    var pct = Math.min(100, (igCount / goal) * 100);
+    var challengeStartsIn = daysBetween(todayISO(), s.settings.challengeStart);
+
+    var igPoints = s.followers.filter(function (f) { return f.platform === "instagram"; })
+      .sort(function (a, b) { return a.date < b.date ? -1 : 1; })
+      .map(function (f) { return { x: parseISO(f.date).getTime(), y: f.count }; });
+
+    var deadlines = nextDeadlines(5);
+    var milestones = s.milestones.slice().sort(function (a, b) {
+      if (a.done !== b.done) return a.done ? 1 : -1;
+      return (a.date || "9999") < (b.date || "9999") ? -1 : 1;
+    });
+
+    root.innerHTML =
+      '<h1 class="view-title">Dashboard</h1>' +
+      '<p class="view-sub">Two tracks, one goal. Track A: festival films. Track B: 1M followers. Destination: the Oscar stage.</p>' +
+
+      todayStripHTML() +
+
+      '<div class="grid cols-2">' +
+        '<div class="card accent-gold">' +
+          '<div class="row between"><span class="stat-label">🏆 Countdown to the Oscars</span>' +
+          '<span class="badge gold">' + esc(s.settings.oscarCeremonyLabel) + '</span></div>' +
+          '<div class="countdown mt" id="oscar-countdown">' + countdownHTML(s.settings.oscarCeremonyDate) + '</div>' +
+        '</div>' +
+        '<div class="card accent-red">' +
+          '<div class="row between"><span class="stat-label">🎬 Daily Short Film Challenge</span>' +
+          (ch.started
+            ? '<span class="badge red">LIVE</span>'
+            : '<span class="badge">starts in ' + challengeStartsIn + ' days</span>') +
+          '</div>' +
+          '<div class="row mt" style="gap:26px">' +
+            '<div><div class="stat-value">' + ch.published + '</div><div class="stat-hint">films published</div></div>' +
+            '<div><div class="stat-value">' + ch.streak + '<span class="unit"> 🔥</span></div><div class="stat-hint">day streak</div></div>' +
+            '<div><div class="stat-value">' + (ch.started ? ch.elapsed : 0) + '</div><div class="stat-hint">days elapsed</div></div>' +
+          '</div>' +
+          '<div class="mt"><a href="#/challenge" class="btn">Open challenge board →</a></div>' +
+        '</div>' +
+      '</div>' +
+
+      '<h2 class="section-title">Track B — Follower Growth</h2>' +
+      '<div class="grid cols-3">' +
+        '<div class="card accent-teal">' +
+          '<span class="stat-label">Instagram @lohro</span>' +
+          '<div class="stat-value">' + fmtCompact(igCount) + '</div>' +
+          '<div class="progress mt"><div style="width:' + pct.toFixed(2) + '%"></div></div>' +
+          '<div class="stat-hint mt">' + pct.toFixed(1) + '% of ' + fmtCompact(goal) + ' goal' +
+          (ig ? ' · updated ' + fmtDateShort(ig.date) : " · no data yet") + '</div>' +
+        '</div>' +
+        '<div class="card accent-blue">' +
+          '<span class="stat-label">YouTube — Way to Oscar</span>' +
+          '<div class="stat-value">' + fmtCompact(yt ? yt.count : 0) + '</div>' +
+          '<div class="stat-hint">' + (yt ? 'updated ' + fmtDateShort(yt.date) : "no data yet") + '</div>' +
+        '</div>' +
+        '<div class="card">' +
+          '<span class="stat-label">Projection to 1M</span>' +
+          (proj && proj.eta
+            ? '<div class="stat-value">' + fmtDate(proj.eta) + '</div><div class="stat-hint">+' + fmtNum(Math.round(proj.perDay)) + '/day · ' +
+              (proj.eta <= s.settings.followerGoalDate ? '<span class="badge teal">on track</span>' : '<span class="badge red">behind goal date</span>') + '</div>'
+            : '<div class="stat-value">—</div><div class="stat-hint">add ≥2 Instagram data points to project</div>') +
+        '</div>' +
+      '</div>' +
+      '<div class="card mt chart-box">' +
+        '<div class="row between"><span class="stat-label">Instagram growth</span>' +
+        '<button class="primary small" id="add-follower">+ Add data point</button></div>' +
+        '<div class="mt">' + sparkline(igPoints, { goal: goal }) + '</div>' +
+      '</div>' +
+
+      '<h2 class="section-title">Next Festival Deadlines</h2>' +
+      (deadlines.length === 0
+        ? '<div class="empty-note">No upcoming deadlines found.</div>'
+        : '<div class="table-wrap"><table><thead><tr><th>Deadline</th><th>Festival</th><th>Type</th><th>Fee</th><th>Oscar-qualifying</th></tr></thead><tbody>' +
+          deadlines.map(function (r) {
+            var days = daysBetween(todayISO(), r.deadline.date);
+            return '<tr class="clickable" onclick="location.hash=\'#/festivals\'">' +
+              '<td><span class="mono">' + fmtDate(r.deadline.date) + '</span> <span class="badge ' + (days <= 21 ? "red" : "gray") + '">' + days + 'd</span>' +
+              (r.deadline.estimated ? ' <span class="badge">est.</span>' : "") + '</td>' +
+              '<td><strong>' + esc(r.festival.name) + '</strong><br><span class="muted">' + esc(r.festival.city || "") + ", " + esc(r.festival.country || "") + '</span></td>' +
+              '<td>' + esc(r.deadline.type) + '</td>' +
+              '<td>' + (r.deadline.feeAmount != null ? r.deadline.feeAmount + " " + esc(r.deadline.feeCurrency || "") : "—") + '</td>' +
+              '<td>' + (r.festival.oscarQualifying ? '<span class="badge gold">YES</span>' : '<span class="badge">no</span>') + '</td></tr>';
+          }).join("") + "</tbody></table></div>") +
+
+      '<h2 class="section-title">Milestones</h2>' +
+      '<div class="card">' +
+        milestones.map(function (m) {
+          return '<div class="milestone-row ' + (m.done ? "done" : "") + '">' +
+            '<input type="checkbox" data-ms="' + esc(m.id) + '" ' + (m.done ? "checked" : "") + '>' +
+            '<span class="badge ' + (m.track === "A" ? "gold" : "teal") + '">' + (m.track === "A" ? "Track A" : "Track B") + '</span>' +
+            '<span class="m-title">' + esc(m.title) + '</span>' +
+            '<span class="m-date">' + (m.date ? fmtDate(m.date) : "") + '</span>' +
+            '<button class="small ghost danger" data-del-ms="' + esc(m.id) + '" title="Delete">✕</button>' +
+          '</div>';
+        }).join("") +
+        '<div class="mt"><button id="add-milestone">+ Add milestone</button></div>' +
+      '</div>' +
+      strategyHTML();
+
+    $("#add-follower").onclick = addFollowerModal;
+    $("#add-milestone").onclick = addMilestoneModal;
+    $$("input[data-ms]", root).forEach(function (cb) {
+      cb.onchange = function () {
+        var m = Store.get().milestones.find(function (x) { return x.id === cb.getAttribute("data-ms"); });
+        if (m) { m.done = cb.checked; m.updatedAt = new Date().toISOString(); Store.save(); App.render(); }
+      };
+    });
+    $$("button[data-del-ms]", root).forEach(function (b) {
+      b.onclick = function () {
+        var id = b.getAttribute("data-del-ms");
+        var st = Store.get();
+        st.milestones = st.milestones.filter(function (x) { return x.id !== id; });
+        Store.save(); App.render();
+      };
+    });
+
+    // live countdown tick
+    if (tickTimer) clearInterval(tickTimer);
+    tickTimer = setInterval(function () {
+      var elCd = $("#oscar-countdown");
+      if (!elCd) { clearInterval(tickTimer); tickTimer = null; return; }
+      elCd.innerHTML = countdownHTML(Store.get().settings.oscarCeremonyDate);
+    }, 1000);
+  }
+
+  return { render: render };
+})();
+
+</script>
+<script>
+/* ============ challenge.js — Daily Short Film Challenge tracker ============ */
+"use strict";
+
+var ChallengeView = (function () {
+
+  var STATUSES = [
+    { key: "planned", label: "Planned" },
+    { key: "shooting", label: "Shooting" },
+    { key: "editing", label: "Editing" },
+    { key: "published", label: "Published" },
+    { key: "skipped", label: "Skipped" }
+  ];
+
+  function dayList() {
+    var s = Store.get();
+    var start = s.settings.challengeStart;
+    var today = todayISO();
+    var end = addDays(today > start ? today : start, 7); // lookahead
+    var out = [];
+    var d = start;
+    while (d <= end) {
+      out.push(d);
+      d = addDays(d, 1);
+    }
+    return out;
+  }
+
+  function editDayModal(dateISO) {
+    var s = Store.get();
+    var day = s.challengeDays[dateISO] || { date: dateISO, title: "", idea: "", status: "planned", link: "", learnings: "" };
+    var dayNum = daysBetween(s.settings.challengeStart, dateISO) + 1;
+    var html =
+      '<h3>Day ' + dayNum + ' — ' + fmtDate(dateISO, { weekday: "long", day: "numeric", month: "long", year: "numeric" }) + '</h3>' +
+      '<label class="field"><span>Film title</span><input id="d-title" value="' + esc(day.title) + '" placeholder="Working title"></label>' +
+      '<label class="field"><span>Idea / logline</span><textarea id="d-idea" placeholder="One-sentence story...">' + esc(day.idea) + '</textarea></label>' +
+      '<label class="field"><span>Status</span><select id="d-status">' +
+      STATUSES.map(function (st) {
+        return '<option value="' + st.key + '"' + (day.status === st.key ? " selected" : "") + '>' + st.label + '</option>';
+      }).join("") + '</select></label>' +
+      '<label class="field"><span>Link (YouTube / Instagram / Drive)</span><input id="d-link" value="' + esc(day.link) + '" placeholder="https://..."></label>' +
+      '<label class="field"><span>Learnings</span><textarea id="d-learnings" placeholder="What did today teach you?">' + esc(day.learnings) + '</textarea></label>' +
+      '<div class="modal-actions">' +
+      (s.challengeDays[dateISO] ? '<button class="ghost danger" id="d-delete">Delete</button>' : "") +
+      '<button class="ghost" onclick="closeModal()">Cancel</button>' +
+      '<button class="primary" id="d-save">Save</button></div>';
+    openModal(html);
+    $("#d-save").onclick = function () {
+      s.challengeDays[dateISO] = {
+        date: dateISO,
+        title: $("#d-title").value.trim(),
+        idea: $("#d-idea").value.trim(),
+        status: $("#d-status").value,
+        link: $("#d-link").value.trim(),
+        learnings: $("#d-learnings").value.trim(),
+        updatedAt: new Date().toISOString()
+      };
+      Store.save(); closeModal(); toast("Day " + dayNum + " saved"); App.render();
+    };
+    var del = $("#d-delete");
+    if (del) del.onclick = function () {
+      delete s.challengeDays[dateISO];
+      Store.save(); closeModal(); toast("Entry removed"); App.render();
+    };
+  }
+
+  function render(root) {
+    var s = Store.get();
+    var today = todayISO();
+    var start = s.settings.challengeStart;
+    var days = dayList();
+    var entries = Object.keys(s.challengeDays).map(function (k) { return s.challengeDays[k]; });
+    var published = entries.filter(function (e) { return e.status === "published"; });
+    var withLearnings = entries.filter(function (e) { return e.learnings; })
+      .sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+    var elapsed = today >= start ? daysBetween(start, today) + 1 : 0;
+    var rate = elapsed > 0 ? Math.round((published.length / elapsed) * 100) : 0;
+
+    root.innerHTML =
+      '<h1 class="view-title">Daily Challenge</h1>' +
+      '<p class="view-sub">One short film every day, starting ' + fmtDate(start, { weekday: "long", day: "numeric", month: "long", year: "numeric" }) + '. Click a day to log it.</p>' +
+
+      '<div class="grid cols-4 mb">' +
+        '<div class="card accent-teal"><span class="stat-label">Published</span><div class="stat-value">' + published.length + '</div></div>' +
+        '<div class="card accent-blue"><span class="stat-label">Days elapsed</span><div class="stat-value">' + elapsed + '</div></div>' +
+        '<div class="card accent-red"><span class="stat-label">Hit rate</span><div class="stat-value">' + rate + '<span class="unit">%</span></div></div>' +
+        '<div class="card accent-gold"><span class="stat-label">Days planned ahead</span><div class="stat-value">' +
+          days.filter(function (d) { return d > today && s.challengeDays[d] && s.challengeDays[d].title; }).length +
+        '</div></div>' +
+      '</div>' +
+
+      '<h2 class="section-title">Day Board</h2>' +
+      '<div class="day-grid">' +
+      days.map(function (d) {
+        var e = s.challengeDays[d];
+        var dayNum = daysBetween(start, d) + 1;
+        var cls = ["day-cell"];
+        if (d === today) cls.push("today");
+        if (d > today) cls.push("future");
+        if (e) cls.push(e.status); else cls.push("empty");
+        var statusBadge = e ? (e.status === "published" ? "✅" : e.status === "skipped" ? "✕" : e.status === "planned" ? "◻" : "✂️") : "";
+        return '<div class="' + cls.join(" ") + '" data-day="' + d + '">' +
+          '<div class="d-date"><span>Day ' + dayNum + '</span><span>' + weekdayShort(d) + " " + fmtDateShort(d) + '</span></div>' +
+          '<div class="d-title">' + (e && e.title ? esc(e.title) : (e && e.idea ? esc(e.idea) : "—")) + '</div>' +
+          '<div class="row between" style="margin-top:auto"><span class="muted" style="font-size:11px">' + (e ? esc(e.status) : "") + '</span><span>' + statusBadge + '</span></div>' +
+        '</div>';
+      }).join("") +
+      '</div>' +
+
+      '<h2 class="section-title">Learnings Log</h2>' +
+      (withLearnings.length === 0
+        ? '<div class="empty-note">No learnings logged yet. Every film teaches something — write it down.</div>'
+        : '<div class="card">' + withLearnings.slice(0, 30).map(function (e) {
+            return '<div class="milestone-row">' +
+              '<span class="m-date">' + fmtDateShort(e.date) + '</span>' +
+              '<span class="m-title"><strong>' + esc(e.title || "Untitled") + ':</strong> ' + esc(e.learnings) + '</span></div>';
+          }).join("") + "</div>");
+
+    $$(".day-cell", root).forEach(function (cell) {
+      cell.onclick = function () { editDayModal(cell.getAttribute("data-day")); };
+    });
+  }
+
+  return { render: render };
+})();
+
+</script>
+<script>
+/* ============ festivals.js — festival database, roadmap, deadline calendar ============ */
+"use strict";
+
+var FestivalsView = (function () {
+
+  var PLAN_STATUSES = ["not planned", "researching", "planned", "film ready", "submitted", "accepted", "rejected", "won"];
+
+  function planFor(fid) {
+    return Store.get().festivalPlans[fid] || { status: "not planned", filmTitle: "", notes: "" };
+  }
+
+  function allDeadlines() {
+    var rows = [];
+    Store.festivals().forEach(function (f) {
+      (f.deadlines || []).forEach(function (d) {
+        if (d.date) rows.push({ festival: f, deadline: d });
+      });
+    });
+    rows.sort(function (a, b) { return a.deadline.date < b.deadline.date ? -1 : 1; });
+    return rows;
+  }
+
+  function planModal(fid) {
+    var f = Store.festivals().find(function (x) { return x.id === fid; });
+    if (!f) return;
+    var p = planFor(fid);
+    var html =
+      '<h3>' + esc(f.name) + '</h3>' +
+      '<p class="muted mb" style="font-size:13px">' + esc(f.strategyNotes || "") + '</p>' +
+      '<label class="field"><span>Submission status</span><select id="p-status">' +
+      PLAN_STATUSES.map(function (st) {
+        return '<option value="' + st + '"' + (p.status === st ? " selected" : "") + '>' + st + '</option>';
+      }).join("") + '</select></label>' +
+      '<label class="field"><span>Film to submit</span><input id="p-film" value="' + esc(p.filmTitle) + '" placeholder="Which short goes here?"></label>' +
+      '<label class="field"><span>Notes</span><textarea id="p-notes">' + esc(p.notes) + '</textarea></label>' +
+      '<div class="modal-actions"><button class="ghost" onclick="closeModal()">Cancel</button>' +
+      '<button class="primary" id="p-save">Save</button></div>';
+    openModal(html);
+    $("#p-save").onclick = function () {
+      Store.get().festivalPlans[fid] = {
+        status: $("#p-status").value,
+        filmTitle: $("#p-film").value.trim(),
+        notes: $("#p-notes").value.trim(),
+        updatedAt: new Date().toISOString()
+      };
+      Store.save(); closeModal(); toast("Plan saved"); App.render();
+    };
+  }
+
+  function downloadICS() {
+    var today = todayISO();
+    var events = allDeadlines().filter(function (r) { return r.deadline.date >= today; });
+    if (events.length === 0) { toast("No upcoming deadlines", true); return; }
+    var lines = [
+      "BEGIN:VCALENDAR", "VERSION:2.0",
+      "PRODID:-//Kollektiv Oskar//Way To Oscar Command Center//EN",
+      "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
+      "X-WR-CALNAME:Festival Deadlines — Way to Oscar"
+    ];
+    var stamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+    events.forEach(function (r) {
+      var d = r.deadline.date.replace(/-/g, "");
+      var next = addDays(r.deadline.date, 1).replace(/-/g, "");
+      var summary = "🎬 " + r.festival.name + " — " + r.deadline.type + " deadline" + (r.deadline.estimated ? " (est.)" : "");
+      var desc = (r.festival.oscarQualifying ? "Oscar-qualifying. " : "") +
+        (r.deadline.feeAmount != null ? "Fee: " + r.deadline.feeAmount + " " + (r.deadline.feeCurrency || "") + ". " : "") +
+        (r.festival.maxRuntimeMin ? "Max runtime: " + r.festival.maxRuntimeMin + " min. " : "") +
+        (r.festival.premiereRequirement ? "Premiere: " + r.festival.premiereRequirement + ". " : "") +
+        (r.deadline.estimated ? "DATE IS ESTIMATED — verify on the festival site! " : "") +
+        (r.festival.url || "");
+      lines.push(
+        "BEGIN:VEVENT",
+        "UID:" + r.festival.id + "-" + r.deadline.type + "-" + d + "@waytooscar",
+        "DTSTAMP:" + stamp,
+        "DTSTART;VALUE=DATE:" + d,
+        "DTEND;VALUE=DATE:" + next,
+        "SUMMARY:" + summary.replace(/[\n,;]/g, " "),
+        "DESCRIPTION:" + desc.replace(/[\n]/g, " ").replace(/([,;])/g, "\\$1"),
+        "BEGIN:VALARM", "TRIGGER:-P14D", "ACTION:DISPLAY",
+        "DESCRIPTION:Festival deadline in 2 weeks", "END:VALARM",
+        "END:VEVENT"
+      );
+    });
+    lines.push("END:VCALENDAR");
+    var blob = new Blob([lines.join("\r\n")], { type: "text/calendar" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "festival-deadlines.ics";
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+    toast(events.length + " deadlines exported — import into Google/Apple Calendar");
+  }
+
+  function statusBadge(status) {
+    var cls = { "submitted": "blue", "accepted": "teal", "won": "gold", "rejected": "red", "planned": "blue", "film ready": "teal", "researching": "gray" }[status] || "gray";
+    return status === "not planned" ? "" : '<span class="badge ' + cls + '">' + esc(status) + '</span>';
+  }
+
+  function render(root) {
+    var fests = Store.festivals();
+    var rules = Store.academyRules();
+    var today = todayISO();
+    var filter = render._filter || "all";
+
+    var visible = fests.filter(function (f) {
+      if (filter === "qualifying") return f.oscarQualifying;
+      if (filter === "tier1") return f.tier === 1;
+      if (filter === "planned") return planFor(f.id).status !== "not planned";
+      return true;
+    }).slice().sort(function (a, b) { return (a.tier || 9) - (b.tier || 9) || (a.name < b.name ? -1 : 1); });
+
+    var upcoming = allDeadlines().filter(function (r) { return r.deadline.date >= today; });
+
+    root.innerHTML =
+      '<h1 class="view-title">Festival Roadmap</h1>' +
+      '<p class="view-sub">Oscar-qualifying festivals for 2026/2027 submissions. Researched July 2026 — dates marked "est." must be re-verified ~3 months before the deadline.</p>' +
+
+      (rules ?
+        '<div class="card accent-gold mb">' +
+        '<span class="stat-label">🏛 Academy qualification rules (shorts)</span>' +
+        '<div class="mt" style="font-size:13.5px">' +
+        '<strong>Runtime:</strong> max ' + (rules.runtimeLimitMinutes || 40) + ' min incl. credits · ' +
+        '<strong>Paths:</strong> ' + (rules.qualificationPaths || []).map(esc).join(" · ") +
+        (rules.eligibilityNotes ? '<div class="muted mt" style="font-size:12.5px">' + esc(rules.eligibilityNotes) + '</div>' : "") +
+        '</div></div>' : "") +
+
+      (function () {
+        var st = window.SEED && window.SEED.strategy;
+        if (!st || !st.festivalRoadmap) return "";
+        return '<div class="card accent-red mb"><span class="stat-label">🎯 2027 Submission Strategy</span>' +
+          '<ul class="mt" style="padding-left:20px;font-size:13px;line-height:1.75">' +
+          st.festivalRoadmap.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join("") +
+          '</ul></div>';
+      })() +
+
+      '<h2 class="section-title">Deadline Calendar</h2>' +
+      '<div class="row mb"><button class="blue" id="btn-ics">📅 Export deadlines (.ics)</button>' +
+      '<span class="muted" style="font-size:12px">Import into Google/Apple Calendar — includes a 2-week reminder per deadline</span></div>' +
+      '<div class="card">' +
+      (upcoming.length === 0 ? '<div class="empty-note">No upcoming deadlines in the database.</div>' :
+        '<div class="timeline mt">' +
+        upcoming.slice(0, 18).map(function (r) {
+          var days = daysBetween(today, r.deadline.date);
+          return '<div class="timeline-item ' + (days <= 21 ? "urgent" : "") + '">' +
+            '<div class="tl-date">' + fmtDate(r.deadline.date) + ' · in ' + days + ' days' + (r.deadline.estimated ? ' <span class="badge">est.</span>' : "") + '</div>' +
+            '<div class="tl-title clickable" data-fest="' + esc(r.festival.id) + '">' + esc(r.festival.name) + ' — ' + esc(r.deadline.type) + ' deadline</div>' +
+            '<div class="tl-meta">' +
+            (r.deadline.feeAmount != null ? "Fee " + r.deadline.feeAmount + " " + esc(r.deadline.feeCurrency || "") + " · " : "") +
+            (r.festival.oscarQualifying ? "Oscar-qualifying" : "not qualifying") +
+            (r.festival.maxRuntimeMin ? " · max " + r.festival.maxRuntimeMin + " min" : "") +
+            ' · ' + statusBadge(planFor(r.festival.id).status) +
+            '</div></div>';
+        }).join("") + "</div>") +
+      '</div>' +
+
+      '<h2 class="section-title">Festival Database</h2>' +
+      '<div class="filter-bar">' +
+        '<select id="fest-filter">' +
+        '<option value="all"' + (filter === "all" ? " selected" : "") + '>All festivals (' + fests.length + ')</option>' +
+        '<option value="qualifying"' + (filter === "qualifying" ? " selected" : "") + '>Oscar-qualifying only</option>' +
+        '<option value="tier1"' + (filter === "tier1" ? " selected" : "") + '>Tier 1 (top prestige)</option>' +
+        '<option value="planned"' + (filter === "planned" ? " selected" : "") + '>My submissions</option>' +
+        '</select><span class="muted" style="font-size:12px">Click a row to plan your submission</span></div>' +
+
+      '<div class="table-wrap"><table><thead><tr>' +
+      '<th>Festival</th><th>Tier</th><th>Oscar</th><th>Next deadline</th><th>Fee</th><th>Max len</th><th>Premiere req.</th><th>My status</th>' +
+      '</tr></thead><tbody>' +
+      visible.map(function (f) {
+        var next = (f.deadlines || []).filter(function (d) { return d.date >= today; })
+          .sort(function (a, b) { return a.date < b.date ? -1 : 1; })[0];
+        var p = planFor(f.id);
+        return '<tr class="clickable" data-fest="' + esc(f.id) + '">' +
+          '<td><strong>' + esc(f.name) + '</strong><br><span class="muted">' + esc(f.city || "") + ', ' + esc(f.country || "") +
+          (f.url ? ' · <a href="' + esc(f.url) + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">site ↗</a>' : "") + '</span>' +
+          (f.strategyNotes ? '<br><span class="muted" style="font-size:12px">' + esc(f.strategyNotes) + '</span>' : "") + '</td>' +
+          '<td><span class="badge ' + (f.tier === 1 ? "gold" : f.tier === 2 ? "blue" : "gray") + '">T' + (f.tier || "?") + '</span></td>' +
+          '<td>' + (f.oscarQualifying
+            ? '<span class="badge gold">YES</span><br><span class="muted" style="font-size:10.5px">' + (f.qualifyingCategories || []).join(", ") + '</span>'
+            : '<span class="badge">no</span>') + '</td>' +
+          '<td>' + (next ? '<span class="mono">' + fmtDate(next.date) + '</span> <span class="muted">(' + esc(next.type) + ')</span>' + (next.estimated ? ' <span class="badge">est.</span>' : "") : '<span class="muted">TBA</span>') + '</td>' +
+          '<td>' + (next && next.feeAmount != null ? next.feeAmount + " " + esc(next.feeCurrency || "") : "—") + '</td>' +
+          '<td>' + (f.maxRuntimeMin ? f.maxRuntimeMin + "′" : "—") + '</td>' +
+          '<td style="max-width:180px"><span class="muted" style="font-size:12px">' + esc(f.premiereRequirement || "—") + '</span></td>' +
+          '<td>' + (statusBadge(p.status) || '<span class="muted">—</span>') + (p.filmTitle ? '<br><span class="muted" style="font-size:11.5px">🎬 ' + esc(p.filmTitle) + '</span>' : "") + '</td>' +
+        '</tr>';
+      }).join("") +
+      '</tbody></table></div>';
+
+    $("#btn-ics").onclick = downloadICS;
+    $("#fest-filter").onchange = function () {
+      render._filter = this.value;
+      App.render();
+    };
+    $$("[data-fest]", root).forEach(function (n) {
+      n.onclick = function () { planModal(n.getAttribute("data-fest")); };
+    });
+  }
+
+  return { render: render };
+})();
+
+</script>
+<script>
+/* ============ ideas.js — idea vault (Notion import + new) ============ */
+"use strict";
+
+var IdeasView = (function () {
+
+  var STATUSES = ["Neu", "In Arbeit", "Umgesetzt", "Archiviert"];
+
+  function categories() {
+    var set = {};
+    Store.get().ideas.forEach(function (i) {
+      (i.categories || []).forEach(function (c) { set[c] = true; });
+    });
+    return Object.keys(set).sort();
+  }
+
+  function editModal(id) {
+    var s = Store.get();
+    var idea = id ? s.ideas.find(function (x) { return x.id === id; }) : null;
+    var v = idea || { title: "", categories: [], status: "Neu", energy: null, notes: "" };
+    var html =
+      '<h3>' + (idea ? "Edit idea" : "New idea") + '</h3>' +
+      '<label class="field"><span>Idea</span><input id="i-title" value="' + esc(v.title) + '" placeholder="The idea in one line"></label>' +
+      '<label class="field"><span>Categories (comma-separated)</span><input id="i-cats" value="' + esc((v.categories || []).join(", ")) + '" placeholder="Film, YouTube, ..."></label>' +
+      '<div class="row">' +
+      '<label class="field" style="flex:1"><span>Status</span><select id="i-status">' +
+      STATUSES.map(function (st) { return '<option' + (v.status === st ? " selected" : "") + '>' + st + '</option>'; }).join("") +
+      '</select></label>' +
+      '<label class="field" style="flex:1"><span>Energy</span><select id="i-energy">' +
+      ['', '🔥 Hoch', '⚡ Mittel', '💤 Niedrig'].map(function (e) {
+        return '<option value="' + e + '"' + ((v.energy || "") === e ? " selected" : "") + '>' + (e || "—") + '</option>';
+      }).join("") + '</select></label></div>' +
+      '<label class="field"><span>Notes</span><textarea id="i-notes" style="min-height:110px">' + esc(v.notes) + '</textarea></label>' +
+      '<div class="modal-actions">' +
+      (idea ? '<button class="ghost danger" id="i-delete">Delete</button>' : "") +
+      (idea ? '<button class="teal" id="i-to-challenge" title="Copy this idea onto the next free challenge day">🎬 → Challenge day</button>' : "") +
+      '<button class="ghost" onclick="closeModal()">Cancel</button>' +
+      '<button class="primary" id="i-save">Save</button></div>';
+    openModal(html);
+    var toChallenge = $("#i-to-challenge");
+    if (toChallenge) toChallenge.onclick = function () {
+      var st = Store.get();
+      var d = st.settings.challengeStart > todayISO() ? st.settings.challengeStart : todayISO();
+      var guard = 0;
+      while (st.challengeDays[d] && (st.challengeDays[d].title || st.challengeDays[d].idea) && guard++ < 400) d = addDays(d, 1);
+      st.challengeDays[d] = {
+        date: d, title: idea.title.slice(0, 60), idea: idea.title + (idea.notes ? "\n\n" + idea.notes : ""),
+        status: "planned", link: "", learnings: "",
+        updatedAt: new Date().toISOString()
+      };
+      if (idea.status === "Neu") { idea.status = "In Arbeit"; idea.updatedAt = new Date().toISOString(); }
+      Store.save(); closeModal();
+      toast("Planned for " + fmtDate(d) + " (Day " + (daysBetween(st.settings.challengeStart, d) + 1) + ")");
+      App.render();
+    };
+    $("#i-save").onclick = function () {
+      var title = $("#i-title").value.trim();
+      if (!title) { toast("Idea text required", true); return; }
+      var cats = $("#i-cats").value.split(",").map(function (c) { return c.trim(); }).filter(Boolean);
+      var now = new Date().toISOString();
+      if (idea) {
+        idea.title = title; idea.categories = cats;
+        idea.status = $("#i-status").value; idea.energy = $("#i-energy").value || null;
+        idea.notes = $("#i-notes").value.trim(); idea.updatedAt = now;
+      } else {
+        s.ideas.unshift({
+          id: uid("idea"), title: title, categories: cats,
+          status: $("#i-status").value, energy: $("#i-energy").value || null,
+          notes: $("#i-notes").value.trim(), source: "app",
+          createdAt: now, updatedAt: now
+        });
+      }
+      Store.save(); closeModal(); toast("Idea saved"); App.render();
+    };
+    var del = $("#i-delete");
+    if (del) del.onclick = function () {
+      s.ideas = s.ideas.filter(function (x) { return x.id !== id; });
+      Store.save(); closeModal(); toast("Idea deleted"); App.render();
+    };
+  }
+
+  function render(root) {
+    var s = Store.get();
+    var q = (render._q || "").toLowerCase();
+    var cat = render._cat || "all";
+    var status = render._status || "all";
+
+    var visible = s.ideas.filter(function (i) {
+      if (q && (i.title + " " + i.notes).toLowerCase().indexOf(q) === -1) return false;
+      if (cat !== "all" && (i.categories || []).indexOf(cat) === -1) return false;
+      if (status !== "all" && i.status !== status) return false;
+      return true;
+    });
+
+    root.innerHTML =
+      '<h1 class="view-title">Ideas Vault</h1>' +
+      '<p class="view-sub">' + s.ideas.length + ' ideas — imported from your Notion Second Brain + Ideen-Schrank, extendable here. Original German kept as written.</p>' +
+
+      '<div class="filter-bar">' +
+        '<input id="idea-q" placeholder="Search ideas..." value="' + esc(render._q || "") + '" style="flex:1;min-width:180px">' +
+        '<select id="idea-cat"><option value="all">All categories</option>' +
+        categories().map(function (c) { return '<option' + (cat === c ? " selected" : "") + '>' + esc(c) + '</option>'; }).join("") + '</select>' +
+        '<select id="idea-status"><option value="all">All statuses</option>' +
+        STATUSES.map(function (st) { return '<option' + (status === st ? " selected" : "") + '>' + st + '</option>'; }).join("") + '</select>' +
+        '<button class="primary" id="idea-new">+ New idea</button>' +
+      '</div>' +
+
+      '<div class="grid cols-3">' +
+      visible.slice(0, 120).map(function (i) {
+        return '<div class="card clickable" data-idea="' + esc(i.id) + '">' +
+          '<div class="row between mb" style="gap:6px">' +
+          '<span>' + (i.categories || []).slice(0, 3).map(function (c) { return '<span class="badge blue">' + esc(c) + '</span> '; }).join("") + '</span>' +
+          '<span class="badge ' + (i.status === "Umgesetzt" ? "teal" : i.status === "In Arbeit" ? "gold" : i.status === "Archiviert" ? "gray" : "red") + '">' + esc(i.status) + '</span></div>' +
+          '<div style="font-weight:600;font-size:14.5px;line-height:1.35">' + esc(i.title) + '</div>' +
+          (i.notes ? '<div class="muted mt" style="font-size:12.5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">' + esc(i.notes) + '</div>' : "") +
+          '<div class="row between mt"><span class="muted" style="font-size:11px">' + (i.energy ? esc(i.energy) : "") + '</span>' +
+          '<span class="muted" style="font-size:11px">' + esc(i.source || "") + '</span></div>' +
+        '</div>';
+      }).join("") +
+      '</div>' +
+      (visible.length === 0 ? '<div class="empty-note">No ideas match the filter.</div>' : "") +
+      (visible.length > 120 ? '<div class="empty-note">Showing first 120 of ' + visible.length + ' — refine the search.</div>' : "");
+
+    $("#idea-q").oninput = function () { render._q = this.value; App.render(); setTimeout(function(){ var n=$("#idea-q"); if(n){n.focus(); n.setSelectionRange(n.value.length,n.value.length);} },0); };
+    $("#idea-cat").onchange = function () { render._cat = this.value; App.render(); };
+    $("#idea-status").onchange = function () { render._status = this.value; App.render(); };
+    $("#idea-new").onclick = function () { editModal(null); };
+    $$("[data-idea]", root).forEach(function (n) {
+      n.onclick = function () { editModal(n.getAttribute("data-idea")); };
+    });
+  }
+
+  return { render: render };
+})();
+
+</script>
+<script>
+/* ============ projects.js — short films, features, reels, youtube ============ */
+"use strict";
+
+var ProjectsView = (function () {
+
+  var TYPES = [
+    { key: "shortfilm", label: "🎬 Short Film" },
+    { key: "feature", label: "🎥 Feature Film" },
+    { key: "reel", label: "📱 Reel" },
+    { key: "youtube", label: "▶️ YouTube" },
+    { key: "other", label: "✨ Other" }
+  ];
+  var STATUSES = ["idea", "writing", "pre-production", "shooting", "editing", "published", "archived"];
+
+  function typeLabel(key) {
+    var t = TYPES.find(function (x) { return x.key === key; });
+    return t ? t.label : key;
+  }
+
+  function editModal(id) {
+    var s = Store.get();
+    var p = id ? s.projects.find(function (x) { return x.id === id; }) : null;
+    var v = p || { title: "", type: "shortfilm", status: "idea", owner: "Robin", notes: "", targetDate: "", link: "" };
+    var html =
+      '<h3>' + (p ? "Edit project" : "New project") + '</h3>' +
+      '<label class="field"><span>Title</span><input id="p-title" value="' + esc(v.title) + '"></label>' +
+      '<div class="row">' +
+      '<label class="field" style="flex:1"><span>Type</span><select id="p-type">' +
+      TYPES.map(function (t) { return '<option value="' + t.key + '"' + (v.type === t.key ? " selected" : "") + '>' + t.label + '</option>'; }).join("") +
+      '</select></label>' +
+      '<label class="field" style="flex:1"><span>Status</span><select id="p-status">' +
+      STATUSES.map(function (st) { return '<option' + (v.status === st ? " selected" : "") + '>' + st + '</option>'; }).join("") +
+      '</select></label></div>' +
+      '<div class="row">' +
+      '<label class="field" style="flex:1"><span>Owner</span><select id="p-owner">' +
+      ["Robin", "Simon", "Jasmin", "Team"].map(function (o) { return '<option' + (v.owner === o ? " selected" : "") + '>' + o + '</option>'; }).join("") +
+      '</select></label>' +
+      '<label class="field" style="flex:1"><span>Target date</span><input type="date" id="p-date" value="' + esc(v.targetDate || "") + '"></label></div>' +
+      '<label class="field"><span>Link</span><input id="p-link" value="' + esc(v.link || "") + '" placeholder="https://..."></label>' +
+      '<label class="field"><span>Notes</span><textarea id="p-notes">' + esc(v.notes || "") + '</textarea></label>' +
+      '<div class="modal-actions">' +
+      (p ? '<button class="ghost danger" id="p-delete">Delete</button>' : "") +
+      '<button class="ghost" onclick="closeModal()">Cancel</button>' +
+      '<button class="primary" id="p-save">Save</button></div>';
+    openModal(html);
+    $("#p-save").onclick = function () {
+      var title = $("#p-title").value.trim();
+      if (!title) { toast("Title required", true); return; }
+      var now = new Date().toISOString();
+      if (p) {
+        p.title = title; p.type = $("#p-type").value; p.status = $("#p-status").value;
+        p.owner = $("#p-owner").value; p.targetDate = $("#p-date").value || null;
+        p.link = $("#p-link").value.trim(); p.notes = $("#p-notes").value.trim(); p.updatedAt = now;
+      } else {
+        s.projects.unshift({
+          id: uid("prj"), title: title, type: $("#p-type").value, status: $("#p-status").value,
+          owner: $("#p-owner").value, targetDate: $("#p-date").value || null,
+          link: $("#p-link").value.trim(), notes: $("#p-notes").value.trim(),
+          createdAt: now, updatedAt: now
+        });
+      }
+      Store.save(); closeModal(); toast("Project saved"); App.render();
+    };
+    var del = $("#p-delete");
+    if (del) del.onclick = function () {
+      s.projects = s.projects.filter(function (x) { return x.id !== id; });
+      Store.save(); closeModal(); toast("Project deleted"); App.render();
+    };
+  }
+
+  function render(root) {
+    var s = Store.get();
+    var typeFilter = render._type || "all";
+    var visible = s.projects.filter(function (p) {
+      return typeFilter === "all" || p.type === typeFilter;
+    });
+    var counts = {};
+    s.projects.forEach(function (p) { counts[p.type] = (counts[p.type] || 0) + 1; });
+
+    root.innerHTML =
+      '<h1 class="view-title">Projects</h1>' +
+      '<p class="view-sub">Everything in production across Kollektiv Oskar — short films, features, reels and YouTube episodes. Imported from your Notion pipelines.</p>' +
+
+      '<div class="grid cols-4 mb">' +
+      TYPES.slice(0, 4).map(function (t) {
+        return '<div class="card"><span class="stat-label">' + t.label + '</span><div class="stat-value">' + (counts[t.key] || 0) + '</div></div>';
+      }).join("") +
+      '</div>' +
+
+      '<div class="filter-bar">' +
+        '<select id="prj-type"><option value="all">All types (' + s.projects.length + ')</option>' +
+        TYPES.map(function (t) { return '<option value="' + t.key + '"' + (typeFilter === t.key ? " selected" : "") + '>' + t.label + '</option>'; }).join("") +
+        '</select>' +
+        '<button class="primary" id="prj-new">+ New project</button>' +
+      '</div>' +
+
+      '<div class="table-wrap"><table><thead><tr><th>Project</th><th>Type</th><th>Status</th><th>Owner</th><th>Target</th><th>Notes</th></tr></thead><tbody>' +
+      visible.slice(0, 200).map(function (p) {
+        var stCls = p.status === "published" ? "teal" : (p.status === "editing" || p.status === "shooting") ? "blue" : p.status === "archived" ? "gray" : "red";
+        return '<tr class="clickable" data-prj="' + esc(p.id) + '">' +
+          '<td><strong>' + esc(p.title) + '</strong>' +
+          (p.link ? ' <a href="' + esc(p.link) + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">↗</a>' : "") + '</td>' +
+          '<td>' + typeLabel(p.type) + '</td>' +
+          '<td><span class="badge ' + stCls + '">' + esc(p.status) + '</span></td>' +
+          '<td>' + esc(p.owner || "—") + '</td>' +
+          '<td class="mono" style="font-size:12px">' + (p.targetDate ? fmtDate(p.targetDate) : "—") + '</td>' +
+          '<td style="max-width:260px"><span class="muted" style="font-size:12.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">' + esc(p.notes || "") + '</span></td>' +
+        '</tr>';
+      }).join("") +
+      '</tbody></table></div>' +
+      (visible.length === 0 ? '<div class="empty-note">No projects of this type yet.</div>' : "");
+
+    $("#prj-type").onchange = function () { render._type = this.value; App.render(); };
+    $("#prj-new").onclick = function () { editModal(null); };
+    $$("[data-prj]", root).forEach(function (n) {
+      n.onclick = function () { editModal(n.getAttribute("data-prj")); };
+    });
+  }
+
+  return { render: render };
+})();
+
+</script>
+<script>
+/* ============ settings.js — data export/import (Dropbox workflow) + settings ============ */
+"use strict";
+
+var SettingsView = (function () {
+
+  function doExport() {
+    var snap = Store.exportSnapshot();
+    var name = "way-to-oscar-data-" + todayISO() + ".json";
+    downloadJSON(snap, name);
+    toast("Exported " + name + " — drop it in the team Dropbox");
+  }
+
+  function doImport(mode) {
+    pickJSONFile(function (err, obj, filename) {
+      if (err) { toast("Could not read file: " + err.message, true); return; }
+      try {
+        if (mode === "merge") Store.importMerge(obj);
+        else Store.importReplace(obj);
+        toast((mode === "merge" ? "Merged " : "Imported ") + filename);
+        App.render();
+      } catch (e) {
+        toast(e.message, true);
+      }
+    });
+  }
+
+  function render(root) {
+    var s = Store.get();
+    var stats = {
+      ideas: s.ideas.length,
+      projects: s.projects.length,
+      days: Object.keys(s.challengeDays).length,
+      followers: s.followers.length,
+      milestones: s.milestones.length,
+      plans: Object.keys(s.festivalPlans).length
+    };
+
+    root.innerHTML =
+      '<h1 class="view-title">Data &amp; Settings</h1>' +
+      '<p class="view-sub">Your data lives in this browser (autosaved). Use Export/Import to share via the team Dropbox with Simon &amp; Jasmin.</p>' +
+
+      '<h2 class="section-title">Team Sharing (Dropbox workflow)</h2>' +
+      '<div class="grid cols-2">' +
+        '<div class="card accent-teal">' +
+          '<span class="stat-label">📤 Export</span>' +
+          '<p class="mt" style="font-size:13.5px">Download a full snapshot (<span class="mono">way-to-oscar-data-YYYY-MM-DD.json</span>) and put it in the team Dropbox folder.</p>' +
+          '<div class="mt"><button class="teal" id="btn-export">Export data file</button></div>' +
+        '</div>' +
+        '<div class="card accent-blue">' +
+          '<span class="stat-label">📥 Import</span>' +
+          '<p class="mt" style="font-size:13.5px"><strong>Replace</strong> takes the file as the new truth. <strong>Merge</strong> combines the file with your local data (newer edit wins per item) — use this when two people worked in parallel.</p>' +
+          '<div class="mt row"><button class="blue" id="btn-import-replace">Import (replace)</button>' +
+          '<button id="btn-import-merge">Import (merge)</button></div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="card mt">' +
+        '<span class="stat-label">Current data</span>' +
+        '<div class="row mt" style="gap:18px;font-size:13px">' +
+        '<span>💡 ' + stats.ideas + ' ideas</span><span>🎬 ' + stats.projects + ' projects</span>' +
+        '<span>📆 ' + stats.days + ' challenge days</span><span>📈 ' + stats.followers + ' follower points</span>' +
+        '<span>🚩 ' + stats.milestones + ' milestones</span><span>🎪 ' + stats.plans + ' festival plans</span></div>' +
+        '<div class="muted mt" style="font-size:12px">Last change: ' + esc(s.meta.updatedAt || "—") + '</div>' +
+      '</div>' +
+
+      '<h2 class="section-title">Settings</h2>' +
+      '<div class="card" style="max-width:560px">' +
+        '<label class="field"><span>Your name (stamped on exports)</span><input id="s-name" value="' + esc(s.settings.userName) + '"></label>' +
+        '<label class="field"><span>Oscar ceremony target date</span><input type="date" id="s-oscar" value="' + esc(s.settings.oscarCeremonyDate) + '"></label>' +
+        '<label class="field"><span>Countdown label</span><input id="s-oscar-label" value="' + esc(s.settings.oscarCeremonyLabel) + '"></label>' +
+        '<label class="field"><span>Challenge start date</span><input type="date" id="s-challenge" value="' + esc(s.settings.challengeStart) + '"></label>' +
+        '<div class="row">' +
+        '<label class="field" style="flex:1"><span>Follower goal</span><input type="number" id="s-goal" value="' + esc(s.settings.followerGoal) + '"></label>' +
+        '<label class="field" style="flex:1"><span>Goal date</span><input type="date" id="s-goal-date" value="' + esc(s.settings.followerGoalDate) + '"></label></div>' +
+        '<button class="primary" id="s-save">Save settings</button>' +
+      '</div>' +
+
+      '<h2 class="section-title">Danger Zone</h2>' +
+      '<div class="card" style="max-width:560px">' +
+        '<p class="muted" style="font-size:13px">Reset wipes all local edits and restores the original Notion/festival seed data. Export first if unsure.</p>' +
+        '<div class="mt"><button class="danger" id="s-reset">Reset to seed data</button></div>' +
+      '</div>';
+
+    $("#btn-export").onclick = doExport;
+    $("#btn-import-replace").onclick = function () { doImport("replace"); };
+    $("#btn-import-merge").onclick = function () { doImport("merge"); };
+    $("#s-save").onclick = function () {
+      var st = Store.get().settings;
+      st.userName = $("#s-name").value.trim() || "Robin";
+      st.oscarCeremonyDate = $("#s-oscar").value || st.oscarCeremonyDate;
+      st.oscarCeremonyLabel = $("#s-oscar-label").value.trim();
+      st.challengeStart = $("#s-challenge").value || st.challengeStart;
+      st.followerGoal = parseInt($("#s-goal").value, 10) || 1000000;
+      st.followerGoalDate = $("#s-goal-date").value || st.followerGoalDate;
+      Store.save(); toast("Settings saved"); App.render();
+    };
+    $("#s-reset").onclick = function () {
+      openModal(
+        '<h3>Reset all data?</h3><p style="font-size:14px">This deletes every local edit (challenge log, followers, plans...) and restores the seed. This cannot be undone.</p>' +
+        '<div class="modal-actions"><button class="ghost" onclick="closeModal()">Cancel</button>' +
+        '<button class="primary" id="confirm-reset">Yes, reset everything</button></div>');
+      $("#confirm-reset").onclick = function () {
+        Store.resetToSeed(); closeModal(); toast("Reset to seed data"); App.render();
+      };
+    };
+  }
+
+  return { render: render };
+})();
+
+</script>
+<script>
+/* ============ app.js — hash router ============ */
+"use strict";
+
+var App = (function () {
+  var routes = {
+    dashboard: DashboardView,
+    challenge: ChallengeView,
+    festivals: FestivalsView,
+    ideas: IdeasView,
+    projects: ProjectsView,
+    settings: SettingsView
+  };
+
+  function currentRoute() {
+    var h = (location.hash || "#/dashboard").replace(/^#\//, "");
+    return routes[h] ? h : "dashboard";
+  }
+
+  function render() {
+    var route = currentRoute();
+    $$("#main-nav a").forEach(function (a) {
+      a.classList.toggle("active", a.getAttribute("data-route") === route);
+    });
+    var root = $("#view");
+    routes[route].render(root);
+    var s = Store.get();
+    $("#footer-status").textContent =
+      "Data: " + s.ideas.length + " ideas · " + Object.keys(s.challengeDays).length + " challenge days · saved locally " +
+      (s.meta.updatedAt ? "· last edit " + s.meta.updatedAt.slice(0, 16).replace("T", " ") : "");
+    window.scrollTo(0, 0);
+  }
+
+  window.addEventListener("hashchange", render);
+  window.addEventListener("DOMContentLoaded", render);
+
+  return { render: render };
+})();
+
+</script>
+</body>
+</html>

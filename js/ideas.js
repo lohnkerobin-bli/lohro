@@ -32,9 +32,26 @@ var IdeasView = (function () {
       '<label class="field"><span>Notes</span><textarea id="i-notes" style="min-height:110px">' + esc(v.notes) + '</textarea></label>' +
       '<div class="modal-actions">' +
       (idea ? '<button class="ghost danger" id="i-delete">Delete</button>' : "") +
+      (idea ? '<button class="teal" id="i-to-challenge" title="Copy this idea onto the next free challenge day">🎬 → Challenge day</button>' : "") +
       '<button class="ghost" onclick="closeModal()">Cancel</button>' +
       '<button class="primary" id="i-save">Save</button></div>';
     openModal(html);
+    var toChallenge = $("#i-to-challenge");
+    if (toChallenge) toChallenge.onclick = function () {
+      var st = Store.get();
+      var d = st.settings.challengeStart > todayISO() ? st.settings.challengeStart : todayISO();
+      var guard = 0;
+      while (st.challengeDays[d] && (st.challengeDays[d].title || st.challengeDays[d].idea) && guard++ < 400) d = addDays(d, 1);
+      st.challengeDays[d] = {
+        date: d, title: idea.title.slice(0, 60), idea: idea.title + (idea.notes ? "\n\n" + idea.notes : ""),
+        status: "planned", link: "", learnings: "",
+        updatedAt: new Date().toISOString()
+      };
+      if (idea.status === "Neu") { idea.status = "In Arbeit"; idea.updatedAt = new Date().toISOString(); }
+      Store.save(); closeModal();
+      toast("Planned for " + fmtDate(d) + " (Day " + (daysBetween(st.settings.challengeStart, d) + 1) + ")");
+      App.render();
+    };
     $("#i-save").onclick = function () {
       var title = $("#i-title").value.trim();
       if (!title) { toast("Idea text required", true); return; }
