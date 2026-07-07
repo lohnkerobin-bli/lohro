@@ -47,6 +47,50 @@ var FestivalsView = (function () {
     };
   }
 
+  function downloadICS() {
+    var today = todayISO();
+    var events = allDeadlines().filter(function (r) { return r.deadline.date >= today; });
+    if (events.length === 0) { toast("No upcoming deadlines", true); return; }
+    var lines = [
+      "BEGIN:VCALENDAR", "VERSION:2.0",
+      "PRODID:-//Kollektiv Oskar//Way To Oscar Command Center//EN",
+      "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
+      "X-WR-CALNAME:Festival Deadlines — Way to Oscar"
+    ];
+    var stamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+    events.forEach(function (r) {
+      var d = r.deadline.date.replace(/-/g, "");
+      var next = addDays(r.deadline.date, 1).replace(/-/g, "");
+      var summary = "🎬 " + r.festival.name + " — " + r.deadline.type + " deadline" + (r.deadline.estimated ? " (est.)" : "");
+      var desc = (r.festival.oscarQualifying ? "Oscar-qualifying. " : "") +
+        (r.deadline.feeAmount != null ? "Fee: " + r.deadline.feeAmount + " " + (r.deadline.feeCurrency || "") + ". " : "") +
+        (r.festival.maxRuntimeMin ? "Max runtime: " + r.festival.maxRuntimeMin + " min. " : "") +
+        (r.festival.premiereRequirement ? "Premiere: " + r.festival.premiereRequirement + ". " : "") +
+        (r.deadline.estimated ? "DATE IS ESTIMATED — verify on the festival site! " : "") +
+        (r.festival.url || "");
+      lines.push(
+        "BEGIN:VEVENT",
+        "UID:" + r.festival.id + "-" + r.deadline.type + "-" + d + "@waytooscar",
+        "DTSTAMP:" + stamp,
+        "DTSTART;VALUE=DATE:" + d,
+        "DTEND;VALUE=DATE:" + next,
+        "SUMMARY:" + summary.replace(/[\n,;]/g, " "),
+        "DESCRIPTION:" + desc.replace(/[\n]/g, " ").replace(/([,;])/g, "\\$1"),
+        "BEGIN:VALARM", "TRIGGER:-P14D", "ACTION:DISPLAY",
+        "DESCRIPTION:Festival deadline in 2 weeks", "END:VALARM",
+        "END:VEVENT"
+      );
+    });
+    lines.push("END:VCALENDAR");
+    var blob = new Blob([lines.join("\r\n")], { type: "text/calendar" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "festival-deadlines.ics";
+    document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+    toast(events.length + " deadlines exported — import into Google/Apple Calendar");
+  }
+
   function statusBadge(status) {
     var cls = { "submitted": "blue", "accepted": "teal", "won": "gold", "rejected": "red", "planned": "blue", "film ready": "teal", "researching": "gray" }[status] || "gray";
     return status === "not planned" ? "" : '<span class="badge ' + cls + '">' + esc(status) + '</span>';
@@ -90,6 +134,8 @@ var FestivalsView = (function () {
       })() +
 
       '<h2 class="section-title">Deadline Calendar</h2>' +
+      '<div class="row mb"><button class="blue" id="btn-ics">📅 Export deadlines (.ics)</button>' +
+      '<span class="muted" style="font-size:12px">Import into Google/Apple Calendar — includes a 2-week reminder per deadline</span></div>' +
       '<div class="card">' +
       (upcoming.length === 0 ? '<div class="empty-note">No upcoming deadlines in the database.</div>' :
         '<div class="timeline mt">' +
@@ -140,6 +186,7 @@ var FestivalsView = (function () {
       }).join("") +
       '</tbody></table></div>';
 
+    $("#btn-ics").onclick = downloadICS;
     $("#fest-filter").onchange = function () {
       render._filter = this.value;
       App.render();

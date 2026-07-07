@@ -125,6 +125,41 @@ var DashboardView = (function () {
     };
   }
 
+  function todayStripHTML() {
+    var s = Store.get();
+    var today = todayISO();
+    var start = s.settings.challengeStart;
+    var parts = [];
+    // challenge status today
+    if (today >= start) {
+      var dayNum = daysBetween(start, today) + 1;
+      var entry = s.challengeDays[today];
+      var done = entry && entry.status === "published";
+      parts.push('<span>🎬 <strong>Day ' + dayNum + '</strong> — ' +
+        (done ? '<span class="badge teal">published ✓</span>'
+          : entry && entry.title ? '<span class="badge blue">' + esc(entry.status) + ": " + esc(entry.title) + '</span>'
+          : '<span class="badge red">no film logged yet</span>') +
+        ' <a href="#/challenge">log →</a></span>');
+    } else {
+      parts.push('<span>🎬 Challenge starts <strong>' + fmtDate(start) + '</strong> — ' + daysBetween(today, start) + ' days to prepare</span>');
+    }
+    // most urgent deadline
+    var next = nextDeadlines(1)[0];
+    if (next) {
+      var d = daysBetween(today, next.deadline.date);
+      parts.push('<span>⏰ Next deadline: <strong>' + esc(next.festival.name) + '</strong> in ' +
+        '<span class="badge ' + (d <= 21 ? "red" : "gray") + '">' + d + ' days</span> <a href="#/festivals">plan →</a></span>');
+    }
+    // principle of the day
+    var st = window.SEED && window.SEED.strategy;
+    if (st && st.principles && st.principles.length) {
+      var doy = Math.floor((parseISO(today) - new Date(parseISO(today).getFullYear(), 0, 0)) / 86400000);
+      parts.push('<span class="muted">💭 ' + esc(st.principles[doy % st.principles.length]) + '</span>');
+    }
+    return '<div class="card mb" style="padding:12px 18px"><div class="row" style="gap:22px;font-size:13.5px">' +
+      parts.join("") + '</div></div>';
+  }
+
   function strategyHTML() {
     var st = window.SEED && window.SEED.strategy;
     if (!st) return "";
@@ -173,6 +208,8 @@ var DashboardView = (function () {
     root.innerHTML =
       '<h1 class="view-title">Dashboard</h1>' +
       '<p class="view-sub">Two tracks, one goal. Track A: festival films. Track B: 1M followers. Destination: the Oscar stage.</p>' +
+
+      todayStripHTML() +
 
       '<div class="grid cols-2">' +
         '<div class="card accent-gold">' +
