@@ -1,0 +1,37 @@
+/* ============ app.js — hash router ============ */
+"use strict";
+
+var App = (function () {
+  var routes = {
+    dashboard: DashboardView,
+    challenge: ChallengeView,
+    festivals: FestivalsView,
+    ideas: IdeasView,
+    projects: ProjectsView,
+    settings: SettingsView
+  };
+
+  function currentRoute() {
+    var h = (location.hash || "#/dashboard").replace(/^#\//, "");
+    return routes[h] ? h : "dashboard";
+  }
+
+  function render() {
+    var route = currentRoute();
+    $$("#main-nav a").forEach(function (a) {
+      a.classList.toggle("active", a.getAttribute("data-route") === route);
+    });
+    var root = $("#view");
+    routes[route].render(root);
+    var s = Store.get();
+    $("#footer-status").textContent =
+      "Data: " + s.ideas.length + " ideas · " + Object.keys(s.challengeDays).length + " challenge days · saved locally " +
+      (s.meta.updatedAt ? "· last edit " + s.meta.updatedAt.slice(0, 16).replace("T", " ") : "");
+    window.scrollTo(0, 0);
+  }
+
+  window.addEventListener("hashchange", render);
+  window.addEventListener("DOMContentLoaded", render);
+
+  return { render: render };
+})();
