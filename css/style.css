@@ -410,6 +410,23 @@ a:hover { color: var(--cream); }
 .tint-cream { background: linear-gradient(155deg, rgba(246,238,221,.10), var(--surface) 70%) !important; border: 1px solid rgba(246,238,221,.08) !important; }
 .tint-gold:hover, .tint-teal:hover, .tint-red:hover, .tint-blue:hover, .tint-magenta:hover { filter: brightness(1.15) saturate(1.1); }
 
+/* spotlight — the cream-white stage light: for THE one action that matters now */
+.spotlight {
+  background: linear-gradient(150deg, #FBF3DF, #EDDFC0 70%) !important;
+  border: none !important;
+  color: #1E1508 !important;
+  box-shadow: 0 6px 30px rgba(246,238,221,.10), 0 2px 10px rgba(0,0,0,.4);
+}
+.spotlight .ap-text strong, .spotlight .vt-text, .spotlight .stat-label, .spotlight strong { color: #1E1508 !important; }
+.spotlight .ap-text small, .spotlight .lr-sub, .spotlight .muted { color: rgba(30,21,8,.62) !important; }
+.spotlight .ap-cta {
+  background: #1E1508; color: #FBF3DF;
+  border: none;
+}
+.spotlight .ap-cta.ok { background: rgba(30,90,80,.9); color: #EAFBF7; }
+.spotlight:hover { filter: brightness(1.04); }
+.spotlight .vt-icon { filter: none; }
+
 /* action pills under the rings */
 .action-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 6px; }
 .action-pill {

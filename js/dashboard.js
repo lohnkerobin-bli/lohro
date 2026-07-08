@@ -149,14 +149,14 @@ var DashboardView = (function () {
       var dayNum = daysBetween(start, today) + 1;
       var entry = s.challengeDays[today];
       var done = entry && entry.status === "published";
-      left = '<div class="action-pill tint-red clickable" onclick="location.hash=\'#/challenge\'">' +
+      left = '<div class="action-pill ' + (done ? "tint-teal" : "spotlight") + ' clickable" onclick="location.hash=\'#/challenge\'">' +
         '<span class="ap-icon">🎬</span>' +
-        '<span class="ap-text"><strong>Day ' + dayNum + '</strong><small>' +
+        '<span class="ap-text"><strong>Day ' + dayNum + ' — today\'s film</strong><small>' +
         (done ? "published ✓" : entry && entry.title ? esc(entry.status) + " · " + esc(entry.title) : "no film logged yet") +
         '</small></span>' +
         '<span class="ap-cta ' + (done ? "ok" : "") + '">' + (done ? "✓" : "Log →") + '</span></div>';
     } else {
-      left = '<div class="action-pill tint-red clickable" onclick="location.hash=\'#/challenge\'">' +
+      left = '<div class="action-pill spotlight clickable" onclick="location.hash=\'#/challenge\'">' +
         '<span class="ap-icon">🎬</span>' +
         '<span class="ap-text"><strong>Challenge starts ' + fmtDateShort(start) + '</strong><small>' +
         daysBetween(today, start) + ' days to prepare — plan your first films</small></span>' +
@@ -181,12 +181,12 @@ var DashboardView = (function () {
     var b = boards[0];
     return '<h2 class="section-title">🌟 ' + esc(b.title) +
       ' <a href="#/brain" class="muted" style="letter-spacing:0;text-transform:none;font-weight:600;font-size:12px" onclick="BrainView._pendingTab=\'vision\'">edit boards →</a></h2>' +
-      '<div class="vision-grid">' + b.tiles.map(function (t) {
+      '<div class="vision-grid">' + b.tiles.map(function (t, i) {
         if (t.kind === "image" && safeUrl(t.url)) {
           return '<div class="vision-tile image" style="background-image:url(\'' + esc(safeUrl(t.url)) + '\')">' +
             (t.text ? '<span class="vt-caption">' + esc(t.text) + '</span>' : "") + '</div>';
         }
-        return '<div class="vision-tile"><span class="vt-icon">' + esc(t.icon || "✨") + '</span>' +
+        return '<div class="vision-tile' + (i === 0 ? " spotlight" : "") + '"><span class="vt-icon">' + esc(t.icon || "✨") + '</span>' +
           '<span class="vt-text">' + esc(t.text || "") + '</span></div>';
       }).join("") + '</div>';
   }
