@@ -117,21 +117,21 @@ function sparkline(points, opts) {
   function Y(v) { return h - pad - ((v - minY) / (maxY - minY)) * (h - pad * 2); }
   var path = points.map(function (p, i) { return (i === 0 ? "M" : "L") + X(p.x).toFixed(1) + " " + Y(p.y).toFixed(1); }).join(" ");
   var dots = points.map(function (p) {
-    return '<circle cx="' + X(p.x).toFixed(1) + '" cy="' + Y(p.y).toFixed(1) + '" r="3.2" fill="#2A9D8F"/>';
+    return '<circle cx="' + X(p.x).toFixed(1) + '" cy="' + Y(p.y).toFixed(1) + '" r="3.2" fill="#2FA39A"/>';
   }).join("");
   var goalLine = "";
   if (showGoal) {
     goalLine = '<line x1="' + pad + '" x2="' + (w - pad) + '" y1="' + Y(opts.goal).toFixed(1) + '" y2="' + Y(opts.goal).toFixed(1) +
-      '" stroke="#D4AF37" stroke-dasharray="5 5" stroke-width="1.2" opacity=".8"/>' +
-      '<text x="' + (w - pad) + '" y="' + (Y(opts.goal) - 6).toFixed(1) + '" text-anchor="end" fill="#D4AF37" font-size="11">Goal ' + fmtCompact(opts.goal) + "</text>";
+      '" stroke="#E3A72F" stroke-dasharray="5 5" stroke-width="1.2" opacity=".8"/>' +
+      '<text x="' + (w - pad) + '" y="' + (Y(opts.goal) - 6).toFixed(1) + '" text-anchor="end" fill="#E3A72F" font-size="11">Goal ' + fmtCompact(opts.goal) + "</text>";
   }
   var area = path + " L" + X(maxX).toFixed(1) + " " + Y(minY).toFixed(1) + " L" + X(minX).toFixed(1) + " " + Y(minY).toFixed(1) + " Z";
   return '<svg viewBox="0 0 ' + w + " " + h + '" preserveAspectRatio="xMidYMid meet" role="img">' +
     '<defs><linearGradient id="sparkfill" x1="0" y1="0" x2="0" y2="1">' +
-    '<stop offset="0%" stop-color="#2A9D8F" stop-opacity=".35"/><stop offset="100%" stop-color="#2A9D8F" stop-opacity="0"/></linearGradient></defs>' +
+    '<stop offset="0%" stop-color="#2FA39A" stop-opacity=".35"/><stop offset="100%" stop-color="#2FA39A" stop-opacity="0"/></linearGradient></defs>' +
     '<path d="' + area + '" fill="url(#sparkfill)"/>' +
     goalLine +
-    '<path d="' + path + '" fill="none" stroke="#2A9D8F" stroke-width="2.2" stroke-linejoin="round"/>' +
+    '<path d="' + path + '" fill="none" stroke="#2FA39A" stroke-width="2.2" stroke-linejoin="round"/>' +
     dots + "</svg>";
 }
 
@@ -144,7 +144,7 @@ function ringGauge(percent, opts) {
   var c = 2 * Math.PI * r;
   var pct = Math.max(0, Math.min(100, percent || 0));
   var dash = (pct / 100) * c;
-  var color = opts.color || "#2A9D8F";
+  var color = opts.color || "#2FA39A";
   var id = "rg" + Math.random().toString(36).slice(2, 7);
   return '<svg viewBox="0 0 ' + size + " " + size + '" style="width:100%;max-width:' + size + 'px" role="img">' +
     '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="1" y2="1">' +
@@ -157,8 +157,8 @@ function ringGauge(percent, opts) {
     (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "" :
       '<animate attributeName="stroke-dasharray" from="0 ' + c.toFixed(1) + '" to="' + dash.toFixed(1) + " " + c.toFixed(1) + '" dur="1.1s" calcMode="spline" keySplines="0.22 1 0.36 1" fill="freeze"/>') +
     '</circle>' +
-    '<text x="50%" y="47%" text-anchor="middle" fill="#F1FAEE" font-size="' + size * 0.19 + '" font-weight="800" font-family="Futura, Avenir Next, system-ui, sans-serif">' + esc(opts.value || "") + '</text>' +
-    '<text x="50%" y="62%" text-anchor="middle" fill="#8F958D" font-size="' + size * 0.078 + '" letter-spacing="1">' + esc(opts.sub || "") + '</text>' +
+    '<text x="50%" y="47%" text-anchor="middle" fill="#F6EEDD" font-size="' + size * 0.19 + '" font-weight="800" font-family="Futura, Avenir Next, system-ui, sans-serif">' + esc(opts.value || "") + '</text>' +
+    '<text x="50%" y="62%" text-anchor="middle" fill="#9C8F7B" font-size="' + size * 0.078 + '" letter-spacing="1">' + esc(opts.sub || "") + '</text>' +
     '</svg>';
 }
 

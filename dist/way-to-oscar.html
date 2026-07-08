@@ -13,24 +13,28 @@
    ============================================================ */
 
 :root {
-  --true-black: #0A0A0A;
-  --black-raise: #121212;
-  --black-panel: #161618;
-  --black-card: #1C1C1F;
-  --black-line: #2A2A2E;
+  /* palette inspired by the Murray Franklin stage: amber curtains, teal suit,
+     magenta honeycomb light, warm black floor */
+  --true-black: #0C0908;
+  --black-raise: #171210;
+  --black-panel: #1A1512;
+  --black-card: #201914;
+  --black-line: #322820;
   --set-red: #E63946;
   --set-red-dim: #B02A35;
-  --stage-teal: #2A9D8F;
-  --stage-blue: #457B9D;
-  --cream: #F1FAEE;
-  --cream-dim: #C9CFC6;
-  --cream-faint: #8F958D;
-  --gold: #D4AF37;
+  --stage-teal: #2FA39A;
+  --stage-blue: #2E86AB;
+  --amber: #E8871E;
+  --magenta: #B04A93;
+  --cream: #F6EEDD;
+  --cream-dim: #D8CCB4;
+  --cream-faint: #9C8F7B;
+  --gold: #E3A72F;
 
   --font-display: -apple-system, "SF Pro Display", system-ui, "Segoe UI", Roboto, sans-serif;
   --font-body: -apple-system, "SF Pro Text", system-ui, "Segoe UI", Roboto, sans-serif;
-  --surface: #1C1C1E;
-  --surface-2: #2C2C2E;
+  --surface: #1B1511;
+  --surface-2: #2B2118;
   --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
 
   --radius: 10px;
@@ -54,8 +58,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* clean black canvas — Apple dark mode */
-body::before { content: none; }
+/* stage-light spill on the black floor */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 12% -8%, rgba(232,135,30,.13), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 95% 8%, rgba(176,74,147,.10), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 112%, rgba(47,163,154,.08), transparent 60%);
+  z-index: 0;
+}
 
 #app-shell { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 100vh; }
 
@@ -75,7 +88,7 @@ body::before { content: none; }
   background: linear-gradient(145deg, var(--black-card), var(--black-raise));
   border: 1px solid var(--gold);
   border-radius: 8px;
-  box-shadow: 0 0 18px rgba(212,175,55,.15);
+  box-shadow: 0 0 18px rgba(232,135,30,.15);
 }
 .brand-text { display: flex; flex-direction: column; }
 .brand-title {
@@ -197,7 +210,7 @@ label.field > span { display: block; font-size: 11px; font-weight: 700; letter-s
 .badge.red   { color: #FF8B94; background: rgba(230,57,70,.16); }
 .badge.teal  { color: #7EDCD2; background: rgba(42,157,143,.16); }
 .badge.blue  { color: #9DC6E0; background: rgba(69,123,157,.18); }
-.badge.gold  { color: #EBD489; background: rgba(212,175,55,.14); }
+.badge.gold  { color: #EBD489; background: rgba(232,135,30,.14); }
 .badge.gray  { color: var(--cream-faint); }
 
 /* ---------- Tables ---------- */
@@ -248,7 +261,7 @@ tbody tr:hover { background: rgba(255,255,255,.025); }
 .day-cell:hover { border-color: var(--cream-faint); transform: translateY(-1px); }
 .day-cell .d-date { font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--cream-faint); display: flex; justify-content: space-between; }
 .day-cell .d-title { font-size: 13px; font-weight: 600; line-height: 1.3; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-.day-cell.today { border-color: var(--gold); box-shadow: 0 0 14px rgba(212,175,55,.14); }
+.day-cell.today { border-color: var(--gold); box-shadow: 0 0 14px rgba(232,135,30,.14); }
 .day-cell.published { border-left: 3px solid var(--stage-teal); }
 .day-cell.editing, .day-cell.shooting { border-left: 3px solid var(--stage-blue); }
 .day-cell.planned { border-left: 3px solid var(--cream-faint); }
@@ -342,8 +355,8 @@ a:hover { color: var(--cream); }
 /* player card (game-style level + XP) */
 .player-card {
   display: flex; align-items: center; gap: 14px;
-  background: linear-gradient(135deg, rgba(212,175,55,.12), rgba(212,175,55,.03));
-  border: 1px solid rgba(212,175,55,.35);
+  background: linear-gradient(135deg, rgba(232,135,30,.12), rgba(232,135,30,.03));
+  border: 1px solid rgba(232,135,30,.35);
   border-radius: 18px;
   padding: 12px 18px;
   min-width: 250px;
@@ -351,9 +364,9 @@ a:hover { color: var(--cream); }
 .pc-level {
   width: 54px; height: 54px; border-radius: 14px; flex-shrink: 0;
   background: linear-gradient(145deg, #2A2413, #1A1710);
-  border: 1px solid rgba(212,175,55,.55);
+  border: 1px solid rgba(232,135,30,.55);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  box-shadow: 0 0 16px rgba(212,175,55,.18);
+  box-shadow: 0 0 16px rgba(232,135,30,.18);
 }
 .pc-lvl-label { font-size: 8.5px; font-weight: 800; letter-spacing: .2em; color: var(--cream-faint); }
 .pc-lvl-num { font-family: var(--font-display); font-size: 24px; font-weight: 900; color: var(--gold); line-height: 1; }
@@ -397,13 +410,14 @@ a:hover { color: var(--cream); }
 .dl-days.hot { border-color: rgba(230,57,70,.5); background: rgba(230,57,70,.10); }
 .dl-days.hot span { color: #FF8B94; }
 
-/* color tints — Apple-style soft gradients on dark surfaces */
-.tint-gold  { background: linear-gradient(180deg, rgba(212,175,55,.16), var(--surface) 62%) !important; }
-.tint-teal  { background: linear-gradient(180deg, rgba(42,157,143,.17), var(--surface) 62%) !important; }
-.tint-red   { background: linear-gradient(180deg, rgba(230,57,70,.15), var(--surface) 62%) !important; }
-.tint-blue  { background: linear-gradient(180deg, rgba(69,123,157,.19), var(--surface) 62%) !important; }
-.tint-cream { background: linear-gradient(180deg, rgba(241,250,238,.07), var(--surface) 62%) !important; }
-.tint-gold:hover, .tint-teal:hover, .tint-red:hover, .tint-blue:hover { filter: brightness(1.12); }
+/* color tints — rich cinematic duotones (curtain amber, suit teal, honeycomb magenta) */
+.tint-gold  { background: linear-gradient(155deg, rgba(232,135,30,.34), rgba(120,62,10,.10) 45%, var(--surface) 85%) !important; border: 1px solid rgba(232,135,30,.22) !important; }
+.tint-teal  { background: linear-gradient(155deg, rgba(47,163,154,.32), rgba(20,84,78,.12) 45%, var(--surface) 85%) !important; border: 1px solid rgba(47,163,154,.22) !important; }
+.tint-red   { background: linear-gradient(155deg, rgba(230,57,70,.30), rgba(120,25,32,.12) 45%, var(--surface) 85%) !important; border: 1px solid rgba(230,57,70,.22) !important; }
+.tint-blue  { background: linear-gradient(155deg, rgba(46,134,171,.32), rgba(22,66,86,.12) 45%, var(--surface) 85%) !important; border: 1px solid rgba(46,134,171,.22) !important; }
+.tint-magenta { background: linear-gradient(155deg, rgba(176,74,147,.32), rgba(90,32,74,.12) 45%, var(--surface) 85%) !important; border: 1px solid rgba(176,74,147,.24) !important; }
+.tint-cream { background: linear-gradient(155deg, rgba(246,238,221,.10), var(--surface) 70%) !important; border: 1px solid rgba(246,238,221,.08) !important; }
+.tint-gold:hover, .tint-teal:hover, .tint-red:hover, .tint-blue:hover, .tint-magenta:hover { filter: brightness(1.15) saturate(1.1); }
 
 /* action pills under the rings */
 .action-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 6px; }
@@ -429,7 +443,7 @@ a:hover { color: var(--cream); }
 .ap-cta.hot { color: #FF8B94; border-color: rgba(230,57,70,.5); background: rgba(230,57,70,.10); }
 .ap-cta.ok { color: #7EDCD2; border-color: rgba(42,157,143,.5); background: rgba(42,157,143,.12); }
 
-.dl-days.gold-chip { border-color: rgba(212,175,55,.35); background: rgba(212,175,55,.07); }
+.dl-days.gold-chip { border-color: rgba(232,135,30,.35); background: rgba(232,135,30,.07); }
 .dl-days.gold-chip span { color: #EBD489; }
 .list-row input[type=checkbox] { width: 17px; height: 17px; accent-color: var(--stage-teal); flex-shrink: 0; }
 
@@ -458,13 +472,13 @@ a:hover { color: var(--cream); }
   position: relative;
   min-height: 108px;
   border-radius: 16px;
-  border: 1px solid rgba(212,175,55,.22);
-  background: linear-gradient(160deg, rgba(212,175,55,.08), rgba(255,255,255,.02));
+  border: 1px solid rgba(232,135,30,.22);
+  background: linear-gradient(160deg, rgba(232,135,30,.08), rgba(255,255,255,.02));
   padding: 16px;
   display: flex; flex-direction: column; justify-content: flex-end; gap: 8px;
   transition: transform .15s ease, border-color .15s;
 }
-.vision-tile:hover { transform: translateY(-2px); border-color: rgba(212,175,55,.5); }
+.vision-tile:hover { transform: translateY(-2px); border-color: rgba(232,135,30,.5); }
 .vision-tile .vt-icon { font-size: 26px; }
 .vision-tile .vt-text { font-family: var(--font-display); font-size: 14px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; }
 .vision-tile.image { background-size: cover; background-position: center; min-height: 140px; }
@@ -536,8 +550,8 @@ a:hover { color: var(--cream); }
 /* AUTO-GENERATED by scripts/build-seed.py — do not edit by hand.
    Canonical data lives in data/*.json. Regenerate: python3 scripts/build-seed.py */
 window.SEED = {
- "version": 66934531027724,
- "generated": "2026-07-08T22:47:27Z",
+ "version": 43260695730798,
+ "generated": "2026-07-08T23:23:28Z",
  "ideas": [
   {
    "id": "idea-001",
@@ -1709,8 +1723,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-002",
@@ -1722,8 +1736,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-003",
@@ -1735,8 +1749,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-004",
@@ -1748,8 +1762,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-005",
@@ -1761,8 +1775,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-006",
@@ -1774,8 +1788,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-007",
@@ -1787,8 +1801,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-008",
@@ -1800,8 +1814,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-009",
@@ -1813,8 +1827,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-010",
@@ -1826,8 +1840,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-011",
@@ -1839,8 +1853,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-012",
@@ -1852,8 +1866,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-013",
@@ -1865,8 +1879,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-014",
@@ -1878,8 +1892,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-015",
@@ -1891,8 +1905,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-016",
@@ -1904,8 +1918,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-017",
@@ -1917,8 +1931,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-019",
@@ -1930,8 +1944,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-020",
@@ -1943,8 +1957,8 @@ window.SEED = {
    "link": null,
    "notes": "Series: SHORTMOVIE · Tags: ABGESCHLOSSEN",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-021",
@@ -1956,8 +1970,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-022",
@@ -1969,8 +1983,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: THUMBNAIL",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-023",
@@ -1982,8 +1996,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-024",
@@ -1995,8 +2009,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-025",
@@ -2008,8 +2022,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-026",
@@ -2021,8 +2035,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-028",
@@ -2034,8 +2048,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-031",
@@ -2047,8 +2061,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-032",
@@ -2060,8 +2074,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-033",
@@ -2073,8 +2087,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-034",
@@ -2086,8 +2100,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-035",
@@ -2099,8 +2113,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-036",
@@ -2112,8 +2126,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-037",
@@ -2125,8 +2139,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-038",
@@ -2138,8 +2152,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-039",
@@ -2151,8 +2165,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-040",
@@ -2164,8 +2178,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-041",
@@ -2177,8 +2191,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-042",
@@ -2190,8 +2204,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-043",
@@ -2203,8 +2217,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-044",
@@ -2216,8 +2230,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-045",
@@ -2229,8 +2243,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-046",
@@ -2242,8 +2256,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-047",
@@ -2255,8 +2269,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-048",
@@ -2268,8 +2282,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-049",
@@ -2281,8 +2295,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-050",
@@ -2294,8 +2308,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-051",
@@ -2307,8 +2321,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-052",
@@ -2320,8 +2334,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-053",
@@ -2333,8 +2347,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-054",
@@ -2346,8 +2360,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-055",
@@ -2359,8 +2373,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-056",
@@ -2372,8 +2386,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-057",
@@ -2385,8 +2399,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-058",
@@ -2398,8 +2412,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-059",
@@ -2411,8 +2425,8 @@ window.SEED = {
    "link": null,
    "notes": "Series: CINEMATIC VIDEO · Tags: SKRIPT, IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-060",
@@ -2424,8 +2438,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-061",
@@ -2437,8 +2451,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-062",
@@ -2450,8 +2464,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-063",
@@ -2463,8 +2477,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-064",
@@ -2476,8 +2490,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-065",
@@ -2489,8 +2503,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-066",
@@ -2502,8 +2516,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-067",
@@ -2515,8 +2529,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-068",
@@ -2528,8 +2542,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-069",
@@ -2541,8 +2555,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-070",
@@ -2554,8 +2568,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-071",
@@ -2567,8 +2581,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-072",
@@ -2580,8 +2594,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-073",
@@ -2593,8 +2607,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-074",
@@ -2606,8 +2620,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-075",
@@ -2619,8 +2633,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-076",
@@ -2632,8 +2646,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT, PRODUKTION",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-077",
@@ -2645,8 +2659,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-078",
@@ -2658,8 +2672,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-080",
@@ -2671,8 +2685,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-081",
@@ -2684,8 +2698,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-083",
@@ -2697,8 +2711,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-084",
@@ -2710,8 +2724,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-085",
@@ -2723,8 +2737,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-086",
@@ -2736,8 +2750,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-087",
@@ -2749,8 +2763,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: ONLINE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-088",
@@ -2762,8 +2776,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-089",
@@ -2775,8 +2789,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-090",
@@ -2788,8 +2802,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-091",
@@ -2801,8 +2815,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-092",
@@ -2814,8 +2828,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-093",
@@ -2827,8 +2841,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-094",
@@ -2840,8 +2854,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-095",
@@ -2853,8 +2867,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-096",
@@ -2866,8 +2880,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-097",
@@ -2879,8 +2893,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: ONLINE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-098",
@@ -2892,8 +2906,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: ONLINE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-099",
@@ -2905,8 +2919,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "project-100",
@@ -2918,8 +2932,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   },
   {
    "id": "episode-001",
@@ -2931,8 +2945,8 @@ window.SEED = {
    "link": null,
    "notes": "Hook: I want to win an Oscar. Here's where I actually am. · Main point: Ehrliche Bestandsaufnahme: Six years self-employed, KO läuft, jetzt der Push für Personal Brand und Foundation-Bewerbung. Cliffhanger auf das Claude-Gespräch. · Format: Bestandsaufnahme",
    "source": "notion-youtube-pipeline",
-   "createdAt": "2026-07-08T22:47:27Z",
-   "updatedAt": "2026-07-08T22:47:27Z"
+   "createdAt": "2026-07-08T23:23:28Z",
+   "updatedAt": "2026-07-08T23:23:28Z"
   }
  ],
  "festivals": {
@@ -4556,21 +4570,21 @@ function sparkline(points, opts) {
   function Y(v) { return h - pad - ((v - minY) / (maxY - minY)) * (h - pad * 2); }
   var path = points.map(function (p, i) { return (i === 0 ? "M" : "L") + X(p.x).toFixed(1) + " " + Y(p.y).toFixed(1); }).join(" ");
   var dots = points.map(function (p) {
-    return '<circle cx="' + X(p.x).toFixed(1) + '" cy="' + Y(p.y).toFixed(1) + '" r="3.2" fill="#2A9D8F"/>';
+    return '<circle cx="' + X(p.x).toFixed(1) + '" cy="' + Y(p.y).toFixed(1) + '" r="3.2" fill="#2FA39A"/>';
   }).join("");
   var goalLine = "";
   if (showGoal) {
     goalLine = '<line x1="' + pad + '" x2="' + (w - pad) + '" y1="' + Y(opts.goal).toFixed(1) + '" y2="' + Y(opts.goal).toFixed(1) +
-      '" stroke="#D4AF37" stroke-dasharray="5 5" stroke-width="1.2" opacity=".8"/>' +
-      '<text x="' + (w - pad) + '" y="' + (Y(opts.goal) - 6).toFixed(1) + '" text-anchor="end" fill="#D4AF37" font-size="11">Goal ' + fmtCompact(opts.goal) + "</text>";
+      '" stroke="#E3A72F" stroke-dasharray="5 5" stroke-width="1.2" opacity=".8"/>' +
+      '<text x="' + (w - pad) + '" y="' + (Y(opts.goal) - 6).toFixed(1) + '" text-anchor="end" fill="#E3A72F" font-size="11">Goal ' + fmtCompact(opts.goal) + "</text>";
   }
   var area = path + " L" + X(maxX).toFixed(1) + " " + Y(minY).toFixed(1) + " L" + X(minX).toFixed(1) + " " + Y(minY).toFixed(1) + " Z";
   return '<svg viewBox="0 0 ' + w + " " + h + '" preserveAspectRatio="xMidYMid meet" role="img">' +
     '<defs><linearGradient id="sparkfill" x1="0" y1="0" x2="0" y2="1">' +
-    '<stop offset="0%" stop-color="#2A9D8F" stop-opacity=".35"/><stop offset="100%" stop-color="#2A9D8F" stop-opacity="0"/></linearGradient></defs>' +
+    '<stop offset="0%" stop-color="#2FA39A" stop-opacity=".35"/><stop offset="100%" stop-color="#2FA39A" stop-opacity="0"/></linearGradient></defs>' +
     '<path d="' + area + '" fill="url(#sparkfill)"/>' +
     goalLine +
-    '<path d="' + path + '" fill="none" stroke="#2A9D8F" stroke-width="2.2" stroke-linejoin="round"/>' +
+    '<path d="' + path + '" fill="none" stroke="#2FA39A" stroke-width="2.2" stroke-linejoin="round"/>' +
     dots + "</svg>";
 }
 
@@ -4583,7 +4597,7 @@ function ringGauge(percent, opts) {
   var c = 2 * Math.PI * r;
   var pct = Math.max(0, Math.min(100, percent || 0));
   var dash = (pct / 100) * c;
-  var color = opts.color || "#2A9D8F";
+  var color = opts.color || "#2FA39A";
   var id = "rg" + Math.random().toString(36).slice(2, 7);
   return '<svg viewBox="0 0 ' + size + " " + size + '" style="width:100%;max-width:' + size + 'px" role="img">' +
     '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="1" y2="1">' +
@@ -4596,8 +4610,8 @@ function ringGauge(percent, opts) {
     (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "" :
       '<animate attributeName="stroke-dasharray" from="0 ' + c.toFixed(1) + '" to="' + dash.toFixed(1) + " " + c.toFixed(1) + '" dur="1.1s" calcMode="spline" keySplines="0.22 1 0.36 1" fill="freeze"/>') +
     '</circle>' +
-    '<text x="50%" y="47%" text-anchor="middle" fill="#F1FAEE" font-size="' + size * 0.19 + '" font-weight="800" font-family="Futura, Avenir Next, system-ui, sans-serif">' + esc(opts.value || "") + '</text>' +
-    '<text x="50%" y="62%" text-anchor="middle" fill="#8F958D" font-size="' + size * 0.078 + '" letter-spacing="1">' + esc(opts.sub || "") + '</text>' +
+    '<text x="50%" y="47%" text-anchor="middle" fill="#F6EEDD" font-size="' + size * 0.19 + '" font-weight="800" font-family="Futura, Avenir Next, system-ui, sans-serif">' + esc(opts.value || "") + '</text>' +
+    '<text x="50%" y="62%" text-anchor="middle" fill="#9C8F7B" font-size="' + size * 0.078 + '" letter-spacing="1">' + esc(opts.sub || "") + '</text>' +
     '</svg>';
 }
 
@@ -5179,12 +5193,12 @@ var DashboardView = (function () {
 
       '<div class="score-row">' +
         '<div class="score-card tint-gold clickable" onclick="location.hash=\'#/settings\'">' +
-          ringGauge((journeyDone / journeyTotal) * 100, { color: "#D4AF37", value: fmtCompact(daysLeft), sub: "DAYS TO OSCARS" }) +
+          ringGauge((journeyDone / journeyTotal) * 100, { color: "#E8871E", value: fmtCompact(daysLeft), sub: "DAYS TO OSCARS" }) +
           '<div class="score-name">🏆 The Journey</div>' +
           '<div class="score-hint">' + esc(s.settings.oscarCeremonyLabel) + '</div>' +
         '</div>' +
         '<div class="score-card tint-teal clickable" id="score-followers">' +
-          ringGauge(igPct, { color: "#2A9D8F", value: fmtCompact(igCount), sub: "OF " + fmtCompact(goal).toUpperCase() }) +
+          ringGauge(igPct, { color: "#2FA39A", value: fmtCompact(igCount), sub: "OF " + fmtCompact(goal).toUpperCase() }) +
           '<div class="score-name">📈 Followers</div>' +
           '<div class="score-hint">' +
           (proj && proj.eta
@@ -5226,7 +5240,7 @@ var DashboardView = (function () {
               '<div style="flex:1;min-width:0"><div class="lr-title">' + esc(r.festival.name) + '</div>' +
               '<div class="lr-sub">' + fmtDate(r.deadline.date) + ' · ' + esc(r.deadline.type) +
               (r.deadline.estimated ? " · est." : "") +
-              (r.festival.oscarQualifying ? ' · <span style="color:#D4AF37">Oscar-qualifying</span>' : "") + '</div></div>' +
+              (r.festival.oscarQualifying ? ' · <span style="color:#E3A72F">Oscar-qualifying</span>' : "") + '</div></div>' +
             '</div>';
           }).join("") +
           milestones.filter(function (m) { return !m.done; }).slice(0, 3).map(function (m) {
