@@ -8,12 +8,15 @@ var App = (function () {
     festivals: FestivalsView,
     ideas: IdeasView,
     projects: ProjectsView,
-    knowledge: KnowledgeView,
+    brain: BrainView,
     settings: SettingsView
   };
 
+  var ALIASES = { knowledge: "brain" };
+
   function currentRoute() {
     var h = (location.hash || "#/dashboard").replace(/^#\//, "");
+    if (ALIASES[h]) h = ALIASES[h];
     return routes[h] ? h : "dashboard";
   }
 

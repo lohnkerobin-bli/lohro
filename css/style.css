@@ -129,11 +129,10 @@ h2.section-title::after { content: ""; flex: 1; height: 1px; background: var(--b
 .grid.cols-4 { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
 
 .card {
-  background: linear-gradient(160deg, var(--black-card), var(--black-panel));
-  border: 1px solid var(--black-line);
-  border-radius: var(--radius);
+  background: linear-gradient(175deg, #1B1B20, #141417);
+  border: 1px solid rgba(255,255,255,.05);
+  border-radius: 20px;
   padding: 18px 20px;
-  box-shadow: var(--shadow);
 }
 .card.accent-red { border-top: 2px solid var(--set-red); }
 .card.accent-teal { border-top: 2px solid var(--stage-teal); }
@@ -151,8 +150,8 @@ button, .btn {
   font-size: 12.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
   color: var(--cream);
   background: var(--black-card);
-  border: 1px solid var(--black-line);
-  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 11px;
   padding: 9px 15px;
   cursor: pointer;
   transition: background .15s, border-color .15s, transform .05s;
@@ -199,7 +198,7 @@ label.field > span { display: block; font-size: 11px; font-weight: 700; letter-s
 .badge.gray  { color: var(--cream-faint); }
 
 /* ---------- Tables ---------- */
-.table-wrap { overflow-x: auto; border: 1px solid var(--black-line); border-radius: var(--radius); }
+.table-wrap { overflow-x: auto; border: 1px solid rgba(255,255,255,.06); border-radius: 16px; background: linear-gradient(175deg, #1B1B20, #141417); }
 table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 640px; }
 th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--black-line); vertical-align: top; }
 th {
@@ -234,9 +233,9 @@ tbody tr:hover { background: rgba(255,255,255,.025); }
 /* ---------- Challenge day grid ---------- */
 .day-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
 .day-cell {
-  border: 1px solid var(--black-line);
-  border-radius: var(--radius-sm);
-  background: var(--black-panel);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 14px;
+  background: linear-gradient(175deg, #1B1B20, #141417);
   padding: 10px 12px;
   cursor: pointer;
   transition: border-color .15s, transform .1s;

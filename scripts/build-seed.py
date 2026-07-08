@@ -27,6 +27,7 @@ def main():
     festivals = load("festivals.json", {"academyRules": None, "festivals": []})
     strategy = load("strategy.json", None)
     knowledge = load("knowledge.json", None)
+    brand = load("brand.json", None)
 
     # UTC with Z so timestamps compare correctly against the app's toISOString() values
     now = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
@@ -121,7 +122,8 @@ def main():
     # version = content hash: any data regeneration triggers the app's seed-upgrade
     # merge (new rows flow to existing users without wiping their local edits)
     content_hash = hashlib.sha256(json.dumps(
-        {"ideas": ideas, "projects": projects, "festivals": festivals},
+        {"ideas": ideas, "projects": projects, "festivals": festivals,
+         "brand": brand, "knowledge": knowledge},
         sort_keys=True, ensure_ascii=False).encode()).hexdigest()
     seed = {
         "version": int(content_hash[:12], 16),
@@ -131,6 +133,7 @@ def main():
         "festivals": festivals,
         "strategy": strategy,
         "knowledge": knowledge,
+        "brand": brand,
     }
 
     out = os.path.join(DATA, "seed.js")

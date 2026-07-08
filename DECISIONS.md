@@ -72,3 +72,15 @@ Autonomous build session, 2026-07-07. All decisions made without user input, doc
 ## D18 — Knowledge base from uploaded PDF
 **Decision:** Robin's uploaded `WAYTOOSCARKNOWLEDGE.pdf` (consolidated ChatGPT export, parts 01–24) was distilled into `data/knowledge.json` (12 categorized sections, German verbatim) and shipped as a new searchable **Knowledge** view. The original PDF is preserved in `data/` for the team.
 **Why:** The export is the densest single source of Robin's operating system (mission chain, content strategy, film craft, decision rules, routines). It also independently confirms the two load-bearing facts the Notion master plan lacked: the Daily Short Film Challenge start (15 July 2026) and the 2026 goal of 1M Instagram followers.
+
+## D19 — Oura-style redesign
+**Decision:** Dashboard rebuilt as a health-ring-style home (three animated score rings: Journey / Followers / Challenge, greeting header, clean list rows); soft card style (radius 20, hairline borders) rolled out app-wide. Rings animate in via SVG SMIL, skipped under `prefers-reduced-motion`.
+**Why:** Robin asked for a cleaner start page "like the Oura ring app".
+
+## D20 — "Brain": brand backend, meetings, weekly reports
+**Decision:** Knowledge tab renamed and expanded to **Brain** with three sub-areas: Brand Core (editable notes in sections core/values/dos/donts/cta/assets/team, seeded from `data/brand.json`), Knowledge (PDF-derived base), Meetings & Reports (transcript storage as a synced collection + deterministic in-app weekly report generator). `brandNotes` and `meetings` joined the merge registry so they flow through the Dropbox export/import like everything else. Legacy `#/knowledge` route aliases to `#/brain`.
+**Why:** Robin wants one place his team pulls brand truth from, plus a weekly Robin+Simon meeting rhythm: generate report → meet → record → paste transcript into Brain. The report is generated locally (zero AI credits).
+
+## D21 — CLAUDE.md as the "Brain" contract for future sessions
+**Decision:** Added repo-root `CLAUDE.md` telling future Claude sessions what "Brain" means, where each data type lives, how to file new brand/knowledge entries (edit JSON → rebuild seed), and to grep small canonical JSONs instead of reading generated 200KB+ files.
+**Why:** Saying "Brain" to Claude is not magically wired to anything; a CLAUDE.md is the mechanism that makes the word carry meaning in every future session in this repo — no custom skill needed yet.

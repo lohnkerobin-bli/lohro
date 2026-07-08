@@ -27,7 +27,9 @@ var Store = (function () {
       challengeDays: {},   // "YYYY-MM-DD": {date, title, idea, status, link, learnings, updatedAt}
       ideas: [],           // {id, title, categories[], status, energy, notes, source, createdAt, updatedAt}
       projects: [],        // {id, title, type, status, owner, notes, targetDate, link, updatedAt}
-      festivalPlans: {}    // festivalId: {status, filmTitle, deadlineType, notes, updatedAt}
+      festivalPlans: {},   // festivalId: {status, filmTitle, deadlineType, notes, updatedAt}
+      brandNotes: [],      // {id, section, title, content, updatedAt} — the Brand Core
+      meetings: []         // {id, date, title, participants, transcript, decisions, actions, updatedAt}
     };
   }
 
@@ -61,6 +63,18 @@ var Store = (function () {
     };
   }
 
+  function seedBrandNotes() {
+    var b = window.SEED && window.SEED.brand;
+    if (!b || !Array.isArray(b.notes)) return [];
+    return b.notes.map(function (n) {
+      return {
+        id: n.id || uid("brand"), section: n.section || "core",
+        title: n.title || "(untitled)", content: n.content || "",
+        updatedAt: n.updatedAt || "1970-01-01T00:00:00.000Z"
+      };
+    });
+  }
+
   function seedInto(s) {
     var seed = window.SEED || {};
     if (Array.isArray(seed.ideas) && s.ideas.length === 0) {
@@ -69,6 +83,7 @@ var Store = (function () {
     if (Array.isArray(seed.projects) && s.projects.length === 0) {
       s.projects = seed.projects.slice();
     }
+    if (s.brandNotes.length === 0) s.brandNotes = seedBrandNotes();
     if (s.milestones.length === 0) s.milestones = defaultMilestones();
     return s;
   }
@@ -96,6 +111,7 @@ var Store = (function () {
     if ((s.meta.seedVersion || 0) >= v) return false;
     if (Array.isArray(seed.ideas)) s.ideas = mergeById(seed.ideas.map(normIdea), s.ideas);
     if (Array.isArray(seed.projects)) s.projects = mergeById(seed.projects, s.projects);
+    s.brandNotes = mergeById(seedBrandNotes(), s.brandNotes);
     s.meta.seedVersion = v;
     return true;
   }
@@ -169,7 +185,7 @@ var Store = (function () {
 
   // collection registry: every syncable collection is declared once so
   // merge/replace/export can never silently skip one
-  var ID_COLLECTIONS = ["ideas", "projects", "milestones", "followers"];
+  var ID_COLLECTIONS = ["ideas", "projects", "milestones", "followers", "brandNotes", "meetings"];
   var KEYED_MAPS = ["challengeDays", "festivalPlans"];
 
   function importMerge(obj) {
