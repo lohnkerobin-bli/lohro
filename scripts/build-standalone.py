@@ -28,6 +28,12 @@ def main():
     html = re.sub(r'<link rel="stylesheet" href="([^"]+)">', inline_css, html)
     html = re.sub(r'<script src="([^"]+)"></script>', inline_js, html)
 
+    # fail loudly if any local reference survived the inlining — a silent miss
+    # would ship a standalone file that opens blank
+    leftovers = re.findall(r'(?:src|href)="(?:css|js|data)/[^"]+"', html)
+    if leftovers:
+        raise SystemExit(f"build-standalone: uninlined references remain: {leftovers}")
+
     os.makedirs(os.path.join(ROOT, "dist"), exist_ok=True)
     out = os.path.join(ROOT, "dist", "way-to-oscar.html")
     with open(out, "w", encoding="utf-8") as f:

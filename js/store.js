@@ -4,7 +4,6 @@
 var Store = (function () {
   var LS_KEY = "way-to-oscar-data-v1";
   var state = null;
-  var listeners = [];
 
   function defaults() {
     return {
@@ -47,22 +46,25 @@ var Store = (function () {
     ];
   }
 
+  function normIdea(i) {
+    return {
+      id: i.id || uid("idea"),
+      title: i.title || "(untitled)",
+      categories: i.categories || [],
+      status: i.status || "Neu",
+      energy: i.energy || null,
+      notes: i.notes || "",
+      source: i.source || "notion",
+      createdAt: i.createdAt || null,
+      // seed rows must never outrank a real local edit in merge — default to epoch, not now
+      updatedAt: i.updatedAt || i.createdAt || "1970-01-01T00:00:00.000Z"
+    };
+  }
+
   function seedInto(s) {
     var seed = window.SEED || {};
     if (Array.isArray(seed.ideas) && s.ideas.length === 0) {
-      s.ideas = seed.ideas.map(function (i) {
-        return {
-          id: i.id || uid("idea"),
-          title: i.title || "(untitled)",
-          categories: i.categories || [],
-          status: i.status || "Neu",
-          energy: i.energy || null,
-          notes: i.notes || "",
-          source: i.source || "notion",
-          createdAt: i.createdAt || new Date().toISOString(),
-          updatedAt: i.updatedAt || new Date().toISOString()
-        };
-      });
+      s.ideas = seed.ideas.map(normIdea);
     }
     if (Array.isArray(seed.projects) && s.projects.length === 0) {
       s.projects = seed.projects.slice();
@@ -71,16 +73,40 @@ var Store = (function () {
     return s;
   }
 
+  // repair a loaded/imported state object: fill null/missing keys so no render can crash
+  function normalize(s) {
+    var d = defaults();
+    Object.keys(d).forEach(function (k) {
+      var bad = s[k] === undefined || s[k] === null ||
+        (Array.isArray(d[k]) && !Array.isArray(s[k])) ||
+        (!Array.isArray(d[k]) && typeof d[k] === "object" && typeof s[k] !== "object");
+      if (bad) s[k] = d[k];
+    });
+    Object.keys(d.settings).forEach(function (k) {
+      if (s.settings[k] === undefined || s.settings[k] === null) s.settings[k] = d.settings[k];
+    });
+    return s;
+  }
+
+  // when a newer seed ships (data regenerated from Notion), merge new rows in without
+  // touching local edits; existing ids keep the local version
+  function upgradeSeed(s) {
+    var seed = window.SEED || {};
+    var v = seed.version || 0;
+    if ((s.meta.seedVersion || 0) >= v) return false;
+    if (Array.isArray(seed.ideas)) s.ideas = mergeById(seed.ideas.map(normIdea), s.ideas);
+    if (Array.isArray(seed.projects)) s.projects = mergeById(seed.projects, s.projects);
+    s.meta.seedVersion = v;
+    return true;
+  }
+
   function load() {
     var raw = null;
     try { raw = localStorage.getItem(LS_KEY); } catch (e) { /* file:// storage may be partitioned but still works */ }
     if (raw) {
       try {
-        state = JSON.parse(raw);
-        // fill any missing top-level keys after schema evolution
-        var d = defaults();
-        Object.keys(d).forEach(function (k) { if (state[k] === undefined) state[k] = d[k]; });
-        Object.keys(d.settings).forEach(function (k) { if (state.settings[k] === undefined) state.settings[k] = d.settings[k]; });
+        state = normalize(JSON.parse(raw));
+        if (upgradeSeed(state)) persist();
         return;
       } catch (e) { console.error("Corrupt localStorage, resetting", e); }
     }
@@ -92,7 +118,6 @@ var Store = (function () {
     state.meta.updatedAt = new Date().toISOString();
     try { localStorage.setItem(LS_KEY, JSON.stringify(state)); }
     catch (e) { toast("Warning: could not save to browser storage", true); }
-    listeners.forEach(function (fn) { fn(state); });
   }
 
   /* ---------- festivals (static reference from seed) ---------- */
@@ -117,16 +142,19 @@ var Store = (function () {
 
   function importReplace(obj) {
     if (!validateSnapshot(obj)) throw new Error("Not a WAY TO OSCAR data file");
-    var d = defaults();
-    Object.keys(d).forEach(function (k) { if (obj[k] === undefined) obj[k] = d[k]; });
-    state = obj;
+    state = normalize(obj);
     persist();
   }
 
+  // parse timestamps for comparison — timezone-naive strings (old seeds) and
+  // ISO-with-Z must compare on real time, not lexicographically
+  function ts(x) {
+    if (!x || !x.updatedAt) return 0;
+    var t = Date.parse(x.updatedAt);
+    return isNaN(t) ? 0 : t;
+  }
   function newer(a, b) {
-    var ta = a && a.updatedAt ? a.updatedAt : "";
-    var tb = b && b.updatedAt ? b.updatedAt : "";
-    return tb > ta ? b : a;
+    return ts(b) > ts(a) ? b : a;
   }
 
   function mergeById(mine, theirs) {
@@ -139,22 +167,24 @@ var Store = (function () {
     return Object.keys(map).map(function (k) { return map[k]; });
   }
 
+  // collection registry: every syncable collection is declared once so
+  // merge/replace/export can never silently skip one
+  var ID_COLLECTIONS = ["ideas", "projects", "milestones", "followers"];
+  var KEYED_MAPS = ["challengeDays", "festivalPlans"];
+
   function importMerge(obj) {
     if (!validateSnapshot(obj)) throw new Error("Not a WAY TO OSCAR data file");
-    state.ideas = mergeById(state.ideas, obj.ideas || []);
-    state.projects = mergeById(state.projects, obj.projects || []);
-    state.milestones = mergeById(state.milestones, obj.milestones || []);
-    state.followers = mergeById(state.followers, obj.followers || []);
-    var days = obj.challengeDays || {};
-    Object.keys(days).forEach(function (dkey) {
-      state.challengeDays[dkey] = state.challengeDays[dkey] ? newer(state.challengeDays[dkey], days[dkey]) : days[dkey];
+    obj = normalize(obj);
+    ID_COLLECTIONS.forEach(function (col) {
+      state[col] = mergeById(state[col], obj[col]);
     });
-    var plans = obj.festivalPlans || {};
-    Object.keys(plans).forEach(function (fid) {
-      state.festivalPlans[fid] = state.festivalPlans[fid] ? newer(state.festivalPlans[fid], plans[fid]) : plans[fid];
+    KEYED_MAPS.forEach(function (map) {
+      Object.keys(obj[map]).forEach(function (k) {
+        state[map][k] = state[map][k] ? newer(state[map][k], obj[map][k]) : obj[map][k];
+      });
     });
-    // settings: theirs win only if their file is newer overall
-    if ((obj.meta.updatedAt || "") > (state.meta.updatedAt || "")) {
+    // settings: theirs win only if their settings were edited more recently
+    if (ts({ updatedAt: (obj.settings || {}).updatedAt }) > ts({ updatedAt: state.settings.updatedAt })) {
       state.settings = Object.assign({}, state.settings, obj.settings || {});
     }
     persist();
@@ -171,13 +201,11 @@ var Store = (function () {
   return {
     get: function () { return state; },
     save: persist,
-    onChange: function (fn) { listeners.push(fn); },
     festivals: festivals,
     academyRules: academyRules,
     exportSnapshot: exportSnapshot,
     importReplace: importReplace,
     importMerge: importMerge,
-    resetToSeed: resetToSeed,
-    defaultMilestones: defaultMilestones
+    resetToSeed: resetToSeed
   };
 })();

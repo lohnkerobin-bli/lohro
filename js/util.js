@@ -11,6 +11,14 @@ function esc(s) {
   });
 }
 
+function safeUrl(u) {
+  // only allow http(s) links in href attributes — blocks javascript:/data: schemes
+  if (!u) return "";
+  var s = String(u).trim();
+  if (/^https?:\/\//i.test(s)) return s;
+  return "";
+}
+
 function el(html) {
   var t = document.createElement("template");
   t.innerHTML = html.trim();
@@ -56,26 +64,31 @@ function fmtNum(n) {
 }
 function fmtCompact(n) {
   if (n === null || n === undefined || isNaN(n)) return "—";
-  if (n >= 1000000) return (n / 1000000).toFixed(n % 1000000 === 0 ? 0 : 1) + "M";
-  if (n >= 1000) return (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1) + "K";
+  if (n >= 999500000) return (Math.round(n / 100000000) / 10) + "B";
+  if (n >= 999500) return (Math.round(n / 100000) / 10) + "M";
+  if (n >= 1000) return (Math.round(n / 100) / 10) + "K";
   return String(n);
 }
 
 /* ---------- modal ---------- */
+var _modalSticky = false;
 function openModal(innerHTML, opts) {
   closeModal();
+  _modalSticky = !!(opts && opts.sticky);
   var root = $("#modal-root");
   var backdrop = el('<div class="modal-backdrop"><div class="modal">' + innerHTML + "</div></div>");
   backdrop.addEventListener("mousedown", function (e) {
-    if (e.target === backdrop && !(opts && opts.sticky)) closeModal();
+    if (e.target === backdrop && !_modalSticky) closeModal();
   });
   root.appendChild(backdrop);
   var firstInput = $("input, textarea, select", backdrop);
   if (firstInput) setTimeout(function () { firstInput.focus(); }, 30);
   return backdrop;
 }
-function closeModal() { $("#modal-root").innerHTML = ""; }
-document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeModal(); });
+function closeModal() { _modalSticky = false; $("#modal-root").innerHTML = ""; }
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && !_modalSticky) closeModal();
+});
 
 /* ---------- toast ---------- */
 function toast(msg, isError) {
@@ -118,14 +131,17 @@ function sparkline(points, opts) {
 }
 
 /* ---------- download / upload ---------- */
-function downloadJSON(obj, filename) {
-  var blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+function downloadBlob(content, filename, mime) {
+  var blob = new Blob([content], { type: mime });
   var a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
   a.download = filename;
   document.body.appendChild(a);
   a.click();
   setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+function downloadJSON(obj, filename) {
+  downloadBlob(JSON.stringify(obj, null, 2), filename, "application/json");
 }
 function pickJSONFile(cb) {
   var input = document.createElement("input");

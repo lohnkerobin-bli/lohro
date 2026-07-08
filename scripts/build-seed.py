@@ -5,7 +5,8 @@ The app is opened via file:// from Dropbox, where fetch() of local JSON is
 blocked — so seed data ships as a plain JS file assigning window.SEED.
 Run this after editing any data/*.json file:  python3 scripts/build-seed.py
 """
-import json, os, sys, datetime
+import hashlib, json, os, sys
+from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
@@ -26,7 +27,8 @@ def main():
     festivals = load("festivals.json", {"academyRules": None, "festivals": []})
     strategy = load("strategy.json", None)
 
-    now = datetime.datetime.now().isoformat(timespec="seconds")
+    # UTC with Z so timestamps compare correctly against the app's toISOString() values
+    now = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
 
     # --- normalize video-pipeline rows into app projects ---
     projects = []
@@ -115,8 +117,13 @@ def main():
             "createdAt": now, "updatedAt": now,
         })
 
+    # version = content hash: any data regeneration triggers the app's seed-upgrade
+    # merge (new rows flow to existing users without wiping their local edits)
+    content_hash = hashlib.sha256(json.dumps(
+        {"ideas": ideas, "projects": projects, "festivals": festivals},
+        sort_keys=True, ensure_ascii=False).encode()).hexdigest()
     seed = {
-        "version": 1,
+        "version": int(content_hash[:12], 16),
         "generated": now,
         "ideas": ideas,
         "projects": projects,

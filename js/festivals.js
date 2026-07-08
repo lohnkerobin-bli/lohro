@@ -58,6 +58,16 @@ var FestivalsView = (function () {
       "X-WR-CALNAME:Festival Deadlines — Way to Oscar"
     ];
     var stamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+    // RFC 5545: escape backslash first, then structural chars; fold lines at 74 octets
+    function icsText(s) {
+      return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
+    }
+    function fold(line) {
+      var out = [];
+      while (line.length > 74) { out.push(line.slice(0, 74)); line = " " + line.slice(74); }
+      out.push(line);
+      return out.join("\r\n");
+    }
     events.forEach(function (r) {
       var d = r.deadline.date.replace(/-/g, "");
       var next = addDays(r.deadline.date, 1).replace(/-/g, "");
@@ -74,20 +84,15 @@ var FestivalsView = (function () {
         "DTSTAMP:" + stamp,
         "DTSTART;VALUE=DATE:" + d,
         "DTEND;VALUE=DATE:" + next,
-        "SUMMARY:" + summary.replace(/[\n,;]/g, " "),
-        "DESCRIPTION:" + desc.replace(/[\n]/g, " ").replace(/([,;])/g, "\\$1"),
+        fold("SUMMARY:" + icsText(summary)),
+        fold("DESCRIPTION:" + icsText(desc)),
         "BEGIN:VALARM", "TRIGGER:-P14D", "ACTION:DISPLAY",
         "DESCRIPTION:Festival deadline in 2 weeks", "END:VALARM",
         "END:VEVENT"
       );
     });
     lines.push("END:VCALENDAR");
-    var blob = new Blob([lines.join("\r\n")], { type: "text/calendar" });
-    var a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "festival-deadlines.ics";
-    document.body.appendChild(a); a.click();
-    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+    downloadBlob(lines.join("\r\n"), "festival-deadlines.ics", "text/calendar");
     toast(events.length + " deadlines exported — import into Google/Apple Calendar");
   }
 
@@ -171,7 +176,7 @@ var FestivalsView = (function () {
         var p = planFor(f.id);
         return '<tr class="clickable" data-fest="' + esc(f.id) + '">' +
           '<td><strong>' + esc(f.name) + '</strong><br><span class="muted">' + esc(f.city || "") + ', ' + esc(f.country || "") +
-          (f.url ? ' · <a href="' + esc(f.url) + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">site ↗</a>' : "") + '</span>' +
+          (safeUrl(f.url) ? ' · <a href="' + esc(safeUrl(f.url)) + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">site ↗</a>' : "") + '</span>' +
           (f.strategyNotes ? '<br><span class="muted" style="font-size:12px">' + esc(f.strategyNotes) + '</span>' : "") + '</td>' +
           '<td><span class="badge ' + (f.tier === 1 ? "gold" : f.tier === 2 ? "blue" : "gray") + '">T' + (f.tier || "?") + '</span></td>' +
           '<td>' + (f.oscarQualifying

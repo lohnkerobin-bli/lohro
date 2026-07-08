@@ -99,7 +99,7 @@ var ProjectsView = (function () {
         var stCls = p.status === "published" ? "teal" : (p.status === "editing" || p.status === "shooting") ? "blue" : p.status === "archived" ? "gray" : "red";
         return '<tr class="clickable" data-prj="' + esc(p.id) + '">' +
           '<td><strong>' + esc(p.title) + '</strong>' +
-          (p.link ? ' <a href="' + esc(p.link) + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">↗</a>' : "") + '</td>' +
+          (safeUrl(p.link) ? ' <a href="' + esc(safeUrl(p.link)) + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">↗</a>' : "") + '</td>' +
           '<td>' + typeLabel(p.type) + '</td>' +
           '<td><span class="badge ' + stCls + '">' + esc(p.status) + '</span></td>' +
           '<td>' + esc(p.owner || "—") + '</td>' +

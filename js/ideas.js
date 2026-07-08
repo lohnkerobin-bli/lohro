@@ -41,7 +41,7 @@ var IdeasView = (function () {
       var st = Store.get();
       var d = st.settings.challengeStart > todayISO() ? st.settings.challengeStart : todayISO();
       var guard = 0;
-      while (st.challengeDays[d] && (st.challengeDays[d].title || st.challengeDays[d].idea) && guard++ < 400) d = addDays(d, 1);
+      while (st.challengeDays[d] && guard++ < 400) d = addDays(d, 1);
       st.challengeDays[d] = {
         date: d, title: idea.title.slice(0, 60), idea: idea.title + (idea.notes ? "\n\n" + idea.notes : ""),
         status: "planned", link: "", learnings: "",
@@ -120,7 +120,13 @@ var IdeasView = (function () {
       (visible.length === 0 ? '<div class="empty-note">No ideas match the filter.</div>' : "") +
       (visible.length > 120 ? '<div class="empty-note">Showing first 120 of ' + visible.length + ' — refine the search.</div>' : "");
 
-    $("#idea-q").oninput = function () { render._q = this.value; App.render(); setTimeout(function(){ var n=$("#idea-q"); if(n){n.focus(); n.setSelectionRange(n.value.length,n.value.length);} },0); };
+    $("#idea-q").oninput = function () {
+      render._q = this.value;
+      var caret = this.selectionStart;
+      App.render();
+      var n = $("#idea-q");
+      if (n) { n.focus(); n.setSelectionRange(caret, caret); }
+    };
     $("#idea-cat").onchange = function () { render._cat = this.value; App.render(); };
     $("#idea-status").onchange = function () { render._status = this.value; App.render(); };
     $("#idea-new").onclick = function () { editModal(null); };

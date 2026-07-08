@@ -18,17 +18,24 @@ var DashboardView = (function () {
     return box(days, "days") + box(hours, "hours") + box(mins, "min") + box(secs, "sec");
   }
 
+  // sorted data-point series for one platform; same-day entries resolved by updatedAt
+  function platformSeries(platform) {
+    return Store.get().followers
+      .filter(function (f) { return f.platform === platform; })
+      .sort(function (a, b) {
+        if (a.date !== b.date) return a.date < b.date ? -1 : 1;
+        return (a.updatedAt || "") < (b.updatedAt || "") ? -1 : 1;
+      });
+  }
+
   function latestFollowers(platform) {
-    var s = Store.get();
-    var pts = s.followers.filter(function (f) { return f.platform === platform; })
-      .sort(function (a, b) { return a.date < b.date ? -1 : 1; });
+    var pts = platformSeries(platform);
     return pts.length ? pts[pts.length - 1] : null;
   }
 
   function growthProjection() {
     var s = Store.get();
-    var pts = s.followers.filter(function (f) { return f.platform === "instagram"; })
-      .sort(function (a, b) { return a.date < b.date ? -1 : 1; });
+    var pts = platformSeries("instagram");
     if (pts.length < 2) return null;
     var first = pts[0], last = pts[pts.length - 1];
     var days = Math.max(daysBetween(first.date, last.date), 1);
@@ -153,7 +160,7 @@ var DashboardView = (function () {
     // principle of the day
     var st = window.SEED && window.SEED.strategy;
     if (st && st.principles && st.principles.length) {
-      var doy = Math.floor((parseISO(today) - new Date(parseISO(today).getFullYear(), 0, 0)) / 86400000);
+      var doy = Math.round((parseISO(today) - new Date(parseISO(today).getFullYear(), 0, 0)) / 86400000);
       parts.push('<span class="muted">💭 ' + esc(st.principles[doy % st.principles.length]) + '</span>');
     }
     return '<div class="card mb" style="padding:12px 18px"><div class="row" style="gap:22px;font-size:13.5px">' +
@@ -195,8 +202,7 @@ var DashboardView = (function () {
     var pct = Math.min(100, (igCount / goal) * 100);
     var challengeStartsIn = daysBetween(todayISO(), s.settings.challengeStart);
 
-    var igPoints = s.followers.filter(function (f) { return f.platform === "instagram"; })
-      .sort(function (a, b) { return a.date < b.date ? -1 : 1; })
+    var igPoints = platformSeries("instagram")
       .map(function (f) { return { x: parseISO(f.date).getTime(), y: f.count }; });
 
     var deadlines = nextDeadlines(5);

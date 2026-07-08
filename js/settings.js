@@ -92,6 +92,7 @@ var SettingsView = (function () {
       st.challengeStart = $("#s-challenge").value || st.challengeStart;
       st.followerGoal = parseInt($("#s-goal").value, 10) || 1000000;
       st.followerGoalDate = $("#s-goal-date").value || st.followerGoalDate;
+      st.updatedAt = new Date().toISOString();
       Store.save(); toast("Settings saved"); App.render();
     };
     $("#s-reset").onclick = function () {
