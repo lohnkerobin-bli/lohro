@@ -29,7 +29,8 @@ var Store = (function () {
       projects: [],        // {id, title, type, status, owner, notes, targetDate, link, updatedAt}
       festivalPlans: {},   // festivalId: {status, filmTitle, deadlineType, notes, updatedAt}
       brandNotes: [],      // {id, section, title, content, updatedAt} — the Brand Core
-      meetings: []         // {id, date, title, participants, transcript, decisions, actions, updatedAt}
+      meetings: [],        // {id, date, title, participants, transcript, decisions, actions, updatedAt}
+      films: []            // {id, title, logline, genre, themes, status, script, images[], notes, learnings, fromIdeaId, createdAt, updatedAt}
     };
   }
 
@@ -185,7 +186,7 @@ var Store = (function () {
 
   // collection registry: every syncable collection is declared once so
   // merge/replace/export can never silently skip one
-  var ID_COLLECTIONS = ["ideas", "projects", "milestones", "followers", "brandNotes", "meetings"];
+  var ID_COLLECTIONS = ["ideas", "projects", "milestones", "followers", "brandNotes", "meetings", "films"];
   var KEYED_MAPS = ["challengeDays", "festivalPlans"];
 
   function importMerge(obj) {

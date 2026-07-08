@@ -175,6 +175,40 @@ var DashboardView = (function () {
     return '<div class="action-row">' + left + right + '</div>';
   }
 
+  var LEVEL_TITLES = ["Rookie", "Creator", "Storyteller", "Filmmaker", "Director", "Auteur", "Visionary", "Festival Regular", "Award Winner", "Oscar Contender"];
+
+  function playerStats() {
+    var s = Store.get();
+    var published = Object.keys(s.challengeDays).filter(function (k) { return s.challengeDays[k].status === "published"; }).length;
+    var msDone = s.milestones.filter(function (m) { return m.done; }).length;
+    var films = (s.films || []).length;
+    var scripts = (s.films || []).filter(function (f) { return f.script && f.script.length > 200; }).length;
+    var subs = Object.keys(s.festivalPlans).filter(function (k) {
+      return ["submitted", "accepted", "won"].indexOf(s.festivalPlans[k].status) !== -1;
+    }).length;
+    var wins = Object.keys(s.festivalPlans).filter(function (k) { return s.festivalPlans[k].status === "won"; }).length;
+    var xp = published * 15 + msDone * 40 + films * 20 + scripts * 30 + subs * 60 + wins * 300 + (s.meetings || []).length * 10;
+    var level = 1, need = 100, base = 0;
+    while (xp >= base + need) { base += need; level++; need = Math.round(need * 1.35); }
+    return {
+      xp: xp, level: level,
+      title: LEVEL_TITLES[Math.min(level - 1, LEVEL_TITLES.length - 1)],
+      progress: ((xp - base) / need) * 100,
+      toNext: base + need - xp
+    };
+  }
+
+  function playerCardHTML() {
+    var p = playerStats();
+    return '<div class="player-card">' +
+      '<div class="pc-level"><span class="pc-lvl-label">LVL</span><span class="pc-lvl-num">' + p.level + '</span></div>' +
+      '<div class="pc-body">' +
+      '<div class="pc-title">' + esc(p.title) + '</div>' +
+      '<div class="progress gold" style="height:7px"><div style="width:' + Math.min(100, p.progress).toFixed(1) + '%"></div></div>' +
+      '<div class="pc-xp">' + fmtNum(p.xp) + ' XP · ' + fmtNum(p.toNext) + ' to next level</div>' +
+      '</div></div>';
+  }
+
   function strategyHTML() {
     var st = window.SEED && window.SEED.strategy;
     if (!st) return "";
@@ -236,6 +270,7 @@ var DashboardView = (function () {
         '<div><div class="hero-date">' + new Date().toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" }) + '</div>' +
         '<h1 class="hero-greeting">' + greeting + ', ' + esc(s.settings.userName) + '.</h1>' +
         '<p class="hero-sub">💭 ' + esc(principleOfDay() || "Every day one film closer.") + '</p></div>' +
+        playerCardHTML() +
       '</div>' +
 
       '<div class="score-row">' +

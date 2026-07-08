@@ -4,6 +4,16 @@ This repo is Robin Lohnke's ("Lohro", Kollektiv Oskar, St. Gallen) command cente
 on his road to winning an Oscar. Zero-build static web app: open `index.html` or
 the single-file build `dist/way-to-oscar.html` directly in a browser.
 
+## Canonical storage location (Robin's Mac)
+
+Robin's Brain folder in the team Dropbox is:
+`~/Kollektiv Oskar Dropbox/KOLLEKTIV OSKAR/CLAUDE BRAIN/`
+That folder holds: `way-to-oscar.html` (the single-file app), the exported
+`way-to-oscar-data-*.json` snapshots, weekly reports, meeting transcripts and
+brand asset files. When Robin says "leg das im Brain-Ordner ab" he means this
+path. Claude sessions run in the cloud and cannot write to his Mac directly —
+produce the file, tell him it goes into CLAUDE BRAIN.
+
 ## What "Brain" means
 
 When Robin says **"Brain"** (e.g. "leg das ins Brain", "schau im Brain nach",

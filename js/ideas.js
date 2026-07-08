@@ -32,10 +32,16 @@ var IdeasView = (function () {
       '<label class="field"><span>Notes</span><textarea id="i-notes" style="min-height:110px">' + esc(v.notes) + '</textarea></label>' +
       '<div class="modal-actions">' +
       (idea ? '<button class="ghost danger" id="i-delete">Delete</button>' : "") +
-      (idea ? '<button class="teal" id="i-to-challenge" title="Copy this idea onto the next free challenge day">🎬 → Challenge day</button>' : "") +
+      (idea ? '<button class="teal" id="i-to-challenge" title="Copy this idea onto the next free challenge day">📅 → Challenge day</button>' : "") +
+      (idea ? '<button class="blue" id="i-to-film" title="Turn this idea into a full film dossier (logline, script, shotdeck)">🎬 Develop as film</button>' : "") +
       '<button class="ghost" onclick="closeModal()">Cancel</button>' +
       '<button class="primary" id="i-save">Save</button></div>';
     openModal(html);
+    var toFilm = $("#i-to-film");
+    if (toFilm) toFilm.onclick = function () {
+      closeModal();
+      FilmsView.developFromIdea(idea);
+    };
     var toChallenge = $("#i-to-challenge");
     if (toChallenge) toChallenge.onclick = function () {
       var st = Store.get();

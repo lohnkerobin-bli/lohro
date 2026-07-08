@@ -5,6 +5,7 @@ var App = (function () {
   var routes = {
     dashboard: DashboardView,
     challenge: ChallengeView,
+    films: FilmsView,
     festivals: FestivalsView,
     ideas: IdeasView,
     projects: ProjectsView,

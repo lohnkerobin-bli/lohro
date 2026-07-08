@@ -84,3 +84,11 @@ Autonomous build session, 2026-07-07. All decisions made without user input, doc
 ## D21 — CLAUDE.md as the "Brain" contract for future sessions
 **Decision:** Added repo-root `CLAUDE.md` telling future Claude sessions what "Brain" means, where each data type lives, how to file new brand/knowledge entries (edit JSON → rebuild seed), and to grep small canonical JSONs instead of reading generated 200KB+ files.
 **Why:** Saying "Brain" to Claude is not magically wired to anything; a CLAUDE.md is the mechanism that makes the word carry meaning in every future session in this repo — no custom skill needed yet.
+
+## D22 — Films: dossier per film, idea→film pipeline
+**Decision:** New **Films** view: each film is a full dossier (logline, genre, themes, status, script editor with word count/screen-time estimate, shotdeck/moodboard as https-link references with previews, notes, learnings, .md dossier export). Ideas gain a "Develop as film" action; `films` joined the merge registry. Shotdeck/moodboard stores **references, not binaries** — image files belong in the Dropbox, keeping localStorage and exports small.
+**Why:** Robin asked where film ideas grow up. An idea is one line; a film is a dossier — matching the "Filmdatenbank" blueprint in his own knowledge export.
+
+## D23 — Game-style overview + canonical CLAUDE BRAIN folder
+**Decision:** Dashboard gains a player card (Director Level + XP from published films, milestones, scripts, submissions, wins; escalating thresholds), bolder typography, tighter spacing so the overview fits one screen. Canonical team storage documented as `Kollektiv Oskar Dropbox/KOLLEKTIV OSKAR/CLAUDE BRAIN/` in README + CLAUDE.md.
+**Why:** Robin wants the overview to feel like a game and read better; and he created the CLAUDE BRAIN Dropbox folder as the Brain's physical home.

@@ -138,7 +138,7 @@ function sparkline(points, opts) {
 /* ---------- ring gauge (Oura-style circular progress) ---------- */
 function ringGauge(percent, opts) {
   opts = opts || {};
-  var size = opts.size || 150;
+  var size = opts.size || 136;
   var stroke = opts.stroke || 9;
   var r = (size - stroke) / 2 - 2;
   var c = 2 * Math.PI * r;

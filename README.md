@@ -41,6 +41,8 @@ The repo is a static site — deploy the folder as-is:
 
 ## Team workflow via Dropbox (Simon + Jasmin)
 
+**Team folder:** `Kollektiv Oskar Dropbox/KOLLEKTIV OSKAR/CLAUDE BRAIN/` — this is where the app file (`way-to-oscar.html`), data exports, weekly reports and meeting transcripts live.
+
 Your edits are saved automatically in the **browser's localStorage** — per person, per browser. To share state through the team Dropbox:
 
 1. Put this whole app folder into the team Dropbox (or just share the data files).
