@@ -4,14 +4,14 @@
 var FilmsView = (function () {
 
   var STATUSES = [
-    { key: "idea", label: "Idea", cls: "gray" },
-    { key: "treatment", label: "Treatment", cls: "blue" },
-    { key: "script", label: "Script", cls: "blue" },
-    { key: "pre-production", label: "Pre-Production", cls: "gold" },
-    { key: "shooting", label: "Shooting", cls: "red" },
-    { key: "post", label: "Post / Edit", cls: "red" },
-    { key: "finished", label: "Finished", cls: "teal" },
-    { key: "festival-run", label: "Festival Run", cls: "gold" }
+    { key: "idea", label: "Idea", cls: "gray", tint: "tint-cream" },
+    { key: "treatment", label: "Treatment", cls: "blue", tint: "tint-blue" },
+    { key: "script", label: "Script", cls: "blue", tint: "tint-blue" },
+    { key: "pre-production", label: "Pre-Production", cls: "gold", tint: "tint-gold" },
+    { key: "shooting", label: "Shooting", cls: "red", tint: "tint-red" },
+    { key: "post", label: "Post / Edit", cls: "red", tint: "tint-red" },
+    { key: "finished", label: "Finished", cls: "teal", tint: "tint-teal" },
+    { key: "festival-run", label: "Festival Run", cls: "gold", tint: "tint-gold" }
   ];
 
   function statusInfo(key) {
@@ -199,7 +199,7 @@ var FilmsView = (function () {
         : '<div class="grid cols-3">' + films.map(function (f) {
             var st = statusInfo(f.status);
             var cover = (f.images.find(function (i) { return /\.(jpe?g|png|webp|gif|avif)(\?|$)/i.test(safeUrl(i.url)); }) || {}).url;
-            return '<div class="card soft clickable film-card" data-film="' + esc(f.id) + '">' +
+            return '<div class="card soft ' + st.tint + ' clickable film-card" data-film="' + esc(f.id) + '">' +
               (cover ? '<div class="film-cover" style="background-image:url(\'' + esc(safeUrl(cover)) + '\')"></div>' : '<div class="film-cover empty">🎬</div>') +
               '<div class="row between mt"><strong style="font-size:15px">' + esc(f.title) + '</strong>' +
               '<span class="badge ' + st.cls + '">' + st.label + '</span></div>' +

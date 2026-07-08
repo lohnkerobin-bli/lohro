@@ -149,14 +149,14 @@ var DashboardView = (function () {
       var dayNum = daysBetween(start, today) + 1;
       var entry = s.challengeDays[today];
       var done = entry && entry.status === "published";
-      left = '<div class="action-pill clickable" onclick="location.hash=\'#/challenge\'">' +
+      left = '<div class="action-pill tint-red clickable" onclick="location.hash=\'#/challenge\'">' +
         '<span class="ap-icon">🎬</span>' +
         '<span class="ap-text"><strong>Day ' + dayNum + '</strong><small>' +
         (done ? "published ✓" : entry && entry.title ? esc(entry.status) + " · " + esc(entry.title) : "no film logged yet") +
         '</small></span>' +
         '<span class="ap-cta ' + (done ? "ok" : "") + '">' + (done ? "✓" : "Log →") + '</span></div>';
     } else {
-      left = '<div class="action-pill clickable" onclick="location.hash=\'#/challenge\'">' +
+      left = '<div class="action-pill tint-red clickable" onclick="location.hash=\'#/challenge\'">' +
         '<span class="ap-icon">🎬</span>' +
         '<span class="ap-text"><strong>Challenge starts ' + fmtDateShort(start) + '</strong><small>' +
         daysBetween(today, start) + ' days to prepare — plan your first films</small></span>' +
@@ -166,7 +166,7 @@ var DashboardView = (function () {
     var next = nextDeadlines(1)[0];
     if (next) {
       var d = daysBetween(today, next.deadline.date);
-      right = '<div class="action-pill clickable" onclick="location.hash=\'#/festivals\'">' +
+      right = '<div class="action-pill tint-gold clickable" onclick="location.hash=\'#/festivals\'">' +
         '<span class="ap-icon">⏰</span>' +
         '<span class="ap-text"><strong>' + esc(next.festival.name) + '</strong><small>' +
         esc(next.deadline.type) + ' deadline · ' + fmtDateShort(next.deadline.date) + '</small></span>' +
@@ -290,12 +290,12 @@ var DashboardView = (function () {
       '</div>' +
 
       '<div class="score-row">' +
-        '<div class="score-card clickable" onclick="location.hash=\'#/settings\'">' +
+        '<div class="score-card tint-gold clickable" onclick="location.hash=\'#/settings\'">' +
           ringGauge((journeyDone / journeyTotal) * 100, { color: "#D4AF37", value: fmtCompact(daysLeft), sub: "DAYS TO OSCARS" }) +
           '<div class="score-name">🏆 The Journey</div>' +
           '<div class="score-hint">' + esc(s.settings.oscarCeremonyLabel) + '</div>' +
         '</div>' +
-        '<div class="score-card clickable" id="score-followers">' +
+        '<div class="score-card tint-teal clickable" id="score-followers">' +
           ringGauge(igPct, { color: "#2A9D8F", value: fmtCompact(igCount), sub: "OF " + fmtCompact(goal).toUpperCase() }) +
           '<div class="score-name">📈 Followers</div>' +
           '<div class="score-hint">' +
@@ -304,7 +304,7 @@ var DashboardView = (function () {
             : ig ? "updated " + fmtDateShort(ig.date) : "tap to add your first data point") +
           '</div>' +
         '</div>' +
-        '<div class="score-card clickable" onclick="location.hash=\'#/challenge\'">' +
+        '<div class="score-card tint-red clickable" onclick="location.hash=\'#/challenge\'">' +
           (ch.started
             ? ringGauge(challengeRingPct, { color: "#E63946", value: String(ch.streak), sub: "DAY STREAK" })
             : ringGauge(challengeRingPct, { color: "#E63946", value: String(challengeStartsIn), sub: "DAYS TO START" })) +
@@ -318,7 +318,7 @@ var DashboardView = (function () {
       actionRowHTML() +
 
       '<div class="grid cols-2 mt">' +
-        '<div class="card soft chart-box">' +
+        '<div class="card soft tint-teal chart-box">' +
           '<div class="row between"><span class="stat-label">Instagram growth</span>' +
           '<button class="primary small" id="add-follower">+ Add</button></div>' +
           (igPoints.length >= 2
@@ -327,7 +327,7 @@ var DashboardView = (function () {
           '<div class="stat-hint mt">YouTube: ' + fmtCompact(yt ? yt.count : 0) + (yt ? ' · updated ' + fmtDateShort(yt.date) : " · no data yet") + '</div>' +
         '</div>' +
 
-        '<div class="card soft">' +
+        '<div class="card soft tint-blue">' +
           '<div class="row between"><span class="stat-label">Up next</span>' +
           '<a href="#/festivals" class="muted" style="font-size:12px">all festivals →</a></div>' +
           '<div class="mt">' +

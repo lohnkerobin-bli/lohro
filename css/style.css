@@ -388,6 +388,14 @@ a:hover { color: var(--cream); }
 .dl-days.hot { border-color: rgba(230,57,70,.5); background: rgba(230,57,70,.10); }
 .dl-days.hot span { color: #FF8B94; }
 
+/* color tints — Apple-style soft gradients on dark surfaces */
+.tint-gold  { background: linear-gradient(180deg, rgba(212,175,55,.16), var(--surface) 62%) !important; }
+.tint-teal  { background: linear-gradient(180deg, rgba(42,157,143,.17), var(--surface) 62%) !important; }
+.tint-red   { background: linear-gradient(180deg, rgba(230,57,70,.15), var(--surface) 62%) !important; }
+.tint-blue  { background: linear-gradient(180deg, rgba(69,123,157,.19), var(--surface) 62%) !important; }
+.tint-cream { background: linear-gradient(180deg, rgba(241,250,238,.07), var(--surface) 62%) !important; }
+.tint-gold:hover, .tint-teal:hover, .tint-red:hover, .tint-blue:hover { filter: brightness(1.12); }
+
 /* action pills under the rings */
 .action-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 6px; }
 .action-pill {

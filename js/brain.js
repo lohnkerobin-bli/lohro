@@ -11,13 +11,13 @@ var BrainView = (function () {
   ];
 
   var BRAND_SECTIONS = [
-    { key: "core", label: "Brand Core", icon: "🎯" },
-    { key: "values", label: "Values & Tone", icon: "🧭" },
-    { key: "dos", label: "Do's", icon: "✅" },
-    { key: "donts", label: "Don'ts", icon: "❌" },
-    { key: "cta", label: "Call-to-Action Strategy", icon: "📣" },
-    { key: "assets", label: "Brand Assets", icon: "🗂" },
-    { key: "team", label: "Team Playbook", icon: "👥" }
+    { key: "core", label: "Brand Core", icon: "🎯", tint: "tint-gold" },
+    { key: "values", label: "Values & Tone", icon: "🧭", tint: "tint-cream" },
+    { key: "dos", label: "Do's", icon: "✅", tint: "tint-teal" },
+    { key: "donts", label: "Don'ts", icon: "❌", tint: "tint-red" },
+    { key: "cta", label: "Call-to-Action Strategy", icon: "📣", tint: "tint-blue" },
+    { key: "assets", label: "Brand Assets", icon: "🗂", tint: "tint-gold" },
+    { key: "team", label: "Team Playbook", icon: "👥", tint: "tint-blue" }
   ];
 
   /* ---------- Brand Core ---------- */
@@ -78,7 +78,7 @@ var BrainView = (function () {
         return '<h2 class="section-title">' + sec.icon + ' ' + sec.label + '</h2>' +
           '<div class="grid cols-2">' +
           notes.map(function (n) {
-            return '<div class="card soft clickable" data-brand="' + esc(n.id) + '">' +
+            return '<div class="card soft ' + sec.tint + ' clickable" data-brand="' + esc(n.id) + '">' +
               '<div style="font-weight:700;font-size:14.5px;margin-bottom:8px">' + esc(n.title) + '</div>' +
               '<div class="muted" style="font-size:13px;line-height:1.65;white-space:pre-wrap">' + esc(n.content) + '</div>' +
             '</div>';
