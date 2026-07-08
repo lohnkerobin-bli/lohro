@@ -150,15 +150,15 @@ function ringGauge(percent, opts) {
     '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="1" y2="1">' +
     '<stop offset="0%" stop-color="' + color + '" stop-opacity=".55"/>' +
     '<stop offset="100%" stop-color="' + color + '"/></linearGradient></defs>' +
-    '<circle cx="' + size / 2 + '" cy="' + size / 2 + '" r="' + r + '" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="' + stroke + '"/>' +
+    '<circle cx="' + size / 2 + '" cy="' + size / 2 + '" r="' + r + '" fill="none" stroke="rgba(36,26,14,.12)" stroke-width="' + stroke + '"/>' +
     '<circle cx="' + size / 2 + '" cy="' + size / 2 + '" r="' + r + '" fill="none" stroke="url(#' + id + ')" stroke-width="' + stroke + '"' +
     ' stroke-linecap="round" stroke-dasharray="' + dash.toFixed(1) + " " + c.toFixed(1) + '"' +
     ' transform="rotate(-90 ' + size / 2 + " " + size / 2 + ')">' +
     (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "" :
       '<animate attributeName="stroke-dasharray" from="0 ' + c.toFixed(1) + '" to="' + dash.toFixed(1) + " " + c.toFixed(1) + '" dur="1.1s" calcMode="spline" keySplines="0.22 1 0.36 1" fill="freeze"/>') +
     '</circle>' +
-    '<text x="50%" y="47%" text-anchor="middle" fill="#F6EEDD" font-size="' + size * 0.19 + '" font-weight="800" font-family="Futura, Avenir Next, system-ui, sans-serif">' + esc(opts.value || "") + '</text>' +
-    '<text x="50%" y="62%" text-anchor="middle" fill="#9C8F7B" font-size="' + size * 0.078 + '" letter-spacing="1">' + esc(opts.sub || "") + '</text>' +
+    '<text x="50%" y="47%" text-anchor="middle" fill="#241A0E" font-size="' + size * 0.19 + '" font-weight="800" font-family="-apple-system, system-ui, sans-serif">' + esc(opts.value || "") + '</text>' +
+    '<text x="50%" y="62%" text-anchor="middle" fill="rgba(36,26,14,.55)" font-size="' + size * 0.078 + '" letter-spacing="1">' + esc(opts.sub || "") + '</text>' +
     '</svg>';
 }
 
