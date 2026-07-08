@@ -27,8 +27,10 @@
   --cream-faint: #8F958D;
   --gold: #D4AF37;
 
-  --font-display: "Futura", "Avenir Next", "Segoe UI", system-ui, sans-serif;
-  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: -apple-system, "SF Pro Display", system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-body: -apple-system, "SF Pro Text", system-ui, "Segoe UI", Roboto, sans-serif;
+  --surface: #1C1C1E;
+  --surface-2: #2C2C2E;
   --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
 
   --radius: 10px;
@@ -52,16 +54,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* subtle film-grain / vignette backdrop */
-body::before {
-  content: "";
-  position: fixed; inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 120% 90% at 50% -10%, rgba(69,123,157,.10), transparent 55%),
-    radial-gradient(ellipse 100% 80% at 90% 110%, rgba(230,57,70,.06), transparent 55%);
-  z-index: 0;
-}
+/* clean black canvas — Apple dark mode */
+body::before { content: none; }
 
 #app-shell { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 100vh; }
 
@@ -86,24 +80,23 @@ body::before {
 .brand-text { display: flex; flex-direction: column; }
 .brand-title {
   font-family: var(--font-display);
-  font-weight: 800; font-size: 17px; letter-spacing: .18em;
+  font-weight: 800; font-size: 17px; letter-spacing: .14em;
 }
 .brand-sub { font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--cream-faint); }
 
 #main-nav { display: flex; gap: 4px; flex-wrap: wrap; margin-left: auto; }
 #main-nav a {
   color: var(--cream-dim); text-decoration: none;
-  font-size: 12.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
-  padding: 8px 13px; border-radius: 7px;
-  border: 1px solid transparent;
+  font-size: 14px; font-weight: 600; letter-spacing: -0.01em;
+  padding: 7px 13px; border-radius: 10px;
+  border: none;
   transition: color .15s, background .15s;
   white-space: nowrap;
 }
 #main-nav a:hover { color: var(--cream); background: var(--black-panel); }
 #main-nav a.active {
-  color: var(--cream);
-  background: linear-gradient(145deg, rgba(230,57,70,.18), rgba(230,57,70,.08));
-  border-color: rgba(230,57,70,.45);
+  color: #FF6B76;
+  background: rgba(230,57,70,.14);
 }
 
 /* ---------- Main / footer ---------- */
@@ -118,11 +111,11 @@ body::before {
 /* ---------- Typography ---------- */
 h1.view-title {
   font-family: var(--font-display);
-  font-size: clamp(24px, 4vw, 34px);
-  font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
-  margin-bottom: 4px;
+  font-size: clamp(34px, 5.5vw, 48px);
+  font-weight: 800; letter-spacing: -0.02em;
+  margin-bottom: 6px;
 }
-.view-sub { color: var(--cream-faint); font-size: 13.5px; margin-bottom: 26px; }
+.view-sub { color: var(--cream-faint); font-size: 14px; font-weight: 600; margin-bottom: 30px; max-width: 680px; }
 h2.section-title {
   font-family: var(--font-display);
   font-size: 13px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;
@@ -139,10 +132,10 @@ h2.section-title::after { content: ""; flex: 1; height: 1px; background: var(--b
 .grid.cols-4 { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
 
 .card {
-  background: linear-gradient(175deg, #1B1B20, #141417);
-  border: 1px solid rgba(255,255,255,.05);
+  background: var(--surface);
+  border: none;
   border-radius: 18px;
-  padding: 15px 18px;
+  padding: 16px 18px;
 }
 .card.accent-red { border-top: 2px solid var(--set-red); }
 .card.accent-teal { border-top: 2px solid var(--stage-teal); }
@@ -157,16 +150,16 @@ h2.section-title::after { content: ""; flex: 1; height: 1px; background: var(--b
 /* ---------- Buttons / inputs ---------- */
 button, .btn {
   font-family: var(--font-body);
-  font-size: 12.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+  font-size: 14px; font-weight: 600; letter-spacing: -0.01em;
   color: var(--cream);
-  background: var(--black-card);
-  border: 1px solid rgba(255,255,255,.09);
-  border-radius: 11px;
-  padding: 9px 15px;
+  background: var(--surface-2);
+  border: none;
+  border-radius: 12px;
+  padding: 9px 16px;
   cursor: pointer;
-  transition: background .15s, border-color .15s, transform .05s;
+  transition: background .15s, opacity .15s, transform .05s;
 }
-button:hover, .btn:hover { border-color: var(--cream-faint); }
+button:hover, .btn:hover { background: #3A3A3C; }
 button:active { transform: translateY(1px); }
 button.primary { background: var(--set-red); border-color: var(--set-red); }
 button.primary:hover { background: var(--set-red-dim); }
@@ -194,17 +187,17 @@ label.field > span { display: block; font-size: 11px; font-weight: 700; letter-s
 /* ---------- Badges / chips ---------- */
 .badge {
   display: inline-block;
-  font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-  padding: 3px 9px; border-radius: 99px;
-  border: 1px solid var(--black-line);
+  font-size: 11.5px; font-weight: 600; letter-spacing: 0;
+  padding: 3px 10px; border-radius: 99px;
+  border: none;
   color: var(--cream-dim);
-  background: var(--black-raise);
+  background: var(--surface-2);
   white-space: nowrap;
 }
-.badge.red   { color: #FF8B94; border-color: rgba(230,57,70,.5);  background: rgba(230,57,70,.12); }
-.badge.teal  { color: #7EDCD2; border-color: rgba(42,157,143,.5); background: rgba(42,157,143,.12); }
-.badge.blue  { color: #9DC6E0; border-color: rgba(69,123,157,.55);background: rgba(69,123,157,.14); }
-.badge.gold  { color: #EBD489; border-color: rgba(212,175,55,.5); background: rgba(212,175,55,.10); }
+.badge.red   { color: #FF8B94; background: rgba(230,57,70,.16); }
+.badge.teal  { color: #7EDCD2; background: rgba(42,157,143,.16); }
+.badge.blue  { color: #9DC6E0; background: rgba(69,123,157,.18); }
+.badge.gold  { color: #EBD489; background: rgba(212,175,55,.14); }
 .badge.gray  { color: var(--cream-faint); }
 
 /* ---------- Tables ---------- */
@@ -341,8 +334,8 @@ a:hover { color: var(--cream); }
 .hero-date { font-size: 11px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--cream-faint); margin-bottom: 4px; }
 .hero-greeting {
   font-family: var(--font-display);
-  font-size: clamp(24px, 4vw, 34px);
-  font-weight: 900; letter-spacing: .01em; line-height: 1.1;
+  font-size: clamp(28px, 4.5vw, 38px);
+  font-weight: 800; letter-spacing: -0.02em; line-height: 1.08;
 }
 .hero-sub { color: var(--cream-dim); font-size: 13.5px; font-weight: 600; margin-top: 5px; max-width: 560px; }
 
@@ -365,28 +358,28 @@ a:hover { color: var(--cream); }
 .pc-lvl-label { font-size: 8.5px; font-weight: 800; letter-spacing: .2em; color: var(--cream-faint); }
 .pc-lvl-num { font-family: var(--font-display); font-size: 24px; font-weight: 900; color: var(--gold); line-height: 1; }
 .pc-body { flex: 1; min-width: 140px; }
-.pc-title { font-family: var(--font-display); font-size: 14px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+.pc-title { font-family: var(--font-display); font-size: 15px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 6px; }
 .pc-xp { font-size: 11px; font-weight: 700; color: var(--cream-faint); margin-top: 5px; letter-spacing: .03em; }
 
 .score-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 14px; }
 .score-card {
-  background: linear-gradient(175deg, #1B1B20, #141417);
-  border: 1px solid rgba(255,255,255,.05);
+  background: var(--surface);
+  border: none;
   border-radius: 20px;
   padding: 18px 16px 14px;
   text-align: center;
   display: flex; flex-direction: column; align-items: center; gap: 3px;
-  transition: transform .15s ease, border-color .15s;
+  transition: transform .15s ease, background .15s;
 }
-.score-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.14); }
+.score-card:hover { transform: translateY(-2px); background: #232326; }
 .score-card svg { margin-bottom: 6px; }
-.score-name { font-family: var(--font-display); font-size: 13.5px; font-weight: 800; letter-spacing: .06em; }
+.score-name { font-family: var(--font-display); font-size: 14px; font-weight: 700; letter-spacing: -0.01em; }
 .score-hint { font-size: 11.5px; font-weight: 600; color: var(--cream-faint); line-height: 1.4; }
 
 .card.soft {
-  background: linear-gradient(175deg, #1B1B20, #141417);
-  border: 1px solid rgba(255,255,255,.05);
-  border-radius: 20px;
+  background: var(--surface);
+  border: none;
+  border-radius: 18px;
   box-shadow: none;
 }
 
@@ -408,13 +401,13 @@ a:hover { color: var(--cream); }
 .action-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 6px; }
 .action-pill {
   display: flex; align-items: center; gap: 12px;
-  background: linear-gradient(175deg, #1B1B20, #141417);
-  border: 1px solid rgba(255,255,255,.05);
+  background: var(--surface);
+  border: none;
   border-radius: 16px;
-  padding: 11px 16px;
-  transition: transform .15s ease, border-color .15s;
+  padding: 12px 16px;
+  transition: transform .15s ease, background .15s;
 }
-.action-pill:hover { transform: translateY(-1px); border-color: rgba(255,255,255,.12); }
+.action-pill:hover { transform: translateY(-1px); background: #232326; }
 .ap-icon { font-size: 22px; }
 .ap-text { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.35; }
 .ap-text strong { font-size: 13.5px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -450,6 +443,32 @@ a:hover { color: var(--cream); }
 .mood-item img { width: 100%; height: 120px; object-fit: cover; display: block; }
 .mood-link { height: 120px; display: grid; place-items: center; text-align: center; font-size: 12px; padding: 8px; word-break: break-all; }
 .mood-item figcaption { padding: 6px 10px; font-size: 11.5px; color: var(--cream-faint); }
+
+/* vision boards */
+.vision-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+.vision-tile {
+  position: relative;
+  min-height: 108px;
+  border-radius: 16px;
+  border: 1px solid rgba(212,175,55,.22);
+  background: linear-gradient(160deg, rgba(212,175,55,.08), rgba(255,255,255,.02));
+  padding: 16px;
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 8px;
+  transition: transform .15s ease, border-color .15s;
+}
+.vision-tile:hover { transform: translateY(-2px); border-color: rgba(212,175,55,.5); }
+.vision-tile .vt-icon { font-size: 26px; }
+.vision-tile .vt-text { font-family: var(--font-display); font-size: 14px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; }
+.vision-tile.image { background-size: cover; background-position: center; min-height: 140px; }
+.vision-tile.image .vt-caption {
+  background: rgba(0,0,0,.65); border-radius: 8px; padding: 5px 10px;
+  font-size: 12px; font-weight: 800; align-self: flex-start;
+}
+.vt-del {
+  position: absolute; top: 8px; right: 8px;
+  padding: 2px 8px; font-size: 11px;
+  background: rgba(0,0,0,.5); border: 1px solid rgba(255,255,255,.15); border-radius: 8px;
+}
 
 .strategy-fold { margin-top: 28px; }
 .strategy-fold summary {
@@ -509,8 +528,8 @@ a:hover { color: var(--cream); }
 /* AUTO-GENERATED by scripts/build-seed.py — do not edit by hand.
    Canonical data lives in data/*.json. Regenerate: python3 scripts/build-seed.py */
 window.SEED = {
- "version": 183898405304336,
- "generated": "2026-07-08T22:29:21Z",
+ "version": 209753806854867,
+ "generated": "2026-07-08T22:40:58Z",
  "ideas": [
   {
    "id": "idea-001",
@@ -1682,8 +1701,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-002",
@@ -1695,8 +1714,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-003",
@@ -1708,8 +1727,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-004",
@@ -1721,8 +1740,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-005",
@@ -1734,8 +1753,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-006",
@@ -1747,8 +1766,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-007",
@@ -1760,8 +1779,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-008",
@@ -1773,8 +1792,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-009",
@@ -1786,8 +1805,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-010",
@@ -1799,8 +1818,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-011",
@@ -1812,8 +1831,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-012",
@@ -1825,8 +1844,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-013",
@@ -1838,8 +1857,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-014",
@@ -1851,8 +1870,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-015",
@@ -1864,8 +1883,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-016",
@@ -1877,8 +1896,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-017",
@@ -1890,8 +1909,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-019",
@@ -1903,8 +1922,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-020",
@@ -1916,8 +1935,8 @@ window.SEED = {
    "link": null,
    "notes": "Series: SHORTMOVIE · Tags: ABGESCHLOSSEN",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-021",
@@ -1929,8 +1948,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-022",
@@ -1942,8 +1961,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: THUMBNAIL",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-023",
@@ -1955,8 +1974,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-024",
@@ -1968,8 +1987,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-025",
@@ -1981,8 +2000,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-026",
@@ -1994,8 +2013,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-028",
@@ -2007,8 +2026,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-031",
@@ -2020,8 +2039,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-032",
@@ -2033,8 +2052,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-033",
@@ -2046,8 +2065,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-034",
@@ -2059,8 +2078,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-035",
@@ -2072,8 +2091,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-036",
@@ -2085,8 +2104,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-037",
@@ -2098,8 +2117,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-038",
@@ -2111,8 +2130,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-039",
@@ -2124,8 +2143,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-040",
@@ -2137,8 +2156,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-041",
@@ -2150,8 +2169,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-042",
@@ -2163,8 +2182,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-043",
@@ -2176,8 +2195,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-044",
@@ -2189,8 +2208,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-045",
@@ -2202,8 +2221,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-046",
@@ -2215,8 +2234,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-047",
@@ -2228,8 +2247,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-048",
@@ -2241,8 +2260,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-049",
@@ -2254,8 +2273,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-050",
@@ -2267,8 +2286,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-051",
@@ -2280,8 +2299,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-052",
@@ -2293,8 +2312,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-053",
@@ -2306,8 +2325,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-054",
@@ -2319,8 +2338,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-055",
@@ -2332,8 +2351,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-056",
@@ -2345,8 +2364,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-057",
@@ -2358,8 +2377,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-058",
@@ -2371,8 +2390,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-059",
@@ -2384,8 +2403,8 @@ window.SEED = {
    "link": null,
    "notes": "Series: CINEMATIC VIDEO · Tags: SKRIPT, IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-060",
@@ -2397,8 +2416,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-061",
@@ -2410,8 +2429,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-062",
@@ -2423,8 +2442,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-063",
@@ -2436,8 +2455,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-064",
@@ -2449,8 +2468,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-065",
@@ -2462,8 +2481,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-066",
@@ -2475,8 +2494,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-067",
@@ -2488,8 +2507,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-068",
@@ -2501,8 +2520,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-069",
@@ -2514,8 +2533,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-070",
@@ -2527,8 +2546,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-071",
@@ -2540,8 +2559,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-072",
@@ -2553,8 +2572,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-073",
@@ -2566,8 +2585,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-074",
@@ -2579,8 +2598,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-075",
@@ -2592,8 +2611,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-076",
@@ -2605,8 +2624,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT, PRODUKTION",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-077",
@@ -2618,8 +2637,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-078",
@@ -2631,8 +2650,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-080",
@@ -2644,8 +2663,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-081",
@@ -2657,8 +2676,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-083",
@@ -2670,8 +2689,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-084",
@@ -2683,8 +2702,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-085",
@@ -2696,8 +2715,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-086",
@@ -2709,8 +2728,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-087",
@@ -2722,8 +2741,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: ONLINE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-088",
@@ -2735,8 +2754,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-089",
@@ -2748,8 +2767,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-090",
@@ -2761,8 +2780,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-091",
@@ -2774,8 +2793,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-092",
@@ -2787,8 +2806,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-093",
@@ -2800,8 +2819,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-094",
@@ -2813,8 +2832,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-095",
@@ -2826,8 +2845,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-096",
@@ -2839,8 +2858,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-097",
@@ -2852,8 +2871,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: ONLINE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-098",
@@ -2865,8 +2884,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: ONLINE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-099",
@@ -2878,8 +2897,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "project-100",
@@ -2891,8 +2910,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   },
   {
    "id": "episode-001",
@@ -2904,8 +2923,8 @@ window.SEED = {
    "link": null,
    "notes": "Hook: I want to win an Oscar. Here's where I actually am. · Main point: Ehrliche Bestandsaufnahme: Six years self-employed, KO läuft, jetzt der Push für Personal Brand und Foundation-Bewerbung. Cliffhanger auf das Claude-Gespräch. · Format: Bestandsaufnahme",
    "source": "notion-youtube-pipeline",
-   "createdAt": "2026-07-08T22:29:21Z",
-   "updatedAt": "2026-07-08T22:29:21Z"
+   "createdAt": "2026-07-08T22:40:58Z",
+   "updatedAt": "2026-07-08T22:40:58Z"
   }
  ],
  "festivals": {
@@ -4239,6 +4258,172 @@ window.SEED = {
     "content": "Je klarer das Briefing, desto besser das Resultat. Standards: beste Takes markieren, keine doppelten Perspektiven, keine unnötigen Effekte, Originalgeschwindigkeit, klare Ordnerstruktur und Dateinamen."
    }
   ]
+ },
+ "filmsSeed": {
+  "source": "Best film projects distilled from Notion (WAY TO OSCAR Filme DB, Video Pipeline, Master Plan) + WAYTOOSCARKNOWLEDGE.pdf",
+  "films": [
+   {
+    "id": "film-junge-im-nebel",
+    "title": "Der Junge im Nebel",
+    "logline": "Ein Junge folgt einer Stimme in den Nebel — und muss entscheiden, welche Wahrheit er glauben will. 10–15 Min., visuell erzählt, kaum Dialog.",
+    "genre": "Drama / Festival Short",
+    "themes": "Träume, Identität, Mut",
+    "status": "script",
+    "script": "",
+    "images": [],
+    "notes": "DER Festival-Film (Spur A, Fokusprojekt).\n• Drehbuch nach McKee-Struktur, visuell/low-dialogue oder Deutsch mit engl. Untertiteln\n• Dreh: Q3 2026 (No-Budget, Mitbewohner + Freundin als Cast)\n• Post + festivaltaugliches Grading: Q4 2026\n• Einreichungen: Solothurn 2027, Winterthur; Budget CHF 2–3k für 10–15 Submissions\n• Premiere-Status heilig: erst Tier-1-Versuch (Clermont/Locarno/Sundance/Berlinale), dann Tier 2 parallel, dann CH-Premiere",
+    "learnings": ""
+   },
+   {
+    "id": "film-der-schrank",
+    "title": "Der Schrank",
+    "logline": "Ein Mensch in einem leeren Raum sortiert schwebende Schallplatten — seine Ideen — in einen Schrank. \"Severance trifft Ratatouille.\"",
+    "genre": "Experimental Short",
+    "themes": "Kreativität, Ordnung, Second Brain",
+    "status": "treatment",
+    "script": "",
+    "images": [],
+    "notes": "Detailliertes Konzept bereits in Notion (Ideen-Schrank).\n• Kein Dialog, Sony FX3\n• Kernidee: Ideen als physische Objekte (Vinyl) — visuell stark, günstig produzierbar\n• Doppelnutzen: Kurzfilm + Erklärstück für das eigene Second-Brain-System",
+    "learnings": ""
+   },
+   {
+    "id": "film-bushaltestelle",
+    "title": "Bushaltestelle",
+    "logline": "Version A: Alle starren aufs Handy, niemand spricht. Version B — dieselbe Haltestelle ohne Handys: alle lachen, lernen sich kennen.",
+    "genre": "Social Short / Makro-Drama",
+    "themes": "Verbindung, Technologie, Menschlichkeit",
+    "status": "idea",
+    "script": "",
+    "images": [],
+    "notes": "Kernaussage: \"Technologie verbindet uns digital, trennt uns aber oft physisch.\"\nBotschaften-Optionen: \"Let's connect again\" / \"Be more human\" / \"We lost the connection\"\nPerfekt als Daily-Challenge-Film mit Reel-Zweitverwertung.",
+    "learnings": ""
+   },
+   {
+    "id": "film-strassenhund",
+    "title": "Rumänischer Strassenhund",
+    "logline": "Ein geretteter Strassenhund hat jetzt ein besseres Leben — glauben die Menschen. Er vermisst Freiheit, Freunde, Abenteuer.",
+    "genre": "Drama Short (Potenzial: Spielfilm)",
+    "themes": "Freiheit, Perspektive, Dankbarkeit, Verlust",
+    "status": "idea",
+    "script": "",
+    "images": [],
+    "notes": "Thema: Zwei Perspektiven können gleichzeitig richtig sein; eine gute Tat kann gleichzeitig Verlust bedeuten.\nAusdrücklich im Second Brain behalten — Potenzial für Kurz- ODER Spielfilm.",
+    "learnings": ""
+   },
+   {
+    "id": "film-musikvideo",
+    "title": "Musikvideo — Bar bis Feuerwerk",
+    "logline": "Bar → Blickkontakt → Spannung → Flirt → Picknick → erster Kuss → Feuerwerk → emotionale Auflösung.",
+    "genre": "Musikvideo",
+    "themes": "Liebe, Tempo, Eskalation",
+    "status": "pre-production",
+    "script": "",
+    "images": [],
+    "notes": "Detailliert geplant. Begleitvideo: \"How we filmed this music video\" — dokumentierter Drehtag (Konzept, Shotlist, Licht, Objektive, Probleme, Improvisation, Grading) — nicht Tutorial, nicht Vlog.",
+    "learnings": "Aus der Planung: Bar-Sequenz (1 Min.) evtl. zu lang · erster Kuss früher = mehr Tempo · ständig muss etwas passieren · jede Szene muss die Beziehung der Figuren verändern · emotionale Eskalation sichtbar machen."
+   }
+  ]
+ },
+ "vision": {
+  "source": "Vision board elements from Notion Vision-Profilbild plan + knowledge export. Functional, not decorative — daily orientation.",
+  "boards": [
+   {
+    "id": "vision-main",
+    "title": "THE VISION",
+    "tiles": [
+     {
+      "id": "vt-oscar",
+      "kind": "text",
+      "icon": "🏆",
+      "text": "Oscar on stage — the whole journey documented from the first reel to the red carpet"
+     },
+     {
+      "id": "vt-1m-ig",
+      "kind": "text",
+      "icon": "📸",
+      "text": "1'000'000 Instagram followers"
+     },
+     {
+      "id": "vt-1m-yt",
+      "kind": "text",
+      "icon": "▶️",
+      "text": "1'000'000 YouTube subscribers — 'Way to Oscar' as a living documentary"
+     },
+     {
+      "id": "vt-posters",
+      "kind": "text",
+      "icon": "🎬",
+      "text": "My own film posters on the wall"
+     },
+     {
+      "id": "vt-team",
+      "kind": "text",
+      "icon": "👥",
+      "text": "Simon, Jasmin & the Kollektiv Oskar team — building this together"
+     },
+     {
+      "id": "vt-sea",
+      "kind": "text",
+      "icon": "🌊",
+      "text": "A free, peaceful life by the sea — mornings for me, afternoons for the craft"
+     },
+     {
+      "id": "vt-hollywood",
+      "kind": "text",
+      "icon": "🎥",
+      "text": "International film sets — Hollywood-grade stories from Switzerland"
+     },
+     {
+      "id": "vt-now",
+      "kind": "text",
+      "icon": "✨",
+      "text": "\"The good old times are now.\""
+     }
+    ]
+   },
+   {
+    "id": "vision-2027",
+    "title": "FESTIVAL RUN 2027",
+    "tiles": [
+     {
+      "id": "vt-solothurn",
+      "kind": "text",
+      "icon": "🇨🇭",
+      "text": "Solothurner Filmtage — attend, selected or not"
+     },
+     {
+      "id": "vt-winterthur",
+      "kind": "text",
+      "icon": "🎪",
+      "text": "Kurzfilmtage Winterthur — Best Swiss Film qualifies for the Oscar"
+     },
+     {
+      "id": "vt-locarno",
+      "kind": "text",
+      "icon": "🐆",
+      "text": "Locarno Pardi di domani — Swiss competition, Pardino d'oro"
+     },
+     {
+      "id": "vt-clermont",
+      "kind": "text",
+      "icon": "🇫🇷",
+      "text": "Clermont-Ferrand — the world's biggest short film festival"
+     },
+     {
+      "id": "vt-mentor",
+      "kind": "text",
+      "icon": "🤝",
+      "text": "One real mentor relationship — built on results, not asking"
+     },
+     {
+      "id": "vt-win",
+      "kind": "text",
+      "icon": "🥇",
+      "text": "One Oscar-qualifying festival award"
+     }
+    ]
+   }
+  ]
  }
 };
 
@@ -4472,7 +4657,8 @@ var Store = (function () {
       festivalPlans: {},   // festivalId: {status, filmTitle, deadlineType, notes, updatedAt}
       brandNotes: [],      // {id, section, title, content, updatedAt} — the Brand Core
       meetings: [],        // {id, date, title, participants, transcript, decisions, actions, updatedAt}
-      films: []            // {id, title, logline, genre, themes, status, script, images[], notes, learnings, fromIdeaId, createdAt, updatedAt}
+      films: [],           // {id, title, logline, genre, themes, status, script, images[], notes, learnings, fromIdeaId, createdAt, updatedAt}
+      visionBoards: []     // {id, title, tiles: [{id, kind: text|image, icon, text, url}], updatedAt}
     };
   }
 
@@ -4518,6 +4704,23 @@ var Store = (function () {
     });
   }
 
+  var EPOCH = "1970-01-01T00:00:00.000Z";
+
+  function seedFilms() {
+    var f = window.SEED && window.SEED.filmsSeed;
+    if (!f || !Array.isArray(f.films)) return [];
+    return f.films.map(function (x) {
+      return Object.assign({ images: [], script: "", learnings: "", fromIdeaId: null, createdAt: EPOCH, updatedAt: EPOCH }, x);
+    });
+  }
+  function seedVision() {
+    var v = window.SEED && window.SEED.vision;
+    if (!v || !Array.isArray(v.boards)) return [];
+    return v.boards.map(function (b) {
+      return { id: b.id, title: b.title, tiles: (b.tiles || []).slice(), updatedAt: EPOCH };
+    });
+  }
+
   function seedInto(s) {
     var seed = window.SEED || {};
     if (Array.isArray(seed.ideas) && s.ideas.length === 0) {
@@ -4527,6 +4730,8 @@ var Store = (function () {
       s.projects = seed.projects.slice();
     }
     if (s.brandNotes.length === 0) s.brandNotes = seedBrandNotes();
+    if (s.films.length === 0) s.films = seedFilms();
+    if (s.visionBoards.length === 0) s.visionBoards = seedVision();
     if (s.milestones.length === 0) s.milestones = defaultMilestones();
     return s;
   }
@@ -4555,6 +4760,8 @@ var Store = (function () {
     if (Array.isArray(seed.ideas)) s.ideas = mergeById(seed.ideas.map(normIdea), s.ideas);
     if (Array.isArray(seed.projects)) s.projects = mergeById(seed.projects, s.projects);
     s.brandNotes = mergeById(seedBrandNotes(), s.brandNotes);
+    s.films = mergeById(seedFilms(), s.films);
+    s.visionBoards = mergeById(seedVision(), s.visionBoards);
     s.meta.seedVersion = v;
     return true;
   }
@@ -4628,7 +4835,7 @@ var Store = (function () {
 
   // collection registry: every syncable collection is declared once so
   // merge/replace/export can never silently skip one
-  var ID_COLLECTIONS = ["ideas", "projects", "milestones", "followers", "brandNotes", "meetings", "films"];
+  var ID_COLLECTIONS = ["ideas", "projects", "milestones", "followers", "brandNotes", "meetings", "films", "visionBoards"];
   var KEYED_MAPS = ["challengeDays", "festivalPlans"];
 
   function importMerge(obj) {
@@ -4848,6 +5055,22 @@ var DashboardView = (function () {
     return '<div class="action-row">' + left + right + '</div>';
   }
 
+  function visionStripHTML() {
+    var boards = Store.get().visionBoards || [];
+    if (!boards.length) return "";
+    var b = boards[0];
+    return '<h2 class="section-title">🌟 ' + esc(b.title) +
+      ' <a href="#/brain" class="muted" style="letter-spacing:0;text-transform:none;font-weight:600;font-size:12px" onclick="BrainView._pendingTab=\'vision\'">edit boards →</a></h2>' +
+      '<div class="vision-grid">' + b.tiles.map(function (t) {
+        if (t.kind === "image" && safeUrl(t.url)) {
+          return '<div class="vision-tile image" style="background-image:url(\'' + esc(safeUrl(t.url)) + '\')">' +
+            (t.text ? '<span class="vt-caption">' + esc(t.text) + '</span>' : "") + '</div>';
+        }
+        return '<div class="vision-tile"><span class="vt-icon">' + esc(t.icon || "✨") + '</span>' +
+          '<span class="vt-text">' + esc(t.text || "") + '</span></div>';
+      }).join("") + '</div>';
+  }
+
   var LEVEL_TITLES = ["Rookie", "Creator", "Storyteller", "Filmmaker", "Director", "Auteur", "Visionary", "Festival Regular", "Award Winner", "Oscar Contender"];
 
   function playerStats() {
@@ -5009,6 +5232,8 @@ var DashboardView = (function () {
           '</div>' +
         '</div>' +
       '</div>' +
+
+      visionStripHTML() +
 
       '<details class="strategy-fold"><summary>🚩 All milestones</summary>' +
       '<div class="card soft">' +
@@ -5914,6 +6139,7 @@ var BrainView = (function () {
   var TABS = [
     { key: "brand", label: "🎨 Brand Core" },
     { key: "knowledge", label: "📚 Knowledge" },
+    { key: "vision", label: "🌟 Vision" },
     { key: "meetings", label: "🗓 Meetings & Reports" }
   ];
 
@@ -6018,6 +6244,101 @@ var BrainView = (function () {
           x.entries.map(function (e) { return '<li>' + esc(e) + '</li>'; }).join("") +
           '</ul></div>';
       }).join("") + '</div>';
+  }
+
+  /* ---------- Vision Boards ---------- */
+
+  function addTileModal(boardId) {
+    var s = Store.get();
+    var board = s.visionBoards.find(function (b) { return b.id === boardId; });
+    if (!board) return;
+    openModal(
+      '<h3>Add vision tile — ' + esc(board.title) + '</h3>' +
+      '<label class="field"><span>Icon (emoji)</span><input id="v-icon" placeholder="🏆" maxlength="4"></label>' +
+      '<label class="field"><span>Text (the vision, one line)</span><input id="v-text" placeholder="e.g. Standing on the Locarno stage"></label>' +
+      '<label class="field"><span>OR image link (https)</span><input id="v-url" placeholder="https://... (Dropbox shared link, poster, still)"></label>' +
+      '<div class="modal-actions"><button class="ghost" onclick="closeModal()">Cancel</button>' +
+      '<button class="primary" id="v-save">Add</button></div>');
+    $("#v-save").onclick = function () {
+      var url = $("#v-url").value.trim();
+      var text = $("#v-text").value.trim();
+      if (!url && !text) { toast("Add a text or an image link", true); return; }
+      if (url && !safeUrl(url)) { toast("Only https:// links", true); return; }
+      board.tiles.push(url
+        ? { id: uid("vt"), kind: "image", url: url, text: text }
+        : { id: uid("vt"), kind: "text", icon: $("#v-icon").value.trim() || "✨", text: text });
+      board.updatedAt = new Date().toISOString();
+      Store.save(); closeModal(); toast("Tile added"); App.render();
+    };
+  }
+
+  function visionTileHTML(t, editable) {
+    if (t.kind === "image" && safeUrl(t.url)) {
+      return '<div class="vision-tile image" style="background-image:url(\'' + esc(safeUrl(t.url)) + '\')">' +
+        (t.text ? '<span class="vt-caption">' + esc(t.text) + '</span>' : "") +
+        (editable ? '<button class="vt-del" data-del-tile="' + esc(t.id) + '">✕</button>' : "") + '</div>';
+    }
+    return '<div class="vision-tile">' +
+      '<span class="vt-icon">' + esc(t.icon || "✨") + '</span>' +
+      '<span class="vt-text">' + esc(t.text || "") + '</span>' +
+      (editable ? '<button class="vt-del" data-del-tile="' + esc(t.id) + '">✕</button>' : "") + '</div>';
+  }
+
+  function visionHTML() {
+    var s = Store.get();
+    return '<div class="row between mb">' +
+      '<span class="muted" style="font-size:13px">Functional, not decorative — daily orientation. The first board shows on the dashboard.</span>' +
+      '<button class="primary small" id="board-new">+ New board</button></div>' +
+      s.visionBoards.map(function (b) {
+        return '<h2 class="section-title">🌟 ' + esc(b.title) +
+          ' <button class="small ghost" data-add-tile="' + esc(b.id) + '">+ tile</button>' +
+          ' <button class="small ghost danger" data-del-board="' + esc(b.id) + '">delete board</button></h2>' +
+          '<div class="vision-grid mb">' + b.tiles.map(function (t) { return visionTileHTML(t, true); }).join("") +
+          (b.tiles.length === 0 ? '<div class="empty-note">Empty board — add your first vision tile.</div>' : "") + '</div>';
+      }).join("") +
+      (s.visionBoards.length === 0 ? '<div class="empty-note">No boards yet.</div>' : "");
+  }
+
+  function bindVision(root) {
+    var s = Store.get();
+    var nb = $("#board-new");
+    if (nb) nb.onclick = function () {
+      openModal('<h3>New vision board</h3>' +
+        '<label class="field"><span>Title</span><input id="nb-title" placeholder="e.g. FEATURE FILM 2029"></label>' +
+        '<div class="modal-actions"><button class="ghost" onclick="closeModal()">Cancel</button>' +
+        '<button class="primary" id="nb-save">Create</button></div>');
+      $("#nb-save").onclick = function () {
+        var t = $("#nb-title").value.trim();
+        if (!t) { toast("Title required", true); return; }
+        s.visionBoards.push({ id: uid("vb"), title: t, tiles: [], updatedAt: new Date().toISOString() });
+        Store.save(); closeModal(); App.render();
+      };
+    };
+    $$("[data-add-tile]", root).forEach(function (b) {
+      b.onclick = function () { addTileModal(b.getAttribute("data-add-tile")); };
+    });
+    $$("[data-del-board]", root).forEach(function (b) {
+      b.onclick = function () {
+        var id = b.getAttribute("data-del-board");
+        openModal('<h3>Delete this board?</h3><div class="modal-actions"><button class="ghost" onclick="closeModal()">Cancel</button><button class="primary" id="db-yes">Delete</button></div>');
+        $("#db-yes").onclick = function () {
+          s.visionBoards = s.visionBoards.filter(function (x) { return x.id !== id; });
+          Store.save(); closeModal(); App.render();
+        };
+      };
+    });
+    $$("[data-del-tile]", root).forEach(function (b) {
+      b.onclick = function (e) {
+        e.stopPropagation();
+        var tid = b.getAttribute("data-del-tile");
+        s.visionBoards.forEach(function (board) {
+          var before = board.tiles.length;
+          board.tiles = board.tiles.filter(function (t) { return t.id !== tid; });
+          if (board.tiles.length !== before) board.updatedAt = new Date().toISOString();
+        });
+        Store.save(); App.render();
+      };
+    });
   }
 
   /* ---------- Meetings & Weekly Report ---------- */
@@ -6198,6 +6519,7 @@ var BrainView = (function () {
   /* ---------- render ---------- */
 
   function render(root) {
+    if (BrainView._pendingTab) { render._tab = BrainView._pendingTab; BrainView._pendingTab = null; }
     var tab = render._tab || "brand";
     root.innerHTML =
       '<h1 class="view-title">Brain</h1>' +
@@ -6208,7 +6530,7 @@ var BrainView = (function () {
       }).join("") +
       (tab !== "meetings" ? '<input id="brain-q" placeholder="Search..." value="' + esc(render._q || "") + '" style="flex:1;min-width:160px">' : "") +
       '</div>' +
-      (tab === "brand" ? brandHTML() : tab === "knowledge" ? knowledgeHTML() : meetingsHTML());
+      (tab === "brand" ? brandHTML() : tab === "knowledge" ? knowledgeHTML() : tab === "vision" ? visionHTML() : meetingsHTML());
 
     $$("button[data-tab]", root).forEach(function (b) {
       b.onclick = function () { render._tab = b.getAttribute("data-tab"); render._q = ""; App.render(); };
@@ -6226,6 +6548,7 @@ var BrainView = (function () {
     $$("[data-brand]", root).forEach(function (n) {
       n.onclick = function () { brandNoteModal(n.getAttribute("data-brand")); };
     });
+    if (tab === "vision") bindVision(root);
     var mn = $("#meeting-new");
     if (mn) mn.onclick = function () { meetingModal(null); };
     var wr = $("#weekly-report");

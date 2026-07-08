@@ -92,3 +92,13 @@ Autonomous build session, 2026-07-07. All decisions made without user input, doc
 ## D23 — Game-style overview + canonical CLAUDE BRAIN folder
 **Decision:** Dashboard gains a player card (Director Level + XP from published films, milestones, scripts, submissions, wins; escalating thresholds), bolder typography, tighter spacing so the overview fits one screen. Canonical team storage documented as `Kollektiv Oskar Dropbox/KOLLEKTIV OSKAR/CLAUDE BRAIN/` in README + CLAUDE.md.
 **Why:** Robin wants the overview to feel like a game and read better; and he created the CLAUDE BRAIN Dropbox folder as the Brain's physical home.
+
+## D24 — Notion best-of seeded as film dossiers + vision boards
+**Decision:** The five strongest film projects from the Notion analysis (Der Junge im Nebel, Der Schrank, Bushaltestelle, Rumänischer Strassenhund, Musikvideo) ship as pre-built Film dossiers with loglines, themes, production notes and known learnings (`data/films-seed.json`). Vision boards (`data/vision.json`): "THE VISION" (from the Notion Vision-Profilbild plan) shows on the dashboard; "FESTIVAL RUN 2027" as second board; both editable in Brain → Vision (text tiles + https image tiles, multiple boards supported).
+
+## D25 — Weekly Thursday auto-report (Sandcastles)
+**Decision:** A Routine fires every Thursday 09:00 UTC (= 11:00 Swiss summer time) into this session: analyze the last 7 days via Sandcastles (best post + why, underperformer, 3 insights good/bad/improve), list 7-day growth for all accounts (YouTube via API; IG/TikTok from manual app data or flagged for manual entry), write data/reports/YYYY-MM-DD-weekly.md, commit+push, send the file to Robin proactively.
+**Note:** cron is UTC — in Swiss winter time the report arrives at 10:00; adjust the cron to `0 10 * * 4` in November if 11:00 sharp matters.
+
+## D26 — Apple dark-mode design language
+**Decision:** Switched the design system to Apple's dark-mode idiom: SF Pro system font stack, big bold sentence-case titles with tight tracking (no more uppercase display titles), flat #1C1C1E surfaces without borders/gradients, iOS-style tinted buttons/badges/nav pills, clean black canvas (vignette removed). Bold weights kept per Robin's "fette Titel" requirement.

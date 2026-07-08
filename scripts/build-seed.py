@@ -28,6 +28,8 @@ def main():
     strategy = load("strategy.json", None)
     knowledge = load("knowledge.json", None)
     brand = load("brand.json", None)
+    films_seed = load("films-seed.json", None)
+    vision = load("vision.json", None)
 
     # UTC with Z so timestamps compare correctly against the app's toISOString() values
     now = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
@@ -123,7 +125,8 @@ def main():
     # merge (new rows flow to existing users without wiping their local edits)
     content_hash = hashlib.sha256(json.dumps(
         {"ideas": ideas, "projects": projects, "festivals": festivals,
-         "brand": brand, "knowledge": knowledge},
+         "brand": brand, "knowledge": knowledge,
+         "filmsSeed": films_seed, "vision": vision},
         sort_keys=True, ensure_ascii=False).encode()).hexdigest()
     seed = {
         "version": int(content_hash[:12], 16),
@@ -134,6 +137,8 @@ def main():
         "strategy": strategy,
         "knowledge": knowledge,
         "brand": brand,
+        "filmsSeed": films_seed,
+        "vision": vision,
     }
 
     out = os.path.join(DATA, "seed.js")

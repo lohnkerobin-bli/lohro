@@ -1,0 +1,65 @@
+{
+  "source": "Best film projects distilled from Notion (WAY TO OSCAR Filme DB, Video Pipeline, Master Plan) + WAYTOOSCARKNOWLEDGE.pdf",
+  "films": [
+    {
+      "id": "film-junge-im-nebel",
+      "title": "Der Junge im Nebel",
+      "logline": "Ein Junge folgt einer Stimme in den Nebel — und muss entscheiden, welche Wahrheit er glauben will. 10–15 Min., visuell erzählt, kaum Dialog.",
+      "genre": "Drama / Festival Short",
+      "themes": "Träume, Identität, Mut",
+      "status": "script",
+      "script": "",
+      "images": [],
+      "notes": "DER Festival-Film (Spur A, Fokusprojekt).\n• Drehbuch nach McKee-Struktur, visuell/low-dialogue oder Deutsch mit engl. Untertiteln\n• Dreh: Q3 2026 (No-Budget, Mitbewohner + Freundin als Cast)\n• Post + festivaltaugliches Grading: Q4 2026\n• Einreichungen: Solothurn 2027, Winterthur; Budget CHF 2–3k für 10–15 Submissions\n• Premiere-Status heilig: erst Tier-1-Versuch (Clermont/Locarno/Sundance/Berlinale), dann Tier 2 parallel, dann CH-Premiere",
+      "learnings": ""
+    },
+    {
+      "id": "film-der-schrank",
+      "title": "Der Schrank",
+      "logline": "Ein Mensch in einem leeren Raum sortiert schwebende Schallplatten — seine Ideen — in einen Schrank. \"Severance trifft Ratatouille.\"",
+      "genre": "Experimental Short",
+      "themes": "Kreativität, Ordnung, Second Brain",
+      "status": "treatment",
+      "script": "",
+      "images": [],
+      "notes": "Detailliertes Konzept bereits in Notion (Ideen-Schrank).\n• Kein Dialog, Sony FX3\n• Kernidee: Ideen als physische Objekte (Vinyl) — visuell stark, günstig produzierbar\n• Doppelnutzen: Kurzfilm + Erklärstück für das eigene Second-Brain-System",
+      "learnings": ""
+    },
+    {
+      "id": "film-bushaltestelle",
+      "title": "Bushaltestelle",
+      "logline": "Version A: Alle starren aufs Handy, niemand spricht. Version B — dieselbe Haltestelle ohne Handys: alle lachen, lernen sich kennen.",
+      "genre": "Social Short / Makro-Drama",
+      "themes": "Verbindung, Technologie, Menschlichkeit",
+      "status": "idea",
+      "script": "",
+      "images": [],
+      "notes": "Kernaussage: \"Technologie verbindet uns digital, trennt uns aber oft physisch.\"\nBotschaften-Optionen: \"Let's connect again\" / \"Be more human\" / \"We lost the connection\"\nPerfekt als Daily-Challenge-Film mit Reel-Zweitverwertung.",
+      "learnings": ""
+    },
+    {
+      "id": "film-strassenhund",
+      "title": "Rumänischer Strassenhund",
+      "logline": "Ein geretteter Strassenhund hat jetzt ein besseres Leben — glauben die Menschen. Er vermisst Freiheit, Freunde, Abenteuer.",
+      "genre": "Drama Short (Potenzial: Spielfilm)",
+      "themes": "Freiheit, Perspektive, Dankbarkeit, Verlust",
+      "status": "idea",
+      "script": "",
+      "images": [],
+      "notes": "Thema: Zwei Perspektiven können gleichzeitig richtig sein; eine gute Tat kann gleichzeitig Verlust bedeuten.\nAusdrücklich im Second Brain behalten — Potenzial für Kurz- ODER Spielfilm.",
+      "learnings": ""
+    },
+    {
+      "id": "film-musikvideo",
+      "title": "Musikvideo — Bar bis Feuerwerk",
+      "logline": "Bar → Blickkontakt → Spannung → Flirt → Picknick → erster Kuss → Feuerwerk → emotionale Auflösung.",
+      "genre": "Musikvideo",
+      "themes": "Liebe, Tempo, Eskalation",
+      "status": "pre-production",
+      "script": "",
+      "images": [],
+      "notes": "Detailliert geplant. Begleitvideo: \"How we filmed this music video\" — dokumentierter Drehtag (Konzept, Shotlist, Licht, Objektive, Probleme, Improvisation, Grading) — nicht Tutorial, nicht Vlog.",
+      "learnings": "Aus der Planung: Bar-Sequenz (1 Min.) evtl. zu lang · erster Kuss früher = mehr Tempo · ständig muss etwas passieren · jede Szene muss die Beziehung der Figuren verändern · emotionale Eskalation sichtbar machen."
+    }
+  ]
+}

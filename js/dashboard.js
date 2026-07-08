@@ -175,6 +175,22 @@ var DashboardView = (function () {
     return '<div class="action-row">' + left + right + '</div>';
   }
 
+  function visionStripHTML() {
+    var boards = Store.get().visionBoards || [];
+    if (!boards.length) return "";
+    var b = boards[0];
+    return '<h2 class="section-title">🌟 ' + esc(b.title) +
+      ' <a href="#/brain" class="muted" style="letter-spacing:0;text-transform:none;font-weight:600;font-size:12px" onclick="BrainView._pendingTab=\'vision\'">edit boards →</a></h2>' +
+      '<div class="vision-grid">' + b.tiles.map(function (t) {
+        if (t.kind === "image" && safeUrl(t.url)) {
+          return '<div class="vision-tile image" style="background-image:url(\'' + esc(safeUrl(t.url)) + '\')">' +
+            (t.text ? '<span class="vt-caption">' + esc(t.text) + '</span>' : "") + '</div>';
+        }
+        return '<div class="vision-tile"><span class="vt-icon">' + esc(t.icon || "✨") + '</span>' +
+          '<span class="vt-text">' + esc(t.text || "") + '</span></div>';
+      }).join("") + '</div>';
+  }
+
   var LEVEL_TITLES = ["Rookie", "Creator", "Storyteller", "Filmmaker", "Director", "Auteur", "Visionary", "Festival Regular", "Award Winner", "Oscar Contender"];
 
   function playerStats() {
@@ -336,6 +352,8 @@ var DashboardView = (function () {
           '</div>' +
         '</div>' +
       '</div>' +
+
+      visionStripHTML() +
 
       '<details class="strategy-fold"><summary>🚩 All milestones</summary>' +
       '<div class="card soft">' +

@@ -30,7 +30,8 @@ var Store = (function () {
       festivalPlans: {},   // festivalId: {status, filmTitle, deadlineType, notes, updatedAt}
       brandNotes: [],      // {id, section, title, content, updatedAt} — the Brand Core
       meetings: [],        // {id, date, title, participants, transcript, decisions, actions, updatedAt}
-      films: []            // {id, title, logline, genre, themes, status, script, images[], notes, learnings, fromIdeaId, createdAt, updatedAt}
+      films: [],           // {id, title, logline, genre, themes, status, script, images[], notes, learnings, fromIdeaId, createdAt, updatedAt}
+      visionBoards: []     // {id, title, tiles: [{id, kind: text|image, icon, text, url}], updatedAt}
     };
   }
 
@@ -76,6 +77,23 @@ var Store = (function () {
     });
   }
 
+  var EPOCH = "1970-01-01T00:00:00.000Z";
+
+  function seedFilms() {
+    var f = window.SEED && window.SEED.filmsSeed;
+    if (!f || !Array.isArray(f.films)) return [];
+    return f.films.map(function (x) {
+      return Object.assign({ images: [], script: "", learnings: "", fromIdeaId: null, createdAt: EPOCH, updatedAt: EPOCH }, x);
+    });
+  }
+  function seedVision() {
+    var v = window.SEED && window.SEED.vision;
+    if (!v || !Array.isArray(v.boards)) return [];
+    return v.boards.map(function (b) {
+      return { id: b.id, title: b.title, tiles: (b.tiles || []).slice(), updatedAt: EPOCH };
+    });
+  }
+
   function seedInto(s) {
     var seed = window.SEED || {};
     if (Array.isArray(seed.ideas) && s.ideas.length === 0) {
@@ -85,6 +103,8 @@ var Store = (function () {
       s.projects = seed.projects.slice();
     }
     if (s.brandNotes.length === 0) s.brandNotes = seedBrandNotes();
+    if (s.films.length === 0) s.films = seedFilms();
+    if (s.visionBoards.length === 0) s.visionBoards = seedVision();
     if (s.milestones.length === 0) s.milestones = defaultMilestones();
     return s;
   }
@@ -113,6 +133,8 @@ var Store = (function () {
     if (Array.isArray(seed.ideas)) s.ideas = mergeById(seed.ideas.map(normIdea), s.ideas);
     if (Array.isArray(seed.projects)) s.projects = mergeById(seed.projects, s.projects);
     s.brandNotes = mergeById(seedBrandNotes(), s.brandNotes);
+    s.films = mergeById(seedFilms(), s.films);
+    s.visionBoards = mergeById(seedVision(), s.visionBoards);
     s.meta.seedVersion = v;
     return true;
   }
@@ -186,7 +208,7 @@ var Store = (function () {
 
   // collection registry: every syncable collection is declared once so
   // merge/replace/export can never silently skip one
-  var ID_COLLECTIONS = ["ideas", "projects", "milestones", "followers", "brandNotes", "meetings", "films"];
+  var ID_COLLECTIONS = ["ideas", "projects", "milestones", "followers", "brandNotes", "meetings", "films", "visionBoards"];
   var KEYED_MAPS = ["challengeDays", "festivalPlans"];
 
   function importMerge(obj) {

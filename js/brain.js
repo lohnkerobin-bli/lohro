@@ -6,6 +6,7 @@ var BrainView = (function () {
   var TABS = [
     { key: "brand", label: "🎨 Brand Core" },
     { key: "knowledge", label: "📚 Knowledge" },
+    { key: "vision", label: "🌟 Vision" },
     { key: "meetings", label: "🗓 Meetings & Reports" }
   ];
 
@@ -110,6 +111,101 @@ var BrainView = (function () {
           x.entries.map(function (e) { return '<li>' + esc(e) + '</li>'; }).join("") +
           '</ul></div>';
       }).join("") + '</div>';
+  }
+
+  /* ---------- Vision Boards ---------- */
+
+  function addTileModal(boardId) {
+    var s = Store.get();
+    var board = s.visionBoards.find(function (b) { return b.id === boardId; });
+    if (!board) return;
+    openModal(
+      '<h3>Add vision tile — ' + esc(board.title) + '</h3>' +
+      '<label class="field"><span>Icon (emoji)</span><input id="v-icon" placeholder="🏆" maxlength="4"></label>' +
+      '<label class="field"><span>Text (the vision, one line)</span><input id="v-text" placeholder="e.g. Standing on the Locarno stage"></label>' +
+      '<label class="field"><span>OR image link (https)</span><input id="v-url" placeholder="https://... (Dropbox shared link, poster, still)"></label>' +
+      '<div class="modal-actions"><button class="ghost" onclick="closeModal()">Cancel</button>' +
+      '<button class="primary" id="v-save">Add</button></div>');
+    $("#v-save").onclick = function () {
+      var url = $("#v-url").value.trim();
+      var text = $("#v-text").value.trim();
+      if (!url && !text) { toast("Add a text or an image link", true); return; }
+      if (url && !safeUrl(url)) { toast("Only https:// links", true); return; }
+      board.tiles.push(url
+        ? { id: uid("vt"), kind: "image", url: url, text: text }
+        : { id: uid("vt"), kind: "text", icon: $("#v-icon").value.trim() || "✨", text: text });
+      board.updatedAt = new Date().toISOString();
+      Store.save(); closeModal(); toast("Tile added"); App.render();
+    };
+  }
+
+  function visionTileHTML(t, editable) {
+    if (t.kind === "image" && safeUrl(t.url)) {
+      return '<div class="vision-tile image" style="background-image:url(\'' + esc(safeUrl(t.url)) + '\')">' +
+        (t.text ? '<span class="vt-caption">' + esc(t.text) + '</span>' : "") +
+        (editable ? '<button class="vt-del" data-del-tile="' + esc(t.id) + '">✕</button>' : "") + '</div>';
+    }
+    return '<div class="vision-tile">' +
+      '<span class="vt-icon">' + esc(t.icon || "✨") + '</span>' +
+      '<span class="vt-text">' + esc(t.text || "") + '</span>' +
+      (editable ? '<button class="vt-del" data-del-tile="' + esc(t.id) + '">✕</button>' : "") + '</div>';
+  }
+
+  function visionHTML() {
+    var s = Store.get();
+    return '<div class="row between mb">' +
+      '<span class="muted" style="font-size:13px">Functional, not decorative — daily orientation. The first board shows on the dashboard.</span>' +
+      '<button class="primary small" id="board-new">+ New board</button></div>' +
+      s.visionBoards.map(function (b) {
+        return '<h2 class="section-title">🌟 ' + esc(b.title) +
+          ' <button class="small ghost" data-add-tile="' + esc(b.id) + '">+ tile</button>' +
+          ' <button class="small ghost danger" data-del-board="' + esc(b.id) + '">delete board</button></h2>' +
+          '<div class="vision-grid mb">' + b.tiles.map(function (t) { return visionTileHTML(t, true); }).join("") +
+          (b.tiles.length === 0 ? '<div class="empty-note">Empty board — add your first vision tile.</div>' : "") + '</div>';
+      }).join("") +
+      (s.visionBoards.length === 0 ? '<div class="empty-note">No boards yet.</div>' : "");
+  }
+
+  function bindVision(root) {
+    var s = Store.get();
+    var nb = $("#board-new");
+    if (nb) nb.onclick = function () {
+      openModal('<h3>New vision board</h3>' +
+        '<label class="field"><span>Title</span><input id="nb-title" placeholder="e.g. FEATURE FILM 2029"></label>' +
+        '<div class="modal-actions"><button class="ghost" onclick="closeModal()">Cancel</button>' +
+        '<button class="primary" id="nb-save">Create</button></div>');
+      $("#nb-save").onclick = function () {
+        var t = $("#nb-title").value.trim();
+        if (!t) { toast("Title required", true); return; }
+        s.visionBoards.push({ id: uid("vb"), title: t, tiles: [], updatedAt: new Date().toISOString() });
+        Store.save(); closeModal(); App.render();
+      };
+    };
+    $$("[data-add-tile]", root).forEach(function (b) {
+      b.onclick = function () { addTileModal(b.getAttribute("data-add-tile")); };
+    });
+    $$("[data-del-board]", root).forEach(function (b) {
+      b.onclick = function () {
+        var id = b.getAttribute("data-del-board");
+        openModal('<h3>Delete this board?</h3><div class="modal-actions"><button class="ghost" onclick="closeModal()">Cancel</button><button class="primary" id="db-yes">Delete</button></div>');
+        $("#db-yes").onclick = function () {
+          s.visionBoards = s.visionBoards.filter(function (x) { return x.id !== id; });
+          Store.save(); closeModal(); App.render();
+        };
+      };
+    });
+    $$("[data-del-tile]", root).forEach(function (b) {
+      b.onclick = function (e) {
+        e.stopPropagation();
+        var tid = b.getAttribute("data-del-tile");
+        s.visionBoards.forEach(function (board) {
+          var before = board.tiles.length;
+          board.tiles = board.tiles.filter(function (t) { return t.id !== tid; });
+          if (board.tiles.length !== before) board.updatedAt = new Date().toISOString();
+        });
+        Store.save(); App.render();
+      };
+    });
   }
 
   /* ---------- Meetings & Weekly Report ---------- */
@@ -290,6 +386,7 @@ var BrainView = (function () {
   /* ---------- render ---------- */
 
   function render(root) {
+    if (BrainView._pendingTab) { render._tab = BrainView._pendingTab; BrainView._pendingTab = null; }
     var tab = render._tab || "brand";
     root.innerHTML =
       '<h1 class="view-title">Brain</h1>' +
@@ -300,7 +397,7 @@ var BrainView = (function () {
       }).join("") +
       (tab !== "meetings" ? '<input id="brain-q" placeholder="Search..." value="' + esc(render._q || "") + '" style="flex:1;min-width:160px">' : "") +
       '</div>' +
-      (tab === "brand" ? brandHTML() : tab === "knowledge" ? knowledgeHTML() : meetingsHTML());
+      (tab === "brand" ? brandHTML() : tab === "knowledge" ? knowledgeHTML() : tab === "vision" ? visionHTML() : meetingsHTML());
 
     $$("button[data-tab]", root).forEach(function (b) {
       b.onclick = function () { render._tab = b.getAttribute("data-tab"); render._q = ""; App.render(); };
@@ -318,6 +415,7 @@ var BrainView = (function () {
     $$("[data-brand]", root).forEach(function (n) {
       n.onclick = function () { brandNoteModal(n.getAttribute("data-brand")); };
     });
+    if (tab === "vision") bindVision(root);
     var mn = $("#meeting-new");
     if (mn) mn.onclick = function () { meetingModal(null); };
     var wr = $("#weekly-report");
