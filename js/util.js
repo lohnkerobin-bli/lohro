@@ -130,6 +130,30 @@ function sparkline(points, opts) {
     dots + "</svg>";
 }
 
+/* ---------- ring gauge (Oura-style circular progress) ---------- */
+function ringGauge(percent, opts) {
+  opts = opts || {};
+  var size = opts.size || 150;
+  var stroke = opts.stroke || 9;
+  var r = (size - stroke) / 2 - 2;
+  var c = 2 * Math.PI * r;
+  var pct = Math.max(0, Math.min(100, percent || 0));
+  var dash = (pct / 100) * c;
+  var color = opts.color || "#2A9D8F";
+  var id = "rg" + Math.random().toString(36).slice(2, 7);
+  return '<svg viewBox="0 0 ' + size + " " + size + '" style="width:100%;max-width:' + size + 'px" role="img">' +
+    '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="1" y2="1">' +
+    '<stop offset="0%" stop-color="' + color + '" stop-opacity=".55"/>' +
+    '<stop offset="100%" stop-color="' + color + '"/></linearGradient></defs>' +
+    '<circle cx="' + size / 2 + '" cy="' + size / 2 + '" r="' + r + '" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="' + stroke + '"/>' +
+    '<circle cx="' + size / 2 + '" cy="' + size / 2 + '" r="' + r + '" fill="none" stroke="url(#' + id + ')" stroke-width="' + stroke + '"' +
+    ' stroke-linecap="round" stroke-dasharray="' + dash.toFixed(1) + " " + c.toFixed(1) + '"' +
+    ' transform="rotate(-90 ' + size / 2 + " " + size / 2 + ')"/>' +
+    '<text x="50%" y="47%" text-anchor="middle" fill="#F1FAEE" font-size="' + size * 0.19 + '" font-weight="800" font-family="Futura, Avenir Next, system-ui, sans-serif">' + esc(opts.value || "") + '</text>' +
+    '<text x="50%" y="62%" text-anchor="middle" fill="#8F958D" font-size="' + size * 0.078 + '" letter-spacing="1">' + esc(opts.sub || "") + '</text>' +
+    '</svg>';
+}
+
 /* ---------- download / upload ---------- */
 function downloadBlob(content, filename, mime) {
   var blob = new Blob([content], { type: mime });

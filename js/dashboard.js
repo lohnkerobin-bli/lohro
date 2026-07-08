@@ -193,96 +193,98 @@ var DashboardView = (function () {
 
   function render(root) {
     var s = Store.get();
+    var today = todayISO();
     var ig = latestFollowers("instagram");
     var yt = latestFollowers("youtube");
     var proj = growthProjection();
     var ch = challengeStats();
     var goal = s.settings.followerGoal;
     var igCount = ig ? ig.count : 0;
-    var pct = Math.min(100, (igCount / goal) * 100);
-    var challengeStartsIn = daysBetween(todayISO(), s.settings.challengeStart);
+    var igPct = Math.min(100, (igCount / goal) * 100);
+    var challengeStartsIn = daysBetween(today, s.settings.challengeStart);
+
+    // journey ring: how far along the road from challenge start to the ceremony
+    var journeyStart = s.settings.challengeStart;
+    var journeyTotal = Math.max(daysBetween(journeyStart, s.settings.oscarCeremonyDate), 1);
+    var journeyDone = Math.max(0, Math.min(daysBetween(journeyStart, today), journeyTotal));
+    var daysLeft = Math.max(0, daysBetween(today, s.settings.oscarCeremonyDate));
+
+    var challengeRingPct = ch.started ? ch.elapsed > 0 ? (ch.published / ch.elapsed) * 100 : 0
+      : Math.max(4, 100 - (challengeStartsIn / 30) * 100);
 
     var igPoints = platformSeries("instagram")
       .map(function (f) { return { x: parseISO(f.date).getTime(), y: f.count }; });
 
-    var deadlines = nextDeadlines(5);
+    var deadlines = nextDeadlines(4);
     var milestones = s.milestones.slice().sort(function (a, b) {
       if (a.done !== b.done) return a.done ? 1 : -1;
       return (a.date || "9999") < (b.date || "9999") ? -1 : 1;
     });
+    var hour = new Date().getHours();
+    var greeting = hour < 5 ? "Good night" : hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
 
     root.innerHTML =
-      '<h1 class="view-title">Dashboard</h1>' +
-      '<p class="view-sub">Two tracks, one goal. Track A: festival films. Track B: 1M followers. Destination: the Oscar stage.</p>' +
+      '<div class="hero-head">' +
+        '<div><div class="hero-date">' + new Date().toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" }) + '</div>' +
+        '<h1 class="hero-greeting">' + greeting + ', ' + esc(s.settings.userName) + '.</h1>' +
+        '<p class="hero-sub">Every day one film closer.</p></div>' +
+      '</div>' +
+
+      '<div class="score-row">' +
+        '<div class="score-card clickable" onclick="location.hash=\'#/settings\'">' +
+          ringGauge((journeyDone / journeyTotal) * 100, { color: "#D4AF37", value: fmtCompact(daysLeft), sub: "DAYS TO OSCARS" }) +
+          '<div class="score-name">🏆 The Journey</div>' +
+          '<div class="score-hint">' + esc(s.settings.oscarCeremonyLabel) + '</div>' +
+        '</div>' +
+        '<div class="score-card clickable" id="score-followers">' +
+          ringGauge(igPct, { color: "#2A9D8F", value: fmtCompact(igCount), sub: "OF " + fmtCompact(goal).toUpperCase() }) +
+          '<div class="score-name">📈 Followers</div>' +
+          '<div class="score-hint">' +
+          (proj && proj.eta
+            ? "+" + fmtNum(Math.round(proj.perDay)) + "/day · 1M ~" + fmtDateShort(proj.eta)
+            : ig ? "updated " + fmtDateShort(ig.date) : "tap to add your first data point") +
+          '</div>' +
+        '</div>' +
+        '<div class="score-card clickable" onclick="location.hash=\'#/challenge\'">' +
+          (ch.started
+            ? ringGauge(challengeRingPct, { color: "#E63946", value: String(ch.streak), sub: "DAY STREAK" })
+            : ringGauge(challengeRingPct, { color: "#E63946", value: String(challengeStartsIn), sub: "DAYS TO START" })) +
+          '<div class="score-name">🎬 Daily Challenge</div>' +
+          '<div class="score-hint">' + (ch.started
+            ? ch.published + " published · " + Math.round(challengeRingPct) + "% hit rate"
+            : "one short film every day from " + fmtDateShort(s.settings.challengeStart)) + '</div>' +
+        '</div>' +
+      '</div>' +
 
       todayStripHTML() +
 
-      '<div class="grid cols-2">' +
-        '<div class="card accent-gold">' +
-          '<div class="row between"><span class="stat-label">🏆 Countdown to the Oscars</span>' +
-          '<span class="badge gold">' + esc(s.settings.oscarCeremonyLabel) + '</span></div>' +
-          '<div class="countdown mt" id="oscar-countdown">' + countdownHTML(s.settings.oscarCeremonyDate) + '</div>' +
+      '<div class="grid cols-2 mt">' +
+        '<div class="card soft chart-box">' +
+          '<div class="row between"><span class="stat-label">Instagram growth</span>' +
+          '<button class="primary small" id="add-follower">+ Add</button></div>' +
+          '<div class="mt">' + sparkline(igPoints, { goal: goal }) + '</div>' +
+          '<div class="stat-hint mt">YouTube: ' + fmtCompact(yt ? yt.count : 0) + (yt ? ' · updated ' + fmtDateShort(yt.date) : " · no data yet") + '</div>' +
         '</div>' +
-        '<div class="card accent-red">' +
-          '<div class="row between"><span class="stat-label">🎬 Daily Short Film Challenge</span>' +
-          (ch.started
-            ? '<span class="badge red">LIVE</span>'
-            : '<span class="badge">starts in ' + challengeStartsIn + ' days</span>') +
-          '</div>' +
-          '<div class="row mt" style="gap:26px">' +
-            '<div><div class="stat-value">' + ch.published + '</div><div class="stat-hint">films published</div></div>' +
-            '<div><div class="stat-value">' + ch.streak + '<span class="unit"> 🔥</span></div><div class="stat-hint">day streak</div></div>' +
-            '<div><div class="stat-value">' + (ch.started ? ch.elapsed : 0) + '</div><div class="stat-hint">days elapsed</div></div>' +
-          '</div>' +
-          '<div class="mt"><a href="#/challenge" class="btn">Open challenge board →</a></div>' +
-        '</div>' +
-      '</div>' +
 
-      '<h2 class="section-title">Track B — Follower Growth</h2>' +
-      '<div class="grid cols-3">' +
-        '<div class="card accent-teal">' +
-          '<span class="stat-label">Instagram @lohro</span>' +
-          '<div class="stat-value">' + fmtCompact(igCount) + '</div>' +
-          '<div class="progress mt"><div style="width:' + pct.toFixed(2) + '%"></div></div>' +
-          '<div class="stat-hint mt">' + pct.toFixed(1) + '% of ' + fmtCompact(goal) + ' goal' +
-          (ig ? ' · updated ' + fmtDateShort(ig.date) : " · no data yet") + '</div>' +
-        '</div>' +
-        '<div class="card accent-blue">' +
-          '<span class="stat-label">YouTube — Way to Oscar</span>' +
-          '<div class="stat-value">' + fmtCompact(yt ? yt.count : 0) + '</div>' +
-          '<div class="stat-hint">' + (yt ? 'updated ' + fmtDateShort(yt.date) : "no data yet") + '</div>' +
-        '</div>' +
-        '<div class="card">' +
-          '<span class="stat-label">Projection to 1M</span>' +
-          (proj && proj.eta
-            ? '<div class="stat-value">' + fmtDate(proj.eta) + '</div><div class="stat-hint">+' + fmtNum(Math.round(proj.perDay)) + '/day · ' +
-              (proj.eta <= s.settings.followerGoalDate ? '<span class="badge teal">on track</span>' : '<span class="badge red">behind goal date</span>') + '</div>'
-            : '<div class="stat-value">—</div><div class="stat-hint">add ≥2 Instagram data points to project</div>') +
+        '<div class="card soft">' +
+          '<div class="row between"><span class="stat-label">Next deadlines</span>' +
+          '<a href="#/festivals" class="muted" style="font-size:12px">all festivals →</a></div>' +
+          (deadlines.length === 0 ? '<div class="empty-note">No upcoming deadlines.</div>' :
+            '<div class="mt">' + deadlines.map(function (r) {
+              var days = daysBetween(today, r.deadline.date);
+              return '<div class="list-row clickable" onclick="location.hash=\'#/festivals\'">' +
+                '<div class="dl-days ' + (days <= 21 ? "hot" : "") + '"><span>' + days + '</span><small>days</small></div>' +
+                '<div style="flex:1;min-width:0"><div class="lr-title">' + esc(r.festival.name) + '</div>' +
+                '<div class="lr-sub">' + fmtDate(r.deadline.date) + ' · ' + esc(r.deadline.type) +
+                (r.deadline.estimated ? " · est." : "") +
+                (r.festival.oscarQualifying ? ' · <span style="color:#D4AF37">Oscar-qualifying</span>' : "") + '</div></div>' +
+              '</div>';
+            }).join("") + '</div>') +
         '</div>' +
       '</div>' +
-      '<div class="card mt chart-box">' +
-        '<div class="row between"><span class="stat-label">Instagram growth</span>' +
-        '<button class="primary small" id="add-follower">+ Add data point</button></div>' +
-        '<div class="mt">' + sparkline(igPoints, { goal: goal }) + '</div>' +
-      '</div>' +
-
-      '<h2 class="section-title">Next Festival Deadlines</h2>' +
-      (deadlines.length === 0
-        ? '<div class="empty-note">No upcoming deadlines found.</div>'
-        : '<div class="table-wrap"><table><thead><tr><th>Deadline</th><th>Festival</th><th>Type</th><th>Fee</th><th>Oscar-qualifying</th></tr></thead><tbody>' +
-          deadlines.map(function (r) {
-            var days = daysBetween(todayISO(), r.deadline.date);
-            return '<tr class="clickable" onclick="location.hash=\'#/festivals\'">' +
-              '<td><span class="mono">' + fmtDate(r.deadline.date) + '</span> <span class="badge ' + (days <= 21 ? "red" : "gray") + '">' + days + 'd</span>' +
-              (r.deadline.estimated ? ' <span class="badge">est.</span>' : "") + '</td>' +
-              '<td><strong>' + esc(r.festival.name) + '</strong><br><span class="muted">' + esc(r.festival.city || "") + ", " + esc(r.festival.country || "") + '</span></td>' +
-              '<td>' + esc(r.deadline.type) + '</td>' +
-              '<td>' + (r.deadline.feeAmount != null ? r.deadline.feeAmount + " " + esc(r.deadline.feeCurrency || "") : "—") + '</td>' +
-              '<td>' + (r.festival.oscarQualifying ? '<span class="badge gold">YES</span>' : '<span class="badge">no</span>') + '</td></tr>';
-          }).join("") + "</tbody></table></div>") +
 
       '<h2 class="section-title">Milestones</h2>' +
-      '<div class="card">' +
+      '<div class="card soft">' +
         milestones.map(function (m) {
           return '<div class="milestone-row ' + (m.done ? "done" : "") + '">' +
             '<input type="checkbox" data-ms="' + esc(m.id) + '" ' + (m.done ? "checked" : "") + '>' +
@@ -294,9 +296,11 @@ var DashboardView = (function () {
         }).join("") +
         '<div class="mt"><button id="add-milestone">+ Add milestone</button></div>' +
       '</div>' +
-      strategyHTML();
+
+      '<details class="strategy-fold"><summary>Strategy briefing — from your master plan</summary>' + strategyHTML() + '</details>';
 
     $("#add-follower").onclick = addFollowerModal;
+    $("#score-followers").onclick = addFollowerModal;
     $("#add-milestone").onclick = addMilestoneModal;
     $$("input[data-ms]", root).forEach(function (cb) {
       cb.onchange = function () {
@@ -313,13 +317,7 @@ var DashboardView = (function () {
       };
     });
 
-    // live countdown tick
-    if (tickTimer) clearInterval(tickTimer);
-    tickTimer = setInterval(function () {
-      var elCd = $("#oscar-countdown");
-      if (!elCd) { clearInterval(tickTimer); tickTimer = null; return; }
-      elCd.innerHTML = countdownHTML(Store.get().settings.oscarCeremonyDate);
-    }, 1000);
+    if (tickTimer) { clearInterval(tickTimer); tickTimer = null; }
   }
 
   return { render: render };
