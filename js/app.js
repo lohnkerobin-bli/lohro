@@ -8,6 +8,7 @@ var App = (function () {
     festivals: FestivalsView,
     ideas: IdeasView,
     projects: ProjectsView,
+    knowledge: KnowledgeView,
     settings: SettingsView
   };
 

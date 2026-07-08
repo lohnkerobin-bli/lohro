@@ -26,6 +26,7 @@ def main():
     films = load("notion-films.json", [])
     festivals = load("festivals.json", {"academyRules": None, "festivals": []})
     strategy = load("strategy.json", None)
+    knowledge = load("knowledge.json", None)
 
     # UTC with Z so timestamps compare correctly against the app's toISOString() values
     now = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
@@ -129,6 +130,7 @@ def main():
         "projects": projects,
         "festivals": festivals,
         "strategy": strategy,
+        "knowledge": knowledge,
     }
 
     out = os.path.join(DATA, "seed.js")

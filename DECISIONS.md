@@ -68,3 +68,7 @@ Autonomous build session, 2026-07-07. All decisions made without user input, doc
 
 ## D17 — Git hygiene
 **Decision:** Commit after each major step (scaffold, data, features, polish). Branch `claude/oscar-command-center-gzj8uu` as instructed.
+
+## D18 — Knowledge base from uploaded PDF
+**Decision:** Robin's uploaded `WAYTOOSCARKNOWLEDGE.pdf` (consolidated ChatGPT export, parts 01–24) was distilled into `data/knowledge.json` (12 categorized sections, German verbatim) and shipped as a new searchable **Knowledge** view. The original PDF is preserved in `data/` for the team.
+**Why:** The export is the densest single source of Robin's operating system (mission chain, content strategy, film craft, decision rules, routines). It also independently confirms the two load-bearing facts the Notion master plan lacked: the Daily Short Film Challenge start (15 July 2026) and the 2026 goal of 1M Instagram followers.

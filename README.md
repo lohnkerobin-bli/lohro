@@ -16,6 +16,7 @@ Built for Kollektiv Oskar — Robin, Simon & Jasmin.
 | **Festivals** | Database of Oscar-qualifying short film festivals (researched July 2026) with deadlines calendar, fees, premiere rules, and your per-festival submission plan |
 | **Ideas** | Idea vault imported from the Notion Second Brain + Ideen-Schrank, searchable, filterable, extendable |
 | **Projects** | Everything from the Notion video/YouTube pipelines: short films, features, reels, YouTube episodes |
+| **Knowledge** | Searchable master knowledge base distilled from the consolidated ChatGPT export (mission, content strategy, film craft, decision rules, routines) |
 | **Data & Settings** | Export/Import for the Dropbox team workflow, goal settings, reset |
 
 ## Run it
