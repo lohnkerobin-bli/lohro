@@ -60,6 +60,90 @@
       "images": [],
       "notes": "Detailliert geplant. Begleitvideo: \"How we filmed this music video\" — dokumentierter Drehtag (Konzept, Shotlist, Licht, Objektive, Probleme, Improvisation, Grading) — nicht Tutorial, nicht Vlog.",
       "learnings": "Aus der Planung: Bar-Sequenz (1 Min.) evtl. zu lang · erster Kuss früher = mehr Tempo · ständig muss etwas passieren · jede Szene muss die Beziehung der Figuren verändern · emotionale Eskalation sichtbar machen."
+    },
+    {
+      "id": "film-mauern",
+      "title": "Mauern",
+      "logline": "Jeder Mensch baut Mauern, die ihn davon abhalten, sein volles Potenzial zu leben — bis der Moment kommt, in dem eine einstürzt.",
+      "genre": "Music-Driven Short / Festival",
+      "themes": "Glaube, Potenzial, Befreiung",
+      "status": "idea",
+      "notes": "Basiert auf dem christlichen Song 'Stürzt diese Mauer ein'. Explizit geplant: Festival-Einreichung + Behind-the-Scenes-Doku. Jeder hat etwas in sich, das inspiriert — der Film macht die inneren Mauern sichtbar.",
+      "images": [],
+      "script": "",
+      "learnings": ""
+    },
+    {
+      "id": "film-zufluchtsort",
+      "title": "Zufluchtsort",
+      "logline": "Dankbarkeit und Glaube als Cheatcode: ein Ort, an dem man sich vollkommen wohlfühlen darf.",
+      "genre": "Personal Short",
+      "themes": "Dankbarkeit, Glaube, Heimat",
+      "status": "idea",
+      "notes": "Teil 1: Dankbarkeit für den Zufluchtsort (symbolisch: im Zimmer sitzend). Persönlich, ehrlich, cinematisch — passt perfekt als früher Challenge-Film mit Tiefe.",
+      "images": [],
+      "script": "",
+      "learnings": ""
+    },
+    {
+      "id": "film-erfolgsexperiment",
+      "title": "Das Erfolgs-Experiment",
+      "logline": "Ein Wissenschaftler liest die Biografien der erfolgreichsten Menschen der Geschichte und fragt sich: Lässt sich Erfolg reproduzieren? Sein Testobjekt: ein Kind.",
+      "genre": "High-Concept Short (Potenzial: Spielfilm)",
+      "themes": "Erfolg, Ethik, Kindheit, Determinismus",
+      "status": "idea",
+      "notes": "Fertige Logline aus dem Second Brain. Starkes High-Concept mit moralischem Konflikt — universelle Wahrheit: Erfolg lässt sich nicht ohne Preis erzwingen.",
+      "images": [],
+      "script": "",
+      "learnings": ""
+    },
+    {
+      "id": "film-junge-im-park",
+      "title": "Der Junge im Park",
+      "logline": "Ein Junge auf einer Parkwiese wird plötzlich winzig klein — Grashalme werden Bäume, Käfer werden Begegnungen, Tautropfen werden Seen.",
+      "genre": "Visual Short / VFX",
+      "themes": "Perspektive, Staunen, Kindheit",
+      "status": "idea",
+      "notes": "Rein visuell erzählbar, kein Dialog nötig — ideal für FX3 + AI-VFX-Experimente (Higgsfield/Runway). Könnte Signature-Piece für die visuelle Handschrift werden.",
+      "images": [],
+      "script": "",
+      "learnings": ""
+    },
+    {
+      "id": "film-spielfilm-traum",
+      "title": "SPIELFILM — Wenn du an deinen Traum glaubst",
+      "logline": "Kern: AURA — das Merken, Spüren und Leben der eigenen Ausstrahlung. Ein Film über das Truly-sich-selbst-Sein.",
+      "genre": "Spielfilm (Langfilm)",
+      "themes": "AURA, Identität, Traum, Richtung schlägt Punkt",
+      "status": "treatment",
+      "notes": "Master-Dokument mit allen Infos existiert in Notion. Filmförderung mehrfach eingereicht — Prozess wird öffentlich dokumentiert (Social-Media-Journey). Kern-Erkenntnis als Fundament: 'Richtung schlägt Punkt' — Menschen entscheiden sich nicht, wo sie hinwollen. Vorbereitung läuft über die Festival-Kurzfilme.",
+      "images": [],
+      "script": "",
+      "learnings": ""
+    },
+    {
+      "id": "film-sebis-bar",
+      "title": "Hochformat-Serie: Sebis Bar — EP1 Jogginghose",
+      "logline": "Comedy-Kurzfilm-Serie im Hochformat, gedreht in Sebis Body Bar. Episode 1: Jogginghose trifft Träumer-Sequenz.",
+      "genre": "Comedy Short-Serie (9:16)",
+      "themes": "Humor, Träume, Alltag",
+      "status": "pre-production",
+      "notes": "Location gesichert (mit Besitzer besprochen). Teil des 4-Projekte-Förderpakets. Hochformat = direkt Social-tauglich, jede Episode ist gleichzeitig Reel-Content. Makro-Drama-Muskel trainieren.",
+      "images": [],
+      "script": "",
+      "learnings": ""
+    },
+    {
+      "id": "film-einatmen",
+      "title": "Einatmen & Ausatmen",
+      "logline": "\"Es gibt Phasen, in denen man ausatmet, und Phasen, in denen man einatmet.\" — Mums Satz am Telefon als cinematischer Zimmer-Film.",
+      "genre": "Poetic Short / Reel",
+      "themes": "Phasen, Familie, Ruhe",
+      "status": "idea",
+      "notes": "Song: 'Jamil Jamie / Jamil Nami X 2020'. Klein, ehrlich, sofort drehbar im Zimmer — perfekter Daily-Challenge-Film mit emotionalem Kern.",
+      "images": [],
+      "script": "",
+      "learnings": ""
     }
   ]
 }

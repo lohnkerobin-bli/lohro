@@ -45,6 +45,8 @@ var ChallengeView = (function () {
       '<button class="primary" id="d-save">Save</button></div>';
     openModal(html);
     $("#d-save").onclick = function () {
+      var wasPublished = s.challengeDays[dateISO] && s.challengeDays[dateISO].status === "published";
+      var nowPublished = $("#d-status").value === "published";
       s.challengeDays[dateISO] = {
         date: dateISO,
         title: $("#d-title").value.trim(),
@@ -54,7 +56,14 @@ var ChallengeView = (function () {
         learnings: $("#d-learnings").value.trim(),
         updatedAt: new Date().toISOString()
       };
-      Store.save(); closeModal(); toast("Day " + dayNum + " saved"); App.render();
+      Store.save(); closeModal();
+      if (nowPublished && !wasPublished) {
+        confetti();
+        toast("🎬 Day " + dayNum + " published — see you tomorrow!");
+      } else {
+        toast("Day " + dayNum + " saved");
+      }
+      App.render();
     };
     var del = $("#d-delete");
     if (del) del.onclick = function () {

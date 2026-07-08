@@ -162,6 +162,44 @@ function ringGauge(percent, opts) {
     '</svg>';
 }
 
+/* ---------- confetti (dopamine, zero deps) ---------- */
+function confetti(opts) {
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var colors = ["#E8871E", "#2FA39A", "#E63946", "#B04A93", "#E3A72F", "#F6EEDD"];
+  var cv = document.createElement("canvas");
+  cv.style.cssText = "position:fixed;inset:0;pointer-events:none;z-index:400";
+  cv.width = innerWidth; cv.height = innerHeight;
+  document.body.appendChild(cv);
+  var ctx = cv.getContext("2d");
+  var n = (opts && opts.count) || 90;
+  var parts = [];
+  for (var i = 0; i < n; i++) {
+    parts.push({
+      x: cv.width / 2 + (Math.random() - 0.5) * cv.width * 0.5,
+      y: cv.height * 0.35,
+      vx: (Math.random() - 0.5) * 14,
+      vy: -Math.random() * 13 - 4,
+      w: 6 + Math.random() * 6, h: 8 + Math.random() * 8,
+      rot: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.3,
+      c: colors[i % colors.length]
+    });
+  }
+  var t0 = performance.now();
+  (function frame(t) {
+    var dt = (t - t0) / 1000;
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    parts.forEach(function (p) {
+      p.x += p.vx; p.y += p.vy; p.vy += 0.45; p.rot += p.vr;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+      ctx.globalAlpha = Math.max(0, 1 - dt / 1.6);
+      ctx.fillStyle = p.c; ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    });
+    if (dt < 1.6) requestAnimationFrame(frame);
+    else cv.remove();
+  })(t0);
+}
+
 /* ---------- download / upload ---------- */
 function downloadBlob(content, filename, mime) {
   var blob = new Blob([content], { type: mime });

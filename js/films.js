@@ -199,8 +199,13 @@ var FilmsView = (function () {
         : '<div class="grid cols-3">' + films.map(function (f) {
             var st = statusInfo(f.status);
             var cover = (f.images.find(function (i) { return /\.(jpe?g|png|webp|gif|avif)(\?|$)/i.test(safeUrl(i.url)); }) || {}).url;
+            var posterHue = { gray: "#8B7355", blue: "#2E86AB", gold: "#E8871E", red: "#E63946", teal: "#2FA39A" }[st.cls] || "#8B7355";
             return '<div class="card soft ' + st.tint + ' clickable film-card" data-film="' + esc(f.id) + '">' +
-              (cover ? '<div class="film-cover" style="background-image:url(\'' + esc(safeUrl(cover)) + '\')"></div>' : '<div class="film-cover empty">🎬</div>') +
+              (cover
+                ? '<div class="film-cover" style="background-image:url(\'' + esc(safeUrl(cover)) + '\')"></div>'
+                : '<div class="film-cover poster" style="--ph:' + posterHue + '">' +
+                  '<span class="poster-initial">' + esc((f.title || "?").replace(/^SPIELFILM\s*—\s*/i, "").charAt(0).toUpperCase()) + '</span>' +
+                  '<span class="poster-strip"></span></div>') +
               '<div class="row between mt"><strong style="font-size:15px">' + esc(f.title) + '</strong>' +
               '<span class="badge ' + st.cls + '">' + st.label + '</span></div>' +
               (f.logline ? '<div class="muted mt" style="font-size:12.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">' + esc(f.logline) + '</div>' : "") +

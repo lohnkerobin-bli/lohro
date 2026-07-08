@@ -216,6 +216,14 @@ var DashboardView = (function () {
 
   function playerCardHTML() {
     var p = playerStats();
+    // dopamine: celebrate level-ups once per level (persisted across sessions)
+    try {
+      var seen = parseInt(localStorage.getItem("wto-last-level") || "0", 10);
+      if (p.level > seen) {
+        localStorage.setItem("wto-last-level", String(p.level));
+        if (seen > 0) setTimeout(function () { confetti({ count: 130 }); toast("🏆 LEVEL UP — " + p.title + "!"); }, 400);
+      }
+    } catch (e) {}
     return '<div class="player-card">' +
       '<div class="pc-level"><span class="pc-lvl-label">LVL</span><span class="pc-lvl-num">' + p.level + '</span></div>' +
       '<div class="pc-body">' +
@@ -338,7 +346,7 @@ var DashboardView = (function () {
               '<div style="flex:1;min-width:0"><div class="lr-title">' + esc(r.festival.name) + '</div>' +
               '<div class="lr-sub">' + fmtDate(r.deadline.date) + ' · ' + esc(r.deadline.type) +
               (r.deadline.estimated ? " · est." : "") +
-              (r.festival.oscarQualifying ? ' · <span style="color:#E3A72F">Oscar-qualifying</span>' : "") + '</div></div>' +
+              (r.festival.oscarQualifying ? ' · <span style="color:#8A5A00">Oscar-qualifying</span>' : "") + '</div></div>' +
             '</div>';
           }).join("") +
           milestones.filter(function (m) { return !m.done; }).slice(0, 3).map(function (m) {
@@ -377,7 +385,11 @@ var DashboardView = (function () {
     $$("input[data-ms]", root).forEach(function (cb) {
       cb.onchange = function () {
         var m = Store.get().milestones.find(function (x) { return x.id === cb.getAttribute("data-ms"); });
-        if (m) { m.done = cb.checked; m.updatedAt = new Date().toISOString(); Store.save(); App.render(); }
+        if (m) {
+          m.done = cb.checked; m.updatedAt = new Date().toISOString(); Store.save();
+          if (cb.checked) { confetti({ count: 60 }); toast("🚩 Milestone done: " + m.title); }
+          App.render();
+        }
       };
     });
     $$("button[data-del-ms]", root).forEach(function (b) {
