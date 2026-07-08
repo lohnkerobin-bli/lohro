@@ -132,39 +132,47 @@ var DashboardView = (function () {
     };
   }
 
-  function todayStripHTML() {
+  function principleOfDay() {
+    var st = window.SEED && window.SEED.strategy;
+    if (!st || !st.principles || !st.principles.length) return "";
+    var today = todayISO();
+    var doy = Math.round((parseISO(today) - new Date(parseISO(today).getFullYear(), 0, 0)) / 86400000);
+    return st.principles[doy % st.principles.length];
+  }
+
+  function actionRowHTML() {
     var s = Store.get();
     var today = todayISO();
     var start = s.settings.challengeStart;
-    var parts = [];
-    // challenge status today
+    var left = "";
     if (today >= start) {
       var dayNum = daysBetween(start, today) + 1;
       var entry = s.challengeDays[today];
       var done = entry && entry.status === "published";
-      parts.push('<span>🎬 <strong>Day ' + dayNum + '</strong> — ' +
-        (done ? '<span class="badge teal">published ✓</span>'
-          : entry && entry.title ? '<span class="badge blue">' + esc(entry.status) + ": " + esc(entry.title) + '</span>'
-          : '<span class="badge red">no film logged yet</span>') +
-        ' <a href="#/challenge">log →</a></span>');
+      left = '<div class="action-pill clickable" onclick="location.hash=\'#/challenge\'">' +
+        '<span class="ap-icon">🎬</span>' +
+        '<span class="ap-text"><strong>Day ' + dayNum + '</strong><small>' +
+        (done ? "published ✓" : entry && entry.title ? esc(entry.status) + " · " + esc(entry.title) : "no film logged yet") +
+        '</small></span>' +
+        '<span class="ap-cta ' + (done ? "ok" : "") + '">' + (done ? "✓" : "Log →") + '</span></div>';
     } else {
-      parts.push('<span>🎬 Challenge starts <strong>' + fmtDate(start) + '</strong> — ' + daysBetween(today, start) + ' days to prepare</span>');
+      left = '<div class="action-pill clickable" onclick="location.hash=\'#/challenge\'">' +
+        '<span class="ap-icon">🎬</span>' +
+        '<span class="ap-text"><strong>Challenge starts ' + fmtDateShort(start) + '</strong><small>' +
+        daysBetween(today, start) + ' days to prepare — plan your first films</small></span>' +
+        '<span class="ap-cta">Plan →</span></div>';
     }
-    // most urgent deadline
+    var right = "";
     var next = nextDeadlines(1)[0];
     if (next) {
       var d = daysBetween(today, next.deadline.date);
-      parts.push('<span>⏰ Next deadline: <strong>' + esc(next.festival.name) + '</strong> in ' +
-        '<span class="badge ' + (d <= 21 ? "red" : "gray") + '">' + d + ' days</span> <a href="#/festivals">plan →</a></span>');
+      right = '<div class="action-pill clickable" onclick="location.hash=\'#/festivals\'">' +
+        '<span class="ap-icon">⏰</span>' +
+        '<span class="ap-text"><strong>' + esc(next.festival.name) + '</strong><small>' +
+        esc(next.deadline.type) + ' deadline · ' + fmtDateShort(next.deadline.date) + '</small></span>' +
+        '<span class="ap-cta ' + (d <= 21 ? "hot" : "") + '">' + d + 'd</span></div>';
     }
-    // principle of the day
-    var st = window.SEED && window.SEED.strategy;
-    if (st && st.principles && st.principles.length) {
-      var doy = Math.round((parseISO(today) - new Date(parseISO(today).getFullYear(), 0, 0)) / 86400000);
-      parts.push('<span class="muted">💭 ' + esc(st.principles[doy % st.principles.length]) + '</span>');
-    }
-    return '<div class="card mb" style="padding:12px 18px"><div class="row" style="gap:22px;font-size:13.5px">' +
-      parts.join("") + '</div></div>';
+    return '<div class="action-row">' + left + right + '</div>';
   }
 
   function strategyHTML() {
@@ -227,7 +235,7 @@ var DashboardView = (function () {
       '<div class="hero-head">' +
         '<div><div class="hero-date">' + new Date().toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" }) + '</div>' +
         '<h1 class="hero-greeting">' + greeting + ', ' + esc(s.settings.userName) + '.</h1>' +
-        '<p class="hero-sub">Every day one film closer.</p></div>' +
+        '<p class="hero-sub">💭 ' + esc(principleOfDay() || "Every day one film closer.") + '</p></div>' +
       '</div>' +
 
       '<div class="score-row">' +
@@ -256,34 +264,45 @@ var DashboardView = (function () {
         '</div>' +
       '</div>' +
 
-      todayStripHTML() +
+      actionRowHTML() +
 
       '<div class="grid cols-2 mt">' +
         '<div class="card soft chart-box">' +
           '<div class="row between"><span class="stat-label">Instagram growth</span>' +
           '<button class="primary small" id="add-follower">+ Add</button></div>' +
-          '<div class="mt">' + sparkline(igPoints, { goal: goal }) + '</div>' +
+          (igPoints.length >= 2
+            ? '<div class="mt">' + sparkline(igPoints, { goal: goal }) + '</div>'
+            : '<div class="chart-empty">📈<br>Add a follower count once a week<br>and your growth curve appears here.</div>') +
           '<div class="stat-hint mt">YouTube: ' + fmtCompact(yt ? yt.count : 0) + (yt ? ' · updated ' + fmtDateShort(yt.date) : " · no data yet") + '</div>' +
         '</div>' +
 
         '<div class="card soft">' +
-          '<div class="row between"><span class="stat-label">Next deadlines</span>' +
+          '<div class="row between"><span class="stat-label">Up next</span>' +
           '<a href="#/festivals" class="muted" style="font-size:12px">all festivals →</a></div>' +
-          (deadlines.length === 0 ? '<div class="empty-note">No upcoming deadlines.</div>' :
-            '<div class="mt">' + deadlines.map(function (r) {
-              var days = daysBetween(today, r.deadline.date);
-              return '<div class="list-row clickable" onclick="location.hash=\'#/festivals\'">' +
-                '<div class="dl-days ' + (days <= 21 ? "hot" : "") + '"><span>' + days + '</span><small>days</small></div>' +
-                '<div style="flex:1;min-width:0"><div class="lr-title">' + esc(r.festival.name) + '</div>' +
-                '<div class="lr-sub">' + fmtDate(r.deadline.date) + ' · ' + esc(r.deadline.type) +
-                (r.deadline.estimated ? " · est." : "") +
-                (r.festival.oscarQualifying ? ' · <span style="color:#D4AF37">Oscar-qualifying</span>' : "") + '</div></div>' +
-              '</div>';
-            }).join("") + '</div>') +
+          '<div class="mt">' +
+          deadlines.slice(0, 3).map(function (r) {
+            var days = daysBetween(today, r.deadline.date);
+            return '<div class="list-row clickable" onclick="location.hash=\'#/festivals\'">' +
+              '<div class="dl-days ' + (days <= 21 ? "hot" : "") + '"><span>' + days + '</span><small>days</small></div>' +
+              '<div style="flex:1;min-width:0"><div class="lr-title">' + esc(r.festival.name) + '</div>' +
+              '<div class="lr-sub">' + fmtDate(r.deadline.date) + ' · ' + esc(r.deadline.type) +
+              (r.deadline.estimated ? " · est." : "") +
+              (r.festival.oscarQualifying ? ' · <span style="color:#D4AF37">Oscar-qualifying</span>' : "") + '</div></div>' +
+            '</div>';
+          }).join("") +
+          milestones.filter(function (m) { return !m.done; }).slice(0, 3).map(function (m) {
+            return '<div class="list-row">' +
+              '<div class="dl-days gold-chip"><span>' + (m.track === "A" ? "A" : "B") + '</span><small>track</small></div>' +
+              '<div style="flex:1;min-width:0"><div class="lr-title">' + esc(m.title) + '</div>' +
+              '<div class="lr-sub">' + (m.date ? fmtDate(m.date) : "no date") + ' · milestone</div></div>' +
+              '<input type="checkbox" data-ms="' + esc(m.id) + '" title="Mark done">' +
+            '</div>';
+          }).join("") +
+          '</div>' +
         '</div>' +
       '</div>' +
 
-      '<h2 class="section-title">Milestones</h2>' +
+      '<details class="strategy-fold"><summary>🚩 All milestones</summary>' +
       '<div class="card soft">' +
         milestones.map(function (m) {
           return '<div class="milestone-row ' + (m.done ? "done" : "") + '">' +
@@ -295,9 +314,9 @@ var DashboardView = (function () {
           '</div>';
         }).join("") +
         '<div class="mt"><button id="add-milestone">+ Add milestone</button></div>' +
-      '</div>' +
+      '</div></details>' +
 
-      '<details class="strategy-fold"><summary>Strategy briefing — from your master plan</summary>' + strategyHTML() + '</details>';
+      '<details class="strategy-fold"><summary>🧭 Strategy briefing — from your master plan</summary>' + strategyHTML() + '</details>';
 
     $("#add-follower").onclick = addFollowerModal;
     $("#score-followers").onclick = addFollowerModal;

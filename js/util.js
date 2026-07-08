@@ -106,7 +106,12 @@ function sparkline(points, opts) {
   var xs = points.map(function (p) { return p.x; });
   var ys = points.map(function (p) { return p.y; });
   var minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs);
-  var minY = 0, maxY = Math.max(Math.max.apply(null, ys), opts.goal || 0, 10);
+  var dataMax = Math.max.apply(null, ys), dataMin = Math.min.apply(null, ys);
+  // zoom to the data unless the goal is within reach of the curve (< 2x max)
+  var showGoal = opts.goal && opts.goal <= dataMax * 2;
+  var maxY = Math.max(showGoal ? opts.goal : dataMax * 1.08, 10);
+  var minY = Math.max(0, dataMin - (maxY - dataMin) * 0.15);
+  if (maxY === minY) maxY = minY + 1;
   if (maxX === minX) maxX = minX + 1;
   function X(v) { return pad + ((v - minX) / (maxX - minX)) * (w - pad * 2); }
   function Y(v) { return h - pad - ((v - minY) / (maxY - minY)) * (h - pad * 2); }
@@ -115,7 +120,7 @@ function sparkline(points, opts) {
     return '<circle cx="' + X(p.x).toFixed(1) + '" cy="' + Y(p.y).toFixed(1) + '" r="3.2" fill="#2A9D8F"/>';
   }).join("");
   var goalLine = "";
-  if (opts.goal) {
+  if (showGoal) {
     goalLine = '<line x1="' + pad + '" x2="' + (w - pad) + '" y1="' + Y(opts.goal).toFixed(1) + '" y2="' + Y(opts.goal).toFixed(1) +
       '" stroke="#D4AF37" stroke-dasharray="5 5" stroke-width="1.2" opacity=".8"/>' +
       '<text x="' + (w - pad) + '" y="' + (Y(opts.goal) - 6).toFixed(1) + '" text-anchor="end" fill="#D4AF37" font-size="11">Goal ' + fmtCompact(opts.goal) + "</text>";
