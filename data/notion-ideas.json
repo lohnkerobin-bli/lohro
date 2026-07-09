@@ -1,5 +1,16 @@
 [
   {
+    "id": "idea-glasses-setup",
+    "title": "To-do: Training herunterladen, mit Glasses verbinden, WiFi verbinden",
+    "categories": [
+      "Sonstiges"
+    ],
+    "status": "Neu",
+    "energy": "⚡ Mittel",
+    "notes": "Sprachnotiz 09.07.2026 (Transkript leicht unklar): 'Training am Runterladen, mit Glas(ses) verbinden und dann WiFi auch verbinden.'\n\nBeste Lesart: Setup-To-do — 1) Training/App fertig herunterladen, 2) mit den (Smart-)Glasses koppeln, 3) WiFi verbinden.\n\nFalls anders gemeint: Notiz in der App korrigieren.",
+    "source": "second-brain"
+  },
+  {
     "id": "idea-morning-story-game",
     "title": "Morgen-Ritual: Story-Spiel mit dem ganzen Team (Idee von Micha)",
     "categories": [
