@@ -49,6 +49,9 @@ Zwei Spuren:
 - Festival-Budget: CHF 2–3k für 10–15 Submissions. Herbst 2026 = Deadline-Cluster (do-or-die).
 - Content-Erkenntnisse (Sandcastles): Craft-Fact-Format + universelle Frage-Hooks
   funktionieren; „Ich glaube, ich gewinne einen Oscar"-Belief-Content war 121×-Outlier.
+- Leitidee „Janteloven brechen" (09.07.2026): Menschen feiern Echtheit, nicht Perfektion —
+  herausstechen und zum eigenen Traum stehen ist die Strategie, nicht das Risiko.
+  Authentizitäts-Check vor jedem Post; Details in Brain → Knowledge (Values / Content / OS).
 - Kern-Philosophie: **„Richtung schlägt Punkt"** (AURA-Spielfilm-Fundament);
   Ideen = physische Objekte (Ideen-Schrank-Konzept).
 - Kundenprojekt Säntis: Entscheider Rico Zindel (redigiert Texte selber, rot),
@@ -79,4 +82,4 @@ Zwei Spuren:
 - Credit-effizient arbeiten: kleine JSONs greppen, nie seed.js/dist lesen.
 
 ---
-*Zuletzt aktualisiert: 2026-07-09 — bei jedem neuen Second-Brain-Eintrag mitpflegen.*
+*Zuletzt aktualisiert: 2026-07-09 (abends: Säntis-Handover, Janteloven-Insight) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*
