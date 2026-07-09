@@ -65,3 +65,14 @@ Routing rules for Claude:
 - Branch: work stays on `claude/oscar-command-center-gzj8uu` unless told otherwise.
 - Test with Playwright (`/opt/pw-browsers/chromium`, file:// URLs) before pushing.
 - Robin's tone: direct, German; answer him in German, keep the UI English.
+
+## Follower pipeline (Sandcastles → app)
+
+`data/followers-log.json` is the automated follower log: the Thursday routine
+appends one entry per own account per run (source: sandcastles). Entries with
+`verified: true` (plausible: >100 followers AND indexed videos) are baked into
+the seed and appear in the app's follower chart; `verified: false` entries stay
+for the record only. Manual data points entered in the app always win on merge.
+Current blocker: the Sandcastles profile for @lohro ("LOHR") looks mis-linked —
+0 videos, 3 followers. Robin needs to fix the link in the Sandcastles app or
+provide the correct handles before the feed goes verified.

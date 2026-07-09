@@ -30,6 +30,8 @@ def main():
     brand = load("brand.json", None)
     films_seed = load("films-seed.json", None)
     vision = load("vision.json", None)
+    followers_log = load("followers-log.json", {"entries": []})
+    followers_seed = [e for e in followers_log.get("entries", []) if e.get("verified")]
 
     # embed small aesthetic stills from data/assets/ as data URIs (offline app)
     assets = {}
@@ -139,7 +141,7 @@ def main():
         {"ideas": ideas, "projects": projects, "festivals": festivals,
          "brand": brand, "knowledge": knowledge,
          "filmsSeed": films_seed, "vision": vision,
-         "assetKeys": sorted(assets.keys())},
+         "assetKeys": sorted(assets.keys()), "followers": followers_seed},
         sort_keys=True, ensure_ascii=False).encode()).hexdigest()
     seed = {
         "version": int(content_hash[:12], 16),
@@ -153,6 +155,7 @@ def main():
         "filmsSeed": films_seed,
         "vision": vision,
         "assets": assets,
+        "followers": followers_seed,
     }
 
     out = os.path.join(DATA, "seed.js")

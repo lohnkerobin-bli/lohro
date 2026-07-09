@@ -103,6 +103,9 @@ var Store = (function () {
       s.projects = seed.projects.slice();
     }
     if (s.brandNotes.length === 0) s.brandNotes = seedBrandNotes();
+    if (Array.isArray(seed.followers) && seed.followers.length) {
+      s.followers = mergeById(seed.followers, s.followers);
+    }
     if (s.films.length === 0) s.films = seedFilms();
     if (s.visionBoards.length === 0) s.visionBoards = seedVision();
     if (s.milestones.length === 0) s.milestones = defaultMilestones();
@@ -133,6 +136,7 @@ var Store = (function () {
     if (Array.isArray(seed.ideas)) s.ideas = mergeById(seed.ideas.map(normIdea), s.ideas);
     if (Array.isArray(seed.projects)) s.projects = mergeById(seed.projects, s.projects);
     s.brandNotes = mergeById(seedBrandNotes(), s.brandNotes);
+    if (Array.isArray(seed.followers)) s.followers = mergeById(seed.followers, s.followers);
     s.films = mergeById(seedFilms(), s.films);
     s.visionBoards = mergeById(seedVision(), s.visionBoards);
     s.meta.seedVersion = v;

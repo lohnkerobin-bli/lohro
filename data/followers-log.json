@@ -1,0 +1,15 @@
+{
+  "readme": "Automated follower log. The Thursday routine (Sandcastles) appends one entry per account per run. Entries with verified=true are merged into the app's follower chart via the seed; verified=false entries are kept for the record but never shown (protects the chart from stale/mis-scraped values). Manual entries in the app always win (merge by id).",
+  "entries": [
+    {
+      "id": "fol-sc-2026-07-09-instagram",
+      "date": "2026-07-09",
+      "platform": "instagram",
+      "count": 3,
+      "verified": false,
+      "source": "sandcastles",
+      "note": "Sandcastles profile 'LOHR' looks mis-linked/stale (0 videos indexed, 3 followers) — fix the @lohro link in the Sandcastles app before trusting this feed.",
+      "updatedAt": "2026-07-09T00:00:00.000Z"
+    }
+  ]
+}
