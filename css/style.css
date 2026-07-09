@@ -518,6 +518,16 @@ a:hover { color: var(--cream); }
 .mood-link { height: 120px; display: grid; place-items: center; text-align: center; font-size: 12px; padding: 8px; word-break: break-all; }
 .mood-item figcaption { padding: 6px 10px; font-size: 11.5px; color: var(--cream-faint); }
 
+/* ideas vault: colour per category + emoji watermark */
+.idea-card { position: relative; overflow: hidden; }
+.idea-card .badge { background: rgba(0,0,0,.28); color: rgba(255,255,255,.85); }
+.idea-emoji {
+  position: absolute; right: 6px; bottom: -4px;
+  font-size: 64px; line-height: 1;
+  opacity: .2; pointer-events: none;
+  filter: saturate(1.2);
+}
+
 /* cinematic view banners (embedded stills) */
 .view-banner {
   height: 180px;

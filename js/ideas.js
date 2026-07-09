@@ -5,6 +5,26 @@ var IdeasView = (function () {
 
   var STATUSES = ["Neu", "In Arbeit", "Umgesetzt", "Archiviert"];
 
+  // category → colour identity (Shazam tints) + watermark emoji
+  var CAT_STYLE = {
+    "Film":        { tint: "tint-magenta", icon: "🎬" },
+    "YouTube":     { tint: "tint-red",     icon: "▶️" },
+    "Business":    { tint: "tint-blue",    icon: "💼" },
+    "Personal":    { tint: "tint-teal",    icon: "🌱" },
+    "Glaube":      { tint: "tint-gold",    icon: "✝️" },
+    "Fitness":     { tint: "tint-teal",    icon: "💪" },
+    "Team":        { tint: "tint-blue",    icon: "👥" },
+    "Praktikantin":{ tint: "tint-magenta", icon: "🎓" },
+    "Sonstiges":   { tint: "tint-cream",   icon: "✨" }
+  };
+  function catStyle(idea) {
+    var cats = idea.categories || [];
+    for (var i = 0; i < cats.length; i++) {
+      if (CAT_STYLE[cats[i]]) return CAT_STYLE[cats[i]];
+    }
+    return CAT_STYLE["Sonstiges"];
+  }
+
   function categories() {
     var set = {};
     Store.get().ideas.forEach(function (i) {
@@ -112,13 +132,15 @@ var IdeasView = (function () {
 
       '<div class="grid cols-3">' +
       visible.slice(0, 120).map(function (i) {
-        return '<div class="card clickable" data-idea="' + esc(i.id) + '">' +
+        var st = catStyle(i);
+        return '<div class="card ' + st.tint + ' idea-card clickable" data-idea="' + esc(i.id) + '">' +
+          '<span class="idea-emoji">' + st.icon + '</span>' +
           '<div class="row between mb" style="gap:6px">' +
-          '<span>' + (i.categories || []).slice(0, 3).map(function (c) { return '<span class="badge blue">' + esc(c) + '</span> '; }).join("") + '</span>' +
+          '<span>' + (i.categories || []).slice(0, 3).map(function (c) { return '<span class="badge">' + esc(c) + '</span> '; }).join("") + '</span>' +
           '<span class="badge ' + (i.status === "Umgesetzt" ? "teal" : i.status === "In Arbeit" ? "gold" : i.status === "Archiviert" ? "gray" : "red") + '">' + esc(i.status) + '</span></div>' +
-          '<div style="font-weight:600;font-size:14.5px;line-height:1.35">' + esc(i.title) + '</div>' +
-          (i.notes ? '<div class="muted mt" style="font-size:12.5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">' + esc(i.notes) + '</div>' : "") +
-          '<div class="row between mt"><span class="muted" style="font-size:11px">' + (i.energy ? esc(i.energy) : "") + '</span>' +
+          '<div style="font-weight:700;font-size:16px;line-height:1.35;position:relative">' + esc(i.title) + '</div>' +
+          (i.notes ? '<div class="muted mt" style="font-size:13px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;position:relative">' + esc(i.notes) + '</div>' : "") +
+          '<div class="row between mt"><span style="font-size:12px;font-weight:700">' + (i.energy ? esc(i.energy) : "") + '</span>' +
           '<span class="muted" style="font-size:11px">' + esc(i.source || "") + '</span></div>' +
         '</div>';
       }).join("") +
