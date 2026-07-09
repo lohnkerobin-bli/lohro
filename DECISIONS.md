@@ -102,3 +102,15 @@ Autonomous build session, 2026-07-07. All decisions made without user input, doc
 
 ## D26 — Apple dark-mode design language
 **Decision:** Switched the design system to Apple's dark-mode idiom: SF Pro system font stack, big bold sentence-case titles with tight tracking (no more uppercase display titles), flat #1C1C1E surfaces without borders/gradients, iOS-style tinted buttons/badges/nav pills, clean black canvas (vignette removed). Bold weights kept per Robin's "fette Titel" requirement.
+
+## D27 — Generated key visuals (Higgsfield) baked into the app
+**Decision:** 27 cinematic stills generated with Higgsfield Soul 2.0 (~3.3 credits total, anamorphic/teal-amber/35mm-grain house style): one key visual per seeded film (12, asset key = film id → cover in the list + hero on the detail page), 9 Ideas-Vault category stills (rendered heavily darkened behind idea cards so text stays readable), 4 Brain tab banners and 2 vision tiles (trophy, red carpet). PIL-compressed into `data/assets/` (356 KB total) and embedded via the seed. The film detail page gets a "✨ Generate still" button — the static app can't call Higgsfield itself, so it copies a ready-made request to the clipboard for Robin to paste to Claude.
+
+## D28 — Linked Brain notes with access-strengthened edges
+**Decision:** New `js/graph.js` builds a knowledge graph over ideas, films, brand notes and meetings: "Linked in Brain" chips (keyword overlap ranking, German+English stopwords) appear in idea/brand/meeting modals and on film detail pages. Opening a linked note strengthens that edge (`linkGraph` keyed map, weight+1 per use, ranking = overlap + 2×weight; chips get visually bolder at weight 1/2/3). Team merges keep the strongest weight either side has learned.
+
+## D29 — WIKI.md: Claude reads it first, keeps it current
+**Decision:** `WIKI.md` is the always-current one-page summary of Robin (who/mission/team/projects/communication rules). CLAUDE.md instructs every session to read it before answering and to update it in the same working step whenever a new insight lands in the Second Brain; the Thursday routine folds findings in too.
+
+## D30 — Client work lives in the Command Center (Säntis)
+**Decision:** Adopted Simon's Säntis handover system: the whole client project is now in the app — `data/company.json` seeds 7 client projects (Testfilme deadline 14.07., 5 Brand-Filme with shoot dates, Miraval/Maison Rosé) as type "client" in Projects; upcoming client deadlines show on the dashboard's Up-next card. The full handover is archived as `data/meetings/2026-07-09-saentis-handover.md`; the transferable process lessons (test films before shooting, cost-ceiling phase table, proactive budget checkpoints, explicit risk register) became a Team-Playbook brand note.

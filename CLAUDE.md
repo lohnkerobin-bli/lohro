@@ -4,6 +4,15 @@ This repo is Robin Lohnke's ("Lohro", Kollektiv Oskar, St. Gallen) command cente
 on his road to winning an Oscar. Zero-build static web app: open `index.html` or
 the single-file build `dist/way-to-oscar.html` directly in a browser.
 
+## WIKI first
+
+**Before answering Robin, read `WIKI.md`** — the always-current one-page summary
+of who he is, his mission, team, active projects and communication rules.
+**Keep it updated**: whenever a new insight lands in the Second Brain (new brand
+note, meeting, strategy decision, voice note, weekly-report finding), update the
+affected WIKI.md section in the same working step and bump its date line.
+The Thursday routine must also fold new findings into WIKI.md.
+
 ## Canonical storage location (Robin's Mac)
 
 Robin's Brain folder in the team Dropbox is:

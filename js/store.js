@@ -31,7 +31,8 @@ var Store = (function () {
       brandNotes: [],      // {id, section, title, content, updatedAt} — the Brand Core
       meetings: [],        // {id, date, title, participants, transcript, decisions, actions, updatedAt}
       films: [],           // {id, title, logline, genre, themes, status, script, images[], notes, learnings, fromIdeaId, createdAt, updatedAt}
-      visionBoards: []     // {id, title, tiles: [{id, kind: text|image, icon, text, url}], updatedAt}
+      visionBoards: [],    // {id, title, tiles: [{id, kind: text|image, icon, text, url}], updatedAt}
+      linkGraph: {}        // "idA|idB" (sorted): {weight, updatedAt} — brain note links, strengthened on each use
     };
   }
 
@@ -213,7 +214,7 @@ var Store = (function () {
   // collection registry: every syncable collection is declared once so
   // merge/replace/export can never silently skip one
   var ID_COLLECTIONS = ["ideas", "projects", "milestones", "followers", "brandNotes", "meetings", "films", "visionBoards"];
-  var KEYED_MAPS = ["challengeDays", "festivalPlans"];
+  var KEYED_MAPS = ["challengeDays", "festivalPlans", "linkGraph"];
 
   function importMerge(obj) {
     if (!validateSnapshot(obj)) throw new Error("Not a WAY TO OSCAR data file");
@@ -223,6 +224,15 @@ var Store = (function () {
     });
     KEYED_MAPS.forEach(function (map) {
       Object.keys(obj[map]).forEach(function (k) {
+        if (map === "linkGraph" && state[map][k]) {
+          // link strength: keep the strongest connection either side has learned
+          var a = state[map][k], b = obj[map][k];
+          state[map][k] = {
+            weight: Math.max(a.weight || 0, b.weight || 0),
+            updatedAt: ts(a) >= ts(b) ? a.updatedAt : b.updatedAt
+          };
+          return;
+        }
         state[map][k] = state[map][k] ? newer(state[map][k], obj[map][k]) : obj[map][k];
       });
     });

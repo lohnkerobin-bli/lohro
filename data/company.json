@@ -1,0 +1,82 @@
+{
+  "source": "Kollektiv Oskar client work — seeded from Simon's Säntis project handover (data/meetings/2026-07-09-saentis-handover.md). Regenerate seed after edits.",
+  "projects": [
+    {
+      "id": "prj-saentis-testfilme",
+      "title": "SÄNTIS — Testfilme für alle 5 Brand-Filme",
+      "type": "client",
+      "status": "editing",
+      "owner": "Robin",
+      "targetDate": "2026-07-14",
+      "link": "https://app.notion.com/p/398a2e36ef0a81118e3cc22f8522bce3",
+      "notes": "Text einsprechen (Ricos rote Texte seit 09.07.), Musik Epidemic Sound, Schnittgerüst mit Platzhaltern/Stock/GV-Material. Abnahme-Meeting Mi 15.07. vormittags (Backup Do 16.07.) mit Rico, Irene, Claudia. Budget 2P/2T/CHF 6'000. Gerüste sauber bauen — sie sind die Basis für den Finalschnitt (9 Schnitt-Tage fix).",
+      "source": "saentis-handover"
+    },
+    {
+      "id": "prj-saentis-film1",
+      "title": "SÄNTIS Film 1 — Der Stuhl (60s)",
+      "type": "client",
+      "status": "pre-production",
+      "owner": "Robin",
+      "targetDate": "2026-08-25",
+      "link": null,
+      "notes": "Rico führt durch die 4 Bereiche. Wiese Peter und Paul (Intro/Schluss, Kernsatz 'Jeder Gast verdient das Beste, was unsere Region zu bieten hat'). Rico-Tag 25.08. (Backup 01.09.), B-Roll Stuhl + Details 26.08. Viele Bilder aus Film 2–5 wiederverwendet.",
+      "source": "saentis-handover"
+    },
+    {
+      "id": "prj-saentis-film2",
+      "title": "SÄNTIS Film 2 — Säntis Gastronomie (60–90s)",
+      "type": "client",
+      "status": "pre-production",
+      "owner": "Robin",
+      "targetDate": "2026-08-18",
+      "link": null,
+      "notes": "Text neu ohne reinen OLMA-Fokus. Sprecher Teil 1: Christian Streule (OLMA 08.–18.10., nicht 10./11.10. — HSG Hackathon). Küchen-Statement Katharina Schönenberger: Kamera leicht oben, Pinzette, Blick hoch, Zoom-out Tellerreihen (KW41). Bauernhof 18.08. (Backup 19.08.): Irene spricht (~30% sichtbar), Loser mit Mistgabel Slowmo, Kühe, Fahne. KMU-Tag + Nacht des Ostschweizer Fussballs 23./24.10.",
+      "source": "saentis-handover"
+    },
+    {
+      "id": "prj-saentis-film3",
+      "title": "SÄNTIS Film 3 — Säntis Home",
+      "type": "client",
+      "status": "pre-production",
+      "owner": "Robin",
+      "targetDate": "2026-10-20",
+      "link": null,
+      "notes": "Philipp Hächler führt durch, alles in Kriens 20./21.10. (um VR-Sitzung, Anreise 20.; 19.10. Filmförderungs-Termin SG!). Lobby mit Egger-Anekdote (Bauchbinde 'ehemaliger Verwaltungsratspräsident' ausgeschrieben), Check-in, internationale Gäste, Biosphärenkäse, Schluss Eckzimmer Pilatus-Blick. Testfilm: Luzern-Stock frei, Rechte für Final separat. Risiko: Ricos Singapur-Entscheid — FIDES-Teile brauchen ihn.",
+      "source": "saentis-handover"
+    },
+    {
+      "id": "prj-saentis-film4",
+      "title": "SÄNTIS Film 4 — FIDES",
+      "type": "client",
+      "status": "pre-production",
+      "owner": "Robin",
+      "targetDate": "2026-09-15",
+      "link": null,
+      "notes": "Rico. Kernbotschaft (ihm sehr wichtig): FIDES unterstützt die Bauherrschaft in der Ablaufplanung → keine unnötigen Personalkosten im Betrieb. Baustelle NUR am Rand (Gonten-Präzedenzfall). Büro Büron 15.09., Baustelle 16.09. Standort-Szene Klosterplatz St. Gallen — NICHT Flumserberg (Rico im VR Pizolbahnen; alte Slides beim Finalisieren ersetzen). Dream-Team-Sequenz. Selfie-Format Rico Expo Real 09.09. Projektbeispiele raus.",
+      "source": "saentis-handover"
+    },
+    {
+      "id": "prj-saentis-film5",
+      "title": "SÄNTIS Film 5 — Bär & Bühne",
+      "type": "client",
+      "status": "pre-production",
+      "owner": "Robin",
+      "targetDate": "2026-08-15",
+      "link": null,
+      "notes": "Dani Oswald spricht am St. Galler Fest 15.08. — Trauerfall in der Familie, Kontakt behutsam. Text: 'Säntis Betriebsgruppe' (nicht Gastro Gruppe), 'Wir wissen genau, welche Emotionen ein Event auslöst, weil …'. Schluss: Schubladen-Gag + Konfettikanonen mit Bär-&-Bühne-Logo (existieren!). Champagnerturm raus. Irene liefert Fotos Abschiedsabend.",
+      "source": "saentis-handover"
+    },
+    {
+      "id": "prj-saentis-miraval",
+      "title": "SÄNTIS Nebenprojekt — Miraval Bar / Maison Rosé",
+      "type": "client",
+      "status": "pre-production",
+      "owner": "Team",
+      "targetDate": "2026-07-17",
+      "link": null,
+      "notes": "CHF 5'000 bestätigt, Akonto bezahlt. OLMA-Bar-Aktivierung: Restaurant = 'Maison Rosé', ausserhalb = 'Miraval Bar'. Instagram-Name bald reservieren (Säntis selber). Moderation Dating-Format: Plan A Marco Fritsche (moderierte 25-Jahr-Jubiläum, marcofritsche.ch), Plan B Barhopping-Format. Social-Media-Plan mit Irene VOR ihren Ferien (~20.07., 3 Wochen Malediven) besprechen. Synergie: Katharina auch im Miraval-Projekt.",
+      "source": "saentis-handover"
+    }
+  ]
+}

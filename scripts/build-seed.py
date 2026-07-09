@@ -32,6 +32,7 @@ def main():
     vision = load("vision.json", None)
     followers_log = load("followers-log.json", {"entries": []})
     followers_seed = [e for e in followers_log.get("entries", []) if e.get("verified")]
+    company = load("company.json", {"projects": []})
 
     # embed small aesthetic stills from data/assets/ as data URIs (offline app)
     assets = {}
@@ -134,6 +135,14 @@ def main():
             "notes": "From WAY TO OSCAR Filme DB", "source": "notion-films",
             "createdAt": now, "updatedAt": now,
         })
+
+    # client work (Kollektiv Oskar company projects, e.g. Säntis) — curated in company.json
+    for row in company.get("projects", []):
+        if not row.get("title"):
+            continue
+        row.setdefault("createdAt", now)
+        row.setdefault("updatedAt", "1970-01-01T00:00:00Z")  # seed must never beat local edits
+        projects.append(row)
 
     # version = content hash: any data regeneration triggers the app's seed-upgrade
     # merge (new rows flow to existing users without wiping their local edits)

@@ -35,11 +35,13 @@ var BrainView = (function () {
       }).join("") + '</select></label>' +
       '<label class="field" style="flex:2"><span>Title</span><input id="b-title" value="' + esc(v.title) + '"></label></div>' +
       '<label class="field"><span>Content</span><textarea id="b-content" style="min-height:180px">' + esc(v.content) + '</textarea></label>' +
+      (note ? Graph.relatedHTML(note.id) : "") +
       '<div class="modal-actions">' +
       (note ? '<button class="ghost danger" id="b-delete">Delete</button>' : "") +
       '<button class="ghost" onclick="closeModal()">Cancel</button>' +
       '<button class="primary" id="b-save">Save</button></div>';
     openModal(html);
+    Graph.bindRelated();
     $("#b-save").onclick = function () {
       var title = $("#b-title").value.trim();
       if (!title) { toast("Title required", true); return; }
@@ -228,11 +230,13 @@ var BrainView = (function () {
       '<label class="field"><span>Transcript (paste the full recording transcript here)</span><textarea id="m-transcript" style="min-height:160px" placeholder="Paste transcript...">' + esc(v.transcript) + '</textarea></label>' +
       '<label class="field"><span>Decisions</span><textarea id="m-decisions" placeholder="What did we decide?">' + esc(v.decisions) + '</textarea></label>' +
       '<label class="field"><span>Action items</span><textarea id="m-actions" placeholder="Who does what by when?">' + esc(v.actions) + '</textarea></label>' +
+      (m ? Graph.relatedHTML(m.id) : "") +
       '<div class="modal-actions">' +
       (m ? '<button class="ghost danger" id="m-delete">Delete</button>' : "") +
       '<button class="ghost" onclick="closeModal()">Cancel</button>' +
       '<button class="primary" id="m-save">Save</button></div>';
     openModal(html, { sticky: true });
+    Graph.bindRelated();
     $("#m-save").onclick = function () {
       var now = new Date().toISOString();
       var data = {
@@ -393,10 +397,19 @@ var BrainView = (function () {
   function render(root) {
     if (BrainView._pendingTab) { render._tab = BrainView._pendingTab; BrainView._pendingTab = null; }
     var tab = render._tab || "brand";
+    if (BrainView._pendingOpen) {
+      var poid = BrainView._pendingOpen;
+      BrainView._pendingOpen = null;
+      setTimeout(function () {
+        if (tab === "meetings") meetingModal(poid); else brandNoteModal(poid);
+      }, 0);
+    }
+    // generated per-tab banner stills (darkened via .view-banner overlay), fallback: lamp still
+    var bannerKey = { brand: "brain-brand", knowledge: "brain-knowledge", vision: "brain-vision", meetings: "brain-meetings" }[tab];
     root.innerHTML =
       '<h1 class="view-title">Brain</h1>' +
       '<p class="view-sub">The team backend: brand core, knowledge base, meetings &amp; weekly reports. Everything exportable via Data &amp; Settings.</p>' +
-      viewBanner('still-lamp') +
+      (assetUrl(bannerKey) ? viewBanner(bannerKey) : viewBanner('still-lamp')) +
       '<div class="filter-bar">' +
       TABS.map(function (t) {
         return '<button class="' + (tab === t.key ? "blue" : "ghost") + '" data-tab="' + t.key + '">' + t.label + '</button>';

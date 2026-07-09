@@ -286,6 +286,11 @@ var DashboardView = (function () {
       .map(function (f) { return { x: parseISO(f.date).getTime(), y: f.count }; });
 
     var deadlines = nextDeadlines(4);
+    // client work due soon (Säntis etc.) belongs on the dashboard too — the company lives here
+    var clientDue = s.projects.filter(function (p) {
+      return p.type === "client" && p.targetDate && p.targetDate >= today &&
+        p.status !== "published" && p.status !== "archived";
+    }).sort(function (a, b) { return a.targetDate < b.targetDate ? -1 : 1; }).slice(0, 2);
     var milestones = s.milestones.slice().sort(function (a, b) {
       if (a.done !== b.done) return a.done ? 1 : -1;
       return (a.date || "9999") < (b.date || "9999") ? -1 : 1;
@@ -351,6 +356,14 @@ var DashboardView = (function () {
               '<div class="lr-sub">' + fmtDate(r.deadline.date) + ' · ' + esc(r.deadline.type) +
               (r.deadline.estimated ? " · est." : "") +
               (r.festival.oscarQualifying ? ' · <span style="color:#FFD98A">Oscar-qualifying</span>' : "") + '</div></div>' +
+            '</div>';
+          }).join("") +
+          clientDue.map(function (p) {
+            var days = daysBetween(today, p.targetDate);
+            return '<div class="list-row clickable" onclick="location.hash=\'#/projects\'">' +
+              '<div class="dl-days ' + (days <= 7 ? "hot" : "") + '"><span>' + days + '</span><small>days</small></div>' +
+              '<div style="flex:1;min-width:0"><div class="lr-title">' + esc(p.title) + '</div>' +
+              '<div class="lr-sub">' + fmtDate(p.targetDate) + ' · 🤝 client work · ' + esc(p.status) + '</div></div>' +
             '</div>';
           }).join("") +
           milestones.filter(function (m) { return !m.done; }).slice(0, 3).map(function (m) {

@@ -5,9 +5,10 @@ var ProjectsView = (function () {
 
   var TYPES = [
     { key: "shortfilm", label: "🎬 Short Film" },
-    { key: "feature", label: "🎥 Feature Film" },
     { key: "reel", label: "📱 Reel" },
     { key: "youtube", label: "▶️ YouTube" },
+    { key: "client", label: "🤝 Client Work" },
+    { key: "feature", label: "🎥 Feature Film" },
     { key: "other", label: "✨ Other" }
   ];
   var STATUSES = ["idea", "writing", "pre-production", "shooting", "editing", "published", "archived"];

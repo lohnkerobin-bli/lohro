@@ -5,17 +5,17 @@ var IdeasView = (function () {
 
   var STATUSES = ["Neu", "In Arbeit", "Umgesetzt", "Archiviert"];
 
-  // category → colour identity (Shazam tints) + watermark emoji
+  // category → colour identity (Shazam tints) + watermark emoji + generated still (data/assets)
   var CAT_STYLE = {
-    "Film":        { tint: "tint-magenta", icon: "🎬" },
-    "YouTube":     { tint: "tint-red",     icon: "▶️" },
-    "Business":    { tint: "tint-blue",    icon: "💼" },
-    "Personal":    { tint: "tint-teal",    icon: "🌱" },
-    "Glaube":      { tint: "tint-gold",    icon: "✝️" },
-    "Fitness":     { tint: "tint-teal",    icon: "💪" },
-    "Team":        { tint: "tint-blue",    icon: "👥" },
-    "Praktikantin":{ tint: "tint-magenta", icon: "🎓" },
-    "Sonstiges":   { tint: "tint-cream",   icon: "✨" }
+    "Film":        { tint: "tint-magenta", icon: "🎬", asset: "cat-film" },
+    "YouTube":     { tint: "tint-red",     icon: "▶️", asset: "cat-youtube" },
+    "Business":    { tint: "tint-blue",    icon: "💼", asset: "cat-business" },
+    "Personal":    { tint: "tint-teal",    icon: "🌱", asset: "cat-personal" },
+    "Glaube":      { tint: "tint-gold",    icon: "✝️", asset: "cat-glaube" },
+    "Fitness":     { tint: "tint-teal",    icon: "💪", asset: "cat-fitness" },
+    "Team":        { tint: "tint-blue",    icon: "👥", asset: "cat-team" },
+    "Praktikantin":{ tint: "tint-magenta", icon: "🎓", asset: "cat-praktikantin" },
+    "Sonstiges":   { tint: "tint-cream",   icon: "✨", asset: "cat-sonstiges" }
   };
   function catStyle(idea) {
     var cats = idea.categories || [];
@@ -50,6 +50,7 @@ var IdeasView = (function () {
         return '<option value="' + e + '"' + ((v.energy || "") === e ? " selected" : "") + '>' + (e || "—") + '</option>';
       }).join("") + '</select></label></div>' +
       '<label class="field"><span>Notes</span><textarea id="i-notes" style="min-height:110px">' + esc(v.notes) + '</textarea></label>' +
+      (idea ? Graph.relatedHTML(idea.id) : "") +
       '<div class="modal-actions">' +
       (idea ? '<button class="ghost danger" id="i-delete">Delete</button>' : "") +
       (idea ? '<button class="teal" id="i-to-challenge" title="Copy this idea onto the next free challenge day">📅 → Challenge day</button>' : "") +
@@ -57,6 +58,7 @@ var IdeasView = (function () {
       '<button class="ghost" onclick="closeModal()">Cancel</button>' +
       '<button class="primary" id="i-save">Save</button></div>';
     openModal(html);
+    Graph.bindRelated();
     var toFilm = $("#i-to-film");
     if (toFilm) toFilm.onclick = function () {
       closeModal();
@@ -106,6 +108,11 @@ var IdeasView = (function () {
 
   function render(root) {
     var s = Store.get();
+    if (IdeasView._pendingOpen) {
+      var pid = IdeasView._pendingOpen;
+      IdeasView._pendingOpen = null;
+      setTimeout(function () { editModal(pid); }, 0);
+    }
     var q = (render._q || "").toLowerCase();
     var cat = render._cat || "all";
     var status = render._status || "all";
@@ -133,7 +140,10 @@ var IdeasView = (function () {
       '<div class="grid cols-3">' +
       visible.slice(0, 120).map(function (i) {
         var st = catStyle(i);
-        return '<div class="card ' + st.tint + ' idea-card clickable" data-idea="' + esc(i.id) + '">' +
+        var bg = assetUrl(st.asset);
+        // generated category still, heavily darkened so the text stays readable
+        var bgStyle = bg ? ' style="background-image:linear-gradient(180deg,rgba(12,9,8,.68) 0%,rgba(12,9,8,.82) 60%,rgba(12,9,8,.94) 100%),url(' + bg + ')"' : "";
+        return '<div class="card ' + st.tint + ' idea-card' + (bg ? " has-img" : "") + ' clickable" data-idea="' + esc(i.id) + '"' + bgStyle + '>' +
           '<span class="idea-emoji">' + st.icon + '</span>' +
           '<div class="row between mb" style="gap:6px">' +
           '<span>' + (i.categories || []).slice(0, 3).map(function (c) { return '<span class="badge">' + esc(c) + '</span> '; }).join("") + '</span>' +

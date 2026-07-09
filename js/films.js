@@ -83,7 +83,12 @@ var FilmsView = (function () {
         '<label class="field" style="flex:1"><span>Themes</span><input id="f-themes" value="' + esc(f.themes) + '" placeholder="Freiheit, Perspektive..."></label>' +
         '</div>' +
         (f.fromIdeaId ? '<div class="muted" style="font-size:11.5px">Born from an idea in the vault · <a href="#/ideas">open Ideas →</a></div>' : "") +
+        Graph.relatedHTML(f.id) +
       '</div>' +
+
+      (assetUrl(f.id)
+        ? '<div class="film-hero mb" style="background-image:linear-gradient(180deg,rgba(12,9,8,0) 40%,rgba(12,9,8,.72) 100%),url(' + assetUrl(f.id) + ')"><span class="film-hero-tag">✨ Generated key visual</span></div>'
+        : "") +
 
       '<h2 class="section-title">✍️ Script</h2>' +
       '<div class="card soft mb">' +
@@ -97,7 +102,8 @@ var FilmsView = (function () {
         '<p class="muted mb" style="font-size:12.5px">Paste image links (Shotdeck, Dropbox shared links, any https image URL). Big image files themselves belong in the Dropbox — this board keeps the references so exports stay small.</p>' +
         '<div class="row mb"><input id="f-img-url" placeholder="https:// image link..." style="flex:2;min-width:200px">' +
         '<input id="f-img-caption" placeholder="Caption (optional)" style="flex:1;min-width:120px">' +
-        '<button class="primary" id="f-img-add">+ Add</button></div>' +
+        '<button class="primary" id="f-img-add">+ Add</button>' +
+        '<button class="teal" id="f-img-gen" title="Copies a ready-made generation request — paste it to Claude and a matching Higgsfield still gets built into the app">✨ Generate still</button></div>' +
         (f.images.length === 0 ? '<div class="empty-note">No references yet.</div>' :
           '<div class="mood-grid">' + f.images.map(function (img) {
             var u = safeUrl(img.url);
@@ -153,6 +159,7 @@ var FilmsView = (function () {
       };
     };
     $("#film-export").onclick = function () { exportDossier(f); };
+    Graph.bindRelated();
 
     bindField(f, "#f-title", "title");
     bindField(f, "#f-logline", "logline");
@@ -179,6 +186,19 @@ var FilmsView = (function () {
       f.images.push({ id: uid("img"), url: url, caption: $("#f-img-caption").value.trim() });
       touch(f); App.render();
     };
+    var gen = $("#f-img-gen");
+    if (gen) gen.onclick = function () {
+      // the app itself is offline/static — the button hands Claude a ready-to-run request
+      var req = 'Generiere mit Higgsfield ein cinematic Still für meinen Film "' + f.title + '"' +
+        (f.logline ? ' — Logline: ' + f.logline : "") +
+        (f.themes ? ' — Themen: ' + f.themes : "") +
+        '. Stil wie die anderen Film-Stills der App (anamorphic, moody teal/amber, 35mm grain) und baue es als Cover in die App ein.';
+      var ta = document.createElement("textarea");
+      ta.value = req; document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); toast("Request copied — paste it to Claude, the still gets built in"); }
+      catch (e) { openModal('<h3>Send this to Claude</h3><textarea style="min-height:140px">' + esc(req) + '</textarea><div class="modal-actions"><button class="primary" onclick="closeModal()">Done</button></div>'); }
+      ta.remove();
+    };
     $$("[data-del-img]").forEach(function (b) {
       b.onclick = function () {
         f.images = f.images.filter(function (x) { return x.id !== b.getAttribute("data-del-img"); });
@@ -200,10 +220,13 @@ var FilmsView = (function () {
         : '<div class="grid cols-3">' + films.map(function (f) {
             var st = statusInfo(f.status);
             var cover = (f.images.find(function (i) { return /\.(jpe?g|png|webp|gif|avif)(\?|$)/i.test(safeUrl(i.url)); }) || {}).url;
+            var genCover = assetUrl(f.id); // Higgsfield still baked into the seed, keyed by film id
             var posterHue = { gray: "#8B7355", blue: "#2E86AB", gold: "#E8871E", red: "#E63946", teal: "#2FA39A" }[st.cls] || "#8B7355";
             return '<div class="card soft ' + st.tint + ' clickable film-card" data-film="' + esc(f.id) + '">' +
               (cover
                 ? '<div class="film-cover" style="background-image:url(\'' + esc(safeUrl(cover)) + '\')"></div>'
+                : genCover
+                ? '<div class="film-cover" style="background-image:url(' + genCover + ')"></div>'
                 : '<div class="film-cover poster" style="--ph:' + posterHue + '">' +
                   '<span class="poster-initial">' + esc((f.title || "?").replace(/^SPIELFILM\s*—\s*/i, "").charAt(0).toUpperCase()) + '</span>' +
                   '<span class="poster-strip"></span></div>') +

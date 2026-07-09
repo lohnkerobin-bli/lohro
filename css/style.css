@@ -527,6 +527,50 @@ a:hover { color: var(--cream); }
   opacity: .2; pointer-events: none;
   filter: saturate(1.2);
 }
+/* generated category still behind the card — the inline gradient keeps it dark enough to read */
+.idea-card.has-img { background-size: cover; background-position: center; }
+.idea-card.has-img .idea-emoji { opacity: .3; }
+
+/* linked brain notes — chips get bolder as the connection is used more */
+.related-box {
+  margin: 14px 0 4px; padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.related-label {
+  display: block; font-size: 11px; font-weight: 800;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: rgba(255,255,255,.55); margin-bottom: 9px;
+}
+.related-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.related-chip {
+  font-size: 12.5px; padding: 6px 12px; border-radius: 999px;
+  background: rgba(255,255,255,.08); color: rgba(255,255,255,.85);
+  border: 1px solid rgba(255,255,255,.14);
+  cursor: pointer; line-height: 1.3;
+}
+.related-chip:hover { background: rgba(255,255,255,.16); }
+.related-chip.rw1 { border-color: rgba(232,135,30,.5); background: rgba(232,135,30,.14); }
+.related-chip.rw2 { border-color: rgba(232,135,30,.75); background: rgba(232,135,30,.24); font-weight: 700; }
+.related-chip.rw3 { border-color: #E8871E; background: rgba(232,135,30,.34); font-weight: 800; color: #FFF; }
+.rel-w { font-size: 10.5px; opacity: .75; font-weight: 800; }
+
+/* film detail: generated key visual hero */
+.film-hero {
+  height: 260px; border-radius: 20px;
+  background-size: cover; background-position: center 35%;
+  border: 1px solid rgba(255,255,255,.08);
+  position: relative; overflow: hidden;
+}
+.film-hero-tag {
+  position: absolute; left: 14px; bottom: 12px;
+  font-size: 11px; font-weight: 700; letter-spacing: .05em;
+  color: rgba(255,255,255,.85);
+  background: rgba(0,0,0,.45); backdrop-filter: blur(6px);
+  padding: 5px 11px; border-radius: 999px;
+}
+@media (max-width: 720px) { .film-hero { height: 170px; } }
 
 /* cinematic view banners (embedded stills) */
 .view-banner {
