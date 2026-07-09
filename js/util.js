@@ -117,21 +117,21 @@ function sparkline(points, opts) {
   function Y(v) { return h - pad - ((v - minY) / (maxY - minY)) * (h - pad * 2); }
   var path = points.map(function (p, i) { return (i === 0 ? "M" : "L") + X(p.x).toFixed(1) + " " + Y(p.y).toFixed(1); }).join(" ");
   var dots = points.map(function (p) {
-    return '<circle cx="' + X(p.x).toFixed(1) + '" cy="' + Y(p.y).toFixed(1) + '" r="3.2" fill="#2FA39A"/>';
+    return '<circle cx="' + X(p.x).toFixed(1) + '" cy="' + Y(p.y).toFixed(1) + '" r="3.2" fill="#EAFBF7"/>';
   }).join("");
   var goalLine = "";
   if (showGoal) {
     goalLine = '<line x1="' + pad + '" x2="' + (w - pad) + '" y1="' + Y(opts.goal).toFixed(1) + '" y2="' + Y(opts.goal).toFixed(1) +
-      '" stroke="#E3A72F" stroke-dasharray="5 5" stroke-width="1.2" opacity=".8"/>' +
-      '<text x="' + (w - pad) + '" y="' + (Y(opts.goal) - 6).toFixed(1) + '" text-anchor="end" fill="#E3A72F" font-size="11">Goal ' + fmtCompact(opts.goal) + "</text>";
+      '" stroke="#FFD98A" stroke-dasharray="5 5" stroke-width="1.2" opacity=".8"/>' +
+      '<text x="' + (w - pad) + '" y="' + (Y(opts.goal) - 6).toFixed(1) + '" text-anchor="end" fill="#FFD98A" font-size="11">Goal ' + fmtCompact(opts.goal) + "</text>";
   }
   var area = path + " L" + X(maxX).toFixed(1) + " " + Y(minY).toFixed(1) + " L" + X(minX).toFixed(1) + " " + Y(minY).toFixed(1) + " Z";
   return '<svg viewBox="0 0 ' + w + " " + h + '" preserveAspectRatio="xMidYMid meet" role="img">' +
     '<defs><linearGradient id="sparkfill" x1="0" y1="0" x2="0" y2="1">' +
-    '<stop offset="0%" stop-color="#2FA39A" stop-opacity=".35"/><stop offset="100%" stop-color="#2FA39A" stop-opacity="0"/></linearGradient></defs>' +
+    '<stop offset="0%" stop-color="#FFFFFF" stop-opacity=".30"/><stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient></defs>' +
     '<path d="' + area + '" fill="url(#sparkfill)"/>' +
     goalLine +
-    '<path d="' + path + '" fill="none" stroke="#2FA39A" stroke-width="2.2" stroke-linejoin="round"/>' +
+    '<path d="' + path + '" fill="none" stroke="#EAFBF7" stroke-width="2.4" stroke-linejoin="round"/>' +
     dots + "</svg>";
 }
 
@@ -150,15 +150,15 @@ function ringGauge(percent, opts) {
     '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="1" y2="1">' +
     '<stop offset="0%" stop-color="' + color + '" stop-opacity=".55"/>' +
     '<stop offset="100%" stop-color="' + color + '"/></linearGradient></defs>' +
-    '<circle cx="' + size / 2 + '" cy="' + size / 2 + '" r="' + r + '" fill="none" stroke="rgba(36,26,14,.12)" stroke-width="' + stroke + '"/>' +
+    '<circle cx="' + size / 2 + '" cy="' + size / 2 + '" r="' + r + '" fill="none" stroke="rgba(0,0,0,.22)" stroke-width="' + stroke + '"/>' +
     '<circle cx="' + size / 2 + '" cy="' + size / 2 + '" r="' + r + '" fill="none" stroke="url(#' + id + ')" stroke-width="' + stroke + '"' +
     ' stroke-linecap="round" stroke-dasharray="' + dash.toFixed(1) + " " + c.toFixed(1) + '"' +
     ' transform="rotate(-90 ' + size / 2 + " " + size / 2 + ')">' +
     (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "" :
       '<animate attributeName="stroke-dasharray" from="0 ' + c.toFixed(1) + '" to="' + dash.toFixed(1) + " " + c.toFixed(1) + '" dur="1.1s" calcMode="spline" keySplines="0.22 1 0.36 1" fill="freeze"/>') +
     '</circle>' +
-    '<text x="50%" y="47%" text-anchor="middle" fill="#241A0E" font-size="' + size * 0.19 + '" font-weight="800" font-family="-apple-system, system-ui, sans-serif">' + esc(opts.value || "") + '</text>' +
-    '<text x="50%" y="62%" text-anchor="middle" fill="rgba(36,26,14,.55)" font-size="' + size * 0.078 + '" letter-spacing="1">' + esc(opts.sub || "") + '</text>' +
+    '<text x="50%" y="47%" text-anchor="middle" fill="#FFFFFF" font-size="' + size * 0.19 + '" font-weight="800" font-family="-apple-system, system-ui, sans-serif">' + esc(opts.value || "") + '</text>' +
+    '<text x="50%" y="62%" text-anchor="middle" fill="rgba(255,255,255,.65)" font-size="' + size * 0.078 + '" letter-spacing="1">' + esc(opts.sub || "") + '</text>' +
     '</svg>';
 }
 

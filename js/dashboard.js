@@ -299,12 +299,12 @@ var DashboardView = (function () {
 
       '<div class="score-row">' +
         '<div class="score-card tint-gold clickable" onclick="location.hash=\'#/settings\'">' +
-          ringGauge((journeyDone / journeyTotal) * 100, { color: "#E8871E", value: fmtCompact(daysLeft), sub: "DAYS TO OSCARS" }) +
+          ringGauge((journeyDone / journeyTotal) * 100, { color: "#FFFFFF", value: fmtCompact(daysLeft), sub: "DAYS TO OSCARS" }) +
           '<div class="score-name">🏆 The Journey</div>' +
           '<div class="score-hint">' + esc(s.settings.oscarCeremonyLabel) + '</div>' +
         '</div>' +
         '<div class="score-card tint-teal clickable" id="score-followers">' +
-          ringGauge(igPct, { color: "#2FA39A", value: fmtCompact(igCount), sub: "OF " + fmtCompact(goal).toUpperCase() }) +
+          ringGauge(igPct, { color: "#FFFFFF", value: fmtCompact(igCount), sub: "OF " + fmtCompact(goal).toUpperCase() }) +
           '<div class="score-name">📈 Followers</div>' +
           '<div class="score-hint">' +
           (proj && proj.eta
@@ -314,8 +314,8 @@ var DashboardView = (function () {
         '</div>' +
         '<div class="score-card tint-red clickable" onclick="location.hash=\'#/challenge\'">' +
           (ch.started
-            ? ringGauge(challengeRingPct, { color: "#E63946", value: String(ch.streak), sub: "DAY STREAK" })
-            : ringGauge(challengeRingPct, { color: "#E63946", value: String(challengeStartsIn), sub: "DAYS TO START" })) +
+            ? ringGauge(challengeRingPct, { color: "#FFFFFF", value: String(ch.streak), sub: "DAY STREAK" })
+            : ringGauge(challengeRingPct, { color: "#FFFFFF", value: String(challengeStartsIn), sub: "DAYS TO START" })) +
           '<div class="score-name">🎬 Daily Challenge</div>' +
           '<div class="score-hint">' + (ch.started
             ? ch.published + " published · " + Math.round(challengeRingPct) + "% hit rate"
@@ -346,7 +346,7 @@ var DashboardView = (function () {
               '<div style="flex:1;min-width:0"><div class="lr-title">' + esc(r.festival.name) + '</div>' +
               '<div class="lr-sub">' + fmtDate(r.deadline.date) + ' · ' + esc(r.deadline.type) +
               (r.deadline.estimated ? " · est." : "") +
-              (r.festival.oscarQualifying ? ' · <span style="color:#8A5A00">Oscar-qualifying</span>' : "") + '</div></div>' +
+              (r.festival.oscarQualifying ? ' · <span style="color:#FFD98A">Oscar-qualifying</span>' : "") + '</div></div>' +
             '</div>';
           }).join("") +
           milestones.filter(function (m) { return !m.done; }).slice(0, 3).map(function (m) {
