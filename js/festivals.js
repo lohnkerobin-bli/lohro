@@ -119,6 +119,7 @@ var FestivalsView = (function () {
     root.innerHTML =
       '<h1 class="view-title">Festival Roadmap</h1>' +
       '<p class="view-sub">Oscar-qualifying festivals for 2026/2027 submissions. Researched July 2026 — dates marked "est." must be re-verified ~3 months before the deadline.</p>' +
+      viewBanner('still-teal') +
 
       (rules ?
         '<div class="card accent-gold mb">' +

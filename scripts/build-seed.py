@@ -5,7 +5,7 @@ The app is opened via file:// from Dropbox, where fetch() of local JSON is
 blocked — so seed data ships as a plain JS file assigning window.SEED.
 Run this after editing any data/*.json file:  python3 scripts/build-seed.py
 """
-import hashlib, json, os, sys
+import base64, hashlib, json, os, sys
 from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -30,6 +30,18 @@ def main():
     brand = load("brand.json", None)
     films_seed = load("films-seed.json", None)
     vision = load("vision.json", None)
+
+    # embed small aesthetic stills from data/assets/ as data URIs (offline app)
+    assets = {}
+    assets_dir = os.path.join(DATA, "assets")
+    if os.path.isdir(assets_dir):
+        for fn in sorted(os.listdir(assets_dir)):
+            if fn.lower().endswith((".jpg", ".jpeg", ".png", ".webp")):
+                key = os.path.splitext(fn)[0]
+                with open(os.path.join(assets_dir, fn), "rb") as f:
+                    b64 = base64.b64encode(f.read()).decode()
+                mime = "image/png" if fn.lower().endswith(".png") else "image/webp" if fn.lower().endswith(".webp") else "image/jpeg"
+                assets[key] = f"data:{mime};base64,{b64}"
 
     # UTC with Z so timestamps compare correctly against the app's toISOString() values
     now = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
@@ -126,7 +138,8 @@ def main():
     content_hash = hashlib.sha256(json.dumps(
         {"ideas": ideas, "projects": projects, "festivals": festivals,
          "brand": brand, "knowledge": knowledge,
-         "filmsSeed": films_seed, "vision": vision},
+         "filmsSeed": films_seed, "vision": vision,
+         "assetKeys": sorted(assets.keys())},
         sort_keys=True, ensure_ascii=False).encode()).hexdigest()
     seed = {
         "version": int(content_hash[:12], 16),
@@ -139,6 +152,7 @@ def main():
         "brand": brand,
         "filmsSeed": films_seed,
         "vision": vision,
+        "assets": assets,
     }
 
     out = os.path.join(DATA, "seed.js")

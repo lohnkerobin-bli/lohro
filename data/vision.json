@@ -5,26 +5,108 @@
       "id": "vision-main",
       "title": "THE VISION",
       "tiles": [
-        { "id": "vt-oscar", "kind": "text", "icon": "🏆", "text": "Oscar on stage — the whole journey documented from the first reel to the red carpet" },
-        { "id": "vt-1m-ig", "kind": "text", "icon": "📸", "text": "1'000'000 Instagram followers" },
-        { "id": "vt-1m-yt", "kind": "text", "icon": "▶️", "text": "1'000'000 YouTube subscribers — 'Way to Oscar' as a living documentary" },
-        { "id": "vt-posters", "kind": "text", "icon": "🎬", "text": "My own film posters on the wall" },
-        { "id": "vt-team", "kind": "text", "icon": "👥", "text": "Simon, Jasmin & the Kollektiv Oskar team — building this together" },
-        { "id": "vt-sea", "kind": "text", "icon": "🌊", "text": "A free, peaceful life by the sea — mornings for me, afternoons for the craft" },
-        { "id": "vt-hollywood", "kind": "text", "icon": "🎥", "text": "International film sets — Hollywood-grade stories from Switzerland" },
-        { "id": "vt-now", "kind": "text", "icon": "✨", "text": "\"The good old times are now.\"" }
+        {
+          "id": "vt-oscar",
+          "kind": "text",
+          "icon": "🏆",
+          "text": "Oscar on stage — the whole journey documented from the first reel to the red carpet"
+        },
+        {
+          "id": "vt-1m-ig",
+          "kind": "text",
+          "icon": "📸",
+          "text": "1'000'000 Instagram followers"
+        },
+        {
+          "id": "vt-1m-yt",
+          "kind": "text",
+          "icon": "▶️",
+          "text": "1'000'000 YouTube subscribers — 'Way to Oscar' as a living documentary"
+        },
+        {
+          "id": "vt-still-wick",
+          "kind": "asset",
+          "assetKey": "still-wick",
+          "text": "Colour is character"
+        },
+        {
+          "id": "vt-still-teal",
+          "kind": "asset",
+          "assetKey": "still-teal",
+          "text": "Frames that feel — light tells the story"
+        },
+        {
+          "id": "vt-posters",
+          "kind": "text",
+          "icon": "🎬",
+          "text": "My own film posters on the wall"
+        },
+        {
+          "id": "vt-team",
+          "kind": "text",
+          "icon": "👥",
+          "text": "Simon, Jasmin & the Kollektiv Oskar team — building this together"
+        },
+        {
+          "id": "vt-sea",
+          "kind": "text",
+          "icon": "🌊",
+          "text": "A free, peaceful life by the sea — mornings for me, afternoons for the craft"
+        },
+        {
+          "id": "vt-hollywood",
+          "kind": "text",
+          "icon": "🎥",
+          "text": "International film sets — Hollywood-grade stories from Switzerland"
+        },
+        {
+          "id": "vt-now",
+          "kind": "text",
+          "icon": "✨",
+          "text": "\"The good old times are now.\""
+        }
       ]
     },
     {
       "id": "vision-2027",
       "title": "FESTIVAL RUN 2027",
       "tiles": [
-        { "id": "vt-solothurn", "kind": "text", "icon": "🇨🇭", "text": "Solothurner Filmtage — attend, selected or not" },
-        { "id": "vt-winterthur", "kind": "text", "icon": "🎪", "text": "Kurzfilmtage Winterthur — Best Swiss Film qualifies for the Oscar" },
-        { "id": "vt-locarno", "kind": "text", "icon": "🐆", "text": "Locarno Pardi di domani — Swiss competition, Pardino d'oro" },
-        { "id": "vt-clermont", "kind": "text", "icon": "🇫🇷", "text": "Clermont-Ferrand — the world's biggest short film festival" },
-        { "id": "vt-mentor", "kind": "text", "icon": "🤝", "text": "One real mentor relationship — built on results, not asking" },
-        { "id": "vt-win", "kind": "text", "icon": "🥇", "text": "One Oscar-qualifying festival award" }
+        {
+          "id": "vt-solothurn",
+          "kind": "text",
+          "icon": "🇨🇭",
+          "text": "Solothurner Filmtage — attend, selected or not"
+        },
+        {
+          "id": "vt-winterthur",
+          "kind": "text",
+          "icon": "🎪",
+          "text": "Kurzfilmtage Winterthur — Best Swiss Film qualifies for the Oscar"
+        },
+        {
+          "id": "vt-locarno",
+          "kind": "text",
+          "icon": "🐆",
+          "text": "Locarno Pardi di domani — Swiss competition, Pardino d'oro"
+        },
+        {
+          "id": "vt-clermont",
+          "kind": "text",
+          "icon": "🇫🇷",
+          "text": "Clermont-Ferrand — the world's biggest short film festival"
+        },
+        {
+          "id": "vt-mentor",
+          "kind": "text",
+          "icon": "🤝",
+          "text": "One real mentor relationship — built on results, not asking"
+        },
+        {
+          "id": "vt-win",
+          "kind": "text",
+          "icon": "🥇",
+          "text": "One Oscar-qualifying festival award"
+        }
       ]
     }
   ]

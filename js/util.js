@@ -162,6 +162,15 @@ function ringGauge(percent, opts) {
     '</svg>';
 }
 
+/* ---------- embedded aesthetic stills (from data/assets, baked into seed) ---------- */
+function assetUrl(key) {
+  return (window.SEED && window.SEED.assets && window.SEED.assets[key]) || "";
+}
+function viewBanner(key) {
+  var u = assetUrl(key);
+  return u ? '<div class="view-banner" style="background-image:url(' + u + ')"></div>' : "";
+}
+
 /* ---------- confetti (dopamine, zero deps) ---------- */
 function confetti(opts) {
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;

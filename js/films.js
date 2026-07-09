@@ -192,6 +192,7 @@ var FilmsView = (function () {
   function listHTML(films) {
     return '<h1 class="view-title">Films</h1>' +
       '<p class="view-sub">Every film as a full dossier: logline, script, shotdeck, notes, learnings. Ideas become films via "Develop as film" in the vault.</p>' +
+      viewBanner('still-wick') +
       '<div class="filter-bar"><button class="primary" id="film-new">+ New film</button>' +
       '<span class="muted" style="font-size:12px">' + films.length + ' film' + (films.length === 1 ? "" : "s") + '</span></div>' +
       (films.length === 0

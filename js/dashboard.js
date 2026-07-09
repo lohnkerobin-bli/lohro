@@ -182,6 +182,10 @@ var DashboardView = (function () {
     return '<h2 class="section-title">🌟 ' + esc(b.title) +
       ' <a href="#/brain" class="muted" style="letter-spacing:0;text-transform:none;font-weight:600;font-size:12px" onclick="BrainView._pendingTab=\'vision\'">edit boards →</a></h2>' +
       '<div class="vision-grid">' + b.tiles.map(function (t, i) {
+        if (t.kind === "asset" && assetUrl(t.assetKey)) {
+          return '<div class="vision-tile image" style="background-image:url(' + assetUrl(t.assetKey) + ')">' +
+            (t.text ? '<span class="vt-caption">' + esc(t.text) + '</span>' : "") + '</div>';
+        }
         if (t.kind === "image" && safeUrl(t.url)) {
           return '<div class="vision-tile image" style="background-image:url(\'' + esc(safeUrl(t.url)) + '\')">' +
             (t.text ? '<span class="vt-caption">' + esc(t.text) + '</span>' : "") + '</div>';

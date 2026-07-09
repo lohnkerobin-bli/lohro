@@ -140,6 +140,11 @@ var BrainView = (function () {
   }
 
   function visionTileHTML(t, editable) {
+    if (t.kind === "asset" && assetUrl(t.assetKey)) {
+      return '<div class="vision-tile image" style="background-image:url(' + assetUrl(t.assetKey) + ')">' +
+        (t.text ? '<span class="vt-caption">' + esc(t.text) + '</span>' : "") +
+        (editable ? '<button class="vt-del" data-del-tile="' + esc(t.id) + '">✕</button>' : "") + '</div>';
+    }
     if (t.kind === "image" && safeUrl(t.url)) {
       return '<div class="vision-tile image" style="background-image:url(\'' + esc(safeUrl(t.url)) + '\')">' +
         (t.text ? '<span class="vt-caption">' + esc(t.text) + '</span>' : "") +
@@ -391,6 +396,7 @@ var BrainView = (function () {
     root.innerHTML =
       '<h1 class="view-title">Brain</h1>' +
       '<p class="view-sub">The team backend: brand core, knowledge base, meetings &amp; weekly reports. Everything exportable via Data &amp; Settings.</p>' +
+      viewBanner('still-lamp') +
       '<div class="filter-bar">' +
       TABS.map(function (t) {
         return '<button class="' + (tab === t.key ? "blue" : "ghost") + '" data-tab="' + t.key + '">' + t.label + '</button>';

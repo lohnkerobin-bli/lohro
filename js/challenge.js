@@ -87,6 +87,7 @@ var ChallengeView = (function () {
     root.innerHTML =
       '<h1 class="view-title">Daily Challenge</h1>' +
       '<p class="view-sub">One short film every day, starting ' + fmtDate(start, { weekday: "long", day: "numeric", month: "long", year: "numeric" }) + '. Click a day to log it.</p>' +
+      viewBanner('still-red') +
 
       '<div class="grid cols-4 mb">' +
         '<div class="card accent-teal"><span class="stat-label">Published</span><div class="stat-value">' + published.length + '</div></div>' +
