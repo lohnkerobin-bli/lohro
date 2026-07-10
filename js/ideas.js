@@ -106,6 +106,18 @@ var IdeasView = (function () {
     };
   }
 
+  var SORTS = [
+    { key: "default", label: "Default order" },
+    { key: "created", label: "Newest idea first" },
+    { key: "oldest", label: "Oldest idea first" },
+    { key: "updated", label: "Last edited" }
+  ];
+
+  function tsOf(v) {
+    var t = Date.parse(v || "");
+    return isNaN(t) ? 0 : t;
+  }
+
   function render(root) {
     var s = Store.get();
     if (IdeasView._pendingOpen) {
@@ -116,6 +128,7 @@ var IdeasView = (function () {
     var q = (render._q || "").toLowerCase();
     var cat = render._cat || "all";
     var status = render._status || "all";
+    var sort = render._sort || "default";
 
     var visible = s.ideas.filter(function (i) {
       if (q && (i.title + " " + i.notes).toLowerCase().indexOf(q) === -1) return false;
@@ -123,6 +136,9 @@ var IdeasView = (function () {
       if (status !== "all" && i.status !== status) return false;
       return true;
     });
+    if (sort === "created") visible.sort(function (a, b) { return tsOf(b.createdAt) - tsOf(a.createdAt); });
+    else if (sort === "oldest") visible.sort(function (a, b) { return tsOf(a.createdAt) - tsOf(b.createdAt); });
+    else if (sort === "updated") visible.sort(function (a, b) { return tsOf(b.updatedAt) - tsOf(a.updatedAt); });
 
     root.innerHTML =
       '<h1 class="view-title">Ideas Vault</h1>' +
@@ -134,6 +150,8 @@ var IdeasView = (function () {
         categories().map(function (c) { return '<option' + (cat === c ? " selected" : "") + '>' + esc(c) + '</option>'; }).join("") + '</select>' +
         '<select id="idea-status"><option value="all">All statuses</option>' +
         STATUSES.map(function (st) { return '<option' + (status === st ? " selected" : "") + '>' + st + '</option>'; }).join("") + '</select>' +
+        '<select id="idea-sort">' +
+        SORTS.map(function (x) { return '<option value="' + x.key + '"' + (sort === x.key ? " selected" : "") + '>' + x.label + '</option>'; }).join("") + '</select>' +
         '<button class="primary" id="idea-new">+ New idea</button>' +
       '</div>' +
 
@@ -151,7 +169,10 @@ var IdeasView = (function () {
           '<div style="font-weight:700;font-size:16px;line-height:1.35;position:relative">' + esc(i.title) + '</div>' +
           (i.notes ? '<div class="muted mt" style="font-size:13px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;position:relative">' + esc(i.notes) + '</div>' : "") +
           '<div class="row between mt"><span style="font-size:12px;font-weight:700">' + (i.energy ? esc(i.energy) : "") + '</span>' +
-          '<span class="muted" style="font-size:11px">' + esc(i.source || "") + '</span></div>' +
+          '<span class="muted" style="font-size:11px">' +
+          (tsOf(i.createdAt) > 0 ? '💡 ' + fmtDateShort(i.createdAt) + ' · ' : "") +
+          (tsOf(i.updatedAt) > 0 ? '✏️ ' + fmtDateShort(i.updatedAt) + ' · ' : "") +
+          esc(i.source || "") + '</span></div>' +
         '</div>';
       }).join("") +
       '</div>' +
@@ -167,6 +188,7 @@ var IdeasView = (function () {
     };
     $("#idea-cat").onchange = function () { render._cat = this.value; App.render(); };
     $("#idea-status").onchange = function () { render._status = this.value; App.render(); };
+    $("#idea-sort").onchange = function () { render._sort = this.value; App.render(); };
     $("#idea-new").onclick = function () { editModal(null); };
     $$("[data-idea]", root).forEach(function (n) {
       n.onclick = function () { editModal(n.getAttribute("data-idea")); };

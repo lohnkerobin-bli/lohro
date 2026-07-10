@@ -209,11 +209,35 @@ var FilmsView = (function () {
 
   /* ---------- list page ---------- */
 
-  function listHTML(films) {
+  var SORTS = [
+    { key: "updated", label: "Last edited" },
+    { key: "created", label: "Newest idea first" },
+    { key: "oldest", label: "Oldest idea first" },
+    { key: "title", label: "Title A–Z" }
+  ];
+
+  function tsOf(v) {
+    var t = Date.parse(v || "");
+    return isNaN(t) ? 0 : t;
+  }
+
+  function sortFilms(films, sort) {
+    var arr = films.slice();
+    if (sort === "created") arr.sort(function (a, b) { return tsOf(b.createdAt) - tsOf(a.createdAt); });
+    else if (sort === "oldest") arr.sort(function (a, b) { return tsOf(a.createdAt) - tsOf(b.createdAt); });
+    else if (sort === "title") arr.sort(function (a, b) { return a.title.localeCompare(b.title, "de"); });
+    else arr.sort(function (a, b) { return tsOf(b.updatedAt) - tsOf(a.updatedAt); }); // last edited
+    return arr;
+  }
+
+  function listHTML(films, sort) {
     return '<h1 class="view-title">Films</h1>' +
       '<p class="view-sub">Every film as a full dossier: logline, script, shotdeck, notes, learnings. Ideas become films via "Develop as film" in the vault.</p>' +
       viewBanner('still-wick') +
       '<div class="filter-bar"><button class="primary" id="film-new">+ New film</button>' +
+      '<select id="film-sort">' +
+      SORTS.map(function (x) { return '<option value="' + x.key + '"' + (sort === x.key ? " selected" : "") + '>' + x.label + '</option>'; }).join("") +
+      '</select>' +
       '<span class="muted" style="font-size:12px">' + films.length + ' film' + (films.length === 1 ? "" : "s") + '</span></div>' +
       (films.length === 0
         ? '<div class="card soft"><div class="empty-note">No films yet. Start one here — or open the Ideas vault and hit "Develop as film" on your strongest idea (e.g. Der Junge im Nebel, Der Schrank, Bushaltestelle...).</div></div>'
@@ -235,7 +259,9 @@ var FilmsView = (function () {
               (f.logline ? '<div class="muted mt" style="font-size:12.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">' + esc(f.logline) + '</div>' : "") +
               '<div class="muted mt" style="font-size:11px">' +
               (f.script ? "✍️ " + (f.script.match(/\S+/g) || []).length + " words" : "no script yet") +
-              ' · 🖼 ' + f.images.length + '</div>' +
+              ' · 🖼 ' + f.images.length +
+              (tsOf(f.createdAt) > 0 ? ' · 💡 ' + fmtDateShort(f.createdAt) : "") +
+              (tsOf(f.updatedAt) > 0 ? ' · ✏️ ' + fmtDateShort(f.updatedAt) : "") + '</div>' +
             '</div>';
           }).join("") + '</div>');
   }
@@ -249,7 +275,10 @@ var FilmsView = (function () {
       return;
     }
     FilmsView._openId = null;
-    root.innerHTML = listHTML(s.films);
+    var sort = render._sort || "updated";
+    root.innerHTML = listHTML(sortFilms(s.films, sort), sort);
+    var srt = $("#film-sort");
+    if (srt) srt.onchange = function () { render._sort = this.value; App.render(); };
     var nb = $("#film-new");
     if (nb) nb.onclick = function () {
       var f = newFilm(null);
