@@ -33,12 +33,71 @@
       "logline": "Version A: Alle starren aufs Handy, niemand spricht. Version B — dieselbe Haltestelle ohne Handys: alle lachen, lernen sich kennen.",
       "genre": "Social Short / Makro-Drama",
       "themes": "Verbindung, Technologie, Menschlichkeit",
-      "status": "idea",
-      "script": "",
+      "status": "script",
+      "script": "BUSHALTESTELLE — ca. 90 Sek., ohne Dialog\nControlling Idea (Vorschlag, deine Entscheidung): Verbindung entsteht, wenn einer zuerst aufschaut.\nRegel: Teil B spiegelt Teil A Shot für Shot — identische Achsen, nur Licht und Verhalten ändern sich.\n\nTEIL A — BLAU (0:00–0:35)\n\nEXT. BUSHALTESTELLE – ABENDDÄMMERUNG\n\nWeite Totale: sechs Menschen unter dem Glasdach, jede*r eine Insel. Alle Gesichter im kalten Handy-Licht.\n\nDie Anzeige springt um: BUS 7 — 10 MIN VERSPÄTUNG. Ein kollektives Seufzen — niemand schaut auf.\n\nMakro-Serie: Daumen scrollen synchron, drei Displays nebeneinander.\n\nEine ältere Frau mit Einkaufsnetz kommt an, sucht Blickkontakt. Nichts. Sie bleibt am Rand stehen.\n\nEin Teenager lacht laut über sein Handy — der einzige Laut. Niemand reagiert.\n\nDER JUNGE MANN hebt den Blick zur jungen Frau gegenüber. Sie schaut für einen Herzschlag hoch. Fast. Er senkt den Blick zurück aufs Display.\n\nDer Bus kommt. Türen. Alle steigen wortlos ein. Die Haltestelle bleibt leer, das kalte Licht flackert.\n\nSCHWARZ. TEXT: \"10 Minuten.\"\n\nTEIL B — WARM (0:35–1:15)\n\nEXT. DIESELBE BUSHALTESTELLE – ABENDDÄMMERUNG\n\nWeite Totale, gleiche Positionen — aber kein einziges Handy. Hände in Taschen, Blicke wandern.\n\nDie Anzeige springt um: BUS 7 — 10 MIN VERSPÄTUNG. Kollektives Seufzen — dann Grinsen, Achselzucken: Alle sitzen im selben Boot.\n\nDie ältere Frau kommt an — der Teenager rutscht ohne zu fragen zur Seite. Sie nickt ihm zu.\n\nDer Teenager erzählt etwas mit Händen und Füssen — zwei Fremde lachen. (Dasselbe Lachen wie in Teil A — jetzt geteilt.)\n\nDer junge Mann hebt den Blick zur jungen Frau. Sie schaut hoch. Er bleibt oben. Ein Lächeln. Er geht rüber — wir hören nichts, wir sehen nur, dass etwas beginnt.\n\nDer Bus kommt. Der junge Mann und die junge Frau steigen als Letzte ein, mitten im Gespräch. Die ältere Frau winkt dem Teenager durchs Fenster.\n\nDie leere Haltestelle — warmes Licht.\n\nSCHLUSS (1:15–1:30)\n\nSCHWARZ. TEXT: \"Gleiche Haltestelle. Gleiche 10 Minuten.\"\nTEXT: \"We lost the connection. Let's find it again.\"\n(Endcard-Alternativen: \"Be more human.\" / \"Let's connect again.\")\n\nPRODUKTION: 1 Location, 5–6 Freunde als Cast, 1 Abend (Blaue Stunde für A, Golden Hour für B — oder B zuerst drehen). Verspätungsanzeige: Insert am Laptop nachbauen oder Text-Card. Stativpositionen zwischen A und B markieren (Tape!), damit die Spiegelung exakt sitzt.",
       "images": [],
-      "notes": "Kernaussage: \"Technologie verbindet uns digital, trennt uns aber oft physisch.\"\nBotschaften-Optionen: \"Let's connect again\" / \"Be more human\" / \"We lost the connection\"\nPerfekt als Daily-Challenge-Film mit Reel-Zweitverwertung.",
+      "storyboard": [
+        {
+          "id": "sb-bus-01",
+          "text": "Weite Totale: sechs Menschen unter dem Glasdach, jede*r eine Insel. Alle Gesichter im kalten Handy-Licht.",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zxKfOFYhU8bEIxbcB25myP8oEY/hf_20260710_230723_0a9472a4-bd3f-4a61-92bf-6eb6a0ff94ac_min.webp",
+          "caption": "A1 · Weit, statisch, blau — jeder eine Insel",
+          "assetKey": "sb-bus-01"
+        },
+        {
+          "id": "sb-bus-02",
+          "text": "Makro-Serie: Daumen scrollen synchron, drei Displays nebeneinander.",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zxKfOFYhU8bEIxbcB25myP8oEY/hf_20260710_230725_da03b460-a9c1-416f-ac19-704a65b1918a_min.webp",
+          "caption": "A2 · Makro, Schnittserie im Takt",
+          "assetKey": "sb-bus-02"
+        },
+        {
+          "id": "sb-bus-03",
+          "text": "Eine ältere Frau mit Einkaufsnetz kommt an, sucht Blickkontakt. Nichts. Sie bleibt am Rand stehen.",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zxKfOFYhU8bEIxbcB25myP8oEY/hf_20260710_230727_34d58d28-69a4-445f-be10-171e25980786_min.webp",
+          "caption": "A3 · Mitzieher auf sie, dann statisch: niemand reagiert",
+          "assetKey": "sb-bus-03"
+        },
+        {
+          "id": "sb-bus-04",
+          "text": "DER JUNGE MANN hebt den Blick zur jungen Frau gegenüber. Sie schaut für einen Herzschlag hoch. Fast. Er senkt den Blick zurück aufs Display.",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zxKfOFYhU8bEIxbcB25myP8oEY/hf_20260710_230729_f89e0536-804e-4caf-bd47-c4ab6a666b35_min.webp",
+          "caption": "A4 · Der Fast-Moment — Schuss/Gegenschuss, 50mm",
+          "assetKey": "sb-bus-04"
+        },
+        {
+          "id": "sb-bus-05",
+          "text": "Weite Totale, gleiche Positionen — aber kein einziges Handy. Hände in Taschen, Blicke wandern.",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zxKfOFYhU8bEIxbcB25myP8oEY/hf_20260710_230737_cfaef2ae-e3f5-4caa-ad1d-a0cf7b9b94a1_min.webp",
+          "caption": "B1 · EXAKT gleiche Kadrage wie A1, warm",
+          "assetKey": "sb-bus-05"
+        },
+        {
+          "id": "sb-bus-06",
+          "text": "Die ältere Frau kommt an — der Teenager rutscht ohne zu fragen zur Seite. Sie nickt ihm zu.",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zxKfOFYhU8bEIxbcB25myP8oEY/hf_20260710_230739_2557b155-b8fd-459f-be74-4040ce290ff4_min.webp",
+          "caption": "B3 · Spiegel von A3 — die kleine Geste",
+          "assetKey": "sb-bus-06"
+        },
+        {
+          "id": "sb-bus-07",
+          "text": "Der junge Mann hebt den Blick zur jungen Frau. Sie schaut hoch. Er bleibt oben. Ein Lächeln.",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zxKfOFYhU8bEIxbcB25myP8oEY/hf_20260710_230741_c3d7d18c-2e90-4a64-a8bd-737adc204214_min.webp",
+          "caption": "B4 · Spiegel von A4 — diesmal bleibt der Blick",
+          "assetKey": "sb-bus-07"
+        },
+        {
+          "id": "sb-bus-08",
+          "text": "Der junge Mann und die junge Frau steigen als Letzte ein, mitten im Gespräch. Die ältere Frau winkt dem Teenager durchs Fenster.",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_2zxKfOFYhU8bEIxbcB25myP8oEY/hf_20260710_230742_b4b53df7-323d-447a-b4b2-c2388b3120ce_min.webp",
+          "caption": "B5 · Auflösung von hinten, Türlicht warm",
+          "assetKey": "sb-bus-08"
+        }
+      ],
+      "notes": "Kernaussage: \"Technologie verbindet uns digital, trennt uns aber oft physisch.\"\nBotschaften-Optionen: \"Let's connect again\" / \"Be more human\" / \"We lost the connection\"\nPerfekt als Daily-Challenge-Film mit Reel-Zweitverwertung.\n\nSCRIPT-ENTWURF von Claude (10.07.2026) auf Robins Konzept — alles Vorschlag, nichts heilig. Die Storyboard-Frames sind Higgsfield-Previews im House-Style, KEINE finalen Kadragen.",
       "learnings": "",
-      "createdAt": "2026-07-08T12:00:00Z"
+      "createdAt": "2026-07-08T12:00:00Z",
+      "updatedAt": "2026-07-10T09:30:00Z"
     },
     {
       "id": "film-strassenhund",

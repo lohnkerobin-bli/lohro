@@ -80,9 +80,9 @@ var FilmsView = (function () {
       '<p class="muted mb" style="font-size:12.5px">Mark a passage in the script above, then hit <strong>“+ Frame from selection”</strong> — the frame stays anchored to that exact text. Add an image link per frame or let Claude generate one.</p>' +
       (frames.length === 0 ? '<div class="empty-note">No frames yet — select a line in the script and add your first frame.</div>' :
         '<div class="mood-grid">' + frames.map(function (fr, i) {
-          var u = safeUrl(fr.url);
+          var u = (fr.assetKey && assetUrl(fr.assetKey)) || safeUrl(fr.url);
           return '<figure class="mood-item">' +
-            (u ? '<img src="' + esc(u) + '" loading="lazy" alt="">' :
+            (u ? '<img src="' + (fr.assetKey && assetUrl(fr.assetKey) ? u : esc(u)) + '" loading="lazy" alt="">' :
               '<div class="mood-link" style="font-size:11.5px;line-height:1.5;padding:12px">🎞 ' + (i + 1) + '<br><em>“' + esc(fr.text.slice(0, 90)) + (fr.text.length > 90 ? "…" : "") + '”</em></div>') +
             '<figcaption>' +
             '<div class="muted" style="font-size:10.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">' + (i + 1) + ' · “' + esc(fr.text.slice(0, 70)) + '”</div>' +
