@@ -170,8 +170,8 @@ var IdeasView = (function () {
           (i.notes ? '<div class="muted mt" style="font-size:13px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;position:relative">' + esc(i.notes) + '</div>' : "") +
           '<div class="row between mt"><span style="font-size:12px;font-weight:700">' + (i.energy ? esc(i.energy) : "") + '</span>' +
           '<span class="muted" style="font-size:11px">' +
-          (tsOf(i.createdAt) > 0 ? '💡 ' + fmtDateShort(i.createdAt) + ' · ' : "") +
-          (tsOf(i.updatedAt) > 0 ? '✏️ ' + fmtDateShort(i.updatedAt) + ' · ' : "") +
+          (tsOf(i.createdAt) > 0 ? '💡 ' + fmtDateAuto(i.createdAt) + ' · ' : "") +
+          (tsOf(i.updatedAt) > 0 ? '✏️ ' + fmtDateAuto(i.updatedAt) + ' · ' : "") +
           esc(i.source || "") + '</span></div>' +
         '</div>';
       }).join("") +

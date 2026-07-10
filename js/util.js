@@ -45,6 +45,14 @@ function fmtDate(iso, opts) {
   return d.toLocaleDateString("en-GB", opts || { day: "numeric", month: "short", year: "numeric" });
 }
 function fmtDateShort(iso) { return fmtDate(iso, { day: "numeric", month: "short" }); }
+// like fmtDateShort but shows the year when it isn't the current one (old archive notes)
+function fmtDateAuto(iso) {
+  var d = parseISO(iso);
+  if (!d || isNaN(d)) return "—";
+  return d.getFullYear() === new Date().getFullYear()
+    ? fmtDateShort(iso)
+    : d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "2-digit" });
+}
 function addDays(iso, n) {
   var d = parseISO(iso);
   d.setDate(d.getDate() + n);

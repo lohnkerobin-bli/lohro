@@ -447,8 +447,8 @@ var FilmsView = (function () {
               '<div class="muted mt" style="font-size:11px">' +
               (f.script ? "✍️ " + (f.script.match(/\S+/g) || []).length + " words" : "no script yet") +
               ' · 🖼 ' + f.images.length +
-              (tsOf(f.createdAt) > 0 ? ' · 💡 ' + fmtDateShort(f.createdAt) : "") +
-              (tsOf(f.updatedAt) > 0 ? ' · ✏️ ' + fmtDateShort(f.updatedAt) : "") + '</div>' +
+              (tsOf(f.createdAt) > 0 ? ' · 💡 ' + fmtDateAuto(f.createdAt) : "") +
+              (tsOf(f.updatedAt) > 0 ? ' · ✏️ ' + fmtDateAuto(f.updatedAt) : "") + '</div>' +
             '</div>';
           }).join("") + '</div>');
   }
