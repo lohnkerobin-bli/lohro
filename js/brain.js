@@ -6,6 +6,7 @@ var BrainView = (function () {
   var TABS = [
     { key: "brand", label: "🎨 Brand Core" },
     { key: "knowledge", label: "📚 Knowledge" },
+    { key: "graph", label: "🕸 Graph" },
     { key: "vision", label: "🌟 Vision" },
     { key: "meetings", label: "🗓 Meetings & Reports" }
   ];
@@ -113,6 +114,161 @@ var BrainView = (function () {
           x.entries.map(function (e) { return '<li>' + esc(e) + '</li>'; }).join("") +
           '</ul></div>';
       }).join("") + '</div>';
+  }
+
+  /* ---------- Graph (visual brain map, zero credits — computed locally) ---------- */
+
+  var TYPE_COLOR = { idea: "#E3A72F", film: "#B04A93", brand: "#E8871E", meeting: "#457B9D", location: "#2FA39A" };
+
+  function graphHTML() {
+    return '<div class="row between mb" style="flex-wrap:wrap;gap:8px">' +
+      '<span class="muted" style="font-size:13px">Your second brain as a map. Lines = shared themes; <strong>thick amber lines</strong> = links you actually use (they grow stronger every time you open one note from another). Click a dot to open it.</span></div>' +
+      '<div class="card soft" style="padding:10px">' +
+      '<canvas id="brain-graph" style="width:100%;height:560px;display:block;border-radius:12px;cursor:pointer"></canvas>' +
+      '<div class="row mt" style="gap:14px;flex-wrap:wrap;font-size:11.5px">' +
+      Object.keys(TYPE_COLOR).map(function (t) {
+        return '<span><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:' + TYPE_COLOR[t] + ';margin-right:5px"></span>' + t + '</span>';
+      }).join("") +
+      '<span class="muted">· amber line thickness = link strength</span></div></div>';
+  }
+
+  function bindGraph() {
+    var cv = $("#brain-graph");
+    if (!cv) return;
+    var W = cv.clientWidth, H = 560;
+    var dpr = window.devicePixelRatio || 1;
+    cv.width = W * dpr; cv.height = H * dpr;
+    var ctx = cv.getContext("2d");
+    ctx.scale(dpr, dpr);
+
+    var nodes = Graph.nodes();
+    var idx = {};
+    nodes.forEach(function (n, i) { idx[n.id] = i; });
+
+    // edges: learned links (linkGraph) + keyword edges between non-idea/idea pairs
+    var edges = [];
+    var seen = {};
+    var lg = Store.get().linkGraph || {};
+    Object.keys(lg).forEach(function (k) {
+      var p = k.split("|");
+      if (idx[p[0]] === undefined || idx[p[1]] === undefined) return;
+      edges.push({ a: idx[p[0]], b: idx[p[1]], w: lg[k].weight || 1, learned: true });
+      seen[k] = true;
+    });
+    // keyword edges: connect every non-idea node to its top related notes (cheap: ~30 nodes × related)
+    nodes.forEach(function (n, i) {
+      if (n.type === "idea") return; // 100+ ideas each way would melt the map
+      Graph.related(n.id, 4).forEach(function (r) {
+        var j = idx[r.node.id];
+        if (j === undefined) return;
+        var k = n.id < r.node.id ? n.id + "|" + r.node.id : r.node.id + "|" + n.id;
+        if (seen[k]) return;
+        seen[k] = true;
+        edges.push({ a: i, b: j, w: 0, learned: false });
+      });
+    });
+
+    // keep the map readable: only nodes with at least one edge, plus all non-ideas
+    var deg = nodes.map(function () { return 0; });
+    edges.forEach(function (e) { deg[e.a]++; deg[e.b]++; });
+    var keep = nodes.map(function (n, i) { return deg[i] > 0 || n.type !== "idea"; });
+
+    // simple force layout
+    var pos = nodes.map(function (n, i) {
+      var angle = (i / nodes.length) * Math.PI * 2;
+      var r = n.type === "idea" ? 230 : 130;
+      return { x: W / 2 + Math.cos(angle) * r, y: H / 2 + Math.sin(angle) * r, vx: 0, vy: 0 };
+    });
+    for (var it = 0; it < 160; it++) {
+      for (var i = 0; i < nodes.length; i++) {
+        if (!keep[i]) continue;
+        var fx = 0, fy = 0;
+        for (var j = 0; j < nodes.length; j++) {
+          if (i === j || !keep[j]) continue;
+          var dx = pos[i].x - pos[j].x, dy = pos[i].y - pos[j].y;
+          var d2 = dx * dx + dy * dy + 40;
+          var rep = 1400 / d2;
+          fx += dx * rep; fy += dy * rep;
+        }
+        fx += (W / 2 - pos[i].x) * 0.012;
+        fy += (H / 2 - pos[i].y) * 0.012;
+        pos[i].vx = (pos[i].vx + fx) * 0.5;
+        pos[i].vy = (pos[i].vy + fy) * 0.5;
+      }
+      edges.forEach(function (e) {
+        var dx = pos[e.b].x - pos[e.a].x, dy = pos[e.b].y - pos[e.a].y;
+        var d = Math.sqrt(dx * dx + dy * dy) || 1;
+        var target = e.learned ? 90 : 140;
+        var pull = (d - target) * 0.004 * (1 + Math.min(3, e.w) * 0.6);
+        pos[e.a].vx += dx / d * pull * d; pos[e.a].vy += dy / d * pull * d;
+        pos[e.b].vx -= dx / d * pull * d; pos[e.b].vy -= dy / d * pull * d;
+      });
+      for (var m = 0; m < nodes.length; m++) {
+        if (!keep[m]) continue;
+        pos[m].x = Math.max(20, Math.min(W - 20, pos[m].x + pos[m].vx * 0.05));
+        pos[m].y = Math.max(20, Math.min(H - 20, pos[m].y + pos[m].vy * 0.05));
+      }
+    }
+
+    function draw(hover) {
+      ctx.clearRect(0, 0, W, H);
+      edges.forEach(function (e) {
+        if (!keep[e.a] || !keep[e.b]) return;
+        ctx.beginPath();
+        ctx.moveTo(pos[e.a].x, pos[e.a].y);
+        ctx.lineTo(pos[e.b].x, pos[e.b].y);
+        if (e.learned) {
+          ctx.strokeStyle = "rgba(232,135,30," + Math.min(0.95, 0.45 + e.w * 0.15) + ")";
+          ctx.lineWidth = Math.min(5, 1.2 + e.w * 0.9);
+        } else {
+          ctx.strokeStyle = "rgba(255,255,255,.10)";
+          ctx.lineWidth = 1;
+        }
+        ctx.stroke();
+      });
+      nodes.forEach(function (n, i) {
+        if (!keep[i]) return;
+        var r = 4 + Math.min(6, deg[i]) + (n.type !== "idea" ? 2 : 0);
+        ctx.beginPath();
+        ctx.arc(pos[i].x, pos[i].y, r, 0, Math.PI * 2);
+        ctx.fillStyle = TYPE_COLOR[n.type] || "#999";
+        ctx.globalAlpha = hover === null || hover === i ? 1 : 0.55;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        if (n.type !== "idea" || deg[i] >= 3 || hover === i) {
+          ctx.font = (hover === i ? "700 12.5px" : "600 10.5px") + " -apple-system, sans-serif";
+          ctx.fillStyle = hover === i ? "#FFFFFF" : "rgba(255,255,255,.72)";
+          var label = n.title.length > 26 ? n.title.slice(0, 24) + "…" : n.title;
+          ctx.fillText(label, pos[i].x + r + 4, pos[i].y + 3.5);
+        }
+      });
+    }
+    draw(null);
+
+    function hit(ev) {
+      var rect = cv.getBoundingClientRect();
+      var x = ev.clientX - rect.left, y = ev.clientY - rect.top;
+      var best = null, bestD = 18 * 18;
+      nodes.forEach(function (n, i) {
+        if (!keep[i]) return;
+        var dx = pos[i].x - x, dy = pos[i].y - y;
+        var d = dx * dx + dy * dy;
+        if (d < bestD) { bestD = d; best = i; }
+      });
+      return best;
+    }
+    cv.onmousemove = function (ev) { draw(hit(ev)); };
+    cv.onmouseleave = function () { draw(null); };
+    cv.onclick = function (ev) {
+      var i = hit(ev);
+      if (i === null) return;
+      var n = nodes[i];
+      if (n.type === "film") { FilmsView._openId = n.id; location.hash = "#/films"; }
+      else if (n.type === "idea") { IdeasView._pendingOpen = n.id; location.hash = "#/ideas"; }
+      else if (n.type === "location") { LocationsView._pendingOpen = n.id; location.hash = "#/locations"; }
+      else if (n.type === "brand") { render._tab = "brand"; brandNoteModal(n.id); }
+      else if (n.type === "meeting") { render._tab = "meetings"; meetingModal(n.id); }
+    };
   }
 
   /* ---------- Vision Boards ---------- */
@@ -414,9 +570,9 @@ var BrainView = (function () {
       TABS.map(function (t) {
         return '<button class="' + (tab === t.key ? "blue" : "ghost") + '" data-tab="' + t.key + '">' + t.label + '</button>';
       }).join("") +
-      (tab !== "meetings" ? '<input id="brain-q" placeholder="Search..." value="' + esc(render._q || "") + '" style="flex:1;min-width:160px">' : "") +
+      (tab !== "meetings" && tab !== "graph" ? '<input id="brain-q" placeholder="Search..." value="' + esc(render._q || "") + '" style="flex:1;min-width:160px">' : "") +
       '</div>' +
-      (tab === "brand" ? brandHTML() : tab === "knowledge" ? knowledgeHTML() : tab === "vision" ? visionHTML() : meetingsHTML());
+      (tab === "brand" ? brandHTML() : tab === "knowledge" ? knowledgeHTML() : tab === "graph" ? graphHTML() : tab === "vision" ? visionHTML() : meetingsHTML());
 
     $$("button[data-tab]", root).forEach(function (b) {
       b.onclick = function () { render._tab = b.getAttribute("data-tab"); render._q = ""; App.render(); };
@@ -435,6 +591,7 @@ var BrainView = (function () {
       n.onclick = function () { brandNoteModal(n.getAttribute("data-brand")); };
     });
     if (tab === "vision") bindVision(root);
+    if (tab === "graph") bindGraph();
     var mn = $("#meeting-new");
     if (mn) mn.onclick = function () { meetingModal(null); };
     var wr = $("#weekly-report");

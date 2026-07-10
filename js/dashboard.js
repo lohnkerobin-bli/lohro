@@ -175,6 +175,57 @@ var DashboardView = (function () {
     return '<div class="action-row">' + left + right + '</div>';
   }
 
+  /* ---------- social output (from the daily Sandcastles post-check) ---------- */
+
+  var PF_COLOR = { instagram: "#B04A93", youtube: "#E63946", tiktok: "#2FA39A" };
+
+  function socialOutputHTML() {
+    var entries = (window.SEED && window.SEED.socialLog && window.SEED.socialLog.entries) || [];
+    var head = '<div class="card soft tint-magenta mt">' +
+      '<div class="row between"><span class="stat-label">📤 Social output</span>' +
+      '<span class="muted" style="font-size:11.5px">daily Sandcastles check · weekly overview every Thursday</span></div>';
+    if (!entries.length) {
+      return head + '<div class="chart-empty" style="padding:22px 10px">📤<br>The daily post-check starts tomorrow morning.<br>Videos posted per week and platform will show up here automatically.</div></div>';
+    }
+    // aggregate per ISO-week start (Monday) per platform
+    function weekStart(iso) {
+      var d = parseISO(iso);
+      var wd = (d.getDay() + 6) % 7;
+      d.setDate(d.getDate() - wd);
+      return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    }
+    var weeks = {};
+    entries.forEach(function (e) {
+      var w = weekStart(e.date);
+      weeks[w] = weeks[w] || {};
+      weeks[w][e.platform] = (weeks[w][e.platform] || 0) + (e.newPosts || 0);
+    });
+    var keys = Object.keys(weeks).sort().slice(-6);
+    var pfs = ["instagram", "youtube", "tiktok"];
+    var maxV = 1;
+    keys.forEach(function (w) { pfs.forEach(function (p) { maxV = Math.max(maxV, weeks[w][p] || 0); }); });
+    var W = 640, H = 150, pad = 26;
+    var groupW = (W - pad * 2) / keys.length;
+    var barW = Math.min(18, groupW / 4.5);
+    var bars = "", labels = "";
+    keys.forEach(function (w, wi) {
+      var x0 = pad + wi * groupW + groupW / 2 - (barW * 1.5 + 4);
+      pfs.forEach(function (p, pi) {
+        var v = weeks[w][p] || 0;
+        var h = (v / maxV) * (H - pad * 2);
+        bars += '<rect x="' + (x0 + pi * (barW + 2)).toFixed(1) + '" y="' + (H - pad - h).toFixed(1) +
+          '" width="' + barW + '" height="' + Math.max(1.5, h).toFixed(1) + '" rx="3" fill="' + PF_COLOR[p] + '"' + (v === 0 ? ' opacity=".25"' : '') + '/>' +
+          (v > 0 ? '<text x="' + (x0 + pi * (barW + 2) + barW / 2).toFixed(1) + '" y="' + (H - pad - h - 4).toFixed(1) + '" text-anchor="middle" fill="#FFF" font-size="9.5" font-weight="700">' + v + '</text>' : "");
+      });
+      labels += '<text x="' + (pad + wi * groupW + groupW / 2).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" fill="rgba(255,255,255,.6)" font-size="10">' + fmtDateShort(w) + '</text>';
+    });
+    return head +
+      '<div class="mt"><svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet" role="img">' + bars + labels + '</svg></div>' +
+      '<div class="row mt" style="gap:14px;font-size:11.5px">' +
+      pfs.map(function (p) { return '<span><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:' + PF_COLOR[p] + ';margin-right:5px"></span>' + p + '</span>'; }).join("") +
+      '<span class="muted">videos posted per week</span></div></div>';
+  }
+
   function visionStripHTML() {
     var boards = Store.get().visionBoards || [];
     if (!boards.length) return "";
@@ -377,6 +428,8 @@ var DashboardView = (function () {
           '</div>' +
         '</div>' +
       '</div>' +
+
+      socialOutputHTML() +
 
       visionStripHTML() +
 

@@ -114,3 +114,15 @@ Autonomous build session, 2026-07-07. All decisions made without user input, doc
 
 ## D30 — Client work lives in the Command Center (Säntis)
 **Decision:** Adopted Simon's Säntis handover system: the whole client project is now in the app — `data/company.json` seeds 7 client projects (Testfilme deadline 14.07., 5 Brand-Filme with shoot dates, Miraval/Maison Rosé) as type "client" in Projects; upcoming client deadlines show on the dashboard's Up-next card. The full handover is archived as `data/meetings/2026-07-09-saentis-handover.md`; the transferable process lessons (test films before shooting, cost-ceiling phase table, proactive budget checkpoints, explicit risk register) became a Team-Playbook brand note.
+
+## D31 — Script-anchored storyboard + shot list (StudioBinder-style, offline)
+**Decision:** Storyboard frames anchor to selected script passages (film.storyboard[] = {id, text, url, caption}) — select text, "+ Frame from selection". Frames render in script order, take an https image or a Claude-generated still, and the shot list (.md, grouped by scene headings with checkboxes) is derived locally from script + storyboard at zero credits. Dossier export includes the storyboard.
+
+## D32 — Filmwissen: McKee coaching questions, never solutions
+**Decision:** Every film dossier shows a "Filmwissen" card with craft questions (Robert McKee's Story: premise/structure/scene/visual/rewrite) filtered by film status, rotating daily. Per Robin's explicit wish, Claude's script feedback style is questions and pointers, never finished examples — the ideas must stay his (rule in CLAUDE.md, question bank in data/filmcraft.json).
+
+## D33 — Locations library with EXIF pipeline
+**Decision:** New Locations view + `locations` collection (seeded from data/locations.json with Sebis Body Bar, Wiese Peter und Paul, Klosterplatz). Robin sends photos → Claude reads EXIF GPS cloud-side, files the location; film dossiers auto-suggest matching locations via the knowledge graph (film↔location links strengthen on use).
+
+## D34 — Brain graph view + daily social output log
+**Decision:** Brain → Graph renders the whole second brain as a client-side force-directed canvas map (zero credits): dots by type, grey lines = shared themes, amber lines thicken with learned link weight; click opens the note. New daily Routine (07:30 CH, trig_01JsxHbVR2iP97PQDbkvVmJ1) logs new posts per platform into data/social-log.json; the dashboard charts videos/week and the Thursday routine compiles the weekly growth overview.

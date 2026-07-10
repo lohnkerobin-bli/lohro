@@ -1,0 +1,68 @@
+{
+  "source": "Coaching-Fragen nach Robert McKee ('Story') + Film-Craft-Wissen aus dem Second Brain. Bewusst als Fragen formuliert — Robin findet die Antworten selbst.",
+  "groups": [
+    {
+      "key": "premise",
+      "label": "Prämisse & Idee",
+      "forStatus": ["idea"],
+      "questions": [
+        "Was ist deine Controlling Idea in EINEM Satz — welcher Wert siegt am Ende, und wodurch?",
+        "Wessen Geschichte ist das? Wer verändert sich — und kann diese Figur am Anfang das Gegenteil vom Ende sein?",
+        "Was steht auf dem Spiel? Was verliert die Hauptfigur unwiderruflich, wenn sie scheitert?",
+        "Warum JETZT? Warum passiert diese Geschichte an diesem Tag und nicht irgendwann?",
+        "Was will die Figur bewusst (Desire) — und was braucht sie wirklich (Need)? Wo widersprechen sich die beiden?",
+        "Ist die Idee ein Klischee? Welche Erwartung des Publikums kannst du aufbauen und dann brechen?"
+      ]
+    },
+    {
+      "key": "structure",
+      "label": "Struktur",
+      "forStatus": ["treatment", "script"],
+      "questions": [
+        "Wo ist dein Inciting Incident — der Moment, der das Leben der Figur aus der Balance wirft? Kommt er früh genug?",
+        "McKees Gap: Wo klafft die Lücke zwischen dem, was die Figur ERWARTET, und dem, was tatsächlich passiert?",
+        "Werden die Komplikationen progressiv stärker — zwingt jede Hürde die Figur zu einem grösseren Risiko als die letzte?",
+        "Hat jede Szene einen Value Shift? Welcher Wert (Hoffnung/Angst, Nähe/Distanz...) dreht sich von + nach − oder umgekehrt?",
+        "Was ist dein Climax — die eine unumkehrbare Entscheidung? Ist sie die schwerste Wahl, nicht der grösste Knall?",
+        "Könntest du eine Szene streichen, ohne dass die Geschichte kippt? Dann gehört sie raus.",
+        "Wo ist die Krise (die Dilemma-Entscheidung) VOR dem Höhepunkt — Wahl zwischen zwei Übeln oder zwei unvereinbaren Gütern?"
+      ]
+    },
+    {
+      "key": "scene",
+      "label": "Szene & Subtext",
+      "forStatus": ["script", "pre-production"],
+      "questions": [
+        "Was WILL jede Figur in dieser Szene — auch die, die schweigt?",
+        "Text vs. Subtext: Was sagt die Figur, und was meint sie wirklich? Wo kannst du Dialog durch Verhalten ersetzen?",
+        "Exposition als Munition: Erfährt das Publikum Infos erst in dem Moment, in dem es sie BRAUCHT — und im Konflikt statt als Erklärung?",
+        "Turning Point: Auf welchem Beat kippt die Szene? Kann er später kommen (später rein, früher raus)?",
+        "Zeigt die Kamera etwas, das die Figuren nicht wissen — oder wissen die Figuren etwas, das die Kamera verschweigt?"
+      ]
+    },
+    {
+      "key": "visual",
+      "label": "Bild & Ton",
+      "forStatus": ["pre-production", "shooting"],
+      "questions": [
+        "Was ist dein Image System — welches wiederkehrende visuelle Motiv trägt die Controlling Idea (Licht, Objekt, Farbe)?",
+        "Kannst du die Geschichte STUMM erzählen? Welche Szene funktioniert nur wegen des Dialogs — und ist das ein Problem?",
+        "Wo verstärkt Musik die Emotion, die schon im Bild ist — und wo ersetzt sie eine Emotion, die im Bild fehlt?",
+        "Erster und letzter Frame: Erzählen sie zusammen die Verwandlung?",
+        "Welcher Shot ist dein teuerster (Zeit/Aufwand) — und trägt er den grössten Bedeutungswert?"
+      ]
+    },
+    {
+      "key": "rewrite",
+      "label": "Schnitt & Rewrite",
+      "forStatus": ["post", "finished", "festival-run"],
+      "questions": [
+        "Ehrlichkeits-Check: An welcher Stelle langweilst DU dich beim Anschauen? Genau dort liegt das Problem — nicht eine Szene später.",
+        "Dreht sich in jedem Akt der Wert der Gesamtgeschichte — oder wiederholst du dieselbe Ladung zweimal?",
+        "Was passiert, wenn du die ersten 30 Sekunden streichst? Fehlt wirklich etwas?",
+        "Versteht jemand ohne Kontext die Geschichte? Zeig den Cut einer Person, die nichts weiss, und stell EINE Frage: 'Was wollte die Figur?'",
+        "Welches Learning nimmst du in den nächsten Film mit — als Satz im Learnings-Feld?"
+      ]
+    }
+  ]
+}

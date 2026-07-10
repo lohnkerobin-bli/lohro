@@ -29,6 +29,7 @@ var FilmsView = (function () {
       status: "idea",
       script: "",
       images: [],           // {id, url, caption}
+      storyboard: [],       // {id, text (script anchor), url, caption}
       notes: (from && from.notes) || "",
       learnings: "",
       fromIdeaId: (from && from.id) || null,
@@ -62,6 +63,119 @@ var FilmsView = (function () {
     n.onchange = function () { f[prop] = n.value.trim ? n.value.trim() : n.value; touch(f); if (after) after(); };
   }
 
+  /* ---------- storyboard (script-anchored frames) ---------- */
+
+  function sbSorted(f) {
+    return (f.storyboard || []).slice().sort(function (a, b) {
+      var pa = f.script.indexOf(a.text), pb = f.script.indexOf(b.text);
+      if (pa === -1) pa = 1e9; if (pb === -1) pb = 1e9;
+      return pa - pb;
+    });
+  }
+
+  function storyboardHTML(f) {
+    var frames = sbSorted(f);
+    return '<h2 class="section-title">🎞 Storyboard <span class="badge gray">' + frames.length + '</span></h2>' +
+      '<div class="card soft mb">' +
+      '<p class="muted mb" style="font-size:12.5px">Mark a passage in the script above, then hit <strong>“+ Frame from selection”</strong> — the frame stays anchored to that exact text. Add an image link per frame or let Claude generate one.</p>' +
+      (frames.length === 0 ? '<div class="empty-note">No frames yet — select a line in the script and add your first frame.</div>' :
+        '<div class="mood-grid">' + frames.map(function (fr, i) {
+          var u = safeUrl(fr.url);
+          return '<figure class="mood-item">' +
+            (u ? '<img src="' + esc(u) + '" loading="lazy" alt="">' :
+              '<div class="mood-link" style="font-size:11.5px;line-height:1.5;padding:12px">🎞 ' + (i + 1) + '<br><em>“' + esc(fr.text.slice(0, 90)) + (fr.text.length > 90 ? "…" : "") + '”</em></div>') +
+            '<figcaption>' +
+            '<div class="muted" style="font-size:10.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">' + (i + 1) + ' · “' + esc(fr.text.slice(0, 70)) + '”</div>' +
+            (fr.caption ? '<div style="font-size:11px">' + esc(fr.caption) + '</div>' : "") +
+            '<div class="row between mt" style="gap:4px">' +
+            '<button class="small ghost" data-sb-img="' + esc(fr.id) + '" title="Set image link">🖼</button>' +
+            '<button class="small ghost" data-sb-gen="' + esc(fr.id) + '" title="Copy a generate request for Claude">✨</button>' +
+            '<button class="small ghost danger" data-sb-del="' + esc(fr.id) + '">✕</button></div>' +
+            '</figcaption></figure>';
+        }).join("") + '</div>') +
+      '<div class="row mt"><button id="sb-shotlist">📋 Export shot list (.md)</button></div>' +
+      '</div>';
+  }
+
+  function shotListMd(f) {
+    var frames = sbSorted(f);
+    var lines = ["# Shot list — " + f.title, "", "_Generated " + todayISO() + " from script + storyboard_", ""];
+    var script = f.script || "";
+    var heads = [];
+    script.split("\n").forEach(function (ln, idx) {
+      if (/^\s*(SZENE|SCENE|BLOCK|INT\.|EXT\.|SCHLUSS|INTRO)/i.test(ln)) heads.push({ line: ln.trim(), pos: script.split("\n").slice(0, idx).join("\n").length });
+    });
+    var n = 0;
+    if (heads.length === 0) heads = [{ line: "FILM", pos: 0 }];
+    heads.forEach(function (h, hi) {
+      var end = hi + 1 < heads.length ? heads[hi + 1].pos : 1e12;
+      lines.push("## " + h.line, "");
+      frames.forEach(function (fr) {
+        var p = script.indexOf(fr.text);
+        if (p >= h.pos && p < end) {
+          n++;
+          lines.push("- [ ] **Shot " + n + "** — “" + fr.text.slice(0, 100) + "”" +
+            (fr.caption ? " · " + fr.caption : "") + (safeUrl(fr.url) ? " · ref: " + fr.url : ""));
+        }
+      });
+      if (lines[lines.length - 1].indexOf("## ") === 0) lines.push("_(no frames anchored here yet)_");
+      lines.push("");
+    });
+    var orphans = frames.filter(function (fr) { return script.indexOf(fr.text) === -1; });
+    if (orphans.length) {
+      lines.push("## Frames whose anchor left the script", "");
+      orphans.forEach(function (fr) { n++; lines.push("- [ ] **Shot " + n + "** — “" + fr.text.slice(0, 100) + "”"); });
+      lines.push("");
+    }
+    if (f.images.length) {
+      lines.push("## Moodboard references", "");
+      f.images.forEach(function (img) { lines.push("- " + img.url + (img.caption ? " — " + img.caption : "")); });
+    }
+    return lines.join("\n");
+  }
+
+  /* ---------- Filmwissen (McKee coaching questions) ---------- */
+
+  function filmwissenHTML(f) {
+    var fc = window.SEED && window.SEED.filmcraft;
+    if (!fc || !fc.groups) return "";
+    var groups = fc.groups.filter(function (g) { return g.forStatus.indexOf(f.status) !== -1; });
+    if (!groups.length) groups = [fc.groups[0]];
+    // rotate daily so the questions stay fresh without any credits
+    var day = Math.floor(Date.parse(todayISO()) / 86400000);
+    return '<h2 class="section-title">🎓 Filmwissen</h2>' +
+      '<div class="card soft tint-gold mb">' +
+      '<p style="font-size:12.5px;margin-bottom:12px;opacity:.85">Fragen statt Antworten — nach Robert McKee, <em>Story</em>. Die Lösung findest du selbst. Rotiert täglich.</p>' +
+      groups.map(function (g) {
+        var qs = [];
+        for (var i = 0; i < Math.min(4, g.questions.length); i++) {
+          qs.push(g.questions[(day + i) % g.questions.length]);
+        }
+        return '<div style="font-weight:800;font-size:13px;margin:10px 0 6px">' + esc(g.label) + '</div>' +
+          '<ul style="padding-left:18px;font-size:13.5px;line-height:1.7;display:flex;flex-direction:column;gap:7px">' +
+          qs.map(function (q) { return '<li>' + esc(q) + '</li>'; }).join("") + '</ul>';
+      }).join("") +
+      '<p class="muted mt" style="font-size:11.5px">Für Feedback zu genau diesem Script: sag Claude einfach <em>“Feedback zu ' + esc(f.title.slice(0, 30)) + '”</em>.</p>' +
+      '</div>';
+  }
+
+  /* ---------- location suggestions ---------- */
+
+  function locationSuggestHTML(f) {
+    var rel = Graph.related(f.id, 3, "location");
+    if (!rel.length) return "";
+    return '<h2 class="section-title">📍 Location ideas from your library</h2>' +
+      '<div class="grid cols-3 mb">' +
+      rel.map(function (r) {
+        var s = Store.get();
+        var loc = s.locations.find(function (x) { return x.id === r.node.id; }) || {};
+        return '<div class="card soft tint-teal clickable" data-loc-open="' + esc(r.node.id) + '">' +
+          '<div style="font-weight:700">📍 ' + esc(r.node.title) + '</div>' +
+          (loc.vibe ? '<div class="muted mt" style="font-size:12px">' + esc(loc.vibe) + '</div>' : "") +
+          '<div class="muted mt" style="font-size:11px">' + esc(loc.area || "") + '</div></div>';
+      }).join("") + '</div>';
+  }
+
   function detailHTML(f) {
     var st = statusInfo(f.status);
     return '' +
@@ -93,9 +207,14 @@ var FilmsView = (function () {
       '<h2 class="section-title">✍️ Script</h2>' +
       '<div class="card soft mb">' +
         '<textarea id="f-script" style="min-height:340px;font-family:var(--font-mono);font-size:13px;line-height:1.7" placeholder="INT. BAR – NIGHT&#10;&#10;Write your script here. Saved automatically when you click outside the field.">' + esc(f.script) + '</textarea>' +
-        '<div class="row between mt"><span class="muted" style="font-size:12px" id="f-script-stats"></span>' +
+        '<div class="row between mt" style="flex-wrap:wrap;gap:8px"><span class="row" style="gap:8px">' +
+        '<button class="teal small" id="sb-add" title="Select text in the script first, then click — the frame anchors to that passage">🎞 + Frame from selection</button>' +
+        '<span class="muted" style="font-size:12px" id="f-script-stats"></span></span>' +
         '<span class="muted" style="font-size:12px">autosaves on blur · last edit ' + esc((f.updatedAt || "").slice(0, 16).replace("T", " ")) + '</span></div>' +
       '</div>' +
+
+      storyboardHTML(f) +
+      filmwissenHTML(f) +
 
       '<h2 class="section-title">🖼 Shotdeck / Moodboard</h2>' +
       '<div class="card soft mb">' +
@@ -124,6 +243,8 @@ var FilmsView = (function () {
         '<textarea id="f-learnings" style="min-height:140px" placeholder="What did this film teach you?">' + esc(f.learnings) + '</textarea></div>' +
       '</div>' +
 
+      locationSuggestHTML(f) +
+
       '<div class="card soft mt"><span class="stat-label">Festival plan</span>' +
       '<p class="muted mt" style="font-size:13px">Plan submissions for this film in the <a href="#/festivals">Festival Roadmap</a> — set "Film to submit" to <strong>' + esc(f.title) + '</strong>.</p></div>';
   }
@@ -136,6 +257,10 @@ var FilmsView = (function () {
       "",
       "## Logline", f.logline || "—", "",
       "## Script", "", f.script || "—", "",
+      "## Storyboard",
+      (f.storyboard || []).length ? sbSorted(f).map(function (fr, i) {
+        return (i + 1) + ". “" + fr.text + "”" + (fr.caption ? " — " + fr.caption : "") + (fr.url ? " · " + fr.url : "");
+      }).join("\n") : "—", "",
       "## Shotdeck / Moodboard",
       f.images.length ? f.images.map(function (i) { return "- " + i.url + (i.caption ? " — " + i.caption : ""); }).join("\n") : "—", "",
       "## Notes", f.notes || "—", "",
@@ -178,6 +303,68 @@ var FilmsView = (function () {
     }
     scriptEl.oninput = updStats;
     updStats();
+
+    /* storyboard */
+    f.storyboard = f.storyboard || [];
+    $("#sb-add").onclick = function () {
+      var a = scriptEl.selectionStart, b = scriptEl.selectionEnd;
+      var sel = scriptEl.value.slice(a, b).trim();
+      if (!sel) { toast("Select a passage in the script first — the frame anchors to it", true); return; }
+      f.script = scriptEl.value; // capture unsaved edits so the anchor exists
+      f.storyboard.push({ id: uid("sb"), text: sel.slice(0, 200), url: "", caption: "" });
+      touch(f); toast("Frame anchored to the selection"); App.render();
+    };
+    $$("[data-sb-del]").forEach(function (btn) {
+      btn.onclick = function () {
+        f.storyboard = f.storyboard.filter(function (x) { return x.id !== btn.getAttribute("data-sb-del"); });
+        touch(f); App.render();
+      };
+    });
+    $$("[data-sb-img]").forEach(function (btn) {
+      btn.onclick = function () {
+        var fr = f.storyboard.find(function (x) { return x.id === btn.getAttribute("data-sb-img"); });
+        if (!fr) return;
+        openModal('<h3>Frame image</h3>' +
+          '<p class="muted mb" style="font-size:12px">“' + esc(fr.text.slice(0, 120)) + '”</p>' +
+          '<label class="field"><span>Image link (https — Dropbox, Shotdeck...)</span><input id="sbi-url" value="' + esc(fr.url || "") + '"></label>' +
+          '<label class="field"><span>Caption / shot note (optional)</span><input id="sbi-cap" value="' + esc(fr.caption || "") + '" placeholder="z.B. Makro, leicht von oben, 50mm"></label>' +
+          '<div class="modal-actions"><button class="ghost" onclick="closeModal()">Cancel</button>' +
+          '<button class="primary" id="sbi-save">Save</button></div>');
+        $("#sbi-save").onclick = function () {
+          var u = $("#sbi-url").value.trim();
+          if (u && !safeUrl(u)) { toast("Only https:// links", true); return; }
+          fr.url = u; fr.caption = $("#sbi-cap").value.trim();
+          touch(f); closeModal(); App.render();
+        };
+      };
+    });
+    $$("[data-sb-gen]").forEach(function (btn) {
+      btn.onclick = function () {
+        var fr = f.storyboard.find(function (x) { return x.id === btn.getAttribute("data-sb-gen"); });
+        if (!fr) return;
+        var req = 'Generiere mit Higgsfield ein Storyboard-Frame für "' + f.title + '" — Script-Stelle: "' + fr.text + '"' +
+          (fr.caption ? ' — Shot-Note: ' + fr.caption : "") +
+          '. Stil wie die App-Stills (anamorphic, moody teal/amber, 35mm grain), und häng es an dieses Storyboard-Frame an.';
+        var ta = document.createElement("textarea");
+        ta.value = req; document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); toast("Frame request copied — paste it to Claude"); }
+        catch (e) { toast("Copy failed — select manually", true); }
+        ta.remove();
+      };
+    });
+    var sl = $("#sb-shotlist");
+    if (sl) sl.onclick = function () {
+      f.script = scriptEl.value;
+      downloadBlob(shotListMd(f), f.title.toLowerCase().replace(/[^a-z0-9äöü]+/gi, "-").replace(/^-|-$/g, "") + "-shotlist.md", "text/markdown");
+      toast("Shot list exported");
+    };
+    $$("[data-loc-open]").forEach(function (btn) {
+      btn.onclick = function () {
+        Graph.touch(f.id, btn.getAttribute("data-loc-open")); // film↔location link strengthens
+        LocationsView._pendingOpen = btn.getAttribute("data-loc-open");
+        location.hash = "#/locations";
+      };
+    });
 
     $("#f-img-add").onclick = function () {
       var url = $("#f-img-url").value.trim();

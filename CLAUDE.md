@@ -75,6 +75,42 @@ Routing rules for Claude:
 - Test with Playwright (`/opt/pw-browsers/chromium`, file:// URLs) before pushing.
 - Robin's tone: direct, German; answer him in German, keep the UI English.
 
+## Film workflow (script, storyboard, coaching)
+
+- **"Ich arbeite an <Film>" / "Feedback zu <Film>" / voice note with a film idea** →
+  fuzzy-match the title against `data/films-seed.json` (and app exports if he sent
+  one) and work on THAT film's `script`/`notes` in films-seed.json. After a Claude
+  edit, set that film's `updatedAt` to the current ISO-Z time — the seed merge is
+  newest-wins, so the change reaches Robin's local app data. Then rebuild both
+  scripts. Mobile idea dumps get appended under a dated `IDEEN UNTERWEGS` block in
+  notes, woven into the script only when he asks.
+- **Coaching style (wichtig):** Robin will Fragen, keine Lösungen. Feedback auf
+  Scripts = McKee-Fragen (Story: Controlling Idea, Gap, Value Shifts, Krise/Klimax),
+  Hinweise worauf er achten könnte — NIE konkrete fertige Beispiele oder
+  ausformulierte Szenen, ausser er verlangt es ausdrücklich. Die Ideen müssen seine
+  bleiben. Fragenkatalog: `data/filmcraft.json` (im Film-Dossier als "Filmwissen").
+- **Storyboard:** frames are anchored to script passages (film.storyboard[] =
+  {id, text, url, caption}). When Robin asks for a frame image, generate it in the
+  house style (anamorphic, teal/amber, 35mm grain), then either set the frame's
+  `url` to the Higgsfield CDN link in films-seed.json or bake it as an asset.
+  Shot list: the app exports it locally from script + storyboard (zero credits).
+- **Locations:** when Robin sends photos of a location, read EXIF GPS cloud-side
+  (PIL GPSInfo), fill `data/locations.json` (id `loc-*`, name, area, coords
+  "lat,lng", tags, vibe, notes) and rebuild. When he shares a film idea, check the
+  location library for matches and suggest where it could be shot (the app also
+  auto-suggests via keyword match in the film dossier).
+
+## Social output log (daily Sandcastles check)
+
+`data/social-log.json` — one entry per own account per day:
+`{date, platform, newPosts, totalIndexed, note}`. A daily Routine (07:30 CH) checks
+Sandcastles for new posts on Robin's accounts and appends entries (0 is fine, log it
+silently; only message Robin for outliers). The dashboard charts videos/week from
+this. The Thursday routine compiles the weekly growth overview (posts + follower
+deltas per platform) into the weekly report and folds insights into WIKI.md.
+Blocker: as long as the @lohro Sandcastles link is broken, entries may be zero —
+still log them, note the blocker.
+
 ## Follower pipeline (Sandcastles → app)
 
 `data/followers-log.json` is the automated follower log: the Thursday routine

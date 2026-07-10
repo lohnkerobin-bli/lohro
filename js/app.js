@@ -6,6 +6,7 @@ var App = (function () {
     dashboard: DashboardView,
     challenge: ChallengeView,
     films: FilmsView,
+    locations: LocationsView,
     festivals: FestivalsView,
     ideas: IdeasView,
     projects: ProjectsView,

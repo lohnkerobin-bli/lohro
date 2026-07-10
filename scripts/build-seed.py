@@ -33,6 +33,9 @@ def main():
     followers_log = load("followers-log.json", {"entries": []})
     followers_seed = [e for e in followers_log.get("entries", []) if e.get("verified")]
     company = load("company.json", {"projects": []})
+    filmcraft = load("filmcraft.json", None)
+    locations = load("locations.json", {"locations": []})
+    social_log = load("social-log.json", {"entries": []})
 
     # embed small aesthetic stills from data/assets/ as data URIs (offline app)
     assets = {}
@@ -149,7 +152,8 @@ def main():
     content_hash = hashlib.sha256(json.dumps(
         {"ideas": ideas, "projects": projects, "festivals": festivals,
          "brand": brand, "knowledge": knowledge,
-         "filmsSeed": films_seed, "vision": vision,
+         "filmsSeed": films_seed, "vision": vision, "locations": locations,
+         "filmcraft": filmcraft, "socialLog": social_log,
          "assetKeys": sorted(assets.keys()), "followers": followers_seed},
         sort_keys=True, ensure_ascii=False).encode()).hexdigest()
     seed = {
@@ -163,6 +167,9 @@ def main():
         "brand": brand,
         "filmsSeed": films_seed,
         "vision": vision,
+        "locations": locations,
+        "filmcraft": filmcraft,
+        "socialLog": social_log,
         "assets": assets,
         "followers": followers_seed,
     }

@@ -1,0 +1,4 @@
+{
+  "source": "Automated posting log: the daily Sandcastles check appends one entry per own account per day. Schema: {date, platform, newPosts, totalIndexed, note}. The app charts weekly output from this; the Thursday routine compiles the weekly growth overview.",
+  "entries": []
+}

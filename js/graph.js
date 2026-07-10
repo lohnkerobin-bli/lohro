@@ -39,6 +39,10 @@ var Graph = (function () {
       out.push({ type: "meeting", icon: "🗓", id: m.id, title: m.title,
         text: m.title + " " + (m.decisions || "") + " " + (m.actions || "") });
     });
+    (s.locations || []).forEach(function (l) {
+      out.push({ type: "location", icon: "📍", id: l.id, title: l.name,
+        text: l.name + " " + (l.area || "") + " " + (l.tags || "") + " " + (l.vibe || "") + " " + (l.notes || "") });
+    });
     return out;
   }
 
@@ -64,7 +68,7 @@ var Graph = (function () {
   }
 
   // ranked related notes: keyword overlap + 2x the learned co-access weight
-  function related(id, max) {
+  function related(id, max, typeFilter) {
     var all = nodes();
     var me = null;
     for (var i = 0; i < all.length; i++) if (all[i].id === id) { me = all[i]; break; }
@@ -73,6 +77,7 @@ var Graph = (function () {
     var scored = [];
     all.forEach(function (n) {
       if (n.id === id) return;
+      if (typeFilter && n.type !== typeFilter) return;
       var overlap = 0;
       var theirs = tokens(n.text);
       Object.keys(theirs).forEach(function (w) { if (mine[w]) overlap++; });
@@ -97,6 +102,7 @@ var Graph = (function () {
     else if (node.type === "idea") { IdeasView._pendingOpen = node.id; navTo("#/ideas"); }
     else if (node.type === "brand") { BrainView._pendingTab = "brand"; BrainView._pendingOpen = node.id; navTo("#/brain"); }
     else if (node.type === "meeting") { BrainView._pendingTab = "meetings"; BrainView._pendingOpen = node.id; navTo("#/brain"); }
+    else if (node.type === "location") { LocationsView._pendingOpen = node.id; navTo("#/locations"); }
   }
 
   // "Linked in Brain" chip row for an item's modal / detail page

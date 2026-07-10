@@ -1,0 +1,38 @@
+{
+  "source": "Film location library. Claude files new locations here when Robin sends photos (EXIF GPS is read cloud-side); the app suggests matching locations per film. Coordinates as 'lat,lng' when known.",
+  "locations": [
+    {
+      "id": "loc-sebis-body-bar",
+      "name": "Sebis Body Bar",
+      "area": "St. Gallen",
+      "coords": "",
+      "tags": "bar, interieur, warm, tungsten, comedy, hochformat",
+      "vibe": "Kleine stylische Bar, warmes Licht — Location für die Sebis-Bar-Serie, mit Besitzer besprochen und gesichert.",
+      "photos": [],
+      "notes": "Zugang über Sebi. Ideal für Interieur-Szenen mit Bar-Setting, Abende/Wochenende drehen.",
+      "createdAt": "2026-07-08T12:00:00Z"
+    },
+    {
+      "id": "loc-wiese-peter-paul",
+      "name": "Wiese Peter und Paul",
+      "area": "St. Gallen (Rotmonten)",
+      "coords": "47.4466,9.3792",
+      "tags": "wiese, weitsicht, natur, golden hour, outdoor, panorama",
+      "vibe": "Offene Wiese mit Weitsicht über St. Gallen — Intro/Schluss-Location im Säntis Film 1, funktioniert für alles, was Weite und Aufbruch braucht.",
+      "photos": [],
+      "notes": "Beim Wildpark Peter und Paul. Golden Hour prüfen; öffentlich zugänglich.",
+      "createdAt": "2026-07-09T12:00:00Z"
+    },
+    {
+      "id": "loc-klosterplatz",
+      "name": "Klosterplatz St. Gallen",
+      "area": "St. Gallen (Altstadt)",
+      "coords": "47.4232,9.3765",
+      "tags": "architektur, historisch, urban, standort, repräsentativ",
+      "vibe": "UNESCO-Kulisse, repräsentativ — Standort-Szene im Säntis FIDES-Film. Stark für 'Herkunft & Wurzeln'-Statements.",
+      "photos": [],
+      "notes": "Öffentlicher Platz; für kommerzielle Drehs Bewilligung Stadt St. Gallen prüfen.",
+      "createdAt": "2026-07-09T12:00:00Z"
+    }
+  ]
+}
