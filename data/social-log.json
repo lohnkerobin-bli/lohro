@@ -1,4 +1,26 @@
 {
   "source": "Automated posting log: the daily Sandcastles check appends one entry per own account per day. Schema: {date, platform, newPosts, totalIndexed, note}. The app charts weekly output from this; the Thursday routine compiles the weekly growth overview.",
-  "entries": []
+  "entries": [
+    {
+      "date": "2026-07-11",
+      "platform": "instagram",
+      "newPosts": 0,
+      "totalIndexed": 0,
+      "note": "sandcastles-link-broken (Profil 'LOHR', 3 Follower, 0 Videos)"
+    },
+    {
+      "date": "2026-07-11",
+      "platform": "youtube",
+      "newPosts": 0,
+      "totalIndexed": 0,
+      "note": "no-channel-linked"
+    },
+    {
+      "date": "2026-07-11",
+      "platform": "tiktok",
+      "newPosts": 0,
+      "totalIndexed": 0,
+      "note": "no-channel-linked"
+    }
+  ]
 }
