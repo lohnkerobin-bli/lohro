@@ -38,6 +38,10 @@ Zwei Spuren:
 - **Ablageort auf Robins Mac**: `~/Kollektiv Oskar Dropbox/KOLLEKTIV OSKAR/CLAUDE BRAIN/`.
 - **Weekly Report** jeden Donnerstag für das Meeting mit Simon; Donnerstags-Routine
   11:00 (Trigger) macht Sandcastles-Analyse + Follower-Log.
+- **Challenge-Workflow (14.07.2026):** chronologisch filmen; Layout + komplettes VO +
+  Musik ZUERST im Schnitt; edit-as-you-shoot (nach jedem Shot einbauen, dann weiter);
+  **Dead-Zone-Regel**: Geschnittenes wird nie mehr angefasst — letzter Shot = Film fertig.
+- **Morgen-Ritual:** Team spielt täglich das Pixar-Story-Spine-Spiel (Michas Idee, fix seit 14.07.).
 - Kamera: **Sony FX3**. No-Budget-Produktionen mit Umfeld als Cast.
 - Second-Brain-Quelle: Notion (Ideen, Video-Pipeline, YouTube-Pipeline, Filme DB, Masterplan).
 
@@ -82,4 +86,4 @@ Zwei Spuren:
 - Credit-effizient arbeiten: kleine JSONs greppen, nie seed.js/dist lesen.
 
 ---
-*Zuletzt aktualisiert: 2026-07-09 (abends: Säntis-Handover, Janteloven-Insight) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*
+*Zuletzt aktualisiert: 2026-07-14 (Challenge-Workflow + Dead-Zone-Regel + Morgen-Ritual) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*

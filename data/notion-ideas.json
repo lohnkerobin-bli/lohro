@@ -58,11 +58,12 @@
    "Film",
    "Personal"
   ],
-  "status": "Neu",
+  "status": "Umgesetzt",
   "energy": "🔥 Hoch",
-  "notes": "Jeden Morgen mit dem ganzen Team das Story-Spiel spielen: Gemeinsam wird eine Geschichte erfunden — die nächste Person darf erst sprechen, wenn die vorherige fertig ist (Zuhören + Weiterbauen, Improv-Prinzip).\n\nZweck: Storytelling-Muskel täglich trainieren, Team-Ritual, Ideenquelle.\n\nContent-Potenzial: Die Runden aufnehmen (Audio) — oder die entstandene Geschichte direkt zusammen verfilmen. Passt perfekt zur Daily Challenge (fertige Story jeden Morgen frei Haus) und zu Simons 'Robin × Robin'-Dialogformat.\n\nQuelle: Micha. Erfasst via Sprachnotiz 09.07.2026.",
+  "notes": "Jeden Morgen mit dem ganzen Team das Story-Spiel spielen: Gemeinsam wird eine Geschichte erfunden — die nächste Person darf erst sprechen, wenn die vorherige fertig ist (Zuhören + Weiterbauen, Improv-Prinzip).\n\nZweck: Storytelling-Muskel täglich trainieren, Team-Ritual, Ideenquelle.\n\nContent-Potenzial: Die Runden aufnehmen (Audio) — oder die entstandene Geschichte direkt zusammen verfilmen. Passt perfekt zur Daily Challenge (fertige Story jeden Morgen frei Haus) und zu Simons 'Robin × Robin'-Dialogformat.\n\nQuelle: Micha. Erfasst via Sprachnotiz 09.07.2026.\n\nUMGESETZT 14.07.2026: Im Team-Meeting als festes Morgen-Ritual definiert — Pixar-Story-Spine-Spiel, jeden Morgen.",
   "source": "second-brain",
-  "createdAt": "2026-07-09T12:00:00Z"
+  "createdAt": "2026-07-09T12:00:00Z",
+  "updatedAt": "2026-07-14T18:00:00Z"
  },
  {
   "id": "idea-001",
