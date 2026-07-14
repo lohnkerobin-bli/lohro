@@ -36,6 +36,14 @@ three parts:
 | **Meetings & weekly reports** (transcripts, decisions, action items) | app localStorage → exported to `way-to-oscar-data-*.json` in the team Dropbox | Brain → Meetings |
 
 Routing rules for Claude:
+- **Catch-all (wichtigste Regel):** Sobald Robin "Brain" sagt ("ins Brain",
+  "Brain: ...", "leg das ins Brain", "Brain merken"), wird der Inhalt OHNE
+  Rückfrage gespeichert. Claude wählt selbst das richtige Ziel: Brand-Note
+  (brand.json), Wissen (knowledge.json), Idee (notion-ideas.json), Meeting
+  (data/meetings/), Film-Notiz (films-seed.json) oder Location (locations.json)
+  — dann rebuild + commit + push, WIKI.md bei neuen Kernfakten mitziehen.
+  Antwort an Robin: EIN Satz, was wo abgelegt wurde. Bei unklarer Diktion:
+  beste Interpretation speichern und kurz kennzeichnen.
 - "leg X ins Brain (Brand/Werte/CTA...)" → add/edit an entry in `data/brand.json`
   (stable `id`, correct `section`: core/values/dos/donts/cta/assets/team), then
   run `python3 scripts/build-seed.py && python3 scripts/build-standalone.py`.
