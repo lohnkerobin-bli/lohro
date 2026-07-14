@@ -217,6 +217,21 @@
       "createdAt": "2026-07-09T20:00:00Z"
     },
     {
+      "id": "film-origin-story",
+      "title": "Origin Story — What if it goes well? (Reel)",
+      "logline": "Ein Junge nimmt unter Druck einen Job, den er hasst — bis Ratatouille ihm zeigt, dass es unkonventionelle Wege gibt. Er-Perspektive bis zum Schluss; die B-Roll löst auf: Robin ist der Junge.",
+      "genre": "Origin-Story Reel / Brand Film (KO Website)",
+      "themes": "Berufung, Mut, What if it goes well, Ratatouille",
+      "status": "pre-production",
+      "script": "ORIGIN STORY — \"What if it goes well?\" (Reel, 56 Sek., English VO)\nWardrobe-Code: Weisshemd = alter Job · rotes T-Shirt = Wendepunkt.\n\nVOICEOVER (final, eingesprochen via Higgsfield, Stimme \"Sterling\"):\nOnce upon a time, there was a boy who was told he had to choose a job. So under pressure, he picked one. And every single day he hated going to work, wondering... is this my life now? Until one day, he watched Ratatouille. A rat that takes the unconventional path, and makes a way where there is none. Because of that, he stopped listening to logic and started trusting his feeling. He started taking photos and making films. Until finally, he founded his own film company, even though everyone told him to get a real job. And ever since, he makes films that inspire people to chase what they're passionate about, and to focus on what if it goes well, instead of what if it goes wrong.\n\nTAKES + VISUALS:\n1. Once upon a time / Job wählen — Weisshemd, Office-Küche, Hemd zuknöpfen, flaches Licht\n2. Under pressure / hated going to work — repetitive Küchen-Handgriffe, monotone Schnitte\n3. Until one day: Ratatouille — Close-up, Auge geht auf, Screen-Glow, Musik setzt ein\n4. Because of that: Gefühl statt Logik — Match Cut Weisshemd → rotes T-Shirt, Passion-Montage\n5. Until finally: eigene Filmfirma — 'erwachsenes Zeug': Meeting, Rechnung, geile Kleider\n6. And ever since: what if it goes well — heute am Set / tägliche Kurzfilme, letzter Blick in die Linse",
+      "images": [],
+      "storyboard": [],
+      "notes": "Der Pixar-Story-Spine als echter Film — Robins Ratatouille-Origin, final definiert 14.07.2026.\n\nVO-AUDIO (WAV, Higgsfield 'Sterling', 56s): https://d8j0ntlcm91z4.cloudfront.net/user_2zxKfOFYhU8bEIxbcB25myP8oEY/hf_20260714_145129_98bd978a-fa1f-4e22-8d8a-05b481a5a2fc.wav\n\nVERWENDUNG: About-Bereich der Kollektiv-Oskar-Webseite (Layout-Plan: Manifest oben, Prozess Mitte, Origin-Story im About — der Film erzählt sie statt Text). Zweitverwertung als Reel.\n\nQuelle: Notion 'Webseiten-Manifest' (Second Brain — Ideen, 08.05.2026), Film finalisiert 14.07.2026.",
+      "learnings": "",
+      "createdAt": "2026-05-08T17:39:35Z",
+      "updatedAt": "2026-07-14T19:00:00Z"
+    },
+    {
       "id": "film-einatmen",
       "title": "Einatmen & Ausatmen",
       "logline": "\"Es gibt Phasen, in denen man ausatmet, und Phasen, in denen man einatmet.\" — Mums Satz am Telefon als cinematischer Zimmer-Film.",
