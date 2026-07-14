@@ -136,6 +136,39 @@ var FilmsView = (function () {
 
   /* ---------- Filmwissen (McKee coaching questions) ---------- */
 
+  function storyDefHTML() {
+    var st = window.SEED && window.SEED.filmcraft && window.SEED.filmcraft.story;
+    if (!st) return "";
+    return '<details class="strategy-fold" style="margin:0 0 14px">' +
+      '<summary>📖 Was ist eine Geschichte?</summary>' +
+      '<div class="card soft">' +
+      '<p style="font-size:14.5px;font-weight:700;line-height:1.6">' + esc(st.definition) + '</p>' +
+      '<div class="grid cols-2 mt">' +
+      '<div><div style="font-weight:800;font-size:12.5px;margin-bottom:6px">DIE 5 ELEMENTE</div>' +
+      '<ul style="padding-left:16px;font-size:13px;line-height:1.7;display:flex;flex-direction:column;gap:5px">' +
+      st.elements.map(function (e) { return '<li>' + esc(e) + '</li>'; }).join("") + '</ul></div>' +
+      '<div><div style="font-weight:800;font-size:12.5px;margin-bottom:6px">PIXAR STORY SPINE</div>' +
+      '<ol style="padding-left:16px;font-size:13px;line-height:1.9">' +
+      st.pixar.map(function (p) { return '<li><em>' + esc(p) + '</em></li>'; }).join("") + '</ol></div>' +
+      '</div>' +
+      '<p class="muted mt" style="font-size:12.5px;line-height:1.65">' + esc(st.causeEffect) + '</p>' +
+      '<div class="mt" style="font-size:13px"><strong>Dein WAY-TO-OSCAR-Framework:</strong> ' +
+      st.wtoFramework.map(esc).join(" → ") + '</div>' +
+      '<p class="muted mt" style="font-size:12.5px">' + esc(st.shortFilmRule) + '</p>' +
+      '<button class="teal small mt" id="story-outline" title="Fügt die Outline als ausfüllbare Vorlage ans Ende des Scripts an">📝 Story-Outline ins Script einfügen</button>' +
+      '</div></details>';
+  }
+
+  function outlineTemplate(f) {
+    var st = window.SEED.filmcraft.story;
+    return "\n\n— STORY-OUTLINE: " + f.title + " (ausfüllen, dann Szenen schreiben) —\n\n" +
+      st.elements.map(function (e) {
+        return e.split(" — ")[0] + ": \n";
+      }).join("") +
+      "\nPIXAR SPINE:\n" + st.pixar.map(function (p) { return p + " \n"; }).join("") +
+      "\nWTO-CHECK: Welcher Glaube wird infrage gestellt — und wie verändert sich die Figur durch den Konflikt?\n";
+  }
+
   function filmwissenHTML(f) {
     var fc = window.SEED && window.SEED.filmcraft;
     if (!fc || !fc.groups) return "";
@@ -144,6 +177,7 @@ var FilmsView = (function () {
     // rotate daily so the questions stay fresh without any credits
     var day = Math.floor(Date.parse(todayISO()) / 86400000);
     return '<h2 class="section-title">🎓 Filmwissen</h2>' +
+      storyDefHTML() +
       '<div class="card soft tint-gold mb">' +
       '<p style="font-size:12.5px;margin-bottom:12px;opacity:.85">Fragen statt Antworten — nach Robert McKee, <em>Story</em>. Die Lösung findest du selbst. Rotiert täglich.</p>' +
       groups.map(function (g) {
@@ -352,6 +386,14 @@ var FilmsView = (function () {
         ta.remove();
       };
     });
+    var so = $("#story-outline");
+    if (so) so.onclick = function () {
+      scriptEl.value = scriptEl.value.replace(/\s+$/, "") + outlineTemplate(f);
+      f.script = scriptEl.value;
+      touch(f); updStats();
+      scriptEl.scrollTop = scriptEl.scrollHeight;
+      toast("Outline ans Script angehängt — ausfüllen und loslegen");
+    };
     var sl = $("#sb-shotlist");
     if (sl) sl.onclick = function () {
       f.script = scriptEl.value;

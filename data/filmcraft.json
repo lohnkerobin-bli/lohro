@@ -1,5 +1,32 @@
 {
-  "source": "Coaching-Fragen nach Robert McKee ('Story') + Film-Craft-Wissen aus dem Second Brain. Bewusst als Fragen formuliert — Robin findet die Antworten selbst.",
+  "source": "Coaching-Fragen nach Robert McKee ('Story') + Film-Craft-Wissen aus dem Second Brain. Bewusst als Fragen formuliert — Robin findet die Antworten selbst. Story-Definition: Robins ChatGPT-Destillat + Pixar Story Spine (09.07.2026, in jedem Dossier).",
+  "story": {
+    "definition": "Eine Geschichte ist die Veränderung einer Figur durch einen Konflikt. Jemand will etwas, etwas steht ihm im Weg — und durch den Versuch, das Ziel zu erreichen, verändert er sich. Eine Abfolge von Ereignissen ohne Veränderung ist keine Geschichte, sondern eine Situation oder Beobachtung.",
+    "elements": [
+      "FIGUR — Wer ist die Hauptfigur? Was macht sie einzigartig? Was fehlt ihr?",
+      "WUNSCH — Was will sie konkret? Das Ziel muss sichtbar sein.",
+      "KONFLIKT — Warum kann sie es nicht einfach erreichen? (Person, Umwelt oder sie selbst)",
+      "ENTSCHEIDUNGEN — Die Figur handelt; jede Entscheidung hat Konsequenzen.",
+      "VERÄNDERUNG — Am Ende ist etwas anders: die Figur oder ihre Welt."
+    ],
+    "causeEffect": "Die Geschichte ist eine Kette aus Ursache und Wirkung. Nicht: A passiert, dann B, dann C. Sondern: WEIL A passiert, muss die Figur B tun. DADURCH entsteht C. DESHALB passiert D. Jede Szene löst die nächste aus.",
+    "pixar": [
+      "Es war einmal …",
+      "Jeden Tag …",
+      "Bis eines Tages …",
+      "Deshalb …",
+      "Deshalb …",
+      "Bis schliesslich …",
+      "Und seitdem …"
+    ],
+    "wtoFramework": [
+      "Jemand glaubt etwas.",
+      "Ein Ereignis stellt diesen Glauben infrage.",
+      "Die Figur muss sich entscheiden.",
+      "Durch diese Entscheidung verändert sie sich."
+    ],
+    "shortFilmRule": "Ein Kurzfilm braucht nicht viele Szenen — er braucht EINE starke Veränderung. Faustregel: Wie verändert sich jemand durch einen Konflikt? Wenn sich am Ende nichts verändert hat, war es keine Geschichte."
+  },
   "groups": [
     {
       "key": "premise",
