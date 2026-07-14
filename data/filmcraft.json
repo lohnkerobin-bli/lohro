@@ -1,5 +1,18 @@
 {
   "source": "Coaching-Fragen nach Robert McKee ('Story') + Film-Craft-Wissen aus dem Second Brain. Bewusst als Fragen formuliert — Robin findet die Antworten selbst. Story-Definition: Robins ChatGPT-Destillat + Pixar Story Spine (09.07.2026, in jedem Dossier).",
+  "challengeWorkflow": {
+    "title": "Der Produktions-Workflow (Team-Meeting 14.07.2026)",
+    "steps": [
+      "Morgen-Ritual: Pixar-Story-Spine-Spiel mit dem Team — Story-Muskel aufwärmen",
+      "Layout zuerst im Schnitt bauen — das Gerüst steht vor dem Dreh",
+      "Voice-Over komplett einsprechen",
+      "Musik einbauen — Timing des Films steht jetzt",
+      "Chronologisch filmen — immer in Story-Reihenfolge",
+      "Edit-as-you-shoot: nach jedem Shot Karte rein, in die Timeline einbauen, erst dann weiterfilmen",
+      "Letzter Shot gedreht = Film fertig. Publish."
+    ],
+    "rule": "DEAD ZONE: Alles, was geschnitten ist, wird nie mehr angefasst. Alles links vom Playhead ist tabu — kein Zurückgehen, kein Anpassen. Commitment statt Perfektionismus."
+  },
   "story": {
     "definition": "Eine Geschichte ist die Veränderung einer Figur durch einen Konflikt. Jemand will etwas, etwas steht ihm im Weg — und durch den Versuch, das Ziel zu erreichen, verändert er sich. Eine Abfolge von Ereignissen ohne Veränderung ist keine Geschichte, sondern eine Situation oder Beobachtung.",
     "elements": [

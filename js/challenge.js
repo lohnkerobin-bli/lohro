@@ -11,6 +11,19 @@ var ChallengeView = (function () {
     { key: "skipped", label: "Skipped" }
   ];
 
+  // the production rules from the 14.07. team meeting — visible every day, right where the work happens
+  function workflowHTML() {
+    var wf = window.SEED && window.SEED.filmcraft && window.SEED.filmcraft.challengeWorkflow;
+    if (!wf) return "";
+    return '<div class="card soft tint-red mb">' +
+      '<div class="row between" style="flex-wrap:wrap;gap:6px">' +
+      '<span class="stat-label">🎬 ' + esc(wf.title) + '</span></div>' +
+      '<ol style="padding-left:20px;font-size:13.5px;line-height:1.75;margin-top:10px;display:flex;flex-direction:column;gap:4px">' +
+      wf.steps.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join("") + '</ol>' +
+      '<div class="mt" style="font-size:13px;font-weight:800;padding:10px 12px;border-radius:10px;background:rgba(0,0,0,.30)">⛔️ ' + esc(wf.rule) + '</div>' +
+      '</div>';
+  }
+
   function dayList() {
     var s = Store.get();
     var start = s.settings.challengeStart;
@@ -88,6 +101,8 @@ var ChallengeView = (function () {
       '<h1 class="view-title">Daily Challenge</h1>' +
       '<p class="view-sub">One short film every day, starting ' + fmtDate(start, { weekday: "long", day: "numeric", month: "long", year: "numeric" }) + '. Click a day to log it.</p>' +
       viewBanner('still-red') +
+
+      workflowHTML() +
 
       '<div class="grid cols-4 mb">' +
         '<div class="card accent-teal"><span class="stat-label">Published</span><div class="stat-value">' + published.length + '</div></div>' +
