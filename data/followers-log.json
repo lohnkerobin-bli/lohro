@@ -10,6 +10,16 @@
       "source": "sandcastles",
       "note": "Sandcastles profile 'LOHR' looks mis-linked/stale (0 videos indexed, 3 followers) — fix the @lohro link in the Sandcastles app before trusting this feed.",
       "updatedAt": "2026-07-09T00:00:00.000Z"
+    },
+    {
+      "id": "fol-sc-2026-07-16-instagram",
+      "date": "2026-07-16",
+      "platform": "instagram",
+      "count": 3,
+      "verified": false,
+      "source": "sandcastles",
+      "note": "Profil 'LOHR' weiterhin falsch verlinkt (0 Videos) — Stand aus Daily-Check 07:30",
+      "updatedAt": "2026-07-16T09:05:00Z"
     }
   ]
 }
