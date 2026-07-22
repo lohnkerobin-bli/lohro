@@ -231,6 +231,27 @@
       "newPosts": 0,
       "totalIndexed": 0,
       "note": "sandcastles-auth-expired — Verbindung muss in claude.ai neu autorisiert werden (Tag 6), Check nicht möglich"
+    },
+    {
+      "date": "2026-07-22",
+      "platform": "instagram",
+      "newPosts": 0,
+      "totalIndexed": 0,
+      "note": "sandcastles-auth-expired — Verbindung muss in claude.ai neu autorisiert werden (Tag 7), Check nicht möglich"
+    },
+    {
+      "date": "2026-07-22",
+      "platform": "youtube",
+      "newPosts": 0,
+      "totalIndexed": 0,
+      "note": "sandcastles-auth-expired — Verbindung muss in claude.ai neu autorisiert werden (Tag 7), Check nicht möglich"
+    },
+    {
+      "date": "2026-07-22",
+      "platform": "tiktok",
+      "newPosts": 0,
+      "totalIndexed": 0,
+      "note": "sandcastles-auth-expired — Verbindung muss in claude.ai neu autorisiert werden (Tag 7), Check nicht möglich"
     }
   ]
 }
