@@ -26,13 +26,16 @@ Zwei Spuren:
   Premiere-Status ist heilig: erst Tier 1 (Clermont/Locarno/Sundance/Berlinale), dann Tier 2, dann CH.
   Heimvorteil: Locarno (Pardino d'Oro) + Winterthur (Best Swiss Film) sind Oscar-qualifying.
 - **Spur B — Personal Brand:** **1M Instagram-Follower bis 31.12.2026.**
-  **Daily Short Film Challenge ab Mi 15.07.2026** — jeden Tag ein Mini-Kurzfilm.
+  Die Daily Short Film Challenge (ab 15.07.) ist **abgeschlossen/durchgezogen** —
+  Tracking kam nie zustande; der Reiter wurde entfernt. Fokus jetzt: Film-Slate + Reels.
 
 ## Wie er arbeitet
 
-- **Command Center**: diese Repo-App (way-to-oscar.html) — Dashboard, Challenge,
-  Films, Festivals, Ideas, Projects, Brain, Settings. Läuft lokal via file://,
-  Team-Sync über JSON-Export/Import in der Team-Dropbox.
+- **ZENTRALE** (so heisst die App, Untertitel „Way to Oscar"): Dashboard, Films,
+  Locations, Festivals, **Second Brain** (eigene Ideen), **Externes Brain** (fremde
+  Quellen mit Pflicht-Link), Projects, **Brand** (Team-Backend: Brand Core, Knowledge,
+  Graph, Vision, Meetings), Settings. Läuft lokal via file://, Team-Sync über
+  JSON-Export/Import in der Team-Dropbox.
 - **Brain** = Wissens-Backend der App: Brand Core (`data/brand.json`),
   Knowledge (`data/knowledge.json`), Meetings/Weekly Reports (localStorage → Export).
 - **Ablageort auf Robins Mac**: `~/Kollektiv Oskar Dropbox/KOLLEKTIV OSKAR/CLAUDE BRAIN/`.
@@ -71,7 +74,6 @@ Zwei Spuren:
 |---|---|
 | **SÄNTIS Betriebsgruppe — 5 Brand-Filme** (Kunde, Kostendach CHF 60k) | Testfilme bis **14.07.**, Abnahme 15.07., Drehs Aug–Okt |
 | Der Junge im Nebel (Festival-Fokusfilm) | Drehbuch, Dreh Q3 2026 |
-| Daily Challenge (ab 15.07.2026) | Vorbereitung |
 | Musikvideo „Bar bis Feuerwerk" + BTS-Video | Pre-Production |
 | Sebis Bar EP1 (9:16-Comedy-Serie) | Pre-Production, Location gesichert |
 | SPIELFILM „Wenn du an deinen Traum glaubst" (AURA) | Treatment, Förderung eingereicht |
@@ -93,4 +95,4 @@ von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
 - Credit-effizient arbeiten: kleine JSONs greppen, nie seed.js/dist lesen.
 
 ---
-*Zuletzt aktualisiert: 2026-07-14 (Challenge-Workflow + Dead-Zone-Regel + Morgen-Ritual) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*
+*Zuletzt aktualisiert: 2026-07-25 (Rebrand ZENTRALE, Second/Externes Brain, Challenge beendet, 8 neue Film-Dossiers) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*

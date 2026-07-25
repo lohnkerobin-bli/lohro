@@ -36,6 +36,7 @@ def main():
     filmcraft = load("filmcraft.json", None)
     locations = load("locations.json", {"locations": []})
     social_log = load("social-log.json", {"entries": []})
+    extern_brain = load("extern-brain.json", {"entries": []})
 
     # embed small aesthetic stills from data/assets/ as data URIs (offline app)
     assets = {}
@@ -153,7 +154,7 @@ def main():
         {"ideas": ideas, "projects": projects, "festivals": festivals,
          "brand": brand, "knowledge": knowledge,
          "filmsSeed": films_seed, "vision": vision, "locations": locations,
-         "filmcraft": filmcraft, "socialLog": social_log,
+         "filmcraft": filmcraft, "socialLog": social_log, "externBrain": extern_brain,
          "assetKeys": sorted(assets.keys()), "followers": followers_seed},
         sort_keys=True, ensure_ascii=False).encode()).hexdigest()
     seed = {
@@ -170,6 +171,7 @@ def main():
         "locations": locations,
         "filmcraft": filmcraft,
         "socialLog": social_log,
+        "externBrain": extern_brain,
         "assets": assets,
         "followers": followers_seed,
     }

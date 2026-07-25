@@ -39,6 +39,10 @@ var Graph = (function () {
       out.push({ type: "meeting", icon: "🗓", id: m.id, title: m.title,
         text: m.title + " " + (m.decisions || "") + " " + (m.actions || "") });
     });
+    (s.externalInsights || []).forEach(function (x) {
+      out.push({ type: "extern", icon: "🌐", id: x.id, title: x.claim,
+        text: x.claim + " " + (x.creator || "") + " " + (x.insight || "") + " " + (x.keyPoints || "") });
+    });
     (s.locations || []).forEach(function (l) {
       out.push({ type: "location", icon: "📍", id: l.id, title: l.name,
         text: l.name + " " + (l.area || "") + " " + (l.tags || "") + " " + (l.vibe || "") + " " + (l.notes || "") });
@@ -103,6 +107,7 @@ var Graph = (function () {
     else if (node.type === "brand") { BrainView._pendingTab = "brand"; BrainView._pendingOpen = node.id; navTo("#/brain"); }
     else if (node.type === "meeting") { BrainView._pendingTab = "meetings"; BrainView._pendingOpen = node.id; navTo("#/brain"); }
     else if (node.type === "location") { LocationsView._pendingOpen = node.id; navTo("#/locations"); }
+    else if (node.type === "extern") { ExternBrainView._pendingOpen = node.id; navTo("#/extern"); }
   }
 
   // "Linked in Brain" chip row for an item's modal / detail page

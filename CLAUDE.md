@@ -31,9 +31,11 @@ three parts:
 
 | Part | Canonical data | In-app view |
 |---|---|---|
-| **Brand Core** (values, do's/don'ts, CTA strategy, assets, team playbook) | `data/brand.json` (seed) — user edits live in the app/exports | Brain → Brand Core |
-| **Knowledge base** (mission, strategy, film craft, routines — from his ChatGPT export) | `data/knowledge.json`, original in `data/WAYTOOSCARKNOWLEDGE.pdf` | Brain → Knowledge |
-| **Meetings & weekly reports** (transcripts, decisions, action items) | app localStorage → exported to `way-to-oscar-data-*.json` in the team Dropbox | Brain → Meetings |
+| **Brand Core** (values, do's/don'ts, CTA strategy, assets, team playbook) | `data/brand.json` (seed) — user edits live in the app/exports | Brand → Brand Core |
+| **Knowledge base** (mission, strategy, film craft, routines — from his ChatGPT export) | `data/knowledge.json`, original in `data/WAYTOOSCARKNOWLEDGE.pdf` | Brand → Knowledge |
+| **Meetings & weekly reports** (transcripts, decisions, action items) | app localStorage → exported to `way-to-oscar-data-*.json` in the team Dropbox | Brand → Meetings |
+| **Second Brain** (Robins eigene Ideen) | `data/notion-ideas.json` | Second Brain |
+| **Externes Brain** (fremde Quellen, Pflicht-Link) | `data/extern-brain.json` + `EXTERNE-ERKENNTNISSE.md` | Externes Brain |
 
 Routing rules for Claude:
 - **Catch-all (wichtigste Regel):** Sobald Robin "Brain" sagt ("ins Brain",
@@ -76,8 +78,10 @@ Routing rules for Claude:
 
 ## Architecture (short)
 
-- Classic-script SPA (works via `file://`), hash routes: dashboard, challenge,
-  festivals, ideas, projects, brain, settings. Views in `js/*.js`, store in
+- Classic-script SPA (works via `file://`), hash routes: dashboard, films,
+  locations, festivals, ideas (= Second Brain), extern (= Externes Brain),
+  projects, brain (= Brand tab), settings. App title: ZENTRALE. Views in
+  `js/*.js`, store in
   `js/store.js` (localStorage + JSON export/import with per-item merge).
 - User data collections are declared in `ID_COLLECTIONS`/`KEYED_MAPS` in
   `js/store.js` — new collections must be added there or merges drop them.
@@ -116,7 +120,13 @@ Routing rules for Claude:
   location library for matches and suggest where it could be shot (the app also
   auto-suggests via keyword match in the film dossier).
 
-## Social output log (daily Sandcastles check)
+## Social output log (historisch)
+
+Die Daily Challenge (15.–24.07.) ist beendet; der tägliche Sandcastles-Post-Check
+wurde am 25.07. eingestellt (Trigger gelöscht) — `data/social-log.json` bleibt als
+Archiv. Die Donnerstags-Routine läuft weiter.
+
+## Social output log (daily Sandcastles check) — ARCHIVIERT
 
 `data/social-log.json` — one entry per own account per day:
 `{date, platform, newPosts, totalIndexed, note}`. A daily Routine (07:30 CH) checks

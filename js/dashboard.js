@@ -46,25 +46,6 @@ var DashboardView = (function () {
     return { perDay: perDay, eta: addDays(last.date, etaDays), etaDays: etaDays };
   }
 
-  function challengeStats() {
-    var s = Store.get();
-    var start = s.settings.challengeStart;
-    var today = todayISO();
-    var days = Object.keys(s.challengeDays).map(function (k) { return s.challengeDays[k]; });
-    var published = days.filter(function (d) { return d.status === "published"; }).length;
-    var elapsed = Math.max(0, daysBetween(start, today) + 1);
-    if (today < start) elapsed = 0;
-    // streak: consecutive published days ending today or yesterday
-    var streak = 0;
-    var cursor = today;
-    if (!(s.challengeDays[cursor] && s.challengeDays[cursor].status === "published")) cursor = addDays(today, -1);
-    while (s.challengeDays[cursor] && s.challengeDays[cursor].status === "published") {
-      streak++;
-      cursor = addDays(cursor, -1);
-    }
-    return { published: published, elapsed: elapsed, streak: streak, started: today >= start };
-  }
-
   function nextDeadlines(limit) {
     var today = todayISO();
     var rows = [];
@@ -143,24 +124,18 @@ var DashboardView = (function () {
   function actionRowHTML() {
     var s = Store.get();
     var today = todayISO();
-    var start = s.settings.challengeStart;
+    // the film you touched last = your current focus
+    var films = s.films.slice().sort(function (a, b) {
+      return (Date.parse(b.updatedAt || 0) || 0) - (Date.parse(a.updatedAt || 0) || 0);
+    });
+    var f = films[0];
     var left = "";
-    if (today >= start) {
-      var dayNum = daysBetween(start, today) + 1;
-      var entry = s.challengeDays[today];
-      var done = entry && entry.status === "published";
-      left = '<div class="action-pill ' + (done ? "tint-teal" : "spotlight") + ' clickable" onclick="location.hash=\'#/challenge\'">' +
+    if (f) {
+      left = '<div class="action-pill spotlight clickable" onclick="FilmsView._openId=\'' + esc(f.id) + '\';location.hash=\'#/films\';if(location.hash===\'#/films\')App.render()">' +
         '<span class="ap-icon">🎬</span>' +
-        '<span class="ap-text"><strong>Day ' + dayNum + ' — today\'s film</strong><small>' +
-        (done ? "published ✓" : entry && entry.title ? esc(entry.status) + " · " + esc(entry.title) : "no film logged yet") +
-        '</small></span>' +
-        '<span class="ap-cta ' + (done ? "ok" : "") + '">' + (done ? "✓" : "Log →") + '</span></div>';
-    } else {
-      left = '<div class="action-pill spotlight clickable" onclick="location.hash=\'#/challenge\'">' +
-        '<span class="ap-icon">🎬</span>' +
-        '<span class="ap-text"><strong>Challenge starts ' + fmtDateShort(start) + '</strong><small>' +
-        daysBetween(today, start) + ' days to prepare — plan your first films</small></span>' +
-        '<span class="ap-cta">Plan →</span></div>';
+        '<span class="ap-text"><strong>Continue: ' + esc(f.title.slice(0, 38)) + '</strong><small>' +
+        esc(f.status) + (f.script ? " · " + (f.script.match(/\S+/g) || []).length + " words" : " · no script yet") + '</small></span>' +
+        '<span class="ap-cta">Open →</span></div>';
     }
     var right = "";
     var next = nextDeadlines(1)[0];
@@ -318,20 +293,21 @@ var DashboardView = (function () {
     var ig = latestFollowers("instagram");
     var yt = latestFollowers("youtube");
     var proj = growthProjection();
-    var ch = challengeStats();
     var goal = s.settings.followerGoal;
     var igCount = ig ? ig.count : 0;
     var igPct = Math.min(100, (igCount / goal) * 100);
-    var challengeStartsIn = daysBetween(today, s.settings.challengeStart);
 
-    // journey ring: how far along the road from challenge start to the ceremony
+    // journey ring: how far along the road from the journey start to the ceremony
     var journeyStart = s.settings.challengeStart;
     var journeyTotal = Math.max(daysBetween(journeyStart, s.settings.oscarCeremonyDate), 1);
     var journeyDone = Math.max(0, Math.min(daysBetween(journeyStart, today), journeyTotal));
     var daysLeft = Math.max(0, daysBetween(today, s.settings.oscarCeremonyDate));
 
-    var challengeRingPct = ch.started ? ch.elapsed > 0 ? (ch.published / ch.elapsed) * 100 : 0
-      : Math.max(4, 100 - (challengeStartsIn / 30) * 100);
+    // films ring: how much of the slate has moved beyond the idea stage
+    var filmsTotal = s.films.length;
+    var filmsMoving = s.films.filter(function (f) { return f.status !== "idea"; }).length;
+    var filmsWithScript = s.films.filter(function (f) { return (f.script || "").length > 80; }).length;
+    var filmsPct = filmsTotal ? (filmsMoving / filmsTotal) * 100 : 0;
 
     var igPoints = platformSeries("instagram")
       .map(function (f) { return { x: parseISO(f.date).getTime(), y: f.count }; });
@@ -372,14 +348,10 @@ var DashboardView = (function () {
             : ig ? "updated " + fmtDateShort(ig.date) : "tap to add your first data point") +
           '</div>' +
         '</div>' +
-        '<div class="score-card tint-red clickable" onclick="location.hash=\'#/challenge\'">' +
-          (ch.started
-            ? ringGauge(challengeRingPct, { color: "#FFFFFF", value: String(ch.streak), sub: "DAY STREAK" })
-            : ringGauge(challengeRingPct, { color: "#FFFFFF", value: String(challengeStartsIn), sub: "DAYS TO START" })) +
-          '<div class="score-name">🎬 Daily Challenge</div>' +
-          '<div class="score-hint">' + (ch.started
-            ? ch.published + " published · " + Math.round(challengeRingPct) + "% hit rate"
-            : "one short film every day from " + fmtDateShort(s.settings.challengeStart)) + '</div>' +
+        '<div class="score-card tint-red clickable" onclick="location.hash=\'#/films\'">' +
+          ringGauge(filmsPct, { color: "#FFFFFF", value: String(filmsTotal), sub: "FILM DOSSIERS" }) +
+          '<div class="score-name">🎬 Films</div>' +
+          '<div class="score-hint">' + filmsMoving + ' in development · ' + filmsWithScript + ' with script</div>' +
         '</div>' +
       '</div>' +
 

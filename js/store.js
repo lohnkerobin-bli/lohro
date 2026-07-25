@@ -32,7 +32,8 @@ var Store = (function () {
       meetings: [],        // {id, date, title, participants, transcript, decisions, actions, updatedAt}
       films: [],           // {id, title, logline, genre, themes, status, script, images[], notes, learnings, fromIdeaId, createdAt, updatedAt}
       visionBoards: [],    // {id, title, tiles: [{id, kind: text|image, icon, text, url}], updatedAt}
-      locations: [],       // {id, name, area, coords, tags, vibe, photos[], notes, createdAt, updatedAt}
+      locations: [],       // {id, name, area, coords, tags, vibe, photos[], photosData[], notes, createdAt, updatedAt}
+      externalInsights: [],// {id, creator, claim, source, url, date, insight, keyPoints, createdAt, updatedAt} — Externes Brain
       linkGraph: {}        // "idA|idB" (sorted): {weight, updatedAt} — brain note links, strengthened on each use
     };
   }
@@ -88,11 +89,18 @@ var Store = (function () {
       return Object.assign({ images: [], storyboard: [], script: "", learnings: "", fromIdeaId: null, createdAt: EPOCH, updatedAt: EPOCH }, x);
     });
   }
+  function seedExtern() {
+    var x = window.SEED && window.SEED.externBrain;
+    if (!x || !Array.isArray(x.entries)) return [];
+    return x.entries.map(function (e) {
+      return Object.assign({ updatedAt: EPOCH }, e);
+    });
+  }
   function seedLocations() {
     var l = window.SEED && window.SEED.locations;
     if (!l || !Array.isArray(l.locations)) return [];
     return l.locations.map(function (x) {
-      return Object.assign({ photos: [], updatedAt: EPOCH }, x);
+      return Object.assign({ photos: [], photosData: [], updatedAt: EPOCH }, x);
     });
   }
   function seedVision() {
@@ -118,6 +126,7 @@ var Store = (function () {
     if (s.films.length === 0) s.films = seedFilms();
     if (s.visionBoards.length === 0) s.visionBoards = seedVision();
     if (s.locations.length === 0) s.locations = seedLocations();
+    if (s.externalInsights.length === 0) s.externalInsights = seedExtern();
     if (s.milestones.length === 0) s.milestones = defaultMilestones();
     return s;
   }
@@ -150,6 +159,7 @@ var Store = (function () {
     s.films = mergeById(seedFilms(), s.films);
     s.visionBoards = mergeById(seedVision(), s.visionBoards);
     s.locations = mergeById(seedLocations(), s.locations);
+    s.externalInsights = mergeById(seedExtern(), s.externalInsights);
     s.meta.seedVersion = v;
     return true;
   }
@@ -223,7 +233,7 @@ var Store = (function () {
 
   // collection registry: every syncable collection is declared once so
   // merge/replace/export can never silently skip one
-  var ID_COLLECTIONS = ["ideas", "projects", "milestones", "followers", "brandNotes", "meetings", "films", "visionBoards", "locations"];
+  var ID_COLLECTIONS = ["ideas", "projects", "milestones", "followers", "brandNotes", "meetings", "films", "visionBoards", "locations", "externalInsights"];
   var KEYED_MAPS = ["challengeDays", "festivalPlans", "linkGraph"];
 
   function importMerge(obj) {

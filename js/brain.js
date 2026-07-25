@@ -563,7 +563,7 @@ var BrainView = (function () {
     // generated per-tab banner stills (darkened via .view-banner overlay), fallback: lamp still
     var bannerKey = { brand: "brain-brand", knowledge: "brain-knowledge", vision: "brain-vision", meetings: "brain-meetings" }[tab];
     root.innerHTML =
-      '<h1 class="view-title">Brain</h1>' +
+      '<h1 class="view-title">Brand</h1>' +
       '<p class="view-sub">The team backend: brand core, knowledge base, meetings &amp; weekly reports. Everything exportable via Data &amp; Settings.</p>' +
       (assetUrl(bannerKey) ? viewBanner(bannerKey) : viewBanner('still-lamp')) +
       '<div class="filter-bar">' +

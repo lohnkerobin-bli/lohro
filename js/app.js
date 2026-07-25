@@ -4,17 +4,18 @@
 var App = (function () {
   var routes = {
     dashboard: DashboardView,
-    challenge: ChallengeView,
     films: FilmsView,
     locations: LocationsView,
     festivals: FestivalsView,
     ideas: IdeasView,
+    extern: ExternBrainView,
     projects: ProjectsView,
     brain: BrainView,
     settings: SettingsView
   };
 
-  var ALIASES = { knowledge: "brain" };
+  // challenge: the daily-challenge chapter is closed — old links land on films
+  var ALIASES = { knowledge: "brain", challenge: "films" };
 
   function currentRoute() {
     var h = (location.hash || "#/dashboard").replace(/^#\//, "");

@@ -53,7 +53,6 @@ var IdeasView = (function () {
       (idea ? Graph.relatedHTML(idea.id) : "") +
       '<div class="modal-actions">' +
       (idea ? '<button class="ghost danger" id="i-delete">Delete</button>' : "") +
-      (idea ? '<button class="teal" id="i-to-challenge" title="Copy this idea onto the next free challenge day">📅 → Challenge day</button>' : "") +
       (idea ? '<button class="blue" id="i-to-film" title="Turn this idea into a full film dossier (logline, script, shotdeck)">🎬 Develop as film</button>' : "") +
       '<button class="ghost" onclick="closeModal()">Cancel</button>' +
       '<button class="primary" id="i-save">Save</button></div>';
@@ -63,22 +62,6 @@ var IdeasView = (function () {
     if (toFilm) toFilm.onclick = function () {
       closeModal();
       FilmsView.developFromIdea(idea);
-    };
-    var toChallenge = $("#i-to-challenge");
-    if (toChallenge) toChallenge.onclick = function () {
-      var st = Store.get();
-      var d = st.settings.challengeStart > todayISO() ? st.settings.challengeStart : todayISO();
-      var guard = 0;
-      while (st.challengeDays[d] && guard++ < 400) d = addDays(d, 1);
-      st.challengeDays[d] = {
-        date: d, title: idea.title.slice(0, 60), idea: idea.title + (idea.notes ? "\n\n" + idea.notes : ""),
-        status: "planned", link: "", learnings: "",
-        updatedAt: new Date().toISOString()
-      };
-      if (idea.status === "Neu") { idea.status = "In Arbeit"; idea.updatedAt = new Date().toISOString(); }
-      Store.save(); closeModal();
-      toast("Planned for " + fmtDate(d) + " (Day " + (daysBetween(st.settings.challengeStart, d) + 1) + ")");
-      App.render();
     };
     $("#i-save").onclick = function () {
       var title = $("#i-title").value.trim();
@@ -141,8 +124,8 @@ var IdeasView = (function () {
     else if (sort === "updated") visible.sort(function (a, b) { return tsOf(b.updatedAt) - tsOf(a.updatedAt); });
 
     root.innerHTML =
-      '<h1 class="view-title">Ideas Vault</h1>' +
-      '<p class="view-sub">' + s.ideas.length + ' ideas — imported from your Notion Second Brain + Ideen-Schrank, extendable here. Original German kept as written.</p>' +
+      '<h1 class="view-title">Second Brain</h1>' +
+      '<p class="view-sub">' + s.ideas.length + ' eigene Ideen &amp; Erkenntnisse — aus deinem Notion Second Brain + Ideen-Schrank, hier erweiterbar. Externe Quellen (Transkripte etc.) leben im <a href="#/extern">Externen Brain</a>.</p>' +
 
       '<div class="filter-bar">' +
         '<input id="idea-q" placeholder="Search ideas..." value="' + esc(render._q || "") + '" style="flex:1;min-width:180px">' +
