@@ -37,6 +37,27 @@ three parts:
 | **Second Brain** (Robins eigene Ideen) | `data/notion-ideas.json` | Second Brain |
 | **Externes Brain** (fremde Quellen, Pflicht-Link) | `data/extern-brain.json` + `EXTERNE-ERKENNTNISSE.md` | Externes Brain |
 
+## Das Wort "ZENTRALE" (Dauer-Regel)
+
+Sobald Robin **"ZENTRALE"** sagt und eine Änderung beschreibt ("in der Zentrale
+soll...", "bau in die Zentrale ein", "Zentrale: ..."), wird sie OHNE Rückfrage
+direkt in der App umgesetzt: Code/Daten ändern → rebuild (beide Skripte) →
+Playwright-Kurztest → commit + push → Artifact aktualisieren → Screenshot an
+Robin (Standing Rule). Selbstständig arbeiten; bei Hindernissen Lösungen suchen
+statt fragen; unklare Diktion: beste Interpretation umsetzen und kennzeichnen.
+
+## Externes Brain ↔ Notion (Dauer-Regel)
+
+Das Externe Brain existiert doppelt: in Notion (Robins "externes Brain"-Skill
+trägt dort ein) und in der ZENTRALE (`data/extern-brain.json` + App-Tab +
+`EXTERNE-ERKENNTNISSE.md`). Regeln:
+- Jede externe Erkenntnis, die Claude hier erfasst, landet in ALLEN Zielen
+  (extern-brain.json + EXTERNE-ERKENNTNISSE.md; Notion nur wenn Notion-Tools
+  verfügbar — sonst vermerken).
+- **Sync-Pflicht der Donnerstags-Routine:** Notion "Externes Brain" abfragen,
+  neue Einträge (Dedupe per Original-Link) in extern-brain.json +
+  EXTERNE-ERKENNTNISSE.md übernehmen, rebuild + push.
+
 Routing rules for Claude:
 - **Catch-all (wichtigste Regel):** Sobald Robin "Brain" sagt ("ins Brain",
   "Brain: ...", "leg das ins Brain", "Brain merken"), wird der Inhalt OHNE
