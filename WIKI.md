@@ -84,7 +84,7 @@ Zwei Spuren:
 Erkenntnisse von aussen (YouTube, Instagram, Podcasts, Artikel) — klar getrennt
 von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
 **→ Vollständige Liste + Eintragsformat: [`EXTERNE-ERKENNTNISSE.md`](EXTERNE-ERKENNTNISSE.md)**
-(Stand: 2 Einträge — Action creates clarity · Janteloven/Haaland)
+(Stand 25.07.2026: 50 Einträge — synchron mit dem Notion-Externes-Brain; Sync läuft über die Donnerstags-Routine)
 
 ## Kommunikation mit Robin
 
