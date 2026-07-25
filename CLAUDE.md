@@ -48,6 +48,14 @@ Routing rules for Claude:
   (stable `id`, correct `section`: core/values/dos/donts/cta/assets/team), then
   run `python3 scripts/build-seed.py && python3 scripts/build-standalone.py`.
 - "leg dieses Wissen ab" → extend `data/knowledge.json` (same rebuild).
+- **Externe Erkenntnisse (Dauer-Regel):** Wenn Robin ein YouTube- oder
+  Instagram-Video transkribiert/analysiert oder sagt „bau es ins Second Brain
+  ein" / „ins Externe Brain", dann automatisch einen Eintrag im definierten
+  Format in `EXTERNE-ERKENNTNISSE.md` anlegen (verlinkt aus WIKI.md, Abschnitt
+  🌐 EXTERNE ERKENNTNISSE). Der Original-Link ist Pflichtfeld. Eigene Ideen von
+  Robin gehören NICHT hierhin, nur Erkenntnisse aus fremden Quellen. Vor dem
+  Eintragen prüfen, ob der Link schon vorhanden ist (kein Duplikat anlegen).
+  Danach kurz bestätigen: ✅ gespeichert + stärkste Lehre in 1 Satz.
 - Meeting transcripts: Robin pastes them into the app himself (Brain → Meetings
   → Add meeting). If he gives Claude a transcript to file, summarize it into
   decisions + action items and either update the exported JSON he provides, or

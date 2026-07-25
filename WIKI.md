@@ -77,6 +77,13 @@ Zwei Spuren:
 | SPIELFILM „Wenn du an deinen Traum glaubst" (AURA) | Treatment, Förderung eingereicht |
 | Der Schrank (Experimental) | Treatment |
 
+## 🌐 EXTERNE ERKENNTNISSE
+
+Erkenntnisse von aussen (YouTube, Instagram, Podcasts, Artikel) — klar getrennt
+von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
+**→ Vollständige Liste + Eintragsformat: [`EXTERNE-ERKENNTNISSE.md`](EXTERNE-ERKENNTNISSE.md)**
+(Stand: 2 Einträge — Action creates clarity · Janteloven/Haaland)
+
 ## Kommunikation mit Robin
 
 - Antworte **auf Deutsch**, direkt, ohne Floskeln. UI-Texte bleiben Englisch.
