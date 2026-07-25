@@ -151,7 +151,10 @@ var Store = (function () {
   function upgradeSeed(s) {
     var seed = window.SEED || {};
     var v = seed.version || 0;
-    if ((s.meta.seedVersion || 0) >= v) return false;
+    // version is a content hash, NOT monotonic — any difference means new seed
+    // content. The merge below is idempotent and can never beat local edits
+    // (seed rows carry epoch timestamps), so re-running it is always safe.
+    if ((s.meta.seedVersion || 0) === v) return false;
     if (Array.isArray(seed.ideas)) s.ideas = mergeById(seed.ideas.map(normIdea), s.ideas);
     if (Array.isArray(seed.projects)) s.projects = mergeById(seed.projects, s.projects);
     s.brandNotes = mergeById(seedBrandNotes(), s.brandNotes);
