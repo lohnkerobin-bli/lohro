@@ -20,6 +20,16 @@
       "source": "sandcastles",
       "note": "Profil 'LOHR' weiterhin falsch verlinkt (0 Videos) — Stand aus Daily-Check 07:30",
       "updatedAt": "2026-07-16T09:05:00Z"
+    },
+    {
+      "id": "fol-sc-2026-07-30-instagram",
+      "date": "2026-07-30",
+      "platform": "instagram",
+      "count": 3,
+      "verified": false,
+      "source": "sandcastles",
+      "note": "Sandcastles-Connector wieder aktiv (Auth repariert), aber Profil 'LOHR' für @lohro weiterhin falsch verlinkt (3 Follower, 0 Videos indexiert) — Link in Sandcastles fixen, erst dann wird der Feed verified.",
+      "updatedAt": "2026-07-30T09:00:00Z"
     }
   ]
 }

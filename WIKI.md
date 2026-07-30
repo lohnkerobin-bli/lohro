@@ -51,7 +51,8 @@ Zwei Spuren:
 ## Schlüsselfakten & Entscheide
 
 - Follower-Start: praktisch bei null (@lohro); Wachstumsmotor = tägliche Shorts + Reels.
-- Sandcastles-Blocker: Profil „LOHR" für @lohro falsch verlinkt (3 Follower, 0 Videos) —
+- Sandcastles: Connector seit 30.07. wieder aktiv (Auth repariert). Blocker bleibt:
+  Profil „LOHR" für @lohro falsch verlinkt (3 Follower, 0 Videos) —
   Robin muss Link fixen / korrekte Handles (YouTube, TikTok) liefern.
 - Festival-Budget: CHF 2–3k für 10–15 Submissions. Herbst 2026 = Deadline-Cluster (do-or-die).
 - Content-Erkenntnisse (Sandcastles): Craft-Fact-Format + universelle Frage-Hooks
@@ -84,7 +85,7 @@ Zwei Spuren:
 Erkenntnisse von aussen (YouTube, Instagram, Podcasts, Artikel) — klar getrennt
 von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
 **→ Vollständige Liste + Eintragsformat: [`EXTERNE-ERKENNTNISSE.md`](EXTERNE-ERKENNTNISSE.md)**
-(Stand 25.07.2026: 50 Einträge — synchron mit dem Notion-Externes-Brain; Sync läuft über die Donnerstags-Routine)
+(Stand 30.07.2026: 52 Einträge — synchron mit dem Notion-Externes-Brain; Sync läuft über die Donnerstags-Routine. In der App farblich nach Themen: Growth/Craft/Mindset/Story/Business)
 
 ## Kommunikation mit Robin
 
@@ -95,4 +96,4 @@ von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
 - Credit-effizient arbeiten: kleine JSONs greppen, nie seed.js/dist lesen.
 
 ---
-*Zuletzt aktualisiert: 2026-07-25 (Rebrand ZENTRALE, Second/Externes Brain, Challenge beendet, 8 neue Film-Dossiers) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*
+*Zuletzt aktualisiert: 2026-07-30 (Donnerstags-Routine: Notion-Sync +2 Einträge, Sandcastles-Auth wieder aktiv, Themen-Farben im Externen Brain) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*

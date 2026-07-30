@@ -600,6 +600,30 @@
       "keyPoints": "Lie Hook: 'What you're seeing right now was shot on VHS. That's what I would say if I was a liar.' Tutorial: NTSC-RS (Open-Source-VHS-Plugin, GitHub) downloaden; Resolve-Timeline auf 1080x720; Log-Footage vor dem Plugin zu Rec.709 konvertieren; Bonus: Highlights vorher ausbrennen; exakte Settings kopieren, als Preset speichern. Backrooms-Grade als Beispiel. 1,51M Views, ER 6%.",
       "createdAt": "2026-07-25T12:00:00Z",
       "theme": "growth"
+    },
+    {
+      "id": "ext-051",
+      "creator": "@nicolas_dorn",
+      "claim": "Verkauf nicht das Ziel, sondern die Bedeutung",
+      "source": "Instagram Reel",
+      "url": "https://www.instagram.com/p/DbPyIgeI5dU/",
+      "date": "2026-07-26",
+      "insight": "Klopp verkauft keine WM, sondern das Gefühl, das ein Titel im ganzen Land auslösen würde — Zusammenhalt, Optimismus, Hoffnung. Für Lohro/Way to Oscar heisst das: nicht das Ziel pitchen (Kurzfilm, Oscar, Kanal), sondern die Bedeutung des Ziels — was es für die Leute ändert, die zuschauen. Zweiter Hebel: das Format selbst — eine fremde, bekannte Szene rhetorisch sezieren ist ein starker Reel-Bauplan, der sich 1:1 auf Filmszenen anwenden lässt.",
+      "keyPoints": "Rhetorik-Analyse einer Klopp-Pressekonferenz. Kernmechanik: Bedeutung statt Ziel verkaufen. Format-Learning: bekannte Szene sezieren = Reel-Blueprint. (Via Notion-Sync 30.07.)",
+      "createdAt": "2026-07-26T14:33:12Z",
+      "theme": "story"
+    },
+    {
+      "id": "ext-052",
+      "creator": "Higgsfield AI",
+      "claim": "Seedance 2.0 4K: Real Footage + AI-VFX ohne Compositing",
+      "source": "YouTube",
+      "url": "https://www.youtube.com/watch?v=Yte-UGhYkPQ",
+      "date": "2026-07-29",
+      "insight": "Seedance 2.0 in 4K (in Higgsfield) ist Video-to-Video: Echtes Footage hochladen, die AI verändert nur das Gewünschte — Umgebung tauschen, Kreatur/Element hinzufügen, Objekt transformieren — während Gesicht, Performance und Kamerabewegung erhalten bleiben. Kein Greenscreen, kein Masking, kein Compositing. Für den Haifilm: Der Hai kann direkt in die echten FX3-Shots generiert werden, statt separat auf Schwarz generieren + kompositen.",
+      "keyPoints": "Video-to-Video-Workflow: Footage hochladen, Prompt beschreibt nur die Änderung. Erhält Gesicht/Performance/Kamerabewegung. Direkt relevant für My Wave (Haifilm). (Via Notion-Sync 30.07.)",
+      "createdAt": "2026-07-29T06:31:21Z",
+      "theme": "craft"
     }
   ]
 }

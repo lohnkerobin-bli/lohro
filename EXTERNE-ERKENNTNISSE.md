@@ -365,3 +365,17 @@ von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
 - Datum: 2026-07-25
 - Erkenntnis: 1,5M Views mit „Lie Hook": kühne Behauptung → sofortiger Selbst-Widerruf = doppelter Pattern-Interrupt in 5 Sek. Inhaltlich: authentischer VHS-Look gratis via NTSC-RS (Open Source) in Resolve — Timeline 1080x720, Log→Rec.709 vor dem Plugin, Highlights ausbrennen lassen. Formel: Ergebnis zuerst, dann exakte Settings.
 - Transkript/Kernaussagen: Lie Hook: 'What you're seeing right now was shot on VHS. That's what I would say if I was a liar.' Tutorial: NTSC-RS (Open-Source-VHS-Plugin, GitHub) downloaden; Resolve-Timeline auf 1080x720; Log-Footage vor dem Plugin zu Rec.709 konvertieren; Bonus: Highlights vorher ausbrennen; exakte Settings kopieren, als Preset speichern. Backrooms-Grade als Beispiel. 1,51M Views, ER 6%.
+
+### @nicolas_dorn — Verkauf nicht das Ziel, sondern die Bedeutung
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/p/DbPyIgeI5dU/
+- Datum: 2026-07-26
+- Erkenntnis: Klopp verkauft keine WM, sondern das Gefühl, das ein Titel im ganzen Land auslösen würde — Zusammenhalt, Optimismus, Hoffnung. Für Lohro/Way to Oscar heisst das: nicht das Ziel pitchen (Kurzfilm, Oscar, Kanal), sondern die Bedeutung des Ziels — was es für die Leute ändert, die zuschauen. Zweiter Hebel: das Format selbst — eine fremde, bekannte Szene rhetorisch sezieren ist ein starker Reel-Bauplan, der sich 1:1 auf Filmszenen anwenden lässt.
+- Transkript/Kernaussagen: Rhetorik-Analyse einer Klopp-Pressekonferenz. Kernmechanik: Bedeutung statt Ziel verkaufen. Format-Learning: bekannte Szene sezieren = Reel-Blueprint. (Via Notion-Sync 30.07.)
+
+### Higgsfield AI — Seedance 2.0 4K: Real Footage + AI-VFX ohne Compositing
+- Quelle: YouTube
+- Original-Link: https://www.youtube.com/watch?v=Yte-UGhYkPQ
+- Datum: 2026-07-29
+- Erkenntnis: Seedance 2.0 in 4K (in Higgsfield) ist Video-to-Video: Echtes Footage hochladen, die AI verändert nur das Gewünschte — Umgebung tauschen, Kreatur/Element hinzufügen, Objekt transformieren — während Gesicht, Performance und Kamerabewegung erhalten bleiben. Kein Greenscreen, kein Masking, kein Compositing. Für den Haifilm: Der Hai kann direkt in die echten FX3-Shots generiert werden, statt separat auf Schwarz generieren + kompositen.
+- Transkript/Kernaussagen: Video-to-Video-Workflow: Footage hochladen, Prompt beschreibt nur die Änderung. Erhält Gesicht/Performance/Kamerabewegung. Direkt relevant für My Wave (Haifilm). (Via Notion-Sync 30.07.)
