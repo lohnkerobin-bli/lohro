@@ -85,7 +85,7 @@ Zwei Spuren:
 Erkenntnisse von aussen (YouTube, Instagram, Podcasts, Artikel) — klar getrennt
 von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
 **→ Vollständige Liste + Eintragsformat: [`EXTERNE-ERKENNTNISSE.md`](EXTERNE-ERKENNTNISSE.md)**
-(Stand 30.07.2026: 52 Einträge — synchron mit dem Notion-Externes-Brain; Sync läuft über die Donnerstags-Routine. In der App farblich nach Themen: Growth/Craft/Mindset/Story/Business)
+(Stand 06.08.2026: 72 Einträge — synchron mit dem Notion-Externes-Brain; Sync läuft über die Donnerstags-Routine. In der App farblich nach Themen: Growth/Craft/Mindset/Story/Business)
 
 ## Kommunikation mit Robin
 
@@ -96,4 +96,4 @@ von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
 - Credit-effizient arbeiten: kleine JSONs greppen, nie seed.js/dist lesen.
 
 ---
-*Zuletzt aktualisiert: 2026-07-30 (Donnerstags-Routine: Notion-Sync +2 Einträge, Sandcastles-Auth wieder aktiv, Themen-Farben im Externen Brain) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*
+*Zuletzt aktualisiert: 2026-08-06 (Donnerstags-Routine: Notion-Sync +20 Einträge aus Reel-Analyse-Batch, ZENTRALE-Skill für normale Chats erstellt) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*
