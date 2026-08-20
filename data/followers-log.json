@@ -40,6 +40,16 @@
       "source": "sandcastles",
       "note": "Profil 'LOHR' für @lohro weiterhin falsch verlinkt (3 Follower, 0 Videos indexiert) — Link in Sandcastles fixen, erst dann wird der Feed verified.",
       "updatedAt": "2026-08-06T09:00:00Z"
+    },
+    {
+      "id": "fol-sc-2026-08-20-instagram",
+      "date": "2026-08-20",
+      "platform": "instagram",
+      "count": 3,
+      "verified": false,
+      "source": "sandcastles",
+      "note": "Profil 'LOHR' für @lohro weiterhin falsch verlinkt (3 Follower, 0 Videos indexiert). Hinweis: Routine vom 13.08. ist nicht gelaufen (kein Log-Eintrag).",
+      "updatedAt": "2026-08-20T09:00:00Z"
     }
   ]
 }

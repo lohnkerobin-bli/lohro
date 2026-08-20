@@ -519,3 +519,766 @@ von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
 - Datum: 2026-08-05
 - Erkenntnis: Das Serienformat ist der Hebel: „Ich schaue jeden Oscar-Gewinner für Best Editing“ ist ein endloser, wiedererkennbarer Container mit eingebauter Autorität — genau die Mechanik, die „Way to Oscar“ im Namen trägt, als nummerierte Episodenreihe aber konsequenter ausgespielt werden könnte. Inhaltlich: lieber mit einer starken These im Schnitt scheitern als thesenlos zusammensetzen — auf Kundenprojekte übertragbar. Der Hook ist bewusst kein Reisser, sondern eine ehrliche Beobachtung; funktioniert, weil das Bild dahinter Spektakel liefert.
 - Transkript/Kernaussagen: (Via Notion-Sync 06.08. — Reel-Analyse-Batch vom 05.08.)
+
+### @jlpctures — Filmszene nachbauen im Split-Screen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbIWJcCpsg_/
+- Datum: 2026-08-11
+- Erkenntnis: 10 Mio Views und Outlier 114.7x — das stärkste Format dieser Charge, und es kostet praktisch nichts: berühmte Szene nachbauen, Original und Setup nebeneinander zeigen. Der Reiz liegt im Kontrast zwischen emotionaler Perfektion links und Stehlampe-plus-Ventilator rechts; eingeblendete Kameradaten sind der Beweis. Für Robin mit vorhandener Ausrüstung direkt produzierbar, bedient Filmnerds und Anfänger gleichzeitig. Der Sound trägt das Video, nicht die eigene Stimme — also sprachunabhängig und international skalierbar.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @noah_markss — Der Drehort ist das Argument
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaHCqCOyNdp/
+- Datum: 2026-08-11
+- Erkenntnis: Der ganze Post ist ein einziger Satz — und holt 289k Views bei 7% ER. Der Trick ist die Ortswahl: Ein abstrakter Mindset-Satz wird im Supermarktgang gesagt, also dort, wo man täglich kleine Entscheidungen trifft, und der Ort beweist den Satz, ohne dass er erklärt werden muss. Für Robin: Der Drehort ist das Argument. Ein Satz über Disziplin im leeren Schnittraum um 2 Uhr nachts braucht keinen zweiten Satz. Günstigste Content-Form überhaupt, am Rand jedes Drehtags mitnehmbar.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @camilaatunoni — Marktlücken-Hook für Tutorials
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbI9OQqMqw8/
+- Datum: 2026-08-11
+- Erkenntnis: Der Hook ist eine Marktlücken-Behauptung ('es gibt zu X noch kein Tutorial') — der billigste und stärkste Aufhänger für Tutorial-Content, weil er den Wert des Videos in einem Satz beweist. Robin kann diesen Satz für jede Technik nutzen, die auf Instagram sichtbar, aber unerklärt ist. Zweite Lehre: Aufbau Tool-für-Tool statt Schritt-für-Schritt macht es konkret nachbaubar — genau das fehlt Filmmaking-Reels, die auf Prinzipien-Ebene bleiben.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @georgia__hudson — Teaser braucht nur Stimmung
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Daz3D7gok1h/
+- Datum: 2026-08-11
+- Erkenntnis: Ein Teaser, der nichts über die Handlung verrät und trotzdem 7% ER holt — der Reiz liegt komplett in Farbdramaturgie und Rhythmus, nicht in Information. So kann Robin eigene Kurzfilme ankündigen, ohne Material zu verbrennen: Stimmung zeigen, Titel setzen, Festival nennen, Schluss. Die Farbwechsel funktionieren als emotionale Kapitel und geben dem Auge Struktur, wo die Story fehlt. Wichtig: Der Festivalstart ist der Anlass, der den Post rechtfertigt — erst Anlass, dann reicht Atmosphäre.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @wactuall — Wer nie widerspricht liefert keinen Wert
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbJy8R-yoUy/
+- Datum: 2026-08-11
+- Erkenntnis: 16 Sekunden, eine Anekdote, ein Prinzip — die kürzeste funktionierende Bauform für Content über Führung und Kollaboration. Der Hook öffnet eine Neugierlücke mit einer schockierenden Handlung und schließt sie erst in Sekunde 5; genau dieses Muster kann Robin für Anekdoten aus der Arbeit mit Kunden und Crew nutzen. Inhaltlich relevant für Kollektiv Oskar: Wer im Team nie widerspricht, liefert keinen Wert.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @jun_yuh — KI nicht schreiben, sondern verhören lassen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbBOfCZxVYH/
+- Datum: 2026-08-11
+- Erkenntnis: Der wichtigste Eintrag dieser Charge für Robins Workflow: KI nicht schreiben lassen, sondern verhören lassen. Der Prompt 'Don't write anything for me, instead interrogate me — for every moment ask me why it mattered, three times' ist direkt in die Reel-Skript- und Second-Brain-Skills einbaubar und löst das Problem glatter, lebloser KI-Texte. Das LIFE-Wheel (Love, Identity, Fitness, Earnings) ist ein brauchbares Raster, um systematisch Reel-Themen aus dem eigenen Leben zu ziehen. Der Hook — 'dein Leben ist nicht langweilig, du stehst nur zu nah dran' — passt fast unverändert auf Robins Zielgruppe.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @afrimaxstudio — Parabel schlägt Talking Head
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbGNj46iTLF/
+- Datum: 2026-08-11
+- Erkenntnis: 10% ER bei 1,4 Mio Views ist aussergewöhnlich und liegt an der Bauform: klassische Parabel mit Konflikt, Wendung und Moral — dieselbe Struktur, die Robin aus dem Drehbuchhandwerk kennt, hier auf 134 Sekunden komprimiert und faceless animiert. Der Hook ist ein Story-Opener im Präteritum, kein Versprechen — Beweis, dass Storytelling ohne Hook-Formel trägt, wenn der erste Satz eine Frage im Kopf erzeugt. Erzählte Geschichten mit Bildern statt Gesicht sind skalierbar und altern nicht.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @fallontonight — Kein Handy am Set schützt Denkzeit
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbL3G6iOdho/
+- Datum: 2026-08-11
+- Erkenntnis: Der Hook ist eine Regel-Behauptung ('Auf dem Set von X ist Y verboten') und deshalb überprüfbar statt meinungsbasiert — eine Formel, die Robin mit jedem eigenen Set-Ritual füllen kann. Nolan verkauft digitale Abstinenz nicht als Verzicht, sondern als Produktionsmittel: die 'pockets of time' zum Denken sind das Werkzeug. Ein Thema, das Robin als Filmemacher glaubwürdiger besetzen kann als jeder Productivity-Coach.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @gptmarlon — Aus jedem Workflow einen Skill bauen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DavWA_pIIup/
+- Datum: 2026-08-11
+- Erkenntnis: Direkt praktisch für Robins Setup: Der Skill-Creator-Move ('baue mir daraus einen Skill, damit ich das nie wieder erklären muss') ist genau das Prinzip hinter Robins Skill-Sammlung — hier auf Schreibstil angewandt und für die Instagram-Caption- und Reel-Skript-Skills ein sinnvoller Zusatz. Content-seitig: 4.121 Kommentare bei nur 2% ER kommen fast nur vom Comment-Gate, was Reichweite pusht, aber Followerqualität senkt. Der Workflow-Inhalt ist wertvoller als die Wachstumstaktik.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @ryantym.xyz — Identität schlägt Strategie
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbJpeuvSas4/
+- Datum: 2026-08-11
+- Erkenntnis: Outlier 26.6x heisst: massiv überperformt für die Kanalgrösse. Grund ist die Zwei-Takt-Hook — erst die erwartete Lösung anbieten (Strategie), dann sofort für nutzlos erklären (Identität schlägt Strategie). Übertragbar: 'Du kannst dir jede Kamera kaufen, aber wenn du dich nicht als Filmemacher siehst, wird der Film nie gut.' Zweiter Trick: geliehene Autorität statt eigener Meinung — Robin kann dasselbe mit Regie-Klassikern und Filmgeschichte tun.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @austingeorgas — Aufgabe zerlegen bis Ablehnung absurd wirkt
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Da6_NmJNB4W/
+- Datum: 2026-08-11
+- Erkenntnis: Der Hook ist ein Genervtheits-Opener, hier gegen die eigene Community gerichtet, was Vertrautheit simuliert. Der eigentliche Move ist die absichtliche Verkleinerung der Aufgabe: erst 'zwei Dinge', dann korrigiert er auf drei, und jedes ist lächerlich klein (Aufnehmen, Reden, Posten) — der Widerstand des Zuschauers wird systematisch abgebaut. Übertragbar auf jedes Filmmaking-Thema, bei dem Anfänger blockieren: die Aufgabe zerlegen, bis Ablehnung absurd wirkt. Die Challenge mit Tag-Aufforderung ist zudem ein Community-Motor statt Algorithmus-Reichweite.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @davidperell — A-B-D-C-E Story-Formel von Anne Lamott
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Da_SJS2gZub/
+- Datum: 2026-08-11
+- Erkenntnis: Inhaltlich das wertvollste Handwerks-Reel dieser Charge: A-B-D-C-E (Action, Background, Development, Climax, Ending) ist direkt für eigene Kurzfilme und als Erklär-Content für YouTube verwendbar — besonders Lamotts Definition des Klimax als 'Tod einer Illusion, nicht einer Figur' trägt ein ganzes Video. Formal: Das Akronym trägt die Merkfähigkeit, die Formel ist der Hook, nicht die Person. Robin sollte eigene Prinzipien benennen und buchstabieren statt nur beschreiben — benannte Frameworks werden geteilt, lose Tipps nicht.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @adnaaka — Logistik-Wissen als viraler Content
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DZZknKlNErq/
+- Datum: 2026-08-11
+- Erkenntnis: 1,2 Mio Views mit 31 Sekunden reiner Information — Beweis, dass konkretes, überprüfbares Insider-Wissen in der Filmnische enorm trägt, ohne jede Persönlichkeit im Bild. Der Hook nennt das Ziel (Cannes) und behauptet eine Abkürzung; die Zahlen im Text (25 Euro, unter 28, Anfang Februar) machen es sofort glaubwürdig. Für Robin: Jede logistische Hürde auf dem Weg zum Oscar, die er selbst durchlaufen hat — Festivaleinreichungen, Gebühren, Fristen, Akkreditierungen — ist ein potenziell viraler Post und passt perfekt ins Markenversprechen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @cadojack — Die absichtliche Lücke in der Liste
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Da_hGwuvQIa/
+- Datum: 2026-08-11
+- Erkenntnis: Der interessante Move ist die bewusste Lücke: Er zeigt eine vollständige Liste und behauptet dann, der wichtigste Punkt fehle darauf — die Neugierlücke sitzt nicht im Hook, sondern in Sekunde 14, genau dort, wo sonst der Absprung kommt. Auch ohne Comment-Gate nutzbar: Liste zeigen, entscheidenden Punkt ans Ende statt in eine DM. Das Greenscreen-Format selbst ist billig, aber generisch — mit 3% ER entsprechend schwach, also eher Technik-Lehre als Formatvorlage.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @emilianofilm — Haltung ist Content
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Da_DKdFuDo3/
+- Datum: 2026-08-11
+- Erkenntnis: Ein Filmemacher-Kanal holt mit einem reinen Meinungs-Rant 324k Views und 7% ER — ohne einen einzigen Filmshot. Die Lehre: Haltung ist Content. Der Hook 'Ich habe es satt, dass Leute X sagen' bildet sofort Lager und erzwingt Kommentare; der Aufbau geht vom Ärger über die historische Einordnung zur versöhnlichen Pointe — die Wut ist der Einstieg, nicht das Ziel. Robin hat genug Filmmaking-Sätze, die ihn wirklich nerven; die auszusprechen kostet nichts und baut Profil schneller auf als das nächste Tutorial. Wichtig: warm enden, nicht bitter.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @sam.gaudet — Kommentare sind die Ideen-Datenbank
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbBLPLhyaPg/
+- Datum: 2026-08-11
+- Erkenntnis: 'Es ist leichter, in ein bestehendes Gespräch einzusteigen, als ein neues zu beginnen' — der Satz, den Robin über seine Ideenfindung hängen sollte. Konkret: Die Kommentare unter Robins eigenen Reels und unter fremden Filmmaking-Reels sind eine Themen-Datenbank mit bewiesener Nachfrage, bisher ungenutzt. Formal ist das Reel schwach (13k Views), aber das Prinzip ist auf die Reels-Inbox übertragbar: nicht nur Reels sammeln, sondern auch die Kommentarfragen darunter.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @lindenchasteen — Führungslinien im Thumbnail
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbAfaPSvabk/
+- Datum: 2026-08-11
+- Erkenntnis: Outlier 40.4x bei nur 50k Views — das Format schlägt weit über Kanalgrösse, weil es eine bekannte Bildsprache-Regel auf ein konkretes Klick-Problem anwendet und live am Beispiel annotiert. Doppelt relevant: praktisch, weil Führungslinien in Thumbnails für Way to Oscar direkt umsetzbar sind und Robin sie als Kameramann ohnehin beherrscht; formal, weil 'bekanntes Beispiel nehmen und live drüberzeichnen' auch mit Filmstills statt Thumbnails funktioniert — Kompositionsanalyse an berühmten Shots liegt näher an seiner Marke.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @briarcochran — Hook Stacking: drei Hooks statt einem
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DancL9Bx4fa/
+- Datum: 2026-08-12
+- Erkenntnis: Konkretestes Hook-Framework der Sammlung: Pattern Interrupt → Pain Point (Superhook) → Dream Outcome, alle drei in den ersten Sekunden. Der Meta-Reveal beweist die Technik live und erzeugt den Rewatch. Für Robins YouTube-Intros direkt einsetzbar.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @suhqeb — Wann hast du zuletzt etwas zum ersten Mal getan
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Da6_Zncufyw/
+- Datum: 2026-08-12
+- Erkenntnis: 11% ER, weil der Text keine Belehrung ist, sondern eine Frage, die der Zuschauer auf sein eigenes Leben anwendet und deshalb teilt. Arbeitet konsequent mit Film-Metaphern (same episode, everything was a premiere). Beweis, dass Robins ruhige, cinematische Reels ohne Lehrinhalt funktionieren, wenn die Frage universell genug ist.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @daniel.does.ads — Subjekt bleibt im selben Bildbereich
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DYlOyOsMRQR/
+- Datum: 2026-08-12
+- Erkenntnis: Der stärkste Move ist nicht die Regel selbst, sondern dass er sie während der Erklärung bewusst bricht — der Zuschauer FÜHLT das Problem, statt es nur zu hören, und der Meta-Reveal am Ende erzwingt einen Rewatch. Für Robin direkt übertragbar: jede Kamera- oder Schnittregel im selben Video absichtlich verletzen und am Ende aufdecken.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @iamchrischung — Zahl plus Kontext plus Gefühl
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DYZw5DTFQRl/
+- Datum: 2026-08-12
+- Erkenntnis: Drei-Schritt-Formel — Zahl (Spezifität) + eine Zeile Kontext + Gefühl. Behebt Robins Risiko, eigene Meilensteine beiläufig zu erwähnen. Hedonic Treadmill (Brickman 1978) erklärt, warum man eigene Erfolge nicht mehr spürt: nicht Bescheidenheit, sondern Gewöhnung.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @artzenmedia — Fremde virale Edits als Serien-Themenpool
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Da7vcBav9Ge/
+- Datum: 2026-08-12
+- Erkenntnis: 3.373 Kommentare bei 179k Views — der Comment-Trigger (RES) ist der Reichweitenmotor, nicht der Inhalt. Das Serienformat löst das Themen-Problem: fremde virale Edits als endloser Pool. Der CTA tag the creator you want me to breakdown next lässt die Community die Redaktionsplanung übernehmen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @kunashni_psychologist — Der Beweis, den alle zitieren, existiert nicht
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DYzb7m2zKSd/
+- Datum: 2026-08-12
+- Erkenntnis: Hook-Typ Der berühmte Beweis existiert gar nicht ist auf Filmmaking-Mythen anwendbar (Rule of Thirds, 180-Grad-Regel, du brauchst eine Cine-Kamera). Inhaltlich für Robins Oscar-Ziel relevant: tägliches Aufschreiben plus vorgeplante Reaktion auf Hindernisse verdoppelt die Durchhaltequote.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @jun_yuh — Silent Film Format in fünf Bausteinen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaxzTbyxIG_/
+- Datum: 2026-08-12
+- Erkenntnis: Komplette Blaupause: Time Anchor, früher Konflikt, Stakes, Picture-Book-B-Roll, aufbauende Musik. Wichtigster Praxis-Tipp: 30 Minuten B-Roll von sich selbst in drei Emotionen (happy, unhappy, focused) drehen und dauerhaft wiederverwenden. Crescendo mit Drop exakt auf dem Transformationsmoment schlägt jeden Trend-Sound.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @layton_video — Drittel-Regel als Standortwechsel zwischen Shots
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DZrY2qFRQ4K/
+- Datum: 2026-08-12
+- Erkenntnis: Umdeutung der Drittel-Regel von Bildaufteilung zu Standort-Wechsel zwischen Shots: pro Schnitt Position UND Brennweite wechseln (wide, close, medium). Eine bekannte Regel neu framen statt eine neue erfinden. Das Lead-Magnet kommentiere shot list erzeugte 182 Kommentare bei 42k Views.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @tomnoske — Nische ist die emotionale Wurzel, nicht der Beruf
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaxKgUrTiVt/
+- Datum: 2026-08-12
+- Erkenntnis: Die Warum-Kette ist auf Robins Positionierung anwendbar: Filmmaking ist die Fähigkeit, nicht die Nische. Way to Oscar verkauft im Kern nicht Kameratechnik, sondern die Erlaubnis, den eigenen großen Traum ernst zu nehmen. Wer die emotionale Wurzel benennt statt der Technik, kann höhere Preise verlangen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @layton_video — Die 20-Prozent-Regel vor der Kamera
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DYMGFi3RpAX/
+- Datum: 2026-08-12
+- Erkenntnis: Die 20%-Regel — die Kamera zieht ein Fünftel der Energie ab, also bewusst hochfahren — ist der praktischste Tipp für Voiceover und Talking-Head. Zweiter Gold-Tipp: einmal denselben Text ungefilmt sprechen, um in den Rhythmus zu kommen. Nicht über-erklären ist die Erlaubnis, Ausnahmen wegzulassen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @panwa.sutthinon — Pet Peeve als endloser Analyse-Motor
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Da8x3TyixDC/
+- Datum: 2026-08-12
+- Erkenntnis: 8% ER bei 111k Views: echte Meinung über ein winziges Handwerksdetail schlägt allgemeine Filmkritik. Formel: mein größtes Pet Peeve in Filmen ist X + ein Regisseur macht es besser + Szenenbeispiele. Liefert unbegrenzt Themen und positioniert Robin als jemand mit geschultem Auge statt als Tipp-Geber.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @frederickafrifa_ — Füllwörter kommen vom Hetzen des Denkens
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Da7UpQqovo6/
+- Datum: 2026-08-12
+- Erkenntnis: Diagnose wertvoller als die Übung: Füllwörter entstehen nicht aus Unsicherheit, sondern aus zu schnellem Denken — wer sich die Erlaubnis gibt, langsam zu sein, verliert sie automatisch. Direkt für Voiceover-Aufnahmen und Next Shot anwendbar. 629k Views mit einem 3,5-Minuten-Reel, das fast komplett aus einer Live-Übung besteht.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @hampton_ — Echter Kurzfilm mit 4,4 Millionen Views
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Da8uandtXDr/
+- Datum: 2026-08-12
+- Erkenntnis: 4,4 Mio Views mit einem fast zweiminütigen, voll besetzten Kurzfilm (DoP, Gaffer, 1st AC im Credit) — Beweis, dass echte filmische Produktion auf Instagram skaliert, wenn die Prämisse alltäglich ist. Ein winziges Social-Media-Ärgernis wird mit Thriller-Grammatik inszeniert. Wichtigste Referenz für Robins Regie-Ambition plus Reichweite.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @refinedmotion_ — Ergebnis in Sekunde null zeigen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Da8KORtMH9h/
+- Datum: 2026-08-12
+- Erkenntnis: Struktur-Lehrstück: Ergebnis in Sekunde 0 zeigen, dann Effekt anwenden, verfeinern, polieren — 40 Sekunden, kein Wort zu viel. Nur 18 Kommentare bei 100k Views: reine Technik-Tutorials wachsen über Speichern, nicht über Diskussion. Also Reichweiten-Werkzeug, aber kein Community-Bauer — Beimischung, nicht Kern.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @_david_ekpo — Dreier-Eskalation mit gebrochener Erwartung
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Da3vF-lhDKb/
+- Datum: 2026-08-12
+- Erkenntnis: 15.9x Outlier — die Hook-Struktur ist das ganze Video: drei parallele Sätze, bei denen der dritte die Erwartung bricht. Reine Rhythmus-Technik, auf Filmmaking übertragbar (Kunden absagen kostet Geld, dem Produzenten absagen kostet den Job, dir selbst absagen nennst du Realismus). Selbstrespekt als Trackrecord gehaltener Versprechen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @lucygalliford — Instagram-Sound blockiert die Zweitverwertung
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DavWDhdNyMn/
+- Datum: 2026-08-12
+- Erkenntnis: Das Problem ist Robins eigenes: Instagram-Sound blockiert die Zweitverwertung auf YouTube und im Portfolio. Musik-Rechte gehören in die Produktionsplanung, nicht erst zum Upload. Formatseitig: eine bezahlte Kooperation, die nicht wie Werbung wirkt, weil sie mit einem echten eigenen Ärger startet — Muster für Robins Brand-Deals.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @lindenchasteen — Vier fertige YouTube-Intro-Schablonen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DawlBFLhJjJ/
+- Datum: 2026-08-12
+- Erkenntnis: Vier Hook-Schablonen, alle auf Way to Oscar übersetzbar: Ich habe in 30 Tagen einen Kurzfilm gedreht damit du es nicht musst / Wenn ich heute als Filmmaker bei null anfangen würde / Ich habe 40 Stunden Regie-Interviews geschaut und fasse sie in 8 Minuten zusammen / Wie du cinematisch drehst ohne Cine-Kamera, Team und Budget. Die dritte Formel ersetzt fehlenden Trackrecord durch Recherchezeit.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @jeffreylouiis — Das kleinstmögliche Detail als Reichweiten-Hebel
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Da3e98uIJFl/
+- Datum: 2026-08-12
+- Erkenntnis: 361.5x Outlier bei nur 1% ER — extremster Reichweiten-Ausreißer der Sammlung, ohne jede Interaktion: reine Sharebarkeit durch Beobachtungswissen. Lektion ist die Themengröße: nicht wie fotografiere ich besser, sondern wohin genau schaust du. Beleg, dass deutschsprachiger Content diese Größenordnung erreicht.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @roninxsocials — Wiederholung ist der Marken-Motor
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Daxl43nx95y/
+- Datum: 2026-08-12
+- Erkenntnis: Ein funktionierendes Thema ist kein einmaliger Treffer, sondern ein Rohstoff: Reel, Carousel, längeres Video, YouTube-Episode. Robins Sorge, sich zu wiederholen, ist unbegründet — das Publikum hat die Botschaft einmal gesehen, er hundertmal. Nike sagt Just Do It seit 1988. Jedes überdurchschnittliche Reel gehört in einen Wiederverwertungs-Zyklus.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @growthofwisdom_ — Zitat plus B-Roll, 1,1 Mio Views
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaaiASxsGLu/
+- Datum: 2026-08-12
+- Erkenntnis: 1,1 Mio Views mit zwölf Sekunden Inhalt: fremder Podcast-Clip plus Filmszenen-B-Roll plus starkes Zitat. Minimaler Aufwand, maximale Reichweite. Für Robin als schnelles Zwischen-Format denkbar (Regisseur-Zitat plus eigene cinematische B-Roll), aber es baut Reichweite, keine Marke — man erinnert das Zitat, nicht den Kanal.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @colinandsamir — Am Raum arbeiten, nicht nur an der Kerze
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaqSQsmJdO4/
+- Datum: 2026-08-13
+- Erkenntnis: Eine Idee als Satz im Gespräch bekommt 'ja, cool' zurück; dieselbe Idee mit Namen, Logo und Deck bekommt Zusagen. Jede grössere Projektidee verdient eine halbe Stunde Verpackung, bevor sie irgendwo landet. Formatseitig: fremde Anekdote als Träger für die eigene, verletzliche Lektion.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @nickmahar — Set-Schmerz als Produkt und als Content
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dan9e1-PwkR/
+- Datum: 2026-08-13
+- Erkenntnis: Die Hook benennt die Frustration, bevor sie das Produkt zeigt ('Me too' als Brücke). Die grössten Reichweiten in der Filmmaker-Nische entstehen aus konkreten Set-Schmerzen, nicht aus abstrakten Tipps. Was am Set regelmässig nervt, ist Content.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @_david_ekpo — Angst vor Wahrnehmung statt fehlendes Können
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DawvUxyiMDW/
+- Datum: 2026-08-13
+- Erkenntnis: Outlier 151.8x mit 36 Sekunden ohne Produktion. Hook validiert eine Erfahrung, die jeder kennt, erst danach der Umschwung. Auf Filmmaking übertragen: die Fähigkeit fehlt nicht, sie wird von der Angst vor dem eigenen Bild unterdrückt. 'Be cringe sober' = dreh das Video, das dir peinlich ist.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @quinn_feldman — Extremtest als Content-Format
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Da6lEsXJJVZ/
+- Datum: 2026-08-13
+- Erkenntnis: Ein bewusster Extremtest ist ein wiederholbares Reel-Format und baut Autorität auf, weil niemand sonst genau diese Kombination gefahren hat. Entscheidend ist der ehrliche Schluss: er sagt klar, wofür der Look NICHT taugt — diese Selbstbegrenzung ist glaubwürdiger als jede Empfehlung.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @thoughtsfromnate — Erst das Leck flicken, dann den Eimer füllen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DarMRvcBO42/
+- Datum: 2026-08-13
+- Erkenntnis: 5,9 Mio. Views mit 12 Sekunden, einer Aussage, einem Bild und einer echten Reaktion. Reichweite hängt nicht am Aufwand. Struktur minimal und kopierbar: Gedanke, Metapher, ehrliche Reaktion. Ein solches Reel kostet zehn Minuten und gehört neben die aufwendigen Sachen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @personalbrandlaunch — Vier-Post-Blaupause für Building in Public
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DavoOY4sgUI/
+- Datum: 2026-08-13
+- Erkenntnis: Blaupause für Way to Oscar in vier Posts: persönliches Intro, Underdog-Intro, fortlaufende Meilenstein-Episoden, dann der Launch — bei dem das Publikum kauft, weil es mitgebaut hat. Was fehlt, ist die bewusste Meilenstein-Kadenz statt zufälliger Uploads.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @patrickundso — Das grosse Ziel laut aussprechen setzt den Standard
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DZc45KYI_1k/
+- Datum: 2026-08-13
+- Erkenntnis: Nummerierte Serie mit klarer Nischen-Positionierung im Reel selbst — als Format für Regie-Momente kopierbar. Inhaltlich: Tuchel macht das grösste denkbare Ziel zum Standard statt zum Tabu und bricht es auf den Trainingsalltag runter. Wörtlich Robins Oscar-Erzählung.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @mattih — CineTemp: Farbtemperatur und Sonnenstand per iPhone
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaoEUG1hQnV/
+- Datum: 2026-08-13
+- Erkenntnis: CineTemp misst Farbtemperatur und Tint per iPhone ohne Zusatzgerät und trackt neu den Sonnenstand für jeden Ort und jedes Datum — direkt für Aussen-Drehs nutzbar. Formatseitig: 42 Sekunden, ein Tool, ein neues Feature, warum es am Set zählt, wer es gebaut hat — einfachste Struktur der Nische, 2.1x Outlier.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @othersideofross — Fokus heisst Nein zur zweiten Idee
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DYC4d8EO5Un/
+- Datum: 2026-08-13
+- Erkenntnis: Schärfste Definition von Fokus: nicht eine Idee haben, sondern zu allen folgenden Ideen Nein sagen, solange die erste nicht fertig ist. Agency ist trainierbar — jedes abgeschlossene Projekt macht das nächste wahrscheinlicher, jedes abgebrochene unwahrscheinlicher. Fertigstellen schlägt Qualität des Einzelfilms.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @tomnoske — Nützlich allein bindet niemanden
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaliEJThXpi/
+- Datum: 2026-08-13
+- Erkenntnis: Wer nur nützlich ist — Tipps, Tools, Technik — wird konsumiert, aber nicht gefolgt. Zahlen beeindrucken; erst der Einsatz dahinter bindet. Für Way to Oscar: die Filmmaking-Tipps brauchen die Ebene darunter — was der Weg kostet, was schiefgeht, was auf dem Spiel steht. Erst dann landen die Tipps.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @iveractive — Das Ziel testen, bevor man es erreicht hat
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DamVgKMzheJ/
+- Datum: 2026-08-13
+- Erkenntnis: Das Ziel einmal probieren, bevor man es erreicht hat, damit das Gehirn es von Fantasie zu Möglichkeit umbucht — konkret: in die Räume gehen, in denen sich das Ziel real anfühlt (Festivals, grössere Sets). Lehrreich ist auch, warum das Reel mit 843 Views nicht zündet: die Erkenntnis bleibt allgemein, es fehlt die konkrete Szene.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @saulgoodmanstuff — Empfehlung als Prophezeiung formulieren
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DXv42HcxJvQ/
+- Datum: 2026-08-13
+- Erkenntnis: Zwei gesprochene Sätze, 1,4 Mio. Views. Nicht das Format kopieren (fremdes IP), sondern die Hook-Mechanik: der Satz macht aus einer Empfehlung eine Prophezeiung und aus dem Zuschauer jemanden, der etwas verpassen wird. Beleg, dass ein starker Satz plus starke Bilder ohne Erklärung trägt.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @maxoklymenko — Der Kontext um ein Zitat schlägt das Zitat
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaoBYzJMiu7/
+- Datum: 2026-08-13
+- Erkenntnis: Nicht 'Djokovic hat mir was gesagt', sondern 'Djokovic hat gerade VERLOREN, aber hör, was er mir gesagt hat' — der Verlust erzeugt die Spannung. Inhaltlich: wenn es erzwungen ist, hält es nicht lange. Format-Idee: dieselbe Frage an jeden Filmmaker stellen und daraus eine Serie bauen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @chriswillx — Verspätete Bestrafung ändert kein Verhalten
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dalh4AFwRce/
+- Datum: 2026-08-13
+- Erkenntnis: Arbeitsanleitung gegen das nachträgliche Fertigmachen für schwache Arbeiten: verspätete Bestrafung ändert nichts am Verhalten, sie sorgt nur dafür, dass man weniger anbietet — weniger dreht, weniger veröffentlicht. Wirksam ist die sofortige Belohnung nach der Handlung. Nebenbei: 165k Views bei 1% ER — Podcast-Clips liefern Reichweite, kaum Bindung.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @chris2chris — 2,5 Mio. Views brachten 3 Follower
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dakx9uOxm91/
+- Datum: 2026-08-13
+- Erkenntnis: 2,5 Mio. Views auf einem Trend-Clip brachten 3 Follower, 50k Views auf einer persönlichen Geschichte 800 — bei 46 Sekunden Watchtime statt 3 bis 4. Entwarnung, wenn ein Way-to-Oscar-Video nur ein paar Tausend Views macht: Reichweite ohne Absender baut nichts auf. Canon kam von selbst, ohne Tag und Hashtag.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @thegrimpact — Ziel im Präsens schreiben und täglich lesen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DYuPBxls6Se/
+- Datum: 2026-08-13
+- Erkenntnis: Brauchbar ist nicht die Manifestations-Rhetorik, sondern das Protokoll: das Ziel im Präsens ausformulieren und täglich lesen, bis das Gehirn es von Fantasie zu Selbstverständlichkeit umbucht. Die Oscar-Erzählung existiert als Marke, sollte aber auch als täglich gelesener Satz existieren. Am Anfang fühlt es sich wie eine Lüge an — das ist normal.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @coledeppe — Rhythmus und Motive statt Story
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaioCvoh01i/
+- Datum: 2026-08-13
+- Erkenntnis: Keine Lektion, keine Erklärung, nur Rhythmus, Licht und Spannung — und trotzdem 7% ER. Beleg, dass die handwerkliche Seite ohne erklärenden Voiceover funktioniert, wenn Schnitt und Ton eng auf dem Beat sitzen. Zwei Mittel zum Klauen: wiederkehrende Motive als Struktur ohne Story, und verfremdete Dialogfetzen als Rhythmus-Element.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @rich_somers — Ein Reel = ein Satz zum Mitschreiben
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaUCqrrJUd-/
+- Datum: 2026-08-13
+- Erkenntnis: Outlier 30.8x für eine einzige, wörtlich nachsprechbare Frage — nicht ein Prinzip erklären, sondern den exakten Satz liefern, den man morgen benutzen kann. Im Kundengespräch direkt einsetzbar ('Sie sprechen mit mehreren Filmern, die das können — was macht für Sie den Unterschied?' und dann still sein).
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @flynny____ — Kuration als günstiges Reichweiten-Format
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaffsSiSa3v/
+- Datum: 2026-08-13
+- Erkenntnis: 371k Views für reine Kuration — nichts produziert ausser einer Liste und B-Roll. Sofort bedienbar mit echter Autorität: '5 Videos, die dich zu einem besseren Filmmaker machen'. Das ER von nur 2% zeigt die Grenze — Listen bringen Reichweite und Saves, nicht Bindung. Als Baustein neben persönliche Geschichten stellen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @danielpink — Menschen überzeugen sich selbst
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaV4mrEs9NO/
+- Datum: 2026-08-16
+- Erkenntnis: Der Outlier-Score von 12,5x für ein reines Talking-Head-Reel kommt von der Bauweise des Hooks: konkrete Person mit Namen und banalem Problem statt abstrakter These. Für Robin übertragbar — statt 'so funktioniert Regie' lieber 'stell dir vor, dein Darsteller steht seit zwanzig Minuten falsch im Bild'. Inhaltlich brauchbar für Kundengespräche: nicht argumentieren, sondern die Skalenfrage stellen und dann fragen, warum die Zahl nicht niedriger ist — der Kunde begründet sich sein Ja selbst.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @matthewpuaaa — Overthinker zu Overcreator umbenennen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dag97N0Ry8Q/
+- Datum: 2026-08-16
+- Erkenntnis: 3,3 Mio. Views und 13% ER — das stärkste Reel dieser Runde, und es besteht praktisch nur aus einer Umbenennung. Der Trick: dem Zuschauer keine Aufgabe geben, sondern einen Titel, den er sofort tragen kann. Für Robin eine ungenutzte Karte — sein Publikum sind Leute, die den Film im Kopf schon gedreht haben und nie auf Aufnahme drücken. Formal auffällig: der Hook wird zweimal hintereinander identisch gesprochen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @kallawaymarketing — Der Dopamin-Loop in vier Schritten
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaiCxAkOpNb/
+- Datum: 2026-08-16
+- Erkenntnis: Das nützlichste Reel dieser Runde und der höchste Outlier-Wert (18,2x). Vier Bausteine für Robins YouTube-Struktur: Stakes (Figur + Risiko + Dringlichkeit), Big Question, Headfake (Erwartung A aufbauen, B liefern), Rehook. Entscheidend ist der letzte Satz — gute Geschichten haben eine Schleife, große mehrere hintereinander. Genau daran scheitern die meisten Way-to-Oscar-Videos im Mittelteil.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @elijahmaxwellmitchell — Jede Zahl sofort visuell belegen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaRaHQSxVuR/
+- Datum: 2026-08-16
+- Erkenntnis: 622k Views für eine Selfie-Kamera beim Spazierengehen plus eingeblendete Dashboards. Der Beleg zählt, nicht die Produktion — jede genannte Zahl wird sofort visuell nachgewiesen. Für Robin übertragbar aufs Way-to-Oscar-Versprechen: wenn er über Fortschritt spricht, muss der Beweis ins Bild (Festival-Mail, Buchung, Analytics). Robins hoher Produktionsstandard ist eine Stärke, kann aber im reinen Reichweiten-Content Distanz erzeugen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @evannator_ — Ein Satz als Klammer, Bild trägt die Emotion
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DagVzDuI9WF/
+- Datum: 2026-08-16
+- Erkenntnis: 12% Engagement — der höchste Wert dieser Runde — für ein Reel ohne einen einzigen Schnitt-Trick, nur Voiceover über cinematischer B-Roll. Der Mechanismus lässt sich vom religiösen Inhalt ablösen: ein einzelner Satz wird am Anfang gesetzt und am Ende wörtlich wiederholt, dazwischen läuft er in kurzen, atemgetakteten Zeilen weiter. Für Robins Way-to-Oscar-Reels die Bauform für die ernsten Stücke.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @ferry.kch — Allgemeinwissen korrigieren statt belehren
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaiufH3My9F/
+- Datum: 2026-08-16
+- Erkenntnis: Nur 14k Views, aber 8% ER — interessant ist die Bauform: eine Frage, eine Korrektur des Allgemeinwissens ('das ist keine Stunde, das ist eine Minute'), ein Beleg, fertig. Unter 30 Sekunden, kein Tipp, keine Lektion. Genau das Format für Robins Location- und Lichtaufnahmen. Der Kern ist klau-tauglich: ein Detail richtigstellen, das jeder Filmmaker kennt aber falsch benennt — Autorität ohne Belehrung.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @dylovett — Camera Shake auf statische Stativ-Shots
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaT8v5GNN3Y/
+- Datum: 2026-08-16
+- Erkenntnis: Konkreter Handwerks-Tipp: der Camera-Shake-Effekt in Premiere auf statischen Stativ-Shots, mit Earthquake als Extremvariante plus hochgedrehtem Motion Blur. Für Robin doppelt interessant — als Werkzeug für energiegeladene Schnittpassagen und als Format-Vorlage: Split-Screen aus sprechendem Gesicht und Timeline, ein Kniff pro Video, unter 80 Sekunden. Robin hat davon Dutzende im Kopf und veröffentlicht praktisch keinen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @niko_coaches — Erst die Szene spielen, dann erklären
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DX8Y-HQJvgB/
+- Datum: 2026-08-16
+- Erkenntnis: 1,9 Mio. Views für eine Bauform, die Robin bisher gar nicht nutzt: erst die Szene spielen, dann aus der Szene heraustreten und sie erklären. Der Zuschauer erlebt das Problem, bevor er den Rat bekommt — dadurch fühlt sich der Rat verdient an statt belehrend. Übertragbar auf Set-Situationen, die jeder kennt (der Kunde, der beim Dreh dazwischenredet; der Darsteller, der seinen Text ändert). Robin kann es besser, weil er die Szene tatsächlich inszenieren kann.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @hormozi — Nicht Videos verkaufen, sondern Ergebnisse
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Daf5-bnOSV0/
+- Datum: 2026-08-16
+- Erkenntnis: Das relevanteste Reel dieser Runde für Kollektiv Oskar — der Fragende beschreibt exakt die Agentur-Situation: Recruiting, Promos, Content-Pakete, je nach Kundenwunsch. Hormozis Diagnose: zu viele Avatare, und die Angst vor dem Festlegen kostet mehr als das Neinsagen. Sein Ausweg: Videokönnen mit einem zweiten Wissensgebiet koppeln (Ads, Social, Sales), damit man kein Video mehr verkauft, sondern das Ergebnis. Konkret für die Offerten — Preise nicht über Drehtage begründen, sondern über die Wirkung.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @lana.k.social — Sieben immergrüne Content-Formate
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Daf-_uTqeQc/
+- Datum: 2026-08-16
+- Erkenntnis: Eine komplette Notfall-Liste für Tage ohne Idee: Before/After, Myth-Busting, Hack, Meinung, Tutorial, Liste, Ranking. Für Robin sind zwei davon unterversorgt — Before/After passt auf Grading, Sounddesign und Rohschnitt gegen Endfassung, und Myth-Busting gibt ihm Expertenstatus, ohne dass er sich selbst zum Experten erklären muss. Bester Einzelhinweis: bei Tutorials mit dem Ergebnis anfangen, dann die Schritte — genau umgekehrt zu dem, wie Filmmaker normalerweise erzählen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @vox.cine — Filmzeilen als Percussion schneiden
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DU8hOr5Ab1z/
+- Datum: 2026-08-16
+- Erkenntnis: 2,8 Mio. Views und 13% ER für reine Montage aus fremdem Material — kein eigener Dreh, nur Auswahl und Schnitt auf den Takt. Der Kniff: berühmte Filmzeilen als Percussion behandeln statt als Information, plus ein wiederkehrendes Motiv. Für Robin der günstigste Reichweiten-Baustein überhaupt, und er hat die Filmbildung dafür — 'dieselbe Einstellung in 8 Filmen', 'der gleiche Schnitt bei Kubrick, Fincher, Villeneuve'. Achtung beim Urheberrecht.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @jackcareedy — Dein bester Content ist schon passiert
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DahrT48Ptbi/
+- Datum: 2026-08-16
+- Erkenntnis: Kleines Reel, aber der beste Satz dieser Runde: dein bester Content ist schon passiert, du hast nur nicht gefilmt. Für Robin trifft das direkt auf Set-Tage und Kollektiv-Oskar-Drehs zu — die ehrlichsten Sätze fallen zwischen den Takes. Konsequenz: eine permanent mitlaufende Zweitkamera oder das Handy im Hochformat bei jedem Dreh. Die These, dass Performance nur 50% bringt, gilt bei Robin allerdings nicht uneingeschränkt — die inszenierte Bildsprache ist sein Marken-Unterschied. Ergänzen, nicht ersetzen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @higherupwellness — Ideen sind alt, deine Erfahrung ist neu
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DagKvNBinU8/
+- Datum: 2026-08-17
+- Erkenntnis: Die beste Antwort auf die Angst, ein Thema sei schon besetzt: Die Idee muss nicht neu sein — die Art, wie man sie durchlebt hat, ist das Original. Für Way to Oscar heisst das: bekannte Themen (Licht, Angst vorm ersten Dreh, Kunden sagen ab) durch die eigene konkrete Erfahrung erzählen. 91k Views bei Outlier 0.4 zeigen aber auch: ein guter Gedanke allein macht noch keine Reichweite.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @dreamersflight — Wer liebt, gewinnt immer
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DXKFJX6ljiH/
+- Datum: 2026-08-17
+- Erkenntnis: 5 Mio. Views, 9% ER — mit gefundenem, nicht produziertem Material. Was den Clip trägt: ein einziger Satz mit Bild ('Die Sonne fragt nicht, ob das Gras ihre Strahlen schätzt'). Genau diese Zutat fehlt in eigenen Voiceovern oft — der eine konkrete Vergleich, den man weitererzählen kann. Ausserdem: Ein Reel darf aus fremdem Interviewmaterial plus einem Gedanken bestehen; die Arbeit steckt im Finden des Moments.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @_david_ekpo — Einfachheit schlägt den perfekten Plan
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DagobbAP88O/
+- Datum: 2026-08-17
+- Erkenntnis: Outlier 558x — stärkster Wert in der ganzen Sammlung. Der Trick: eine Behauptung, die sich sofort im Kopf überprüfen lässt, bevor überhaupt ein Thema genannt wird. Direkt übertragbar: 'Es gibt keinen einzigen Fall, in dem der beste Kameramann am Set auch der beste Regisseur war.' Zweite Lektion: Die eigene Content-Routine muss so simpel sein, dass sie an einem schlechten Tag noch funktioniert.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @leilahormozi — Nicht jeder Freund muss ambitioniert sein
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dad9v4OlfFN/
+- Datum: 2026-08-17
+- Erkenntnis: Format: Der Interviewer spricht bewusst eine Standardweisheit aus, damit der Gast sie widerlegen kann — der Widerspruch wird erst aufgebaut, dann eingerissen. Für den Next-Shot-Podcast direkt nutzbar (z.B. 'du musst 200 Sets machen, bevor du eigene Filme drehst'). Inhaltlich: Unterschied zwischen Leuten, die schaden, und Leuten, die einfach nicht dasselbe wollen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @heloinvision — Ein Flop ist oft nur die falsche Zielgruppe
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcDBNdvugzJ/
+- Datum: 2026-08-18
+- Erkenntnis: Ein Video, das bei einer Zielgruppe floppt, ist nicht automatisch schlecht — es war bei der falschen Zielgruppe. Erlaubnis, ein Thema in anderer Verpackung nochmal zu testen, bevor es abgeschrieben wird. Zweitens: Negative Kommentare sind Reichweite, nicht Schaden. Bei einem Kanal mit Meinung ist Widerspruch ein Feature.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @subwaytakes — Reibung schlägt Zustimmung
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DYXXAjEOMdd/
+- Datum: 2026-08-18
+- Erkenntnis: 2,3 Mio. Views mit einem Gespräch über Filme statt Bildern von Filmen. Was trägt, ist die Reibung: zwei Leute, die sich ernsthaft uneinig sind, und eine Meinung, die weh tut. Für Way to Oscar: Die stärksten Filmthemen sind nicht die, bei denen alle nicken. Ausserdem: Ein wiederkehrendes fixes Setting macht aus einzelnen Clips ein erkennbares Format.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @kinokontroversen — Zwei Szenen nebeneinander, eine These
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcBrdrCNyzr/
+- Datum: 2026-08-18
+- Erkenntnis: 112k Views mit dem simpelsten Filmformat: zwei Szenen nebeneinander legen und eine Frage stellen. Kein Dreh, nur Auswahl und eine These. Fehlt in Robins Rotation als wiederkehrende Serie. Niedriger ER (2%) — Reichweiten-Zubringer, kein Bindungsformat. Tonalität wichtig: er behauptet nicht, er fragt.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @itsruiz.jr — Everest Technique für Skripte
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbbDCfkutKW/
+- Datum: 2026-08-18
+- Erkenntnis: Outlier 3x. Struktur eins zu eins übertragbar: Ziel → Warum du (bis zur Transformationsebene) → Death Zone → Pivot → Lektion. Robins Reels haben Ziel und Lektion, aber die Death Zone fehlt oft: was ihn das gerade kostet. Genau dieser Preis hält Leute bis zum Ende. Die Lektion gehört in die letzten 10 Sekunden — dort entsteht das Teilen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @calebralston — Content zieht Kollegen an, nicht Kunden
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcCWoEHBpx0/
+- Datum: 2026-08-18
+- Erkenntnis: Der härteste Satz: Du machst Content, der mehr Leute anzieht, die machen was du machst — nicht deine Kunden. Ein Filmmaking-Kanal zieht Filmmaker an. Zweitens ein Test für den Schnitt: Macht dieser Cut, dieses Overlay es dem Zuschauer leichter zu verstehen, was er danach anders machen soll? Wenn nein — raus.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @rpn.tech — Loops statt Prompts, Whiteboard-Format
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DayAreiJ1Qu/
+- Datum: 2026-08-18
+- Erkenntnis: Inhaltlich: genau das Prinzip hinter Robins eigenen Automatisierungen — nächster Schritt wäre proactive, Systeme ohne Startknopf. Handwerklich: Das Whiteboard-Format ist ein stark unterschätzter Layout-Typ. Abstrakte Idee wird zum Bild. Für Way to Oscar ein eigenes Format: Robin am Whiteboard, der einen Prozess aufmalt statt ihn nur zu erzählen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @nick_saraev — Kommentar-CTA als Reichweiten-Motor
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DblTPmfPCpB/
+- Datum: 2026-08-18
+- Erkenntnis: 7.810 Kommentare bei 454k Views — der Kommentar-CTA ist der Motor, nicht das Tool. Robin nutzt das praktisch nie, obwohl er das Material hat: Presets, Shot-Listen, LUTs, Vorlagen. Ein Reel, das mit 'kommentier X und ich schick dir die Liste' endet, verwandelt Reichweite in DM-Kontakte. Zweitens die Hook-Konstruktion: Bedrohung mit Deadline.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @bhaskaryogacharya — Mitmachen statt Zuschauen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbNaIR0Raft/
+- Datum: 2026-08-18
+- Erkenntnis: 4,4 Mio. Views ohne Gesicht, ohne Dreh, ohne Story — nur ein Muster und eine Anweisung. Das Prinzip ist die Watchtime-Falle: Wer der Aufforderung folgt, schaut zwangsläufig zwei Minuten. Serios übersetzbar: ein Reel, in dem der Zuschauer etwas tun soll — einen Frame lesen, Schnittpunkte mitzählen. Grenze: ER nur 3% — massive Reichweite, kaum Bindung.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @hendrikwendker — B-Roll ohne Ziel ist Dekoration
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Db_Ph6BIbOs/
+- Datum: 2026-08-18
+- Erkenntnis: Das direkteste Reel für Robins Kernkonflikt: schöne Bilder vs. Geschichte. Antwort: B-Roll ohne Ziel ist Dekoration, B-Roll mit Ziel ist Erzählung. Jede B-Roll-Sequenz braucht eine Frage, die sie beantwortet. Handwerklich: Das Reaction-Format kostet wenig Produktion und positioniert trotzdem Haltung — lebt aber davon, dass der Ausgangsclip wirklich provokant ist.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @shotdeck — Eine Frage, viele Experten, ein Reel
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Db8PFLVp_XX/
+- Datum: 2026-08-19
+- Erkenntnis: Format ist eins zu eins baubar: eine einzige gute Frage, gestellt an mehrere Leute, hintereinandergeschnitten. Der Wert entsteht durch die Dichte fremder Autorität — Robin wird zum Kurator. Bei jedem Set dieselbe Frage stellen und sammeln.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @entrepreneurarchived — Mission schlägt Gage
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Db0-11bFRYZ/
+- Datum: 2026-08-19
+- Erkenntnis: Wenn Robin für Kollektiv Oskar Leute gewinnt, entscheidet nicht die Gage, sondern ob die Mission spezifisch genug ist, um daran zu glauben. 'Way to Oscar' ist bereits scharf formuliert — ein unterschätzter Rekrutierungsvorteil. Formal: Eine simple Drei-Punkte-Struktur trägt 60 Sekunden ohne einen einzigen cleveren Schnitt.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @murphmaxxing — Beschuldigen statt belehren
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Db1VtFryvbR/
+- Datum: 2026-08-19
+- Erkenntnis: Hook-Formel: 'Dein [X] ist [negatives Ergebnis], und hier sind [N] Gründe warum.' Sie beschuldigt den Zuschauer, bevor sie ihn belehrt — man muss weiterschauen, um zu prüfen, ob man betroffen ist. Für Robin: 'Dein Reel wird nach zwei Sekunden weggewischt, und hier sind 15 Gründe warum.' Tempo ist entscheidend.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @nick_saraev — Pinterest-Formel als Erklärabkürzung
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbLpxfKPKoN/
+- Datum: 2026-08-19
+- Erkenntnis: Die Formel 'X ist im Grunde [bekannte Plattform], aber für [Nische]' spart die komplette Einführung. Übertragbar auf alles, was Robin erklärt. Achtung: 5.086 Kommentare durch Comment-Gate verzerren den ER — hoher ER heisst hier nicht Bindung.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @distributionshow — Denker und Macher in einer Person
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Db6hwV8MgKB/
+- Datum: 2026-08-19
+- Erkenntnis: Rechtfertigung für Robins Setup: selbst schreiben, drehen, schneiden, graden ist kein Kompromiss, sondern laut Jobs die Voraussetzung für Aussergewöhnliches. Als eigenes Reel drehbar mit Da-Vinci-Vergleich als Kern. 2,8x Outlier mit reinem Archivmaterial — baut aber keine eigene Bildsprache auf.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @nick_saraev — Pattern-Interrupt im selben Frame
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Db3UttuvfwN/
+- Datum: 2026-08-19
+- Erkenntnis: Das Logo wird im selben Moment durchgestrichen, in dem 'Forget' gesprochen wird — Bild und Ton treffen den gleichen Frame. Übertragbar: Jede negierende Aussage im Voiceover braucht ein Bild, das im selben Takt kippt. Nebenbei OmniVoice als lokale Voiceover-Alternative.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @thediaryofaceopodcast — Konsistenz schlägt Authentizität
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Db30nlrM4N0/
+- Datum: 2026-08-19
+- Erkenntnis: Nicht die Tagesform entscheidet, ob ein Reel rausgeht, sondern das Versprechen ans Publikum. 'Way to Oscar' ist genau so ein Versprechen. Godins Chirurgen-Analogie ist Musterbeispiel guter Erklärung: eine Hochrisiko-Situation, in der jeder sofort spürt, dass Verlässlichkeit über Ehrlichkeit steht — Analogien statt Definitionen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @reemshalak — Bild als Rätsel, Caption als Auflösung
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Db-qrhaMOiv/
+- Datum: 2026-08-19
+- Erkenntnis: 18% Engagement-Rate bei praktisch null gesprochenem Text. Ein einziger starker Bildgedanke trägt mehr als jede Erklärung, solange er eine Emotion benennt statt sie zu beschreiben. Die Caption liefert die Deutung nach — Bild = Rätsel, Caption = Auflösung.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @bfecreative — 40 Formate als Ideen-Checkliste
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbtaLUBx3Nr/
+- Datum: 2026-08-19
+- Erkenntnis: Nutzbare Checkliste fürs Ideen-Loch. Zeigt aber auch die Grenze: 84k Views, nur 2% ER, zwei Kommentare. Maximale Informationsdichte erzeugt Speicherungen, keine Beziehung. Taugt als gelegentlicher Service-Post, nicht als Kern der Bildsprache. Das Overlay-Prinzip (sichtbare fortlaufende Nummerierung) ist gute Retention-Technik.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @mblakepope — Eigenen Erfolg als Hook nutzen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbuIfcpApMT/
+- Datum: 2026-08-19
+- Erkenntnis: Hook nutzt den eigenen Erfolg als Beleg: 'Leute haben mich für X gelobt, hier ist X.' Social Proof, bevor ein Versprechen gemacht wird — einsetzbar sobald ein Reel oder Kundenprojekt gut ankommt. Inhaltlich entlastend: Balance, Belichtung, Kontrast, Power Windows aufs Subjekt, Film-Look zum Schluss. Die Entzauberung ist der Grund, warum man es zu Ende schaut.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @rabinn.fx — Kamerabewegung modular vom Inhalt trennen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbnOMn4zT7s/
+- Datum: 2026-08-19
+- Erkenntnis: Trennung von Kamerabewegung und Szene — Prompts modular halten, Bewegung behalten, Inhalt tauschen. Denken eines Kameramanns auf Text übertragen, strukturell relevant für Feverdreamer. Ableitbares Format für Robin: dieselben 46 Bewegungen real gedreht, mit Erklärung wann welche erzählerisch Sinn ergibt. Er hat die Kamera — das ist der Vorsprung.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @eostudio.official — Die 10-Prozent-Regel für Anfragen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dbp4M55MQcA/
+- Datum: 2026-08-19
+- Erkenntnis: 10%-Regel direkt anwendbar auf Anfragen bei Kunden, Festivals, Kollaborationen: Wenn fast alle zusagen, war zu klein gedacht. Zielgrösse — von zehn Anfragen sollte eine klappen, nicht acht. Formal: kinetische Typografie, jedes Kernwort einzeln als Vollbild. Nicht durchgehende Untertitel, sondern einzelne gesetzte Wörter an den Punkten, die sitzen sollen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @davidsenra — Bei Equipment sparen, bei Zeit investieren
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbrfGlPyqab/
+- Datum: 2026-08-19
+- Erkenntnis: Trennung von Sparen und Investieren nach Zeitgewinn: 2.000 statt 25.000 für ein Teil, aber 60.000 für einen Flug, der einen Arbeitstag rettet. Für Robin: bei Equipment hart verhandeln, bei allem was Produktionszeit spart (Assistenz, Schnitt, Transport) grosszügig sein. Die meisten Filmemacher kaufen Objektive statt Zeit. Hook erzeugt Exklusivität ohne Übertreibung.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @scaprendering — Erster Frame braucht eine Regelverletzung
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaOBErNsdxj/
+- Datum: 2026-08-19
+- Erkenntnis: 1,5 Mio. Views ohne ein einziges Wort. Funktioniert nur, weil das erste Bild sofort unmöglich aussieht: realistischer Wald plus eine Geometrie, die es nicht geben kann. Wenn ein Reel ohne Voiceover laufen soll, muss der erste Frame eine Regelverletzung enthalten — etwas Vertrautes, an dem eine Sache nicht stimmt. Ein normaler schöner Frame reicht nie.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @michaelm0relli — Fünf Blöcke in 31 Sekunden
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbtH5TXs3sc/
+- Datum: 2026-08-19
+- Erkenntnis: Mustergultig knappe Struktur: These, eigenes Beispiel, die Falle der anderen, die Konsequenz, der Aufruf — fünf Blöcke in 31 Sekunden. Genau diese Sparsamkeit fehlt Robins Freestyle-Voiceovers. Übung: jedes Skript auf diese fünf Blöcke eindampfen. Inhaltlich: Feedback von Leuten, die es nie gemacht haben, beerdigt Projekte.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @tiffanykguillen — Vier Fragen vor jedem Content
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbtvQbglRwl/
+- Datum: 2026-08-19
+- Erkenntnis: 4,8x Outlier. Framework rückwärts durchspielen: Was soll durch Lohro passieren (Spielfilme drehen, mit bestimmten Leuten arbeiten)? Wofür muss er dafür bekannt sein? Was muss er tun? Was muss er lernen? Erst danach steht fest, welche Reels Sinn ergeben — Content wird zur letzten Frage, nicht zur ersten.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @foundrly.co — Werkzeuge werden billig, Interesse bleibt
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbTZgJPzcbt/
+- Datum: 2026-08-19
+- Erkenntnis: Der letzte Satz ist der Kern und wird fast weggeworfen: 'And that still has to be something that a human really cares about.' Genau Robins Position im KI-Zeitalter — die Werkzeuge werden billig, das ehrliche Interesse bleibt der Unterschied. Formal: Die Hook gibt eine Tätigkeit auf statt eine anzupreisen. Verzicht als Hook ist stärker als Empfehlung.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @explained.by.vara — Das Pseudo-Event und Robins Beruf
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dah_ESiS9mG/
+- Datum: 2026-08-19
+- Erkenntnis: Macht Robins Beruf zum Problem: Er lebt davon, Momente in Content zu verwandeln, und dieses Reel benennt den Preis. Material für ein eigenes ehrliches Stück — nicht als Anklage, sondern als Widerspruch, in dem er selbst steckt. Hook-Blaupause: 'Stell dir vor, du bist...' zieht in eine Szene, bevor ein Begriff fällt. Definition erst nach 18 Sekunden.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @calebralston — Konzepte benennen, damit andere sie weitertragen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbtN_7UxrQJ/
+- Datum: 2026-08-20
+- Erkenntnis: Robin erklärt ständig Denkweisen, aber fast keine hat einen Namen. Ein benanntes Framework lässt sich weitererzählen, auch wenn er nicht dabei ist. Test ist die 3-R-Regel: remember, repeat, reference.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @100xengineers — Open-Source-Klon von Higgsfield AI
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DXUH5dcDwKN/
+- Datum: 2026-08-20
+- Erkenntnis: Direkt relevant für FEVERDREAMER — ein Open-Source-Multi-Model-Interface mit Kamera-Parametern als Prompt-Layer. Formal: 3x Outlier und 9% ER kommen fast komplett aus dem Kommentar-Gate (10.042 Kommentare bei 6.769 Likes).
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @briarcochran — Rehook bei 40% gegen das Retention-Tal
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbqZELUB8Qy/
+- Datum: 2026-08-20
+- Erkenntnis: Bei etwa 40% Videolänge fallen Zuschauer ab. Ein bewusst gesetzter zweiter Hook direkt nach der Hauptaussage öffnet eine neue Neugier-Schleife. Bei 60-Sekunden-Reels heisst das Sekunde 24 — als festes Feld ins Skript-Template.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @personalbrandlaunch — Hintergrundmusik als Beweis, nicht als Deko
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbfymuBhrC7/
+- Datum: 2026-08-20
+- Erkenntnis: Der Trick ist die Beweisführung: bestehende Clips einmal ohne Musik zeigen. Diese Vorher-Nachher-Mechanik funktioniert für alles, was Robin behauptet — Ton weg, Grade weg, Schnitt weg. Für Filmemacher der glaubwürdigste Beweistyp.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @jordancoutret.author — Rodriguez baut Filme aus Index-Karten
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DVEeEeNCQ8p/
+- Datum: 2026-08-20
+- Erkenntnis: Rodriguez startet mit zwei Bildern und schiebt Karten davor, bis ein Langfilm entsteht — Struktur folgt dem Bild, nicht umgekehrt. Formal: 321k Views mit einem einzigen eigenen Satz als Rahmung. Kuratieren ist ein hocheffizientes Format.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @distributionshow — Karpathy: nicht was, sondern wie viel
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DboR3Pus0E2/
+- Datum: 2026-08-20
+- Erkenntnis: 6.1x Outlier mit einem 39-Sekunden-Fremdclip — der Wert liegt in Auswahl und Rahmung, nicht in der Produktion. Inhaltlich ein Konter gegen die Ausrüstungs- und Recherchefalle: der Weg zum Oscar ist eine Volumenfrage.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @passion — Crews statt Einzelpersonen ansteuern
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dbohue5zIOs/
+- Datum: 2026-08-20
+- Erkenntnis: Nicht einzelne Leute anschreiben, sondern Crews identifizieren, die wiederholt zusammen arbeiten, und sich in eine dieser Gruppen hineinarbeiten. Für Robin in der Schweiz: welche drei, vier Teams drehen hier regelmässig zusammen — Liste machen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @emilsystems — OpenCut, Schnitt-Editor mit MCP-Server
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DZpZb6-jAYv/
+- Datum: 2026-08-20
+- Erkenntnis: Ein Editor mit MCP-Server und Headless-Rendering heisst: Agenten können künftig Rohschnitte bauen — die Schnitt-Ebene dessen, was FEVERDREAMER generativ macht. Formal: 'Forget [Tool]' funktioniert nur, wenn danach ein echter Grund kommt.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @arqoscreenwriting — Drehbücher lesen, nicht nur Filme schauen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbqtexnA5XL/
+- Datum: 2026-08-20
+- Erkenntnis: Hook-Formel: 'Du kannst X nicht, wenn du nicht Y machst.' Der eigentliche Lerneffekt ist die Produkt-Bridge — 45 Sekunden echter Wert, dann ein Satz zum eigenen Tool. Genau dieses Verhältnis braucht Robin für FEVERDREAMER-Erwähnungen.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @nicolascurcio — Hollywood sucht gerade im digitalen Raum
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dbq93wpy0IM/
+- Datum: 2026-08-20
+- Erkenntnis: Studios schauen aktiv in den digitalen Raum, kaufen aber keine Follower, sondern fertige Arbeiten. Der Kurzfilm ist wichtiger als die nächsten zehn Reels. Formal stark: die eingebaute Ehrlichkeitsbremse macht den optimistischen Teil erst glaubwürdig.
+- Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
