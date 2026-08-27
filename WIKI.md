@@ -85,7 +85,7 @@ Zwei Spuren:
 Erkenntnisse von aussen (YouTube, Instagram, Podcasts, Artikel) — klar getrennt
 von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
 **→ Vollständige Liste + Eintragsformat: [`EXTERNE-ERKENNTNISSE.md`](EXTERNE-ERKENNTNISSE.md)**
-(Stand 20.08.2026: 181 Einträge — synchron mit dem Notion-Externes-Brain; Sync läuft über die Donnerstags-Routine. In der App farblich nach Themen: Growth/Craft/Mindset/Story/Business)
+(Stand 27.08.2026: 202 Einträge. In der App farblich nach Themen: Growth/Craft/Mindset/Story/Business. ACHTUNG Quellen-Wechsel: Robins Skills speichern seit ~19.08. ins CLAUDE BRAIN auf Dropbox statt nach Notion — letzter Notion-Eintrag 25.08.; neue extern-Einträge erreichen die ZENTRALE nur noch, wenn Robin sie liefert oder ein Dropbox-Zugang existiert.)
 
 ## Kommunikation mit Robin
 
@@ -96,4 +96,4 @@ von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
 - Credit-effizient arbeiten: kleine JSONs greppen, nie seed.js/dist lesen.
 
 ---
-*Zuletzt aktualisiert: 2026-08-20 (Donnerstags-Routine: Notion-Sync +109 Einträge — Robins tägliche Reel-Analysen; Routine vom 13.08. war ausgefallen) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*
+*Zuletzt aktualisiert: 2026-08-27 (Donnerstags-Routine: Notion-Sync +21 Einträge; Skills auf CLAUDE-BRAIN/Dropbox umgestellt — Notion-Sync läuft aus) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*

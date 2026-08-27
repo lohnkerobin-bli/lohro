@@ -1282,3 +1282,150 @@ von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
 - Datum: 2026-08-20
 - Erkenntnis: Studios schauen aktiv in den digitalen Raum, kaufen aber keine Follower, sondern fertige Arbeiten. Der Kurzfilm ist wichtiger als die nächsten zehn Reels. Formal stark: die eingebaute Ehrlichkeitsbremse macht den optimistischen Teil erst glaubwürdig.
 - Transkript/Kernaussagen: (Via Notion-Sync 20.08.)
+
+### @orbismedia_ — Abo-Aufschlag bei AI-Video ist Faktor 3
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaqOpxvPJQn/
+- Datum: 2026-08-21
+- Erkenntnis: Direkt relevant für FEVERDREAMER: Der Abo-Aufschlag der AI-Video-Plattformen liegt bei rund Faktor 3, eigene API-Keys sind das stärkste Verkaufsargument für ein eigenes Tool. Formal ist der ganze Beweis ein Screen-Recording mit zwei Zahlen nebeneinander — kein Schnitt, kein Gesicht. Zahlenvergleiche sind das billigste und härteste Argument für 38 Sekunden.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @rourke — AI-Lipsync hält jetzt auch bei Kamerafahrt
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Da00Ou9Kr1F/
+- Datum: 2026-08-21
+- Erkenntnis: Lipsync ist nicht mehr an statische Talking-Heads gebunden — es hält bei Kamerafahrt, Lichtwechsel und Objekten im Vordergrund. Das öffnet Nachvertonung und Sprachversionen für richtig inszenierte Szenen, also auch für Robins Kurzfilme. Aufbau ist Demo-First: erst der unmögliche Shot, dann drei Klicks Anleitung. Der Beweis muss vor der Erklärung kommen.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @benkimball.ai — Open-Source-Bildmodell mit sauberer Typografie
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DZ_PykYsp6H/
+- Datum: 2026-08-21
+- Erkenntnis: 18.1x Outlier — der Beweis, dass ein 29-Sekunden-News-Reel über ein neues Tool stärker überperformt als jedes aufwendig gedrehte Format. Praktisch: Ein Bildmodell mit sauberer Typografie und Layout-Kontrolle löst Titelkarten, Story-Wins-Slides und Thumbnails ohne Schriftmüll. Struktur: bold claim → Name → Benchmark → drei Features → Kommentar-Gate. Der Benchmark-Screenshot liefert die Autorität.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @susancooperproducergal — Profi-Drehbücher lesen, gratis
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbG2pSijF3f/
+- Datum: 2026-08-21
+- Erkenntnis: Professionelle Drehbücher lesen ist die billigste Regie-Ausbildung, und alle Quellen (IMSDb, Go Into the Story, SimplyScripts, Daily Script) sind gratis. Formal das schwächste Reel im Batch: über zwei Minuten Linkliste vorlesen, die niemand mitschreiben kann — besser als Karussell oder 20-Sekunden-Reel mit Kommentar-Gate. Gute Substanz stirbt an einer Verpackung, die Arbeit vom Zuschauer verlangt.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @dopamine.feed — Pixar machte nie Filme für Kinder
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaimhuDqxYW/
+- Datum: 2026-08-21
+- Erkenntnis: 2.8 Mio Views und 12% Engagement für einen 70-Sekunden-Podcast-Ausschnitt ohne einen einzigen produzierten Frame. Inhaltlich die wichtigste Erlaubnis: Filme für sich selbst machen und danach prüfen, ob sie für andere funktionieren, statt vorab auf eine vermutete Zielgruppe zu optimieren. Handwerklich: Der Mann behauptet nicht, er erzählt eine 30-Sekunden-Anekdote aus dem Kinosaal — Geschichte schlägt These.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @audreaturgeman — Challenge-Format mit Rückkehr-Trigger
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Db9BwWlSkkG/
+- Datum: 2026-08-21
+- Erkenntnis: Das Challenge-Format ist der interessante Teil, nicht der Mindset-Inhalt: klarer Zeitraum, eine einzige Regel, eingebaute Rückkehr-Aufforderung ("komm in sieben Tagen wieder") erzeugen Saves und Kommentare, ohne dass etwas verschenkt wird. Übertragbar auf Robins Feld — sieben Tage jeden Tag ein Shot, sieben Tage eine Brennweite, sieben Tage kein Schnitt unter drei Sekunden. Funktioniert bei Handwerk besser als bei Selbstoptimierung, weil das Ergebnis sichtbar ist.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @scottzwills — Neun Fragen gegen Ausführungs-Blockade
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcCEr4zP8wr/
+- Datum: 2026-08-21
+- Erkenntnis: Ein Raster auf Papier, eine Hand, kein Gesicht — und trotzdem 80k Views. Der Trick: ein psychologisches Problem wird in eine Tabelle übersetzt, aus "ich schaffe es nicht" wird eine Liste zum Abarbeiten. Für Robin sind Resistance und Friction die produktivsten Fragen: Was an einem Dreh fühlt sich exponierend an, und was macht ihn unnötig schwer. Format ohne Kamera-Aufwand baubar: Overhead-Shot, Stift, neun Felder.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @gustavorossiribeiro — Masking ist Bildhierarchie, kein Look
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaigXNfP9Ub/
+- Datum: 2026-08-21
+- Erkenntnis: 1.9 Mio Views komplett ohne Sprache — Bilder und Schnitt-Rhythmus tragen alles, der Kontext kommt erst mit der Textkarte am Schluss. Inhaltlich: Masking ist kein Look, sondern die Frage "Was zählt in diesem Bild und was nicht". Die Kamera nimmt alles mit gleichem Gewicht auf, die Maske stellt die Hierarchie wieder her — Regie-Denken im Grading. Zeigt, dass ein reines Bild-Reel ohne Voiceover funktioniert, wenn die Shots stark genug sind.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @navalsarchive — Vier Jahre Konsequenz, ein Monat Entscheidung
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbQjZH1tw-B/
+- Datum: 2026-08-22
+- Erkenntnis: Die Wirkung hängt an einer einzigen Zahl-gegen-Zahl-Gegenüberstellung: vier Jahre Konsequenz, ein Monat Entscheidung. Solche Asymmetrien sind der stärkste rhetorische Baustein fürs Voiceover und lassen sich direkt auf Filmarbeit anwenden ("drei Monate Schnitt für eine Entscheidung, die du in vier Sekunden am Set getroffen hast"). Praktisch relevant: Ein Projekt, das ein Jahr frisst, verdient mehr als eine spontane Zusage.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @chrisjfrado — Steve Jobs, gefeuert und dadurch frei
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcTpDDvOUG0/
+- Datum: 2026-08-22
+- Erkenntnis: Nur 1.900 Views, aber die Struktur ist genau das Format für Way to Oscar: bekannte Geschichte, contrarian aufgezogen, 67 Sekunden mit klarer Wendung. Warum es nicht zieht, ist die Lehre: Die Steve-Jobs-Gefeuert-Story ist zu oft erzählt, das unbekannte Detail fehlt. Dieselbe Struktur auf Regisseure anwenden, deren Scheiter-Geschichte kaum jemand kennt — Form bewährt, Story muss neu sein.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @hudson.cosper — Dankbarkeit als Einschlaf-Programmierung
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcSjR0YNOcD/
+- Datum: 2026-08-22
+- Erkenntnis: Struktur schlägt Inhalt: grosse Behauptung ("darum bin ich reich geworden"), sofort ein mechanistischer Grund ("die letzten 30 Minuten hört dein Gehirn 8 Stunden lang"), dann ein 30-Tage-Auftrag. Diese Kette aus Ergebnis, Mechanismus und Frist macht auch weiche Themen konkret und lässt sich direkt auf Filmemacher-Themen übertragen. Outlier 2.2x bei nur 27k Views zeigt, dass sauberer Aufbau auch auf kleinen Accounts überdurchschnittlich zieht.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @comfortcreatorcollective — Fremde Hooks Wort für Wort sezieren
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dalf18yBkej/
+- Datum: 2026-08-22
+- Erkenntnis: 11% Engagement — höchster Wert im Batch — für ein Format, das man selbst bauen kann: einen fremden Hook Wort für Wort auseinandernehmen. Zwei direkt anwendbare Regeln: Der erste Satz muss den Klick bestätigen (Thema aus dem Titel sofort benennen) und darf die Antwort nicht schon liefern — "interessant" statt "kaputt", damit Spannung bleibt. Als Serie gedacht ("Hooks von Filmemacher-YouTubern seziert") ein eigenes wiederkehrendes Format.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @alignedmindsociety — Fremder Podcast-Clip, eigene Frage davor
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Da-yzkRqKqL/
+- Datum: 2026-08-22
+- Erkenntnis: Reiner Podcast-Ausschnitt, kein eigenes Material — 127k Views, weil der Creator nur eine Sache beisteuert: die Frage im ersten Satz, die den Clip framed. Billigster Content-Hebel überhaupt: fremdes Gesprächsmaterial (auch aus dem eigenen Next-Shot-Podcast) mit einer präzisen "What if"-Frage neu aufladen. Inhaltlich: eine konkrete Anekdote trägt eine abstrakte Behauptung weiter als jede Erklärung.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @scottzwills — Gleiches Format, schwächerer Hook, 15x weniger Views
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcTxZ5LvNHA/
+- Datum: 2026-08-22
+- Erkenntnis: Fast identisch aufgebaut wie ein früheres Reel desselben Creators (neun handgeschriebene Fragen, Overhead, 40 Sekunden) — aber 5k statt 80k Views. Der Unterschied liegt im Hook: "If you want to unstuck yourself" ist vage, die starke Variante benannte ein konkretes Verhalten. Lehre: Bei einem wiederholbaren Format entscheidet nicht das Format über die Reichweite, sondern wie präzise der erste Satz das Problem beschreibt.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @accejayyy — Ein Satz, 15 Sekunden Stille, Outlier 4,5x
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaehVwvuAPK/
+- Datum: 2026-08-22
+- Erkenntnis: Ein einziger Satz, danach 15 Sekunden Schweigen und Blick in die Kamera — Outlier 4,5x. Die Pause ist der Inhalt: Sie zwingt den Zuschauer, selbst zu antworten, statt zu konsumieren. Ein Reel muss nicht zwingend Information liefern; eine gut gestellte Frage mit ausgehaltener Stille kann mehr Wirkung haben als 60 Sekunden Erklärung. Riskant, aber genau die minimale, cineastische Form, die zur Lohro-Bildsprache passt.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @ericjohncampbell — Buchseite, Hand, Stift als Blickführung
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Db9q6owkvXT/
+- Datum: 2026-08-22
+- Erkenntnis: Produktionsaufwand nahe null — Buchseite, Hand, Stift, der beim Lesen mitwandert. Der Stift ist der Trick: Er zwingt das Auge, dem Text zu folgen, statt wegzuscrollen. Direkt nutzbar für Filmbücher (Storyboards, Drehbuchseiten, Regie-Literatur): Overhead-Shot, Passage markieren, vorlesen. Inhaltlich trifft es die Way-to-Oscar-Prämisse an einer wunden Stelle — wer das Ziel dauernd anschaut, verlernt es, den Weg gut zu finden.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @howsongsweremade — Archivmaterial, 1,4 Mio Views, null Dreh
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbuDq1nsmRf/
+- Datum: 2026-08-22
+- Erkenntnis: 1,47 Mio Views ohne eigenen Dreh — nur kuratiertes Archivmaterial plus ein Satz vorne, der Ausgang und Reue schon verrät. Der Hook spoilert die Pointe absichtlich, und man bleibt trotzdem, weil man das Wie hören will. Direkt kopierbar für Filmgeschichte: "Ursprünglich war X als Y geplant, Regisseur Z erklärt wie es dazu kam und bereut es bis heute" — Auflösung vorne, Handwerk in der Mitte, emotionaler Schlusssatz am Ende.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @scottzwills — Identität als Bandbreite, live gezeichnet
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcTsV2cvpLx/
+- Datum: 2026-08-22
+- Erkenntnis: Ein abstrakter Zusammenhang wird zu einer gezeichneten Linie mit Ober- und Untergrenze — das Live-Zeichnen hält im Bild, weil der Zuschauer den Gedanken entstehen sieht statt nur zu hören. Nutzbar für Themen, die man sonst nur beschreiben kann (Spannungskurve einer Szene, Schnittrhythmus, Projekt-Auslastung übers Jahr). Inhaltlich: Der Einbruch nach einem guten Lauf ist kein Charakterfehler, sondern Rückkehr zum Normalwert.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @yzyfiles — Archivmaterial als Vindikations-Bogen schneiden
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcMI57BoxqW/
+- Datum: 2026-08-25
+- Erkenntnis: Null eigener Dreh, null eigener Text — nur ein 20 Jahre altes Interview, geschnitten auf den Moment, in dem jemand für etwas verspottet wird, das ihm später recht gibt. Dramaturgie: Zweifel → Verteidigung → Vindikation. Für Way to Oscar klaubar: alte Interviews von früh belächelten Regisseuren als Fremdmaterial-Reel schneiden — trägt die These, ohne dass Robin sie aussprechen muss.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @dashmcdonald — Redewendung wörtlich als Requisit filmen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcUUUqBSkfU/
+- Datum: 2026-08-25
+- Erkenntnis: Eine Redewendung wörtlich nehmen und als Requisit filmen — 'viele Hüte tragen' wird zum Hut-Wechsel-Skit in 16 Sekunden. Billigstes Konzept überhaupt, trotzdem sofort verständlich, weil der visuelle Anker in den ersten drei Sekunden sitzt. Direkt übertragbar auf Robins Thema 'ich mache alles selbst': Idiom-Metapher suchen, physisch bebildern, mit offener Frage statt Antwort enden.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
+
+### @the_completewomancommunity — Vier-Schritt-Struktur schlägt Schnitteffekte
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DbQ5L8iR7r9/
+- Datum: 2026-08-25
+- Erkenntnis: 988k Views bei 10% Engagement mit reinem Talking Head ohne einen einzigen Schnitteffekt. Der Grund ist die Struktur: Konfrontation → Bild ('das Lenkrad loslassen') → fremde Autorität (Zitat) → konkrete Handlung. Diese vier Schritte funktionieren unabhängig vom Inhalt. Für Robin: Nach dem Bild braucht es eine externe Stimme, die die These stützt, sonst bleibt es Meinung.
+- Transkript/Kernaussagen: (Via Notion-Sync 27.08.)
