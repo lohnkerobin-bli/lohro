@@ -36,6 +36,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
 
 html { scrollbar-color: var(--black-line) var(--true-black); }
 
@@ -744,14 +745,28 @@ a:hover { color: var(--cream); }
 .ph-hint { font-size: 13px; font-weight: 600; color: var(--cream-faint); text-align: center; max-width: 420px; line-height: 1.4; }
 
 @media (max-width: 720px) {
-  .ph-wrap { min-height: calc(100vh - 190px); }
-  .ph-transcript { max-height: 46vh; min-height: 200px; padding: 14px 12px 6px; }
-  .ph-bubble { max-width: 92%; font-size: 15.5px; }
-  .ph-dock { position: sticky; bottom: 0; padding: 10px 0 max(10px, env(safe-area-inset-bottom)); background: linear-gradient(180deg, rgba(12,9,8,0), rgba(12,9,8,.96) 30%); }
-  .ph-call { width: 88px; height: 88px; }
-  .ph-side { width: 58px; height: 58px; }
+  /* the whole phone fits one screen: header shrinks, transcript flexes, dock stays in the thumb zone */
+  body.ph-view #view { padding: 10px 12px 8px; }
+  body.ph-view #footer { display: none; }
+  .ph-wrap { height: calc(100dvh - var(--topbar-h, 106px) - 18px); min-height: 0; }
+  .ph-head h1.view-title { font-size: 30px; margin-bottom: 2px; }
+  .ph-head .view-sub { font-size: 13.5px; margin-bottom: 8px; }
+  body.ph-in-call .ph-head .view-sub { display: none; }
+  body.ph-in-call .ph-head h1.view-title { font-size: 22px; }
+  .ph-status-row { margin-bottom: 8px; gap: 6px; }
+  .ph-tier, .ph-transport { font-size: 11px; padding: 4px 9px; }
+  .ph-card { min-height: 0; }
+  .ph-transcript { max-height: none; min-height: 0; padding: 12px 12px 6px; }
+  .ph-empty { padding: 10px; font-size: 14px; }
+  .ph-empty-icon { font-size: 36px; }
+  .ph-bubble { max-width: 92%; font-size: 15.5px; padding: 9px 13px; }
+  .ph-live { padding: 8px 12px 10px; min-height: 56px; gap: 10px; }
+  .ph-dock { margin-top: 10px; gap: 8px; padding-bottom: max(4px, env(safe-area-inset-bottom)); }
+  .ph-call { width: 84px; height: 84px; }
+  .ph-call-icon { font-size: 30px; }
+  .ph-side { width: 56px; height: 56px; font-size: 20px; }
   .ph-controls { gap: 22px; }
-  body.ph-in-call #footer { display: none; }
+  .ph-hint { font-size: 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .ph-pulse span, .ph-call.active, .ph-bubble { animation: none !important; }

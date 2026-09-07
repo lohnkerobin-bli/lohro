@@ -130,6 +130,7 @@ const mock = (page) => page.evaluate(() => ({ spoken: window.__mock.spoken, samp
       check("tab 'Brain-Telefon' exists in nav", await page.locator('#main-nav a[data-route="phone"]').count() === 1);
       check("call button renders with 'Anrufen'", (await page.locator("#ph-call").textContent()).includes("Anrufen"));
       check("tier badge shows Basis before keys", (await page.locator(".ph-tier").textContent()).includes("Basis"));
+      check("idle: side buttons and live strip are hidden (no stray controls)", await page.evaluate(() => ["ph-mic", "ph-stop", "ph-live"].every(id => getComputedStyle(document.getElementById(id)).display === "none")));
       await page.click("#ph-call");
       await page.waitForFunction(() => document.querySelector(".ph-bubble.assistant"), null, { timeout: 8000 });
       const h = await history(page), m = await mock(page);
@@ -320,7 +321,47 @@ const mock = (page) => page.evaluate(() => ({ spoken: window.__mock.spoken, samp
       await page.waitForTimeout(200);
       await page.screenshot({ path: path.join(OUT, "04-iphone-answer.png") });
       check("390px: still no horizontal scroll with transcript", await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1));
+      const geo = await page.evaluate(() => {
+        const r = id => document.getElementById(id).getBoundingClientRect();
+        const live = r("ph-live"), input = r("ph-type"), call = r("ph-call");
+        return { liveBottom: live.bottom, inputTop: input.top, callBottom: call.bottom, inner: window.innerHeight, scrollH: document.documentElement.scrollHeight };
+      });
+      check("390px: live strip does not overlap the dock and the phone fits one screen", geo.liveBottom <= geo.inputTop + 1 && geo.callBottom <= geo.inner && geo.scrollH <= geo.inner + 2, JSON.stringify(geo));
       check("no page errors (iPhone)", errors.length === 0, errors.join(" | "));
+      await page.context().close();
+    }
+
+    /* 9b — long wait: filler line spoken once after ~7 s, then the real answer replaces it */
+    {
+      const { page, errors } = await newPage(browser, { slowMs: 8200 });
+      await page.fill("#ph-type", "Langsame Frage");
+      await page.press("#ph-type", "Enter");
+      await page.waitForFunction(() => window.__mock.spoken.filter(t => t.trim()).length >= 1, null, { timeout: 12000 });
+      const spokenEarly = await page.evaluate(() => window.__mock.spoken.filter(t => t.trim()));
+      await page.waitForFunction(() => document.querySelector(".ph-bubble.assistant"), null, { timeout: 12000 });
+      await page.waitForTimeout(100);
+      const m = await mock(page);
+      m.spoken = m.spoken.filter(t => t.trim());   // the silent iOS unlock utterance is not speech
+      check("long wait → one spoken filler ('Moment…') before the answer, answer spoken after", /Moment|Sekunde|Augenblick/.test(spokenEarly[0]) && m.spoken.filter(t => /Moment|Sekunde|Augenblick/.test(t)).length === 1 && /ZHAW/.test(m.spoken[m.spoken.length - 1]), JSON.stringify(m.spoken));
+      check("no page errors (filler)", errors.length === 0, errors.join(" | "));
+      await page.context().close();
+    }
+
+    /* 9c — Stopp while thinking aborts the request; leaving the tab hangs up */
+    {
+      const { page, errors } = await newPage(browser, { slowMs: 3000 });
+      await page.fill("#ph-type", "Frage, die ich abbreche");
+      await page.press("#ph-type", "Enter");
+      await page.waitForFunction(() => window.BrainPhone.getState() && window.BrainPhone.getState().phase === "thinking", null, { timeout: 4000 });
+      check("thinking: mic button hidden, Stopp visible", await page.evaluate(() => getComputedStyle(document.getElementById("ph-mic")).display === "none" && getComputedStyle(document.getElementById("ph-stop")).display !== "none"));
+      await page.click("#ph-stop");
+      await page.waitForTimeout(3500);
+      const h = await history(page);
+      check("Stopp while thinking → aborted notice, no answer bubble arrives later, back to listening", h.some(x => x.role === "notice" && /abgebrochen/i.test(x.text)) && !h.some(x => x.role === "assistant") && (await page.evaluate(() => window.BrainPhone.getState().phase)) === "listening", JSON.stringify(h));
+      await page.evaluate(() => { location.hash = "#/dashboard"; });
+      await page.waitForTimeout(150);
+      check("navigating away hangs up (mic never keeps running in the background)", await page.evaluate(() => window.BrainPhone.getState().active === false && !document.body.classList.contains("ph-in-call")));
+      check("no page errors (abort / navigate)", errors.length === 0, errors.join(" | "));
       await page.context().close();
     }
 

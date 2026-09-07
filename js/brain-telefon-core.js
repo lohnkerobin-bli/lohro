@@ -30,7 +30,8 @@
       lines.push(
         "1. Suche ZUERST im CLAUDE BRAIN (Dropbox-Ordner " + BRAIN_PATH + ") mit der Suche" +
           (opts.toolStyle === "mcp" ? " des Dropbox-Servers (search, Pfad-Filter auf diesen Ordner)" : " brain_search") + ".",
-        "2. Lies mit " + (opts.toolStyle === "mcp" ? "fetch" : "brain_read") + " NUR die 1 bis 3 relevantesten Dateien, nie alles.",
+        "2. Lies mit " + (opts.toolStyle === "mcp" ? "fetch" : "brain_read") + " NUR die 1 bis 3 relevantesten Dateien, nie alles —",
+        "   und wenn es mehrere sind, alle in DERSELBEN Runde parallel (Robin wartet am Telefon, jede Runde kostet Sekunden).",
         "3. Antworte aus dem, was im Brain steht. Steht nichts drin, sag das ehrlich in einem Satz und frag kurz nach, was er genau meint."
       );
     } else {
@@ -353,7 +354,7 @@
   var MESSAGES = {
     mic_denied: {
       spoken: "Ich kann dich nicht hören, das Mikrofon ist blockiert. Erlaube den Zugriff in den Browser-Einstellungen oder tippe deine Frage unten ein.",
-      visible: "Mikrofon blockiert. Zugriff im Browser erlauben (Schloss-Symbol in der Adresszeile) — oder Frage unten eintippen."
+      visible: "Mikrofon blockiert. Zugriff im Browser erlauben (Schloss-Symbol in der Adresszeile; im Artifact ggf. die ZENTRALE in einem eigenen Tab öffnen) — oder Frage unten eintippen."
     },
     mic_unavailable: {
       spoken: "Dieser Browser hat keine Spracherkennung. Tippe deine Frage unten ein, ich antworte trotzdem.",

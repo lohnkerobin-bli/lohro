@@ -353,6 +353,7 @@ var BrainPhoneView = (function () {
         description: "Volltextsuche im CLAUDE BRAIN (Dropbox-Ordner " + Core.BRAIN_PATH + "). Liefert bis zu " + Core.MAX_SEARCH_HITS + " Treffer mit id, title, path, modified. Danach mit brain_read die relevanten lesen.",
         inputSchema: { type: "object", properties: { query: { type: "string", description: "Suchbegriffe, kurz (Thema, Kunde, Projekt, Person)" } }, required: ["query"] },
         execute: function (input, ctx) {
+          if (!call || !call.active) throw new Error("Anruf beendet");
           var q = String(input && input.query || "").trim();
           if (!q) return { results: [], note: "leere Suche" };
           setPhase("thinking", "Brain durchsuchen: „" + q + "“");
@@ -360,6 +361,7 @@ var BrainPhoneView = (function () {
             .then(function (res) {
               var hits = Core.parseSearchPayload(res && (res.payload !== undefined ? res.payload : res));
               call.searches = (call.searches || 0) + 1;
+              call.turnSearches = (call.turnSearches || 0) + 1;
               call.hits += hits.length;
               emit("brain-search", { query: q, hits: hits.length });
               return hits.length ? { results: hits } : { results: [], note: "Keine Treffer im Brain für „" + q + "“. Anders formulieren oder zugeben, dass nichts drinsteht." };
@@ -371,6 +373,7 @@ var BrainPhoneView = (function () {
         description: "Liest den Text einer Brain-Datei. id = die id aus brain_search (z.B. id:AbC…) oder ein Dropbox-Pfad. Max. " + Core.MAX_FILE_CHARS + " Zeichen.",
         inputSchema: { type: "object", properties: { id: { type: "string" } }, required: ["id"] },
         execute: function (input, ctx) {
+          if (!call || !call.active) throw new Error("Anruf beendet");
           var id = String(input && input.id || "").trim();
           if (!id) throw new Error("id fehlt");
           setPhase("thinking", "Lese Brain-Datei…");
@@ -445,6 +448,7 @@ var BrainPhoneView = (function () {
     call.abort = ctl;
     call.turnStart = Date.now();
     call.partial = "";
+    call.turnSearches = 0;
     var hitsBefore = call.hits;
     setPhase("thinking", "Brain denkt…");
     startTimer();
@@ -454,8 +458,8 @@ var BrainPhoneView = (function () {
       var answer = (res && res.text || "").trim();
       var hits = call.hits - hitsBefore;
       var meta = Core.turnMeta(call.turnStart, Date.now(), hits, call.tier.label, call.transport.kind);
-      if (!answer) return failSpoken(hits === 0 && (call.searches || res.searches) ? "empty_brain" : "empty_answer");
-      var searched = res.searches || (call.searches || 0);
+      var searched = res.searches || call.turnSearches || 0;
+      if (!answer) return failSpoken(hits === 0 && searched ? "empty_brain" : "empty_answer");
       if (call.transport.kind === "artifact" && !res.brain) meta.noBrain = true;
       if (searched && hits === 0) meta.emptyBrain = true;
       pushTurn("assistant", answer, meta);
@@ -530,20 +534,35 @@ var BrainPhoneView = (function () {
     emit("call-end", { turns: turns });
   }
 
-  function interrupt() {   // tap while the brain speaks → stop and listen
+  function interrupt() {   // tap while the brain speaks/thinks → stop everything and listen again
     if (!call || !call.active) return;
+    if (call.phase === "thinking" && call.abort) {
+      try { call.abort.abort(); } catch (e) {}
+      stopTimer();
+      pushNotice("Anfrage abgebrochen.", "info");
+      emit("aborted", {});
+    }
     stopSpeaking();
     startListening();
   }
 
   /* ---------- timer for the "Brain denkt…" latency display ---------- */
+  var FILLERS = ["Moment, ich schau im Brain nach.", "Sekunde, ich lese das noch fertig.", "Einen Augenblick, ich such das raus."];
   function startTimer() {
     stopTimer();
+    call.fillerSaid = false;
     call.timer = setInterval(function () {
       if (!call || call.phase !== "thinking") return;
       var s = ((Date.now() - call.turnStart) / 1000);
-      if (ui.timer) ui.timer.textContent = s.toFixed(0) + " s";
-    }, 250);
+      if (ui.timer) ui.timer.textContent = s.toFixed(1) + " s";
+      // phone feel: after a long silence the brain says it is still there (once per turn)
+      if (s > 7 && !call.fillerSaid && call.tier.tts.tier !== "none") {
+        call.fillerSaid = true;
+        call.fillerIdx = ((call.fillerIdx || 0) + 1) % FILLERS.length;
+        speak(FILLERS[call.fillerIdx]);
+        emit("filler", { text: FILLERS[call.fillerIdx] });
+      }
+    }, 200);
   }
   function stopTimer() { if (call && call.timer) { clearInterval(call.timer); call.timer = null; } if (ui.timer) ui.timer.textContent = ""; }
 
@@ -596,7 +615,7 @@ var BrainPhoneView = (function () {
       call: $("#ph-call", root), mic: $("#ph-mic", root), stop: $("#ph-stop", root), hint: $("#ph-hint", root),
       form: $("#ph-type-form", root), input: $("#ph-type", root)
     };
-    ui.call.onclick = function () { if (call && call.active) hangUp(); else startCall(); };
+    ui.call.onclick = function () { unlockAudio(); if (call && call.active) hangUp(); else startCall(); };
     ui.mic.onclick = function () {
       if (!call || !call.active) return startCall();
       if (call.phase === "listening" && call.recSend) return call.recSend();
@@ -607,12 +626,20 @@ var BrainPhoneView = (function () {
       e.preventDefault();
       var t = ui.input.value.trim();
       if (!t) return;
+      unlockAudio();
       ui.input.value = "";
       injectText(t);
     };
     resolveRuntime().then(paintState);
     paintState();
     paintTranscript();
+    if (!window.__phoneResizeBound) {
+      window.__phoneResizeBound = true;
+      window.addEventListener("resize", function () {
+        var tb = $("#topbar");
+        if (tb) document.documentElement.style.setProperty("--topbar-h", tb.offsetHeight + "px");
+      });
+    }
   }
 
   function paintState() {
@@ -627,7 +654,7 @@ var BrainPhoneView = (function () {
     ui.live.hidden = !active;
     ui.pulse.className = "ph-pulse " + phase;
     ui.liveStatus.textContent = call ? call.status : "";
-    ui.mic.hidden = !active || phase === "listening" && call.tier.stt.tier !== "pro";
+    ui.mic.hidden = !active || phase === "thinking" || phase === "connecting" || (phase === "listening" && call.tier.stt.tier !== "pro");
     ui.mic.innerHTML = active && phase === "listening" && call.tier.stt.tier === "pro" ? "✅<small>Fertig</small>" : "🎙️<small>Sprechen</small>";
     ui.stop.hidden = !(active && (phase === "speaking" || phase === "thinking"));
     ui.hint.textContent = !active
@@ -690,6 +717,24 @@ var BrainPhoneView = (function () {
     }
     handleUserText(text);
     return Promise.resolve();
+  }
+
+  // leaving the Brain-Telefon tab mid-call must never leave the microphone running
+  window.addEventListener("hashchange", function () {
+    if (call && call.active && !/^#\/(phone|telefon|call)\b/.test(location.hash || "")) hangUp();
+  });
+
+  // iOS unlocks speechSynthesis / <audio> only inside a user gesture — the tap on "Anrufen" is that gesture
+  function unlockAudio() {
+    if (window.__phoneAudioUnlocked) return;
+    window.__phoneAudioUnlocked = true;
+    try {
+      if (hasSynth()) { var u = new SpeechSynthesisUtterance(" "); u.volume = 0; window.speechSynthesis.speak(u); }
+    } catch (e) {}
+    try {
+      var a = new Audio("data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCA");
+      a.volume = 0; var p = a.play(); if (p && p.catch) p.catch(function () {});
+    } catch (e) {}
   }
 
   window.BrainPhone = {
