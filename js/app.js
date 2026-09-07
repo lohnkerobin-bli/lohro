@@ -9,13 +9,14 @@ var App = (function () {
     festivals: FestivalsView,
     ideas: IdeasView,
     extern: ExternBrainView,
+    phone: BrainPhoneView,
     projects: ProjectsView,
     brain: BrainView,
     settings: SettingsView
   };
 
   // challenge: the daily-challenge chapter is closed — old links land on films
-  var ALIASES = { knowledge: "brain", challenge: "films" };
+  var ALIASES = { knowledge: "brain", challenge: "films", telefon: "phone", call: "phone" };
 
   function currentRoute() {
     var h = (location.hash || "#/dashboard").replace(/^#\//, "");

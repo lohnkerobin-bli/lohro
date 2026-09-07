@@ -649,3 +649,110 @@ a:hover { color: var(--cream); }
   background: rgba(0,0,0,.35); border-radius: 99px; font-weight: 800; font-size: 11px;
 }
 .ext-legend-chip.active { outline: 2px solid #FDF7E7; }
+
+/* ---------- Brain-Telefon: a phone call with the CLAUDE BRAIN ---------- */
+.ph-wrap { display: flex; flex-direction: column; min-height: calc(100vh - 220px); }
+.ph-head .view-sub { margin-bottom: 14px; }
+.ph-status-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; align-items: center; }
+.ph-tier, .ph-transport {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12.5px; font-weight: 700; letter-spacing: .02em;
+  padding: 6px 12px; border-radius: 999px;
+  background: rgba(255,255,255,.08); color: var(--cream-dim);
+  border: 1px solid rgba(255,255,255,.10);
+}
+.ph-tier b { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; padding: 1px 7px; border-radius: 99px; background: rgba(0,0,0,.35); }
+.ph-tier.basis b { color: #A8EFE7; }
+.ph-tier.pro b { color: #FFD98A; }
+.ph-tier.text b { color: var(--cream-faint); }
+.ph-tier small { font-weight: 600; color: var(--cream-faint); }
+.ph-transport.on { color: #A8EFE7; }
+.ph-transport.warn { color: #FFD98A; }
+.ph-transport.off { color: #FFB3BA; }
+
+.ph-card { display: flex; flex-direction: column; flex: 1; padding: 0; overflow: hidden; }
+.ph-transcript { flex: 1; overflow-y: auto; padding: 18px 18px 8px; display: flex; flex-direction: column; gap: 10px; min-height: 260px; max-height: 58vh; scroll-behavior: smooth; }
+.ph-empty { margin: auto; text-align: center; color: var(--cream-faint); font-size: 14.5px; line-height: 1.55; max-width: 380px; padding: 30px 10px; }
+.ph-empty strong { color: var(--cream); }
+.ph-empty-icon { font-size: 44px; margin-bottom: 8px; filter: drop-shadow(0 0 18px rgba(232,135,30,.35)); }
+.ph-bubble { max-width: 86%; padding: 11px 15px; border-radius: 18px; font-size: 16px; line-height: 1.45; animation: ph-in .18s ease-out; }
+.ph-bubble.user { align-self: flex-end; background: linear-gradient(160deg, #2FA39A, #1C6660); color: #EAFBF7; border-bottom-right-radius: 6px; }
+.ph-bubble.assistant { align-self: flex-start; background: #FDF7E7; color: #1E1508; border-bottom-left-radius: 6px; }
+.ph-bubble-text { white-space: pre-wrap; word-wrap: break-word; }
+.ph-meta { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-top: 6px; opacity: .55; }
+.ph-notice { align-self: center; font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 12px; text-align: center; max-width: 92%; background: rgba(255,255,255,.08); color: var(--cream-dim); }
+.ph-notice.error { background: rgba(230,57,70,.18); color: #FFC2C8; }
+.ph-notice.warn { background: rgba(232,135,30,.16); color: #FFD98A; }
+@keyframes ph-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* live strip: pulse + status + interim transcript + timer */
+.ph-live { display: flex; align-items: center; gap: 14px; padding: 12px 18px 14px; border-top: 1px solid rgba(255,255,255,.08); background: rgba(0,0,0,.22); min-height: 66px; }
+.ph-live-text { flex: 1; min-width: 0; }
+.ph-live-status { font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--cream-dim); }
+.ph-live-interim { font-size: 15px; color: var(--cream-faint); min-height: 1.3em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ph-live-timer { font-family: var(--font-mono); font-size: 12px; color: #FFD98A; }
+.ph-pulse { --lvl: 1; position: relative; width: 44px; height: 44px; flex-shrink: 0; display: grid; place-items: center; }
+.ph-pulse span { position: absolute; inset: 0; border-radius: 50%; background: var(--stage-teal); opacity: .35; transform: scale(calc(.55 * var(--lvl))); transition: transform .08s linear; }
+.ph-pulse span:nth-child(2) { opacity: .2; }
+.ph-pulse span:nth-child(3) { opacity: .12; }
+.ph-pulse.listening span:nth-child(1) { animation: ph-ring 1.6s ease-out infinite; }
+.ph-pulse.listening span:nth-child(2) { animation: ph-ring 1.6s ease-out .4s infinite; }
+.ph-pulse.listening span:nth-child(3) { animation: ph-ring 1.6s ease-out .8s infinite; }
+.ph-pulse.thinking span { background: var(--gold); animation: ph-think 1.1s ease-in-out infinite alternate; }
+.ph-pulse.thinking span:nth-child(2) { animation-delay: .2s; }
+.ph-pulse.thinking span:nth-child(3) { animation-delay: .4s; }
+.ph-pulse.speaking span { background: #FDF7E7; animation: ph-speak .7s ease-in-out infinite alternate; }
+.ph-pulse.speaking span:nth-child(2) { animation-delay: .15s; }
+.ph-pulse.speaking span:nth-child(3) { animation-delay: .3s; }
+.ph-pulse.error span, .ph-pulse.idle-in-call span { background: var(--set-red); opacity: .5; transform: scale(.55); }
+.ph-pulse.connecting span { animation: ph-think 1.1s ease-in-out infinite alternate; }
+@keyframes ph-ring { 0% { transform: scale(.5); opacity: .5; } 100% { transform: scale(1.15); opacity: 0; } }
+@keyframes ph-think { from { transform: scale(.5); opacity: .25; } to { transform: scale(1); opacity: .7; } }
+@keyframes ph-speak { from { transform: scale(.45); } to { transform: scale(1); } }
+
+/* dock: thumb zone */
+.ph-dock { margin-top: 14px; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.ph-type { display: flex; gap: 8px; width: 100%; max-width: 560px; }
+.ph-type input { flex: 1; border-radius: 999px; padding: 11px 16px; font-size: 15px; background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.12); }
+.ph-type button { border-radius: 999px; width: 46px; height: 46px; padding: 0; font-size: 20px; background: rgba(255,255,255,.12); flex-shrink: 0; }
+.ph-controls { display: flex; align-items: center; justify-content: center; gap: 26px; width: 100%; }
+.ph-call {
+  width: 96px; height: 96px; border-radius: 50%; padding: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  background: radial-gradient(circle at 35% 30%, #4CC9A6, #1F8F86 65%, #145A55);
+  color: #EAFBF7; box-shadow: 0 10px 34px rgba(47,163,154,.42), inset 0 1px 0 rgba(255,255,255,.35);
+  transition: transform .12s ease, box-shadow .2s ease, background .2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.ph-call:hover { background: radial-gradient(circle at 35% 30%, #5AD6B3, #2FA39A 65%, #1C6660); }
+.ph-call:active { transform: scale(.94); }
+.ph-call-icon { font-size: 34px; line-height: 1; }
+.ph-call-label { font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.ph-call.active {
+  background: radial-gradient(circle at 35% 30%, #FF6B76, #E63946 60%, #8F222C);
+  box-shadow: 0 10px 34px rgba(230,57,70,.45), inset 0 1px 0 rgba(255,255,255,.3);
+  animation: ph-glow 2s ease-in-out infinite;
+}
+@keyframes ph-glow { 0%, 100% { box-shadow: 0 10px 34px rgba(230,57,70,.35); } 50% { box-shadow: 0 10px 44px rgba(230,57,70,.65); } }
+.ph-side {
+  width: 64px; height: 64px; border-radius: 50%; padding: 0; font-size: 22px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+  background: rgba(255,255,255,.10); color: var(--cream);
+}
+.ph-side small { font-size: 9px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--cream-faint); }
+.ph-side:hover { background: rgba(255,255,255,.2); }
+.ph-hint { font-size: 13px; font-weight: 600; color: var(--cream-faint); text-align: center; max-width: 420px; line-height: 1.4; }
+
+@media (max-width: 720px) {
+  .ph-wrap { min-height: calc(100vh - 190px); }
+  .ph-transcript { max-height: 46vh; min-height: 200px; padding: 14px 12px 6px; }
+  .ph-bubble { max-width: 92%; font-size: 15.5px; }
+  .ph-dock { position: sticky; bottom: 0; padding: 10px 0 max(10px, env(safe-area-inset-bottom)); background: linear-gradient(180deg, rgba(12,9,8,0), rgba(12,9,8,.96) 30%); }
+  .ph-call { width: 88px; height: 88px; }
+  .ph-side { width: 58px; height: 58px; }
+  .ph-controls { gap: 22px; }
+  body.ph-in-call #footer { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ph-pulse span, .ph-call.active, .ph-bubble { animation: none !important; }
+}

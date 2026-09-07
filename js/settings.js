@@ -26,6 +26,7 @@ var SettingsView = (function () {
 
   function render(root) {
     var s = Store.get();
+    var keys = PhoneKeys.get();
     var stats = {
       ideas: s.ideas.length,
       projects: s.projects.length,
@@ -75,6 +76,22 @@ var SettingsView = (function () {
         '<button class="primary" id="s-save">Save settings</button>' +
       '</div>' +
 
+
+      '<h2 class="section-title">Brain-Telefon</h2>' +
+      '<div class="card" style="max-width:560px">' +
+        '<p class="muted" style="font-size:13px;margin-bottom:12px">Optional keys for the <strong>Pro</strong> tier (Whisper understands Swiss German far better; ElevenLabs sounds natural). Stored only in this browser — never in exports, never in the repo. Without keys the phone runs on the <strong>Basis</strong> tier (Web Speech + system voice).</p>' +
+        '<label class="field"><span>OpenAI API key (Whisper STT)</span><input type="password" id="k-openai" value="' + esc(keys.openai) + '" placeholder="sk-…" autocomplete="off"></label>' +
+        '<label class="field"><span>ElevenLabs API key (TTS)</span><input type="password" id="k-eleven" value="' + esc(keys.eleven) + '" placeholder="xi-…" autocomplete="off"></label>' +
+        '<label class="field"><span>ElevenLabs voice ID (optional)</span><input id="k-eleven-voice" value="' + esc(keys.elevenVoice) + '" placeholder="default: Rachel (multilingual)"></label>' +
+        '<details class="strategy-fold" style="margin-top:4px"><summary>Local use without the Claude artifact</summary>' +
+        '<p class="muted" style="font-size:12.5px;margin:6px 0 10px">Opened as a plain file, the phone cannot use the artifact runtime. An Anthropic key lets it call the Messages API directly (with the Dropbox MCP connector).</p>' +
+        '<label class="field"><span>Anthropic API key</span><input type="password" id="k-anthropic" value="' + esc(keys.anthropic) + '" placeholder="sk-ant-…" autocomplete="off"></label>' +
+        '<label class="field"><span>Dropbox MCP authorization token (optional)</span><input type="password" id="k-dropbox" value="' + esc(keys.dropboxToken) + '" autocomplete="off"></label>' +
+        '</details>' +
+        '<div class="row mt"><button class="primary" id="k-save">Save keys</button><button class="ghost danger" id="k-clear">Remove all keys</button>' +
+        '<span class="muted" style="font-size:12px" id="k-status">' + (keys.openai || keys.eleven ? 'Pro tier configured' : 'Basis tier (no keys)') + '</span></div>' +
+      '</div>' +
+
       '<h2 class="section-title">Danger Zone</h2>' +
       '<div class="card" style="max-width:560px">' +
         '<p class="muted" style="font-size:13px">Reset wipes all local edits and restores the original Notion/festival seed data. Export first if unsure.</p>' +
@@ -95,6 +112,12 @@ var SettingsView = (function () {
       st.updatedAt = new Date().toISOString();
       Store.save(); toast("Settings saved"); App.render();
     };
+    $("#k-save").onclick = function () {
+      PhoneKeys.set({ openai: $("#k-openai").value, eleven: $("#k-eleven").value, elevenVoice: $("#k-eleven-voice").value,
+        anthropic: $("#k-anthropic").value, dropboxToken: $("#k-dropbox").value });
+      toast("Keys saved in this browser only"); App.render();
+    };
+    $("#k-clear").onclick = function () { PhoneKeys.clear(); toast("Keys removed"); App.render(); };
     $("#s-reset").onclick = function () {
       openModal(
         '<h3>Reset all data?</h3><p style="font-size:14px">This deletes every local edit (challenge log, followers, plans...) and restores the seed. This cannot be undone.</p>' +
