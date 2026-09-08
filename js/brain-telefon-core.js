@@ -237,6 +237,130 @@
     };
   }
 
+  /* ---------- SpeakApp (voice notes recorded in the SpeakApp iPhone app, fetched via the connector) ----------
+     The connector answers TOON-encoded text (observed):
+       items[3]{id,title,createdAt,createdAtWeekday,updatedAt,durationSec,sourceType,language,status}:
+         6814c0dc-…,"Periodensimulator: …","2026-09-08T09:17:28.041Z",Tue,"…",14.993,audioTrackTranscript,German,done
+       hasMore: true
+     and for one recording `key: value` lines with renderedText: "…" (JSON-style quoting). */
+  function toolText(payload) {
+    if (payload === null || payload === undefined) return "";
+    if (typeof payload === "string") return payload;
+    if (typeof payload === "object") {
+      if (Array.isArray(payload.content)) return extractMcpToolResult(payload);
+      if (typeof payload.text === "string") return payload.text;
+      if (payload.payload !== undefined) return toolText(payload.payload);
+      try { return JSON.stringify(payload); } catch (e) { return ""; }
+    }
+    return String(payload);
+  }
+  function splitCsvRow(line) {
+    var out = [], cur = "", q = false;
+    for (var i = 0; i < line.length; i++) {
+      var c = line[i];
+      if (q) {
+        if (c === "\\" && i + 1 < line.length) { cur += line[++i]; continue; }
+        if (c === '"') { q = false; continue; }
+        cur += c;
+      } else {
+        if (c === '"') { q = true; continue; }
+        if (c === ",") { out.push(cur); cur = ""; continue; }
+        cur += c;
+      }
+    }
+    out.push(cur);
+    return out.map(function (v) { return v.trim(); });
+  }
+  function toonValue(raw) {
+    var v = String(raw || "").trim();
+    if (v === "null" || v === "") return null;
+    if (v[0] === '"') {
+      try { return JSON.parse(v); } catch (e) {}
+      return v.replace(/^"/, "").replace(/"\s*$/, "").replace(/\\n/g, "\n").replace(/\\"/g, '"').replace(/\\\\/g, "\\");
+    }
+    return v;
+  }
+  function parseSpeakAppList(payload) {
+    var txt = toolText(payload);
+    // JSON fallback (structuredContent)
+    if (/^\s*[\[{]/.test(txt)) {
+      try { var j = JSON.parse(txt); var arr = Array.isArray(j) ? j : (j.items || []); return arr.map(normRec).filter(Boolean); } catch (e) {}
+    }
+    var lines = txt.split(/\r?\n/);
+    var fields = null, items = [];
+    for (var i = 0; i < lines.length; i++) {
+      var ln = lines[i];
+      var m = ln.match(/^\s*items\[\d+\]\{([^}]*)\}\s*:\s*$/);
+      if (m) { fields = m[1].split(",").map(function (f) { return f.trim(); }); continue; }
+      if (!fields) continue;
+      if (/^\s*(hasMore|totalCount)\s*:/.test(ln)) { fields = null; continue; }
+      if (!ln.trim()) continue;
+      var cells = splitCsvRow(ln.trim());
+      var o = {};
+      fields.forEach(function (f, idx) { o[f] = cells[idx] !== undefined ? toonValue(cells[idx]) : null; });
+      var r = normRec(o);
+      if (r) items.push(r);
+    }
+    return items;
+  }
+  function normRec(o) {
+    if (!o || !o.id) return null;
+    return {
+      id: String(o.id), title: o.title || "", createdAt: o.createdAt || null,
+      durationSec: o.durationSec === null || o.durationSec === undefined ? null : Number(o.durationSec),
+      status: o.status || "unknown", language: o.language || null
+    };
+  }
+  function parseSpeakAppRecording(payload) {
+    var txt = toolText(payload);
+    if (/^\s*\{/.test(txt)) { try { var j = JSON.parse(txt); return { id: j.id, status: j.status, createdAt: j.createdAt, title: j.title, text: cleanSpeakAppText(j.renderedText || ""), error: j.errorText || null }; } catch (e) {} }
+    var out = { id: null, status: null, createdAt: null, title: "", text: "", error: null };
+    var lines = txt.split(/\r?\n/);
+    for (var i = 0; i < lines.length; i++) {
+      var m = lines[i].match(/^\s*(\w+)\s*:\s*(.*)$/);
+      if (!m) continue;
+      var k = m[1], v = m[2];
+      if (k === "id") out.id = toonValue(v);
+      else if (k === "status") out.status = toonValue(v);
+      else if (k === "createdAt") out.createdAt = toonValue(v);
+      else if (k === "title") out.title = toonValue(v) || "";
+      else if (k === "errorText") out.error = toonValue(v);
+      else if (k === "renderedText") {
+        var raw = v.trim();
+        if (raw[0] === '"') {
+          // quoted; normally one physical line, but tolerate a value that runs over several lines
+          var parsed = null;
+          try { parsed = JSON.parse(raw); } catch (e) {
+            var buf = raw, j = i;
+            while (j + 1 < lines.length && !/^\s*\w+\s*:/.test(lines[j + 1])) { j++; buf += "\n" + lines[j]; }
+            i = j;
+            parsed = toonValue(buf);
+          }
+          out.text = cleanSpeakAppText(parsed || "");
+        } else out.text = cleanSpeakAppText(toonValue(raw) || "");
+      }
+    }
+    return out;
+  }
+  // "Speaker 1: Kurzfilmidee …" → plain spoken text
+  function cleanSpeakAppText(t) {
+    return String(t || "").replace(/(^|\n)\s*(Speaker|Sprecher)\s*\d*\s*:\s*/gi, "$1").replace(/\s*\n\s*/g, " ").replace(/\s{2,}/g, " ").trim();
+  }
+  // which recording is the new question? newer than the baseline seen when listening started, finished, not consumed
+  function pickNewRecording(items, baseline, consumed) {
+    consumed = consumed || {};
+    var base = baseline && baseline.createdAt ? Date.parse(baseline.createdAt) : 0;
+    var fresh = (items || []).filter(function (r) {
+      if (!r || consumed[r.id]) return false;
+      if (baseline && r.id === baseline.id) return false;
+      var t = r.createdAt ? Date.parse(r.createdAt) : 0;
+      return t > base;
+    });
+    fresh.sort(function (a, b) { return Date.parse(b.createdAt || 0) - Date.parse(a.createdAt || 0); });
+    var done = fresh.filter(function (r) { return r.status === "done"; });
+    return { ready: done[0] || null, pending: fresh.filter(function (r) { return r.status !== "done" && r.status !== "error"; }).length, errored: fresh.filter(function (r) { return r.status === "error"; }).length };
+  }
+
   /* ---------- speech ---------- */
   // strip markdown & structure so TTS never reads "Sternchen Sternchen"
   function toSpeech(text) {
@@ -304,7 +428,9 @@
   function chooseTier(env) {
     env = env || {};
     var stt, tts;
-    if (env.openaiKey && env.canExternalFetch !== false && env.hasMediaRecorder !== false) {
+    if (env.hasSpeakApp && (env.sttMode === "speakapp" || env.hasWebSpeech === false)) {
+      stt = { tier: "speakapp", engine: "speakapp", reason: env.sttMode === "speakapp" ? "SpeakApp gewählt" : "kein Mikrofon-Modus im Browser — SpeakApp-Aufnahmen" };
+    } else if (env.openaiKey && env.canExternalFetch !== false && env.hasMediaRecorder !== false) {
       stt = { tier: "pro", engine: "whisper-1", reason: "OpenAI-Key gesetzt" };
     } else if (env.hasWebSpeech !== false) {
       stt = { tier: "basis", engine: "web-speech", reason: env.openaiKey
@@ -320,7 +446,15 @@
     } else {
       tts = { tier: "none", engine: "text", reason: "Browser ohne Sprachausgabe — nur Text" };
     }
-    return { stt: stt, tts: tts, label: (stt.tier === "pro" || tts.tier === "pro") ? "Pro" : (stt.tier === "none" && tts.tier === "none" ? "Text" : "Basis") };
+    var label = (stt.tier === "pro" || tts.tier === "pro") ? "Pro" : (stt.tier === "none" && tts.tier === "none" ? "Text" : "Basis");
+    if (stt.tier === "speakapp") label = tts.tier === "pro" ? "Pro" : "SpeakApp";
+    return { stt: stt, tts: tts, label: label };
+  }
+  // the microphone is blocked (typical inside the claude.ai iframe on iPhone) → SpeakApp takes over if connected
+  function speakAppTier(env) {
+    env = env || {};
+    if (!env.hasSpeakApp) return null;
+    return { tier: "speakapp", engine: "speakapp", reason: "Mikrofon blockiert — Aufnahmen kommen aus SpeakApp", fellBack: true };
   }
 
   // a Pro engine failed at runtime (network, 401, CSP) → next lower tier, never a dead end
@@ -392,6 +526,18 @@
       spoken: "",
       visible: "Abgebrochen."
     },
+    speakapp_switch: {
+      spoken: "Das Mikrofon ist hier blockiert, ich höre jetzt über SpeakApp. Nimm deine Frage dort auf, ich hole sie automatisch.",
+      visible: "Mikrofon im Artifact blockiert — Umschaltung auf SpeakApp: Frage in SpeakApp aufnehmen, hierher zurückkommen, die Aufnahme wird automatisch geholt."
+    },
+    speakapp_error: {
+      spoken: "Ich komme gerade nicht an SpeakApp ran. Tippe deine Frage unten ein oder versuch es gleich nochmal.",
+      visible: "SpeakApp-Connector nicht erreichbar (Freigabe im Artifact prüfen) — Frage unten eintippen."
+    },
+    speakapp_transcribe_error: {
+      spoken: "SpeakApp konnte die Aufnahme nicht transkribieren. Nimm sie bitte nochmal auf.",
+      visible: "SpeakApp meldet einen Transkriptionsfehler — Aufnahme wiederholen."
+    },
     empty_answer: {
       spoken: "Das Brain hat keine Antwort geliefert. Frag nochmal, vielleicht etwas anders.",
       visible: "Leere Antwort vom Brain."
@@ -412,6 +558,7 @@
     if (code === "audio-capture" || code === "NotFoundError" || /no microphone|requested device not found/.test(msg)) return "mic_unavailable";
     if (code === "cancelled" || code === "AbortError" || code === "aborted") return "cancelled";
     if (code === "rate_limited" || /429|rate limit|overloaded|529/.test(msg)) return "rate_limited";
+    if (code === "not_in_manifest" || code === "server_not_found") return "speakapp_error";
     if (code === "not_granted" || code === "not_declared" || code === "needs_reauth" || code === "server_not_connected" || code === "sampling_disabled") return "not_granted";
     if (code === "network" || code === "TypeError" && /fetch|network|load failed/.test(msg) || /networkerror|failed to fetch|network request failed|load failed|err_internet_disconnected/.test(msg)) return "offline";
     if (code === "empty_completion") return "empty_answer";
@@ -444,7 +591,9 @@
     parseApiResponse: parseApiResponse, extractMcpToolResult: extractMcpToolResult,
     parseSearchPayload: parseSearchPayload, parseFetchPayload: parseFetchPayload,
     toSpeech: toSpeech, speechChunks: speechChunks, speechCheck: speechCheck, normalizeTranscript: normalizeTranscript,
-    chooseTier: chooseTier, fallbackTier: fallbackTier, chooseTransport: chooseTransport,
+    chooseTier: chooseTier, fallbackTier: fallbackTier, speakAppTier: speakAppTier, chooseTransport: chooseTransport,
+    parseSpeakAppList: parseSpeakAppList, parseSpeakAppRecording: parseSpeakAppRecording, cleanSpeakAppText: cleanSpeakAppText,
+    pickNewRecording: pickNewRecording, splitCsvRow: splitCsvRow,
     classifyError: classifyError, messageFor: messageFor, MESSAGES: MESSAGES,
     turnMeta: turnMeta, fmtMeta: fmtMeta
   };

@@ -33,7 +33,10 @@ var BrainPhoneView = (function () {
   var DEFAULT_VOICE = "21m00Tcm4TlvDq8ikWAM"; // ElevenLabs "Rachel" (multilingual) — overridable in Settings
 
   /* ---------- runtime detection (injected in tests via window.claude / globals) ---------- */
-  var rt = { resolved: false, sample: null, mcp: null, sampleTools: false };
+  var rt = { resolved: false, sample: null, mcp: null, sampleTools: false, speakApp: false };
+  var STT_MODE_KEY = "zentrale-phone-stt-mode";   // "auto" | "speakapp" | "mic"
+  function sttMode() { try { return localStorage.getItem(STT_MODE_KEY) || "auto"; } catch (e) { return "auto"; } }
+  function setSttMode(m) { try { localStorage.setItem(STT_MODE_KEY, m); } catch (e) {} }
 
   function isArtifactHost() {
     return !!(window.claude && typeof window.claude.use === "function");
@@ -56,12 +59,21 @@ var BrainPhoneView = (function () {
         window.claude.use("mcp").catch(function () { return null; })
       ]).then(function (r) {
         rt.sample = r[0]; rt.mcp = r[1]; rt.resolved = true;
+        var servers = rt.mcp && typeof rt.mcp.listTools === "function"
+          ? rt.mcp.listTools().then(function (lt) {
+              var list = (lt && lt.servers) || [];
+              rt.speakApp = list.some(function (sv) { return /speak\s*app/i.test(sv.server || "") && sv.authStatus !== "needs_reauth"; });
+              rt.dropbox = list.some(function (sv) { return /dropbox/i.test(sv.server || ""); });
+            }).catch(function () { rt.speakApp = false; })
+          : Promise.resolve();
+        return servers.then(function () {
         if (rt.sample && typeof rt.sample.limits === "function") {
           return rt.sample.limits().then(function (lim) { rt.sampleTools = !!(lim && lim.tools); return rt; })
             .catch(function () { rt.sampleTools = true; return rt; });
         }
         rt.sampleTools = !!rt.sample;
         return rt;
+        });
       });
     })();
     return rt.promise;
@@ -72,7 +84,8 @@ var BrainPhoneView = (function () {
     return {
       openaiKey: k.openai, elevenKey: k.eleven, anthropicKey: k.anthropic,
       canExternalFetch: canExternalFetch(), hasWebSpeech: hasWebSpeech(), hasSynth: hasSynth(),
-      hasMediaRecorder: hasMediaRecorder(), hasSample: !!rt.sample, hasMcp: !!rt.mcp, online: navigator.onLine !== false
+      hasMediaRecorder: hasMediaRecorder(), hasSample: !!rt.sample, hasMcp: !!rt.mcp, online: navigator.onLine !== false,
+      hasSpeakApp: !!rt.speakApp, sttMode: sttMode()
     };
   }
 
@@ -222,6 +235,74 @@ var BrainPhoneView = (function () {
     call.recSend = finish;   // "Fertig" button: send now
   }
 
+  /* ---------- STT: SpeakApp (recording made in the SpeakApp iPhone app, transcript fetched via the connector) ---------- */
+  var SPEAKAPP_POLL_MS = 4000;
+  function speakAppList(signal) {
+    return rt.mcp.callTool("SpeakApp", "list_recordings", { pageSize: 5, rationale: "Brain-Telefon: neue Sprachaufnahme von Robin als Frage holen." }, { signal: signal, cache: false })
+      .then(function (res) { return Core.parseSpeakAppList(res && (res.payload !== undefined ? res.payload : res)); });
+  }
+  function speakAppGet(id, signal) {
+    return rt.mcp.callTool("SpeakApp", "get_recording", { id: id, rationale: "Brain-Telefon: Transkript der neuen Aufnahme als gesprochene Frage lesen." }, { signal: signal, cache: false })
+      .then(function (res) { return Core.parseSpeakAppRecording(res && (res.payload !== undefined ? res.payload : res)); });
+  }
+  function listenSpeakApp(onResult, onError) {
+    var stopped = false, timer = null, ctl = new AbortController(), polls = 0;
+    call.consumedRecordings = call.consumedRecordings || {};
+    function stop() { stopped = true; clearTimeout(timer); try { ctl.abort(); } catch (e) {} document.removeEventListener("visibilitychange", onVis); }
+    function onVis() { if (!stopped && document.visibilityState === "visible") { clearTimeout(timer); poll(); } }
+    function schedule(ms) { if (stopped) return; clearTimeout(timer); timer = setTimeout(poll, ms); }
+    function useRecording(rec) {
+      stop();
+      setPhase("thinking", "Hole Aufnahme aus SpeakApp…");
+      speakAppGet(rec.id).then(function (r) {
+        if (!call || !call.active) return;
+        call.consumedRecordings[rec.id] = true;
+        call.speakAppBaseline = rec;
+        if (r.status === "error") return onError({ code: "speakapp_transcribe_error", message: r.error || "" });
+        if (!r.text) return onError({ code: "no-speech" });
+        emit("speakapp-recording", { id: rec.id, title: rec.title, text: r.text });
+        onResult(r.text);
+      }).catch(function (e) { if (!stopped || !call) onError({ code: e && e.code || "speakapp_error", message: e && e.message }); });
+    }
+    function poll() {
+      if (stopped || !call || !call.active) return;
+      polls++;
+      speakAppList(ctl.signal).then(function (items) {
+        if (stopped) return;
+        if (!call.speakAppBaseline) {
+          // first look: everything that exists now is old — only a NEW recording counts as the question
+          call.speakAppBaseline = items[0] || { id: null, createdAt: "1970-01-01T00:00:00Z" };
+          setPhase("listening", "SpeakApp: nimm deine Frage jetzt auf — ich hole sie automatisch.");
+          return schedule(SPEAKAPP_POLL_MS);
+        }
+        var pick = Core.pickNewRecording(items, call.speakAppBaseline, call.consumedRecordings);
+        if (pick.ready) return useRecording(pick.ready);
+        if (pick.errored) return onError({ code: "speakapp_transcribe_error" });
+        setPhase("listening", pick.pending ? "SpeakApp transkribiert deine Aufnahme…" : "SpeakApp: nimm deine Frage jetzt auf — ich hole sie automatisch.");
+        schedule(pick.pending ? 2500 : SPEAKAPP_POLL_MS);
+      }).catch(function (e) {
+        if (stopped) return;
+        if (e && (e.code === "cancelled" || e.name === "AbortError")) return;
+        if (polls <= 1) return onError({ code: e && e.code || "speakapp_error", message: e && e.message });
+        setPhase("listening", "SpeakApp gerade nicht erreichbar — versuche es weiter…");
+        schedule(SPEAKAPP_POLL_MS * 2);
+      });
+    }
+    document.addEventListener("visibilitychange", onVis);
+    call.recStop = stop;
+    // "Holen" button: take the newest finished recording even if it predates the call
+    call.recSend = function () {
+      clearTimeout(timer);
+      speakAppList(ctl.signal).then(function (items) {
+        if (stopped) return;
+        var done = items.filter(function (r) { return r.status === "done" && !call.consumedRecordings[r.id]; })[0];
+        if (done) useRecording(done); else { pushNotice("Keine neue SpeakApp-Aufnahme gefunden.", "info"); schedule(SPEAKAPP_POLL_MS); }
+      }).catch(function (e) { if (!stopped) onError({ code: e && e.code || "speakapp_error", message: e && e.message }); });
+    };
+    setPhase("listening", "Verbinde mit SpeakApp…");
+    poll();
+  }
+
   function startListening() {
     if (!call || !call.active) return;
     call.interim = "";
@@ -240,6 +321,17 @@ var BrainPhoneView = (function () {
         if (call.noSpeechCount >= 3) { setPhase("idle-in-call", "Nichts gehört. Tipp auf Sprechen oder tippe unten."); return; }
         return startListening();
       }
+      if (code === "speakapp_error" || code === "speakapp_transcribe_error") {
+        var mm = Core.messageFor(code);
+        pushNotice(mm.visible + (err.message ? " (" + String(err.message).slice(0, 80) + ")" : ""), "error");
+        emit("error", { kind: code, message: mm.visible });
+        setPhase("error", mm.visible);
+        speak(mm.spoken).then(function () {
+          if (!call || !call.active) return;
+          if (code === "speakapp_transcribe_error") startListening(); else setPhase("idle-in-call", "Frage unten eintippen — oder Aufnahme nochmal holen.");
+        });
+        return;
+      }
       if (code === "pro-failed") {
         call.tier.stt = Core.fallbackTier(call.tier.stt, "stt", env());
         pushNotice("Whisper nicht erreichbar — Spracherkennung läuft jetzt auf Basis (Web Speech).", "warn");
@@ -247,8 +339,20 @@ var BrainPhoneView = (function () {
         return startListening();
       }
       var kind = Core.classifyError(err, { online: navigator.onLine !== false });
+      if ((kind === "mic_denied" || kind === "mic_unavailable") && call.tier.stt.tier !== "speakapp" && rt.speakApp) {
+        // iPhone inside the claude.ai iframe: no microphone — SpeakApp becomes the ear
+        call.tier.stt = Core.speakAppTier(env());
+        call.tier.label = call.tier.tts.tier === "pro" ? "Pro" : "SpeakApp";
+        paintState();
+        var m = Core.messageFor("speakapp_switch");
+        pushNotice(m.visible, "warn");
+        emit("speakapp-switch", {});
+        speak(m.spoken).then(function () { if (call && call.active) startListening(); });
+        return;
+      }
       failSpoken(kind, err);
     };
+    if (call.tier.stt.tier === "speakapp") return listenSpeakApp(onResult, onError);
     if (call.tier.stt.tier === "pro") return listenWhisper(onResult, onError);
     if (call.tier.stt.tier === "basis") return listenWebSpeech(onResult, onError);
     setPhase("idle-in-call", "Kein Mikrofon-Modus — Frage unten eintippen.");
@@ -569,15 +673,23 @@ var BrainPhoneView = (function () {
   /* ---------- rendering ---------- */
   function tierBadge() {
     var t = call ? call.tier : Core.chooseTier(env());
-    var cls = t.label === "Pro" ? "pro" : (t.label === "Text" ? "text" : "basis");
+    var cls = t.label === "Pro" ? "pro" : (t.label === "Text" ? "text" : (t.label === "SpeakApp" ? "speakapp" : "basis"));
     return '<span class="ph-tier ' + cls + '" title="STT: ' + esc(t.stt.engine + " — " + t.stt.reason) + ' · TTS: ' + esc(t.tts.engine + " — " + t.tts.reason) + '">' +
-      '<b>' + esc(t.label) + '</b> <small>' + esc(t.stt.tier === "pro" ? "Whisper" : t.stt.tier === "basis" ? "Web Speech" : "Text") + ' · ' +
+      '<b>' + esc(t.label) + '</b> <small>' + esc(t.stt.tier === "pro" ? "Whisper" : t.stt.tier === "speakapp" ? "SpeakApp-Aufnahmen" : t.stt.tier === "basis" ? "Web Speech" : "Text") + ' · ' +
       esc(t.tts.tier === "pro" ? "ElevenLabs" : t.tts.tier === "basis" ? "System-Stimme" : "nur Text") + '</small></span>';
   }
   function transportBadge() {
     var tr = call ? call.transport : Core.chooseTransport(env());
     var cls = tr.kind === "none" ? "off" : (tr.brain === "none" ? "warn" : "on");
     return '<span class="ph-transport ' + cls + '">' + esc(tr.label) + '</span>';
+  }
+
+  function modeChip() {
+    if (!rt.speakApp) return "";
+    var mode = sttMode();
+    var onSpeak = mode === "speakapp" || (call && call.active && call.tier.stt.tier === "speakapp");
+    return '<button class="ph-mode" id="ph-mode" title="Wie hörst du? Mikro (Web Speech) oder Aufnahmen aus der SpeakApp">' +
+      (onSpeak ? "📱 SpeakApp" : "🎙️ Mikro") + ' <small>wechseln</small></button>';
   }
 
   function render(root) {
@@ -618,7 +730,7 @@ var BrainPhoneView = (function () {
     ui.call.onclick = function () { unlockAudio(); if (call && call.active) hangUp(); else startCall(); };
     ui.mic.onclick = function () {
       if (!call || !call.active) return startCall();
-      if (call.phase === "listening" && call.recSend) return call.recSend();
+      if (call.recSend && (call.phase === "listening" || call.tier.stt.tier === "speakapp")) { stopSpeaking(); return call.recSend(); }
       stopSpeaking(); startListening();
     };
     ui.stop.onclick = interrupt;
@@ -646,7 +758,18 @@ var BrainPhoneView = (function () {
     if (!ui.call) return;
     var active = !!(call && call.active);
     var phase = call ? call.phase : "idle";
-    ui.badges.innerHTML = tierBadge() + transportBadge();
+    ui.badges.innerHTML = tierBadge() + transportBadge() + modeChip();
+    var chip = $("#ph-mode", ui.badges);
+    if (chip) chip.onclick = function () {
+      var next = (sttMode() === "speakapp" || (call && call.active && call.tier.stt.tier === "speakapp")) ? "mic" : "speakapp";
+      setSttMode(next);
+      if (call && call.active) {
+        stopListening(); stopSpeaking();
+        call.tier = Core.chooseTier(env());
+        pushNotice(next === "speakapp" ? "Höre jetzt über SpeakApp-Aufnahmen." : "Höre jetzt über das Mikrofon.", "info");
+        startListening();
+      } else paintState();
+    };
     ui.call.classList.toggle("active", active);
     ui.call.querySelector(".ph-call-icon").textContent = active ? "📵" : "📞";
     ui.call.querySelector(".ph-call-label").textContent = active ? "Auflegen" : "Anrufen";
@@ -654,12 +777,13 @@ var BrainPhoneView = (function () {
     ui.live.hidden = !active;
     ui.pulse.className = "ph-pulse " + phase;
     ui.liveStatus.textContent = call ? call.status : "";
-    ui.mic.hidden = !active || phase === "thinking" || phase === "connecting" || (phase === "listening" && call.tier.stt.tier !== "pro");
-    ui.mic.innerHTML = active && phase === "listening" && call.tier.stt.tier === "pro" ? "✅<small>Fertig</small>" : "🎙️<small>Sprechen</small>";
+    var spk = active && call.tier.stt.tier === "speakapp";
+    ui.mic.hidden = !active || phase === "thinking" || phase === "connecting" || (phase === "listening" && call.tier.stt.tier === "basis");
+    ui.mic.innerHTML = spk ? "📥<small>Holen</small>" : (active && phase === "listening" && call.tier.stt.tier === "pro" ? "✅<small>Fertig</small>" : "🎙️<small>Sprechen</small>");
     ui.stop.hidden = !(active && (phase === "speaking" || phase === "thinking"));
     ui.hint.textContent = !active
       ? (call && call.phase === "ended" ? call.status : "Tippen → sprechen (auch Schweizerdeutsch) → das Brain antwortet mit Stimme.")
-      : phase === "listening" ? "Sprich jetzt. Pause = gesendet." + (call.tier.stt.tier === "pro" ? " Oder „Fertig“ tippen." : "")
+      : phase === "listening" ? (call.tier.stt.tier === "speakapp" ? "In SpeakApp aufnehmen, dann zurück hierher. „Holen“ nimmt die neueste Aufnahme." : "Sprich jetzt. Pause = gesendet." + (call.tier.stt.tier === "pro" ? " Oder „Fertig“ tippen." : ""))
       : phase === "thinking" ? "Das Brain sucht in der Dropbox…"
       : phase === "speaking" ? "Tipp auf Stopp, um zu unterbrechen."
       : phase === "connecting" ? "Verbinde…"
@@ -743,7 +867,8 @@ var BrainPhoneView = (function () {
     onEvent: function (fn) { listeners.push(fn); return function () { listeners = listeners.filter(function (x) { return x !== fn; }); }; },
     runtime: function () { return rt; },
     env: env,
-    _resetForTest: function () { hangUp(); call = null; rt = { resolved: false, sample: null, mcp: null, sampleTools: false }; }
+    setSttMode: setSttMode,
+    _resetForTest: function () { hangUp(); call = null; rt = { resolved: false, sample: null, mcp: null, sampleTools: false, speakApp: false }; }
   };
 
   return { render: render };

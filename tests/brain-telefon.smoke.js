@@ -27,15 +27,44 @@ function initScript(scenario) {
     const S = ${JSON.stringify(scenario)};
     const M = window.__mock = { sampleCalls: [], mcpCalls: [], spoken: [], recognitions: [], scenario: S };
     const SEARCH = ${JSON.stringify(SEARCH_HITS)}, FILE = ${JSON.stringify(FILE)}, ANSWER = ${JSON.stringify(ANSWER)};
+    const T0 = Date.now();
+    const OLD = { id: "273122f8-b94d-4c85-b68c-efc086e6ee6d", title: "Alte Notiz", createdAt: "2026-09-07T17:54:44.980Z", status: "done" };
+    const NEW = { id: "6814c0dc-c8a6-4451-b126-0248ed8d383e", title: "Frage ans Brain", createdAt: null, status: "processing" };
+    function toonList(items) {
+      return "items[" + items.length + "]{id,title,createdAt,createdAtWeekday,updatedAt,durationSec,sourceType,language,status}:\\n" +
+        items.map(r => "  " + r.id + ",\\"" + r.title + "\\",\\"" + r.createdAt + "\\",Tue,\\"" + r.createdAt + "\\",14.993,audioTrackTranscript,German," + r.status).join("\\n") +
+        "\\nhasMore: false\\ntotalCount: " + items.length;
+    }
     const mcp = {
       async callTool(server, tool, input, opts) {
         M.mcpCalls.push({ server, tool, input });
+        if (server === "SpeakApp") {
+          if (!S.speakApp) throw { code: "not_in_manifest", message: "SpeakApp" };
+          const age = Date.now() - T0;
+          const items = [];
+          if (age > (S.speakAppDelayMs || 3000)) {
+            NEW.createdAt = NEW.createdAt || new Date().toISOString();
+            NEW.status = age > (S.speakAppDelayMs || 3000) + 1500 ? "done" : "processing";
+            items.push(NEW);
+          }
+          items.push(OLD);
+          if (tool === "list_recordings") return { content: [{ type: "text", text: toonList(items) }] };
+          if (tool === "get_recording") {
+            const r = items.find(x => x.id === input.id);
+            const text = "id: " + r.id + "\\ntitle: \\"" + r.title + "\\"\\ncreatedAt: \\"" + r.createdAt + "\\"\\nstatus: " + r.status + "\\nerrorText: null\\nrenderedText: \\"Speaker 1: Was weiss das Brain über die ZHAW-Kampagne?\\"\\nrenderedLanguage: German\\nrenderedTextLength: 50";
+            return { content: [{ type: "text", text }] };
+          }
+        }
         if (S.mcpError) { const e = { code: "server_not_connected", message: "Dropbox not connected" }; throw e; }
         if (tool === "search") return { content: [{ type: "text", text: JSON.stringify(S.emptyBrain ? { results: [], has_more: false } : SEARCH) }], payload: S.emptyBrain ? { results: [], has_more: false } : SEARCH };
         if (tool === "fetch") return { content: [{ type: "text", text: JSON.stringify(FILE) }], payload: FILE };
         throw { code: "not_in_manifest", message: tool };
       },
-      async listTools() { return { servers: [{ server: "Dropbox", authStatus: "connected", tools: [{ name: "search" }, { name: "fetch" }] }] }; }
+      async listTools() {
+        const servers = [{ server: "Dropbox", authStatus: "connected", tools: [{ name: "search" }, { name: "fetch" }] }];
+        if (S.speakApp) servers.push({ server: "SpeakApp", authStatus: "connected", tools: [{ name: "list_recordings" }, { name: "get_recording" }] });
+        return { servers };
+      }
     };
     const sample = async function (input, opts) {
       M.sampleCalls.push({ input, hasTools: !!(opts && opts.tools), toolNames: (opts && opts.tools || []).map(t => t.name) });
@@ -362,6 +391,37 @@ const mock = (page) => page.evaluate(() => ({ spoken: window.__mock.spoken, samp
       await page.waitForTimeout(150);
       check("navigating away hangs up (mic never keeps running in the background)", await page.evaluate(() => window.BrainPhone.getState().active === false && !document.body.classList.contains("ph-in-call")));
       check("no page errors (abort / navigate)", errors.length === 0, errors.join(" | "));
+      await page.context().close();
+    }
+
+    /* 9d — iPhone in the claude.ai iframe: mic blocked → SpeakApp takes over, new recording becomes the question */
+    {
+      const { page, errors } = await newPage(browser, { micDenied: true, speakApp: true, speakAppDelayMs: 2500 }, { width: 390, height: 844 });
+      check("SpeakApp connected → mode chip visible", await page.locator("#ph-mode").count() === 1);
+      await page.click("#ph-call");
+      await page.waitForFunction(() => window.BrainPhone.getState() && window.BrainPhone.getState().tier.stt.tier === "speakapp", null, { timeout: 6000 });
+      const h1 = await history(page);
+      check("mic denied → automatic switch to SpeakApp with notice, no dead end", h1.some(x => x.role === "notice" && /SpeakApp/.test(x.text)) && !h1.some(x => x.role === "notice" && /Mikrofon blockiert\./.test(x.text)), JSON.stringify(h1));
+      await page.waitForFunction(() => /SpeakApp/.test(document.getElementById("ph-live-status").textContent), null, { timeout: 6000 });
+      check("badge shows SpeakApp tier while listening", (await page.locator(".ph-tier").textContent()).includes("SpeakApp"));
+      await page.screenshot({ path: path.join(OUT, "05-iphone-speakapp.png") });
+      await page.waitForFunction(() => document.querySelector(".ph-bubble.assistant"), null, { timeout: 20000 });
+      const h = await history(page), m = await mock(page);
+      const polls = m.mcpCalls.filter(c => c.server === "SpeakApp" && c.tool === "list_recordings").length;
+      check("old recording ignored, NEW recording picked up after transcription finished (polling)", polls >= 2 && m.mcpCalls.some(c => c.tool === "get_recording" && c.input.id === "6814c0dc-c8a6-4451-b126-0248ed8d383e") && !m.mcpCalls.some(c => c.tool === "get_recording" && c.input.id === "273122f8-b94d-4c85-b68c-efc086e6ee6d"), JSON.stringify(m.mcpCalls.filter(c => c.server === "SpeakApp")));
+      check("recording transcript became the user turn ('Speaker 1:' stripped) and got a brain answer", h.some(x => x.role === "user" && x.text === "Was weiss das Brain über die ZHAW-Kampagne?") && h.some(x => x.role === "assistant" && /ZHAW/.test(x.text)), JSON.stringify(h));
+      check("answer spoken", m.spoken.some(t => /ZHAW/.test(t)));
+      check("after the answer it listens again via SpeakApp", await page.waitForFunction(() => window.BrainPhone.getState().phase === "listening" && window.BrainPhone.getState().tier.stt.tier === "speakapp", null, { timeout: 6000 }).then(() => true).catch(() => false));
+      check("no page errors (SpeakApp)", errors.length === 0, errors.join(" | "));
+      await page.context().close();
+    }
+
+    /* 9e — mic blocked and NO SpeakApp: still the old typed fallback */
+    {
+      const { page } = await newPage(browser, { micDenied: true });
+      await page.click("#ph-call");
+      await page.waitForSelector(".ph-notice.error", { timeout: 6000 });
+      check("without SpeakApp the mic-denied notice + typing fallback remain", await page.evaluate(() => document.getElementById("ph-mode") === null && window.BrainPhone.getState().tier.stt.tier !== "speakapp"));
       await page.context().close();
     }
 

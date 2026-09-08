@@ -269,3 +269,67 @@ test("turnMeta / fmtMeta produce the transcript footer", () => {
   assert.equal(Core.fmtMeta(m), "3 Brain-Dateien · 4.2 s · Basis");
   assert.equal(Core.fmtMeta(Core.turnMeta(0, 0, 0, "Pro")), "0 Brain-Treffer · Pro");
 });
+
+/* ---------- SpeakApp connector (TOON payloads, observed shapes) ---------- */
+const TOON_LIST = `items[3]{id,title,createdAt,createdAtWeekday,updatedAt,durationSec,sourceType,language,status}:
+  6814c0dc-c8a6-4451-b126-0248ed8d383e,"Periodensimulator: Ein Tag im Spiel der Gefühle","2026-09-08T09:17:28.041Z",Tue,"2026-09-08T09:17:31.148Z",14.993,audioTrackTranscript,German,done
+  273122f8-b94d-4c85-b68c-efc086e6ee6d,Reflexion über Veränderung und Kreativität in Videos,"2026-09-07T17:54:44.980Z",Mon,"2026-09-07T17:54:49.869Z",70.993,audioTrackTranscript,German,done
+  e6e3223a-c882-40f4-a828-2f97856cace3,"Die Magie, Teil 2","2026-09-07T17:53:35.752Z",Mon,"2026-09-07T17:53:48.169Z",202.994,audioTrackTranscript,German,processing
+hasMore: true
+totalCount: 115`;
+const TOON_REC = `id: 6814c0dc-c8a6-4451-b126-0248ed8d383e
+title: "Periodensimulator: Ein Tag im Spiel der Gefühle"
+createdAt: "2026-09-08T09:17:28.041Z"
+status: done
+errorText: null
+renderedText: "Speaker 1: Kurzfilmidee: Periodensimulator. Ein Typ geht in den Simulator, \\"zack\\".\\nSpeaker 2: Und dann?"
+renderedLanguage: German
+renderedTextLength: 189`;
+
+test("parseSpeakAppList reads the TOON table (quoted titles with commas, unquoted titles, status)", () => {
+  const items = Core.parseSpeakAppList({ content: [{ type: "text", text: TOON_LIST }] });
+  assert.equal(items.length, 3);
+  assert.equal(items[0].id, "6814c0dc-c8a6-4451-b126-0248ed8d383e");
+  assert.equal(items[0].title, "Periodensimulator: Ein Tag im Spiel der Gefühle");
+  assert.equal(items[0].createdAt, "2026-09-08T09:17:28.041Z");
+  assert.equal(items[0].durationSec, 14.993);
+  assert.equal(items[1].title, "Reflexion über Veränderung und Kreativität in Videos");
+  assert.equal(items[2].title, "Die Magie, Teil 2");
+  assert.equal(items[2].status, "processing");
+  assert.deepEqual(Core.parseSpeakAppList("hasMore: false\ntotalCount: 0"), []);
+  assert.deepEqual(Core.parseSpeakAppList(null), []);
+});
+
+test("parseSpeakAppRecording reads renderedText and strips speaker labels", () => {
+  const r = Core.parseSpeakAppRecording(TOON_REC);
+  assert.equal(r.id, "6814c0dc-c8a6-4451-b126-0248ed8d383e");
+  assert.equal(r.status, "done");
+  assert.equal(r.error, null);
+  assert.equal(r.text, 'Kurzfilmidee: Periodensimulator. Ein Typ geht in den Simulator, "zack". Und dann?');
+  const err = Core.parseSpeakAppRecording("id: x\nstatus: error\nerrorText: \"upload failed\"\nrenderedText: null");
+  assert.equal(err.status, "error"); assert.equal(err.error, "upload failed"); assert.equal(err.text, "");
+});
+
+test("pickNewRecording only takes recordings newer than the baseline, prefers done, reports pending", () => {
+  const items = Core.parseSpeakAppList(TOON_LIST);
+  const base = { id: "e6e3223a-c882-40f4-a828-2f97856cace3", createdAt: "2026-09-07T17:53:35.752Z" };
+  const p = Core.pickNewRecording(items, base);
+  assert.equal(p.ready.id, "6814c0dc-c8a6-4451-b126-0248ed8d383e");
+  const p2 = Core.pickNewRecording(items, { id: items[0].id, createdAt: items[0].createdAt });
+  assert.equal(p2.ready, null); assert.equal(p2.pending, 0);
+  const p3 = Core.pickNewRecording(items, { id: null, createdAt: "1970-01-01T00:00:00Z" }, { "6814c0dc-c8a6-4451-b126-0248ed8d383e": true });
+  assert.equal(p3.ready.id, "273122f8-b94d-4c85-b68c-efc086e6ee6d");
+  assert.equal(p3.pending, 1);
+});
+
+test("chooseTier: SpeakApp mode when chosen or when the browser has no speech API; speakAppTier on mic denial", () => {
+  const t = Core.chooseTier({ hasSpeakApp: true, sttMode: "speakapp", hasWebSpeech: true, hasSynth: true });
+  assert.equal(t.stt.tier, "speakapp"); assert.equal(t.label, "SpeakApp");
+  const auto = Core.chooseTier({ hasSpeakApp: true, sttMode: "auto", hasWebSpeech: true, hasSynth: true });
+  assert.equal(auto.stt.tier, "basis");
+  const noApi = Core.chooseTier({ hasSpeakApp: true, sttMode: "auto", hasWebSpeech: false, hasSynth: true });
+  assert.equal(noApi.stt.tier, "speakapp");
+  assert.equal(Core.speakAppTier({ hasSpeakApp: false }), null);
+  assert.equal(Core.speakAppTier({ hasSpeakApp: true }).tier, "speakapp");
+  ["speakapp_switch", "speakapp_error", "speakapp_transcribe_error"].forEach(k => assert.equal(Core.speechCheck(Core.messageFor(k).spoken).ok, true, k));
+});

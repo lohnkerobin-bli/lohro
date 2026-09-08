@@ -118,7 +118,13 @@ Routing rules for Claude:
   `brain_search`/`brain_read` → `claude.use("mcp")` → Dropbox connector
   `search`/`fetch` scoped to `/KOLLEKTIV OSKAR/CLAUDE BRAIN`. The artifact MUST
   be published with `capabilities: {sample: {}, mcp: {servers: [{server: "Dropbox",
-  tools: ["search", "fetch"]}]}}` — without it the phone reports "kein Zugang".
+  tools: ["search", "fetch"]}, {server: "SpeakApp", tools: ["list_recordings",
+  "get_recording"]}]}}` — without it the phone reports "kein Zugang".
+- iPhone inside the claude.ai iframe blocks the microphone. The phone then
+  switches to the **SpeakApp mode**: Robin records the question in SpeakApp, the
+  page polls the SpeakApp connector for a recording newer than the call start
+  and feeds its transcript to the brain. Parsers for the TOON payloads live in
+  the core (`parseSpeakAppList`, `parseSpeakAppRecording`).
 - Outside the artifact (local file) the phone calls `POST /v1/messages`
   (`claude-sonnet-4-6`, Dropbox `mcp_servers` + `mcp_toolset`) with an Anthropic
   key from Settings. Keys live only in localStorage (`PhoneKeys`), never in the

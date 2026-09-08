@@ -35,7 +35,8 @@ Zwei Spuren:
   Locations, Festivals, **Second Brain** (eigene Ideen), **Externes Brain** (fremde
   Quellen mit Pflicht-Link), **Brain-Telefon** (Sprachanruf mit dem CLAUDE BRAIN in
   der Dropbox, seit 07.09.2026 — Basis-Stufe ohne Keys, Pro-Stufe mit
-  OpenAI/ElevenLabs-Keys in den Settings), Projects, **Brand** (Team-Backend: Brand
+  OpenAI/ElevenLabs-Keys in den Settings; auf dem iPhone im Artifact läuft die
+  Spracheingabe über SpeakApp-Aufnahmen, weil das iframe das Mikro blockiert), Projects, **Brand** (Team-Backend: Brand
   Core, Knowledge, Graph, Vision, Meetings), Settings. Läuft lokal via file://, Team-Sync über
   JSON-Export/Import in der Team-Dropbox.
 - **Brain** = Wissens-Backend der App: Brand Core (`data/brand.json`),
@@ -102,4 +103,4 @@ von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
 - Credit-effizient arbeiten: kleine JSONs greppen, nie seed.js/dist lesen.
 
 ---
-*Zuletzt aktualisiert: 2026-09-07 (Brain-Telefon-Tab in der ZENTRALE, D36) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*
+*Zuletzt aktualisiert: 2026-09-08 (Brain-Telefon: SpeakApp-Modus fürs iPhone, D36) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*
