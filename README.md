@@ -17,7 +17,8 @@ Built for Kollektiv Oskar — Robin, Simon & Jasmin.
 | **Ideas** | Idea vault imported from the Notion Second Brain + Ideen-Schrank, searchable, filterable, extendable |
 | **Projects** | Everything from the Notion video/YouTube pipelines: short films, features, reels, YouTube episodes |
 | **Brain** | The team backend: **Brand Core** (values, do's & don'ts, CTA strategy, brand assets, team playbook — editable), **Knowledge** (searchable base from the ChatGPT export) and **Meetings & Reports** (paste meeting transcripts, one-click weekly report for the Robin+Simon meeting) |
-| **Data & Settings** | Export/Import for the Dropbox team workflow, goal settings, reset |
+| **Brain-Telefon** | Voice call with the CLAUDE BRAIN: tap, speak (Swiss German ok), Claude searches the Dropbox brain and answers out loud; Basis tier needs no keys, Pro tier (Whisper + ElevenLabs) via Settings |
+| **Data & Settings** | Export/Import for the Dropbox team workflow, goal settings, reset, optional Brain-Telefon keys (browser-only) |
 
 ## Run it
 

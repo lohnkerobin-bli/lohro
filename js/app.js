@@ -9,13 +9,14 @@ var App = (function () {
     festivals: FestivalsView,
     ideas: IdeasView,
     extern: ExternBrainView,
+    phone: BrainPhoneView,
     projects: ProjectsView,
     brain: BrainView,
     settings: SettingsView
   };
 
   // challenge: the daily-challenge chapter is closed — old links land on films
-  var ALIASES = { knowledge: "brain", challenge: "films" };
+  var ALIASES = { knowledge: "brain", challenge: "films", telefon: "phone", call: "phone" };
 
   function currentRoute() {
     var h = (location.hash || "#/dashboard").replace(/^#\//, "");
@@ -26,8 +27,16 @@ var App = (function () {
   function render() {
     var route = currentRoute();
     $$("#main-nav a").forEach(function (a) {
-      a.classList.toggle("active", a.getAttribute("data-route") === route);
+      var on = a.getAttribute("data-route") === route;
+      a.classList.toggle("active", on);
+      // the nav scrolls horizontally on phones — keep the active tab in view
+      if (on && a.scrollIntoView && window.innerWidth <= 720) {
+        try { a.scrollIntoView({ inline: "center", block: "nearest" }); } catch (e) {}
+      }
     });
+    document.body.classList.toggle("ph-view", route === "phone");
+    var tb = $("#topbar");
+    if (tb) document.documentElement.style.setProperty("--topbar-h", tb.offsetHeight + "px");
     var root = $("#view");
     routes[route].render(root);
     var s = Store.get();

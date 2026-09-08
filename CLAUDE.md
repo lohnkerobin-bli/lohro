@@ -101,14 +101,41 @@ Routing rules for Claude:
 
 - Classic-script SPA (works via `file://`), hash routes: dashboard, films,
   locations, festivals, ideas (= Second Brain), extern (= Externes Brain),
-  projects, brain (= Brand tab), settings. App title: ZENTRALE. Views in
-  `js/*.js`, store in
+  phone (= Brain-Telefon), projects, brain (= Brand tab), settings. App title:
+  ZENTRALE. Views in `js/*.js`, store in
   `js/store.js` (localStorage + JSON export/import with per-item merge).
 - User data collections are declared in `ID_COLLECTIONS`/`KEYED_MAPS` in
   `js/store.js` — new collections must be added there or merges drop them.
 - Design: dark cinematic, Oura-inspired (score rings, soft cards). Palette in
   `css/style.css` `:root`. UI English, Robin's content stays German.
 - Decisions log: `DECISIONS.md`. Team workflow: `README.md`.
+
+## Brain-Telefon (voice call with the CLAUDE BRAIN)
+
+- Tab `#/phone`. Pure logic in `js/brain-telefon-core.js` (also a Node module),
+  UI/STT/TTS/transport in `js/brain-telefon.js`. Decision record: D36.
+- Transport inside the Claude artifact: `claude.use("sample")` with page tools
+  `brain_search`/`brain_read` → `claude.use("mcp")` → Dropbox connector
+  `search`/`fetch` scoped to `/KOLLEKTIV OSKAR/CLAUDE BRAIN`. The artifact MUST
+  be published with `capabilities: {sample: {}, mcp: {servers: [{server: "Dropbox",
+  tools: ["search", "fetch"]}, {server: "SpeakApp", tools: ["list_recordings",
+  "get_recording"]}]}}` — without it the phone reports "kein Zugang".
+- iPhone inside the claude.ai iframe blocks the microphone. The phone then
+  switches to the **SpeakApp mode**: Robin records the question in SpeakApp, the
+  page polls the SpeakApp connector for a recording newer than the call start
+  and feeds its transcript to the brain. Parsers for the TOON payloads live in
+  the core (`parseSpeakAppList`, `parseSpeakAppRecording`).
+- Outside the artifact (local file) the phone calls `POST /v1/messages`
+  (`claude-sonnet-4-6`, Dropbox `mcp_servers` + `mcp_toolset`) with an Anthropic
+  key from Settings. Keys live only in localStorage (`PhoneKeys`), never in the
+  Store, exports or the repo.
+- Tiers: Basis (Web Speech + speechSynthesis) / Pro (Whisper + ElevenLabs, keys in
+  Settings; impossible inside the artifact sandbox — CSP blocks other hosts).
+- Tests: `node --test tests/` (unit) and
+  `NODE_PATH=/opt/node22/lib/node_modules node tests/brain-telefon.smoke.js`
+  (Playwright, mocked runtime, 4 error cases, 390px). Real API run:
+  `ANTHROPIC_API_KEY=… node tests/brain-telefon.e2e.js`. Run all three before
+  touching the phone.
 
 ## Conventions
 

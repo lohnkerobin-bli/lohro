@@ -33,11 +33,18 @@ Zwei Spuren:
 
 - **ZENTRALE** (so heisst die App, Untertitel „Way to Oscar"): Dashboard, Films,
   Locations, Festivals, **Second Brain** (eigene Ideen), **Externes Brain** (fremde
-  Quellen mit Pflicht-Link), Projects, **Brand** (Team-Backend: Brand Core, Knowledge,
-  Graph, Vision, Meetings), Settings. Läuft lokal via file://, Team-Sync über
+  Quellen mit Pflicht-Link), **Brain-Telefon** (Sprachanruf mit dem CLAUDE BRAIN in
+  der Dropbox, seit 07.09.2026 — Basis-Stufe ohne Keys, Pro-Stufe mit
+  OpenAI/ElevenLabs-Keys in den Settings; auf dem iPhone im Artifact läuft die
+  Spracheingabe über SpeakApp-Aufnahmen, weil das iframe das Mikro blockiert), Projects, **Brand** (Team-Backend: Brand
+  Core, Knowledge, Graph, Vision, Meetings), Settings. Läuft lokal via file://, Team-Sync über
   JSON-Export/Import in der Team-Dropbox.
 - **Brain** = Wissens-Backend der App: Brand Core (`data/brand.json`),
   Knowledge (`data/knowledge.json`), Meetings/Weekly Reports (localStorage → Export).
+- **CLAUDE BRAIN (Dropbox, seit 19.08.2026 statt Notion):** `/KOLLEKTIV OSKAR/CLAUDE BRAIN/`
+  mit `AGENTS.md`, `INDEX.md`, `ROUTING.md`, Ordnern people/clients/projects/topics/
+  ideas/meetings/nuggets/mail/inbox/personal. Volltext-durchsuchbar über den
+  Dropbox-Connector — das Brain-Telefon fragt genau dort nach.
 - **Ablageort auf Robins Mac**: `~/Kollektiv Oskar Dropbox/KOLLEKTIV OSKAR/CLAUDE BRAIN/`.
 - **Weekly Report** jeden Donnerstag für das Meeting mit Simon; Donnerstags-Routine
   11:00 (Trigger) macht Sandcastles-Analyse + Follower-Log.
@@ -96,4 +103,4 @@ von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
 - Credit-effizient arbeiten: kleine JSONs greppen, nie seed.js/dist lesen.
 
 ---
-*Zuletzt aktualisiert: 2026-09-03 (Donnerstags-Routine: Notion-Sync +32 Einträge — darunter der 632×-Kurzfilm-Serien-Befund) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*
+*Zuletzt aktualisiert: 2026-09-08 (Brain-Telefon: SpeakApp-Modus fürs iPhone, D36) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*

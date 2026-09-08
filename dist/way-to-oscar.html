@@ -50,6 +50,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
 
 html { scrollbar-color: var(--black-line) var(--true-black); }
 
@@ -664,6 +665,134 @@ a:hover { color: var(--cream); }
 }
 .ext-legend-chip.active { outline: 2px solid #FDF7E7; }
 
+/* ---------- Brain-Telefon: a phone call with the CLAUDE BRAIN ---------- */
+.ph-wrap { display: flex; flex-direction: column; min-height: calc(100vh - 220px); }
+.ph-head .view-sub { margin-bottom: 14px; }
+.ph-status-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; align-items: center; }
+.ph-tier, .ph-transport {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12.5px; font-weight: 700; letter-spacing: .02em;
+  padding: 6px 12px; border-radius: 999px;
+  background: rgba(255,255,255,.08); color: var(--cream-dim);
+  border: 1px solid rgba(255,255,255,.10);
+}
+.ph-tier b { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; padding: 1px 7px; border-radius: 99px; background: rgba(0,0,0,.35); }
+.ph-tier.basis b { color: #A8EFE7; }
+.ph-tier.pro b { color: #FFD98A; }
+.ph-tier.text b { color: var(--cream-faint); }
+.ph-tier.speakapp b { color: #FFD98A; }
+.ph-mode {
+  font-size: 12.5px; font-weight: 700; padding: 6px 12px; border-radius: 999px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: var(--cream);
+}
+.ph-mode small { font-weight: 600; color: var(--cream-faint); font-size: 11px; }
+@media (max-width: 720px) { .ph-mode { font-size: 11px; padding: 4px 9px; } }
+.ph-tier small { font-weight: 600; color: var(--cream-faint); }
+.ph-transport.on { color: #A8EFE7; }
+.ph-transport.warn { color: #FFD98A; }
+.ph-transport.off { color: #FFB3BA; }
+
+.ph-card { display: flex; flex-direction: column; flex: 1; padding: 0; overflow: hidden; }
+.ph-transcript { flex: 1; overflow-y: auto; padding: 18px 18px 8px; display: flex; flex-direction: column; gap: 10px; min-height: 260px; max-height: 58vh; scroll-behavior: smooth; }
+.ph-empty { margin: auto; text-align: center; color: var(--cream-faint); font-size: 14.5px; line-height: 1.55; max-width: 380px; padding: 30px 10px; }
+.ph-empty strong { color: var(--cream); }
+.ph-empty-icon { font-size: 44px; margin-bottom: 8px; filter: drop-shadow(0 0 18px rgba(232,135,30,.35)); }
+.ph-bubble { max-width: 86%; padding: 11px 15px; border-radius: 18px; font-size: 16px; line-height: 1.45; animation: ph-in .18s ease-out; }
+.ph-bubble.user { align-self: flex-end; background: linear-gradient(160deg, #2FA39A, #1C6660); color: #EAFBF7; border-bottom-right-radius: 6px; }
+.ph-bubble.assistant { align-self: flex-start; background: #FDF7E7; color: #1E1508; border-bottom-left-radius: 6px; }
+.ph-bubble-text { white-space: pre-wrap; word-wrap: break-word; }
+.ph-meta { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-top: 6px; opacity: .55; }
+.ph-notice { align-self: center; font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 12px; text-align: center; max-width: 92%; background: rgba(255,255,255,.08); color: var(--cream-dim); }
+.ph-notice.error { background: rgba(230,57,70,.18); color: #FFC2C8; }
+.ph-notice.warn { background: rgba(232,135,30,.16); color: #FFD98A; }
+@keyframes ph-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* live strip: pulse + status + interim transcript + timer */
+.ph-live { display: flex; align-items: center; gap: 14px; padding: 12px 18px 14px; border-top: 1px solid rgba(255,255,255,.08); background: rgba(0,0,0,.22); min-height: 66px; }
+.ph-live-text { flex: 1; min-width: 0; }
+.ph-live-status { font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--cream-dim); }
+.ph-live-interim { font-size: 15px; color: var(--cream-faint); min-height: 1.3em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ph-live-timer { font-family: var(--font-mono); font-size: 12px; color: #FFD98A; }
+.ph-pulse { --lvl: 1; position: relative; width: 44px; height: 44px; flex-shrink: 0; display: grid; place-items: center; }
+.ph-pulse span { position: absolute; inset: 0; border-radius: 50%; background: var(--stage-teal); opacity: .35; transform: scale(calc(.55 * var(--lvl))); transition: transform .08s linear; }
+.ph-pulse span:nth-child(2) { opacity: .2; }
+.ph-pulse span:nth-child(3) { opacity: .12; }
+.ph-pulse.listening span:nth-child(1) { animation: ph-ring 1.6s ease-out infinite; }
+.ph-pulse.listening span:nth-child(2) { animation: ph-ring 1.6s ease-out .4s infinite; }
+.ph-pulse.listening span:nth-child(3) { animation: ph-ring 1.6s ease-out .8s infinite; }
+.ph-pulse.thinking span { background: var(--gold); animation: ph-think 1.1s ease-in-out infinite alternate; }
+.ph-pulse.thinking span:nth-child(2) { animation-delay: .2s; }
+.ph-pulse.thinking span:nth-child(3) { animation-delay: .4s; }
+.ph-pulse.speaking span { background: #FDF7E7; animation: ph-speak .7s ease-in-out infinite alternate; }
+.ph-pulse.speaking span:nth-child(2) { animation-delay: .15s; }
+.ph-pulse.speaking span:nth-child(3) { animation-delay: .3s; }
+.ph-pulse.error span, .ph-pulse.idle-in-call span { background: var(--set-red); opacity: .5; transform: scale(.55); }
+.ph-pulse.connecting span { animation: ph-think 1.1s ease-in-out infinite alternate; }
+@keyframes ph-ring { 0% { transform: scale(.5); opacity: .5; } 100% { transform: scale(1.15); opacity: 0; } }
+@keyframes ph-think { from { transform: scale(.5); opacity: .25; } to { transform: scale(1); opacity: .7; } }
+@keyframes ph-speak { from { transform: scale(.45); } to { transform: scale(1); } }
+
+/* dock: thumb zone */
+.ph-dock { margin-top: 14px; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.ph-type { display: flex; gap: 8px; width: 100%; max-width: 560px; }
+.ph-type input { flex: 1; border-radius: 999px; padding: 11px 16px; font-size: 15px; background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.12); }
+.ph-type button { border-radius: 999px; width: 46px; height: 46px; padding: 0; font-size: 20px; background: rgba(255,255,255,.12); flex-shrink: 0; }
+.ph-controls { display: flex; align-items: center; justify-content: center; gap: 26px; width: 100%; }
+.ph-call {
+  width: 96px; height: 96px; border-radius: 50%; padding: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  background: radial-gradient(circle at 35% 30%, #4CC9A6, #1F8F86 65%, #145A55);
+  color: #EAFBF7; box-shadow: 0 10px 34px rgba(47,163,154,.42), inset 0 1px 0 rgba(255,255,255,.35);
+  transition: transform .12s ease, box-shadow .2s ease, background .2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.ph-call:hover { background: radial-gradient(circle at 35% 30%, #5AD6B3, #2FA39A 65%, #1C6660); }
+.ph-call:active { transform: scale(.94); }
+.ph-call-icon { font-size: 34px; line-height: 1; }
+.ph-call-label { font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.ph-call.active {
+  background: radial-gradient(circle at 35% 30%, #FF6B76, #E63946 60%, #8F222C);
+  box-shadow: 0 10px 34px rgba(230,57,70,.45), inset 0 1px 0 rgba(255,255,255,.3);
+  animation: ph-glow 2s ease-in-out infinite;
+}
+@keyframes ph-glow { 0%, 100% { box-shadow: 0 10px 34px rgba(230,57,70,.35); } 50% { box-shadow: 0 10px 44px rgba(230,57,70,.65); } }
+.ph-side {
+  width: 64px; height: 64px; border-radius: 50%; padding: 0; font-size: 22px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+  background: rgba(255,255,255,.10); color: var(--cream);
+}
+.ph-side small { font-size: 9px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--cream-faint); }
+.ph-side:hover { background: rgba(255,255,255,.2); }
+.ph-hint { font-size: 13px; font-weight: 600; color: var(--cream-faint); text-align: center; max-width: 420px; line-height: 1.4; }
+
+@media (max-width: 720px) {
+  /* the whole phone fits one screen: header shrinks, transcript flexes, dock stays in the thumb zone */
+  body.ph-view #view { padding: 10px 12px 8px; }
+  body.ph-view #footer { display: none; }
+  .ph-wrap { height: calc(100dvh - var(--topbar-h, 106px) - 18px); min-height: 0; }
+  .ph-head h1.view-title { font-size: 30px; margin-bottom: 2px; }
+  .ph-head .view-sub { font-size: 13.5px; margin-bottom: 8px; }
+  body.ph-in-call .ph-head .view-sub { display: none; }
+  body.ph-in-call .ph-head h1.view-title { font-size: 22px; }
+  .ph-status-row { margin-bottom: 8px; gap: 6px; }
+  .ph-tier, .ph-transport { font-size: 11px; padding: 4px 9px; }
+  .ph-card { min-height: 0; }
+  .ph-transcript { max-height: none; min-height: 0; padding: 12px 12px 6px; }
+  .ph-empty { padding: 10px; font-size: 14px; }
+  .ph-empty-icon { font-size: 36px; }
+  .ph-bubble { max-width: 92%; font-size: 15.5px; padding: 9px 13px; }
+  .ph-live { padding: 8px 12px 10px; min-height: 56px; gap: 10px; }
+  .ph-dock { margin-top: 10px; gap: 8px; padding-bottom: max(4px, env(safe-area-inset-bottom)); }
+  .ph-call { width: 84px; height: 84px; }
+  .ph-call-icon { font-size: 30px; }
+  .ph-side { width: 56px; height: 56px; font-size: 20px; }
+  .ph-controls { gap: 22px; }
+  .ph-hint { font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ph-pulse span, .ph-call.active, .ph-bubble { animation: none !important; }
+}
+
 </style>
 </head>
 <body>
@@ -683,6 +812,7 @@ a:hover { color: var(--cream); }
       <a href="#/festivals" data-route="festivals">Festivals</a>
       <a href="#/ideas" data-route="ideas">Second Brain</a>
       <a href="#/extern" data-route="extern">Externes Brain</a>
+      <a href="#/phone" data-route="phone">Brain-Telefon</a>
       <a href="#/projects" data-route="projects">Projects</a>
       <a href="#/brain" data-route="brain">Brand</a>
       <a href="#/settings" data-route="settings">Data &amp; Settings</a>
@@ -701,8 +831,8 @@ a:hover { color: var(--cream); }
 /* AUTO-GENERATED by scripts/build-seed.py — do not edit by hand.
    Canonical data lives in data/*.json. Regenerate: python3 scripts/build-seed.py */
 window.SEED = {
- "version": 266542504781515,
- "generated": "2026-09-03T09:08:56Z",
+ "version": 22254887505077,
+ "generated": "2026-09-08T10:07:16Z",
  "ideas": [
   {
    "id": "idea-song-marumo",
@@ -5556,8 +5686,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-002",
@@ -5569,8 +5699,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-003",
@@ -5582,8 +5712,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-004",
@@ -5595,8 +5725,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-005",
@@ -5608,8 +5738,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-006",
@@ -5621,8 +5751,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-007",
@@ -5634,8 +5764,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-008",
@@ -5647,8 +5777,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-009",
@@ -5660,8 +5790,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-010",
@@ -5673,8 +5803,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-011",
@@ -5686,8 +5816,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-012",
@@ -5699,8 +5829,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-013",
@@ -5712,8 +5842,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-014",
@@ -5725,8 +5855,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-015",
@@ -5738,8 +5868,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-016",
@@ -5751,8 +5881,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-017",
@@ -5764,8 +5894,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-019",
@@ -5777,8 +5907,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-020",
@@ -5790,8 +5920,8 @@ window.SEED = {
    "link": null,
    "notes": "Series: SHORTMOVIE · Tags: ABGESCHLOSSEN",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-021",
@@ -5803,8 +5933,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-022",
@@ -5816,8 +5946,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: THUMBNAIL",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-023",
@@ -5829,8 +5959,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-024",
@@ -5842,8 +5972,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-025",
@@ -5855,8 +5985,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-026",
@@ -5868,8 +5998,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-028",
@@ -5881,8 +6011,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-031",
@@ -5894,8 +6024,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-032",
@@ -5907,8 +6037,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-033",
@@ -5920,8 +6050,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-034",
@@ -5933,8 +6063,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-035",
@@ -5946,8 +6076,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-036",
@@ -5959,8 +6089,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-037",
@@ -5972,8 +6102,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-038",
@@ -5985,8 +6115,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-039",
@@ -5998,8 +6128,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-040",
@@ -6011,8 +6141,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-041",
@@ -6024,8 +6154,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-042",
@@ -6037,8 +6167,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-043",
@@ -6050,8 +6180,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-044",
@@ -6063,8 +6193,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-045",
@@ -6076,8 +6206,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-046",
@@ -6089,8 +6219,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-047",
@@ -6102,8 +6232,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-048",
@@ -6115,8 +6245,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-049",
@@ -6128,8 +6258,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-050",
@@ -6141,8 +6271,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-051",
@@ -6154,8 +6284,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-052",
@@ -6167,8 +6297,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-053",
@@ -6180,8 +6310,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-054",
@@ -6193,8 +6323,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-055",
@@ -6206,8 +6336,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-056",
@@ -6219,8 +6349,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-057",
@@ -6232,8 +6362,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-058",
@@ -6245,8 +6375,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-059",
@@ -6258,8 +6388,8 @@ window.SEED = {
    "link": null,
    "notes": "Series: CINEMATIC VIDEO · Tags: SKRIPT, IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-060",
@@ -6271,8 +6401,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-061",
@@ -6284,8 +6414,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-062",
@@ -6297,8 +6427,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-063",
@@ -6310,8 +6440,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-064",
@@ -6323,8 +6453,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-065",
@@ -6336,8 +6466,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-066",
@@ -6349,8 +6479,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-067",
@@ -6362,8 +6492,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-068",
@@ -6375,8 +6505,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-069",
@@ -6388,8 +6518,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-070",
@@ -6401,8 +6531,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-071",
@@ -6414,8 +6544,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-072",
@@ -6427,8 +6557,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-073",
@@ -6440,8 +6570,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-074",
@@ -6453,8 +6583,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-075",
@@ -6466,8 +6596,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-076",
@@ -6479,8 +6609,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT, PRODUKTION",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-077",
@@ -6492,8 +6622,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-078",
@@ -6505,8 +6635,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-080",
@@ -6518,8 +6648,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-081",
@@ -6531,8 +6661,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-083",
@@ -6544,8 +6674,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-084",
@@ -6557,8 +6687,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-085",
@@ -6570,8 +6700,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-086",
@@ -6583,8 +6713,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-087",
@@ -6596,8 +6726,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: ONLINE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-088",
@@ -6609,8 +6739,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-089",
@@ -6622,8 +6752,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: SKRIPT",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-090",
@@ -6635,8 +6765,8 @@ window.SEED = {
    "link": null,
    "notes": "",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-091",
@@ -6648,8 +6778,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-092",
@@ -6661,8 +6791,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-093",
@@ -6674,8 +6804,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: Great Ideas",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-094",
@@ -6687,8 +6817,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-095",
@@ -6700,8 +6830,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-096",
@@ -6713,8 +6843,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-097",
@@ -6726,8 +6856,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: ONLINE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-098",
@@ -6739,8 +6869,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: ONLINE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-099",
@@ -6752,8 +6882,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "project-100",
@@ -6765,8 +6895,8 @@ window.SEED = {
    "link": null,
    "notes": "Tags: IDEE",
    "source": "notion-video-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "episode-001",
@@ -6778,8 +6908,8 @@ window.SEED = {
    "link": null,
    "notes": "Hook: I want to win an Oscar. Here's where I actually am. · Main point: Ehrliche Bestandsaufnahme: Six years self-employed, KO läuft, jetzt der Push für Personal Brand und Foundation-Bewerbung. Cliffhanger auf das Claude-Gespräch. · Format: Bestandsaufnahme",
    "source": "notion-youtube-pipeline",
-   "createdAt": "2026-09-03T09:08:56Z",
-   "updatedAt": "2026-09-03T09:08:56Z"
+   "createdAt": "2026-09-08T10:07:16Z",
+   "updatedAt": "2026-09-08T10:07:16Z"
   },
   {
    "id": "prj-saentis-testfilme",
@@ -6791,7 +6921,7 @@ window.SEED = {
    "link": "https://app.notion.com/p/398a2e36ef0a81118e3cc22f8522bce3",
    "notes": "Text einsprechen (Ricos rote Texte seit 09.07.), Musik Epidemic Sound, Schnittgerüst mit Platzhaltern/Stock/GV-Material. Abnahme-Meeting Mi 15.07. vormittags (Backup Do 16.07.) mit Rico, Irene, Claudia. Budget 2P/2T/CHF 6'000. Gerüste sauber bauen — sie sind die Basis für den Finalschnitt (9 Schnitt-Tage fix).",
    "source": "saentis-handover",
-   "createdAt": "2026-09-03T09:08:56Z",
+   "createdAt": "2026-09-08T10:07:16Z",
    "updatedAt": "1970-01-01T00:00:00Z"
   },
   {
@@ -6804,7 +6934,7 @@ window.SEED = {
    "link": null,
    "notes": "Rico führt durch die 4 Bereiche. Wiese Peter und Paul (Intro/Schluss, Kernsatz 'Jeder Gast verdient das Beste, was unsere Region zu bieten hat'). Rico-Tag 25.08. (Backup 01.09.), B-Roll Stuhl + Details 26.08. Viele Bilder aus Film 2–5 wiederverwendet.",
    "source": "saentis-handover",
-   "createdAt": "2026-09-03T09:08:56Z",
+   "createdAt": "2026-09-08T10:07:16Z",
    "updatedAt": "1970-01-01T00:00:00Z"
   },
   {
@@ -6817,7 +6947,7 @@ window.SEED = {
    "link": null,
    "notes": "Text neu ohne reinen OLMA-Fokus. Sprecher Teil 1: Christian Streule (OLMA 08.–18.10., nicht 10./11.10. — HSG Hackathon). Küchen-Statement Katharina Schönenberger: Kamera leicht oben, Pinzette, Blick hoch, Zoom-out Tellerreihen (KW41). Bauernhof 18.08. (Backup 19.08.): Irene spricht (~30% sichtbar), Loser mit Mistgabel Slowmo, Kühe, Fahne. KMU-Tag + Nacht des Ostschweizer Fussballs 23./24.10.",
    "source": "saentis-handover",
-   "createdAt": "2026-09-03T09:08:56Z",
+   "createdAt": "2026-09-08T10:07:16Z",
    "updatedAt": "1970-01-01T00:00:00Z"
   },
   {
@@ -6830,7 +6960,7 @@ window.SEED = {
    "link": null,
    "notes": "Philipp Hächler führt durch, alles in Kriens 20./21.10. (um VR-Sitzung, Anreise 20.; 19.10. Filmförderungs-Termin SG!). Lobby mit Egger-Anekdote (Bauchbinde 'ehemaliger Verwaltungsratspräsident' ausgeschrieben), Check-in, internationale Gäste, Biosphärenkäse, Schluss Eckzimmer Pilatus-Blick. Testfilm: Luzern-Stock frei, Rechte für Final separat. Risiko: Ricos Singapur-Entscheid — FIDES-Teile brauchen ihn.",
    "source": "saentis-handover",
-   "createdAt": "2026-09-03T09:08:56Z",
+   "createdAt": "2026-09-08T10:07:16Z",
    "updatedAt": "1970-01-01T00:00:00Z"
   },
   {
@@ -6843,7 +6973,7 @@ window.SEED = {
    "link": null,
    "notes": "Rico. Kernbotschaft (ihm sehr wichtig): FIDES unterstützt die Bauherrschaft in der Ablaufplanung → keine unnötigen Personalkosten im Betrieb. Baustelle NUR am Rand (Gonten-Präzedenzfall). Büro Büron 15.09., Baustelle 16.09. Standort-Szene Klosterplatz St. Gallen — NICHT Flumserberg (Rico im VR Pizolbahnen; alte Slides beim Finalisieren ersetzen). Dream-Team-Sequenz. Selfie-Format Rico Expo Real 09.09. Projektbeispiele raus.",
    "source": "saentis-handover",
-   "createdAt": "2026-09-03T09:08:56Z",
+   "createdAt": "2026-09-08T10:07:16Z",
    "updatedAt": "1970-01-01T00:00:00Z"
   },
   {
@@ -6856,7 +6986,7 @@ window.SEED = {
    "link": null,
    "notes": "Dani Oswald spricht am St. Galler Fest 15.08. — Trauerfall in der Familie, Kontakt behutsam. Text: 'Säntis Betriebsgruppe' (nicht Gastro Gruppe), 'Wir wissen genau, welche Emotionen ein Event auslöst, weil …'. Schluss: Schubladen-Gag + Konfettikanonen mit Bär-&-Bühne-Logo (existieren!). Champagnerturm raus. Irene liefert Fotos Abschiedsabend.",
    "source": "saentis-handover",
-   "createdAt": "2026-09-03T09:08:56Z",
+   "createdAt": "2026-09-08T10:07:16Z",
    "updatedAt": "1970-01-01T00:00:00Z"
   },
   {
@@ -6869,7 +6999,7 @@ window.SEED = {
    "link": null,
    "notes": "CHF 5'000 bestätigt, Akonto bezahlt. OLMA-Bar-Aktivierung: Restaurant = 'Maison Rosé', ausserhalb = 'Miraval Bar'. Instagram-Name bald reservieren (Säntis selber). Moderation Dating-Format: Plan A Marco Fritsche (moderierte 25-Jahr-Jubiläum, marcofritsche.ch), Plan B Barhopping-Format. Social-Media-Plan mit Irene VOR ihren Ferien (~20.07., 3 Wochen Malediven) besprechen. Synergie: Katharina auch im Miraval-Projekt.",
    "source": "saentis-handover",
-   "createdAt": "2026-09-03T09:08:56Z",
+   "createdAt": "2026-09-08T10:07:16Z",
    "updatedAt": "1970-01-01T00:00:00Z"
   }
  ],
@@ -15495,6 +15625,1487 @@ var BrainView = (function () {
 
 </script>
 <script>
+/* ============ brain-telefon-core.js — pure logic for the Brain-Telefon (no DOM) ============
+   Loaded as a classic script in the app (window.BrainPhoneCore) AND as a Node module
+   in tests/brain-telefon.test.js. Keep it free of DOM / browser globals.           */
+(function (root, factory) {
+  if (typeof module === "object" && module.exports) module.exports = factory();
+  else root.BrainPhoneCore = factory();
+})(typeof self !== "undefined" ? self : this, function () {
+  "use strict";
+
+  var BRAIN_PATH = "/KOLLEKTIV OSKAR/CLAUDE BRAIN";
+  var MODEL = "claude-sonnet-4-6";
+  var API_URL = "https://api.anthropic.com/v1/messages";
+  var MCP_BETA = "mcp-client-2025-11-20";
+  var DROPBOX_MCP = { type: "url", url: "https://mcp.dropbox.com/claude_app_mcp", name: "dropbox" };
+  var MAX_HISTORY_CHARS = 14000;   // full transcript is resent every turn (API is stateless)
+  var MAX_FILE_CHARS = 7000;       // one brain file as tool result — keep the prompt small
+  var MAX_SEARCH_HITS = 8;
+
+  /* ---------- prompt ---------- */
+  function systemPrompt(opts) {
+    opts = opts || {};
+    var brain = opts.brainAvailable !== false;
+    var lines = [
+      "Du bist das CLAUDE BRAIN von Robin Lohnke (Lohro, Kollektiv Oskar, St. Gallen) — am Telefon.",
+      "Robin spricht mit dir per Sprache, oft Schweizerdeutsch, und deine Antwort wird ihm VORGELESEN.",
+      "",
+      "So arbeitest du:"
+    ];
+    if (brain) {
+      lines.push(
+        "1. Suche ZUERST im CLAUDE BRAIN (Dropbox-Ordner " + BRAIN_PATH + ") mit der Suche" +
+          (opts.toolStyle === "mcp" ? " des Dropbox-Servers (search, Pfad-Filter auf diesen Ordner)" : " brain_search") + ".",
+        "2. Lies mit " + (opts.toolStyle === "mcp" ? "fetch" : "brain_read") + " NUR die 1 bis 3 relevantesten Dateien, nie alles —",
+        "   und wenn es mehrere sind, alle in DERSELBEN Runde parallel (Robin wartet am Telefon, jede Runde kostet Sekunden).",
+        "3. Antworte aus dem, was im Brain steht. Steht nichts drin, sag das ehrlich in einem Satz und frag kurz nach, was er genau meint."
+      );
+    } else {
+      lines.push(
+        "1. Du hast in diesem Gespräch KEINEN Zugriff auf das Brain (Dropbox nicht verbunden). Sag das in einem kurzen Satz,",
+        "   bevor du aus allgemeinem Wissen antwortest — und rate nichts über Robins Projekte."
+      );
+    }
+    lines.push(
+      "",
+      "So klingst du:",
+      "- Deutsch, gesprochen, wie ein Kollege am Telefon. 2 bis 4 Sätze. Erst die Antwort, dann höchstens ein Detail.",
+      "- KEIN Markdown, keine Listen, keine Aufzählungszeichen, keine Sternchen, keine Überschriften, keine Dateipfade,",
+      "  keine URLs. Zahlen und Daten ausgeschrieben lesbar (zum Beispiel „am 18. August“).",
+      "- Transkripte aus Schweizerdeutsch enthalten Fehler: interpretiere grosszügig, frag nur nach, wenn es wirklich unklar ist.",
+      "- Nenne Quellen nur beiläufig („laut dem Meeting vom 18. August“), nie als Liste."
+    );
+    return lines.join("\n");
+  }
+
+  /* ---------- conversation ---------- */
+  // history: [{role:"user"|"assistant", text}] — the on-screen transcript
+  function trimHistory(history, maxChars) {
+    maxChars = maxChars || MAX_HISTORY_CHARS;
+    var out = [], total = 0;
+    for (var i = history.length - 1; i >= 0; i--) {
+      var h = history[i];
+      if (!h || !h.text || (h.role !== "user" && h.role !== "assistant")) continue;
+      total += h.text.length;
+      if (total > maxChars && out.length) break;
+      out.unshift(h);
+    }
+    // must start with a user turn
+    while (out.length && out[0].role !== "user") out.shift();
+    return out;
+  }
+
+  // strictly alternating user/assistant turns, ending on the new user text
+  function buildTurns(history, userText) {
+    var turns = [];
+    trimHistory(history || []).forEach(function (h) {
+      if (h.role !== "user" && h.role !== "assistant") return;   // notices / errors never reach the model
+      var role = h.role;
+      var text = String(h.text || "").trim();
+      if (!text) return;
+      if (turns.length && turns[turns.length - 1].role === role) {
+        turns[turns.length - 1].content += "\n" + text;   // merge doubles instead of breaking alternation
+      } else {
+        turns.push({ role: role, content: text });
+      }
+    });
+    var q = String(userText || "").trim();
+    if (q) {
+      if (turns.length && turns[turns.length - 1].role === "user") turns[turns.length - 1].content += "\n" + q;
+      else turns.push({ role: "user", content: q });
+    }
+    if (turns.length && turns[turns.length - 1].role !== "user") turns.pop();
+    return turns;
+  }
+
+  // artifact `sample` has no system prompt → instructions ride in the first user turn
+  function buildSampleInput(history, userText, opts) {
+    var turns = buildTurns(history, userText);
+    if (!turns.length) return turns;
+    turns[0] = {
+      role: "user",
+      content: systemPrompt(Object.assign({ toolStyle: "page" }, opts)) + "\n\n---\nRobin sagt: " + turns[0].content
+    };
+    return turns;
+  }
+
+  // direct Messages API request (local use with an Anthropic key in Settings)
+  function buildApiRequest(history, userText, opts) {
+    opts = opts || {};
+    var server = Object.assign({}, DROPBOX_MCP);
+    if (opts.dropboxToken) server.authorization_token = opts.dropboxToken;
+    var body = {
+      model: opts.model || MODEL,
+      max_tokens: opts.maxTokens || 700,
+      system: systemPrompt({ toolStyle: "mcp", brainAvailable: true }),
+      messages: opts.messages || buildTurns(history, userText),
+      mcp_servers: [server],
+      tools: [{ type: "mcp_toolset", mcp_server_name: server.name }]
+    };
+    var headers = {
+      "content-type": "application/json",
+      "anthropic-version": "2023-06-01",
+      "anthropic-beta": MCP_BETA,
+      "anthropic-dangerous-direct-browser-access": "true"
+    };
+    if (opts.apiKey) headers["x-api-key"] = opts.apiKey;
+    return { url: opts.url || API_URL, method: "POST", headers: headers, body: body };
+  }
+
+  /* ---------- response parsing ---------- */
+  function extractMcpToolResult(block) {
+    if (!block) return "";
+    var c = block.content;
+    if (typeof c === "string") return c;
+    if (Array.isArray(c)) {
+      return c.map(function (b) {
+        if (!b) return "";
+        if (typeof b === "string") return b;
+        if (b.type === "text") return b.text || "";
+        return "";
+      }).filter(Boolean).join("\n");
+    }
+    if (c && typeof c === "object" && typeof c.text === "string") return c.text;
+    return "";
+  }
+
+  // one Messages API response → what the phone needs. Dispatches on block.type.
+  function parseApiResponse(json) {
+    var out = { text: "", toolUses: [], toolResults: [], searchHits: 0, searches: 0, usedBrain: false,
+      stopReason: (json && json.stop_reason) || null, isError: false, error: null };
+    if (!json || typeof json !== "object") { out.isError = true; out.error = "Leere Antwort"; return out; }
+    if (json.type === "error" || json.error) {
+      out.isError = true;
+      out.error = (json.error && json.error.message) || "API-Fehler";
+      return out;
+    }
+    var texts = [];
+    (json.content || []).forEach(function (b) {
+      if (!b || typeof b !== "object") return;
+      switch (b.type) {
+        case "text":
+          if (b.text) texts.push(b.text);
+          break;
+        case "mcp_tool_use":
+        case "tool_use":
+        case "server_tool_use":
+          out.toolUses.push({ id: b.id, name: b.name, server: b.server_name || null, input: b.input || {} });
+          out.usedBrain = true;
+          break;
+        case "mcp_tool_result":
+        case "tool_result":
+          var txt = extractMcpToolResult(b);
+          var r = { toolUseId: b.tool_use_id, isError: !!b.is_error, text: txt };
+          var use = out.toolUses.filter(function (u) { return u.id === b.tool_use_id; })[0];
+          if (use && /search/i.test(use.name || "")) {
+            out.searches++;
+            r.hits = parseSearchPayload(txt).length;
+            out.searchHits += r.hits;
+          }
+          out.toolResults.push(r);
+          break;
+        default:
+          break; // thinking / unknown blocks are ignored for speech
+      }
+    });
+    out.text = texts.join("\n").trim();
+    return out;
+  }
+
+  /* ---------- Dropbox tool payloads (observed shapes of Dropbox MCP search/fetch) ---------- */
+  function coercePayload(p) {
+    if (p === null || p === undefined) return null;
+    if (typeof p === "string") {
+      var s = p.trim();
+      if (!s) return null;
+      try { return JSON.parse(s); } catch (e) { return { text: s }; }
+    }
+    if (typeof p === "object" && Array.isArray(p.content) && !p.results && !p.text) {
+      return coercePayload(extractMcpToolResult(p));
+    }
+    return p;
+  }
+
+  function parseSearchPayload(payload) {
+    var p = coercePayload(payload);
+    if (!p) return [];
+    var arr = Array.isArray(p) ? p : (Array.isArray(p.results) ? p.results : (Array.isArray(p.matches) ? p.matches : []));
+    return arr.map(function (r) {
+      if (!r || typeof r !== "object") return null;
+      var md = r.metadata && r.metadata.metadata ? r.metadata.metadata : r;   // raw Dropbox API shape fallback
+      var title = r.title || md.name || "";
+      if (!title && (r.path_display || md.path_display)) title = String(r.path_display || md.path_display).split("/").pop();
+      if (!title) return null;
+      return {
+        id: r.id || md.id || r.path || md.path_lower || "",
+        title: title,
+        path: r.path_display || md.path_display || r.path || "",
+        modified: r.last_modified || md.server_modified || md.client_modified || null,
+        match: r.match_type || null
+      };
+    }).filter(function (x) { return x && (x.id || x.path); }).slice(0, MAX_SEARCH_HITS);
+  }
+
+  function parseFetchPayload(payload, maxChars) {
+    maxChars = maxChars || MAX_FILE_CHARS;
+    var p = coercePayload(payload);
+    if (!p) return { title: "", path: "", text: "", truncated: false, empty: true };
+    var text = typeof p.text === "string" ? p.text : (typeof p === "string" ? p : "");
+    var truncated = false;
+    if (text.length > maxChars) { text = text.slice(0, maxChars) + "\n[… gekürzt]"; truncated = true; }
+    return {
+      title: p.title || "",
+      path: (p.metadata && p.metadata.path_display) || p.path_display || "",
+      modified: (p.metadata && p.metadata.server_modified) || null,
+      text: text,
+      truncated: truncated,
+      empty: !text.trim()
+    };
+  }
+
+  /* ---------- SpeakApp (voice notes recorded in the SpeakApp iPhone app, fetched via the connector) ----------
+     The connector answers TOON-encoded text (observed):
+       items[3]{id,title,createdAt,createdAtWeekday,updatedAt,durationSec,sourceType,language,status}:
+         6814c0dc-…,"Periodensimulator: …","2026-09-08T09:17:28.041Z",Tue,"…",14.993,audioTrackTranscript,German,done
+       hasMore: true
+     and for one recording `key: value` lines with renderedText: "…" (JSON-style quoting). */
+  function toolText(payload) {
+    if (payload === null || payload === undefined) return "";
+    if (typeof payload === "string") return payload;
+    if (typeof payload === "object") {
+      if (Array.isArray(payload.content)) return extractMcpToolResult(payload);
+      if (typeof payload.text === "string") return payload.text;
+      if (payload.payload !== undefined) return toolText(payload.payload);
+      try { return JSON.stringify(payload); } catch (e) { return ""; }
+    }
+    return String(payload);
+  }
+  function splitCsvRow(line) {
+    var out = [], cur = "", q = false;
+    for (var i = 0; i < line.length; i++) {
+      var c = line[i];
+      if (q) {
+        if (c === "\\" && i + 1 < line.length) { cur += line[++i]; continue; }
+        if (c === '"') { q = false; continue; }
+        cur += c;
+      } else {
+        if (c === '"') { q = true; continue; }
+        if (c === ",") { out.push(cur); cur = ""; continue; }
+        cur += c;
+      }
+    }
+    out.push(cur);
+    return out.map(function (v) { return v.trim(); });
+  }
+  function toonValue(raw) {
+    var v = String(raw || "").trim();
+    if (v === "null" || v === "") return null;
+    if (v[0] === '"') {
+      try { return JSON.parse(v); } catch (e) {}
+      return v.replace(/^"/, "").replace(/"\s*$/, "").replace(/\\n/g, "\n").replace(/\\"/g, '"').replace(/\\\\/g, "\\");
+    }
+    return v;
+  }
+  function parseSpeakAppList(payload) {
+    var txt = toolText(payload);
+    // JSON fallback (structuredContent)
+    if (/^\s*[\[{]/.test(txt)) {
+      try { var j = JSON.parse(txt); var arr = Array.isArray(j) ? j : (j.items || []); return arr.map(normRec).filter(Boolean); } catch (e) {}
+    }
+    var lines = txt.split(/\r?\n/);
+    var fields = null, items = [];
+    for (var i = 0; i < lines.length; i++) {
+      var ln = lines[i];
+      var m = ln.match(/^\s*items\[\d+\]\{([^}]*)\}\s*:\s*$/);
+      if (m) { fields = m[1].split(",").map(function (f) { return f.trim(); }); continue; }
+      if (!fields) continue;
+      if (/^\s*(hasMore|totalCount)\s*:/.test(ln)) { fields = null; continue; }
+      if (!ln.trim()) continue;
+      var cells = splitCsvRow(ln.trim());
+      var o = {};
+      fields.forEach(function (f, idx) { o[f] = cells[idx] !== undefined ? toonValue(cells[idx]) : null; });
+      var r = normRec(o);
+      if (r) items.push(r);
+    }
+    return items;
+  }
+  function normRec(o) {
+    if (!o || !o.id) return null;
+    return {
+      id: String(o.id), title: o.title || "", createdAt: o.createdAt || null,
+      durationSec: o.durationSec === null || o.durationSec === undefined ? null : Number(o.durationSec),
+      status: o.status || "unknown", language: o.language || null
+    };
+  }
+  function parseSpeakAppRecording(payload) {
+    var txt = toolText(payload);
+    if (/^\s*\{/.test(txt)) { try { var j = JSON.parse(txt); return { id: j.id, status: j.status, createdAt: j.createdAt, title: j.title, text: cleanSpeakAppText(j.renderedText || ""), error: j.errorText || null }; } catch (e) {} }
+    var out = { id: null, status: null, createdAt: null, title: "", text: "", error: null };
+    var lines = txt.split(/\r?\n/);
+    for (var i = 0; i < lines.length; i++) {
+      var m = lines[i].match(/^\s*(\w+)\s*:\s*(.*)$/);
+      if (!m) continue;
+      var k = m[1], v = m[2];
+      if (k === "id") out.id = toonValue(v);
+      else if (k === "status") out.status = toonValue(v);
+      else if (k === "createdAt") out.createdAt = toonValue(v);
+      else if (k === "title") out.title = toonValue(v) || "";
+      else if (k === "errorText") out.error = toonValue(v);
+      else if (k === "renderedText") {
+        var raw = v.trim();
+        if (raw[0] === '"') {
+          // quoted; normally one physical line, but tolerate a value that runs over several lines
+          var parsed = null;
+          try { parsed = JSON.parse(raw); } catch (e) {
+            var buf = raw, j = i;
+            while (j + 1 < lines.length && !/^\s*\w+\s*:/.test(lines[j + 1])) { j++; buf += "\n" + lines[j]; }
+            i = j;
+            parsed = toonValue(buf);
+          }
+          out.text = cleanSpeakAppText(parsed || "");
+        } else out.text = cleanSpeakAppText(toonValue(raw) || "");
+      }
+    }
+    return out;
+  }
+  // "Speaker 1: Kurzfilmidee …" → plain spoken text
+  function cleanSpeakAppText(t) {
+    return String(t || "").replace(/(^|\n)\s*(Speaker|Sprecher)\s*\d*\s*:\s*/gi, "$1").replace(/\s*\n\s*/g, " ").replace(/\s{2,}/g, " ").trim();
+  }
+  // which recording is the new question? newer than the baseline seen when listening started, finished, not consumed
+  function pickNewRecording(items, baseline, consumed) {
+    consumed = consumed || {};
+    var base = baseline && baseline.createdAt ? Date.parse(baseline.createdAt) : 0;
+    var fresh = (items || []).filter(function (r) {
+      if (!r || consumed[r.id]) return false;
+      if (baseline && r.id === baseline.id) return false;
+      var t = r.createdAt ? Date.parse(r.createdAt) : 0;
+      return t > base;
+    });
+    fresh.sort(function (a, b) { return Date.parse(b.createdAt || 0) - Date.parse(a.createdAt || 0); });
+    var done = fresh.filter(function (r) { return r.status === "done"; });
+    return { ready: done[0] || null, pending: fresh.filter(function (r) { return r.status !== "done" && r.status !== "error"; }).length, errored: fresh.filter(function (r) { return r.status === "error"; }).length };
+  }
+
+  /* ---------- speech ---------- */
+  // strip markdown & structure so TTS never reads "Sternchen Sternchen"
+  function toSpeech(text) {
+    var t = String(text || "");
+    t = t.replace(/```[\s\S]*?```/g, " ");
+    t = t.replace(/`([^`]*)`/g, "$1");
+    t = t.replace(/!\[[^\]]*\]\([^)]*\)/g, " ");
+    t = t.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1");
+    t = t.replace(/https?:\/\/\S+/g, " ");
+    t = t.replace(/^\s{0,3}#{1,6}\s+/gm, "");
+    t = t.replace(/^\s*[-*•+]\s+/gm, "");
+    t = t.replace(/^\s*\d+[.)]\s+/gm, "");
+    t = t.replace(/^\s*>\s?/gm, "");
+    t = t.replace(/(\*\*|__)(.*?)\1/g, "$2");
+    t = t.replace(/(\*|_)(\S(?:.*?\S)?)\1/g, "$2");
+    t = t.replace(/[*_#|>~]+/g, " ");
+    t = t.replace(/\s*\n\s*\n\s*/g, ". ");
+    t = t.replace(/\s*\n\s*/g, " ");
+    t = t.replace(/\.\s*\./g, ".");
+    t = t.replace(/[ \t]{2,}/g, " ").trim();
+    return t;
+  }
+
+  // split for speechSynthesis (Chrome cuts utterances > ~15 s)
+  function speechChunks(text, maxLen) {
+    maxLen = maxLen || 180;
+    var clean = toSpeech(text);
+    if (!clean) return [];
+    var sentences = clean.match(/[^.!?]+[.!?]+["»)]?\s*|[^.!?]+$/g) || [clean];
+    var chunks = [], cur = "";
+    sentences.forEach(function (s) {
+      s = s.trim();
+      if (!s) return;
+      if ((cur + " " + s).trim().length > maxLen && cur) { chunks.push(cur.trim()); cur = s; }
+      else cur = (cur + " " + s).trim();
+    });
+    if (cur) chunks.push(cur.trim());
+    return chunks;
+  }
+
+  // acceptance check: is the answer speakable? (used by tests and the live self-check)
+  function speechCheck(text) {
+    var issues = [];
+    var t = String(text || "");
+    if (/(^|\n)\s*([-*•]|\d+[.)])\s+/.test(t)) issues.push("list");
+    if (/\*\*|__|(^|\n)#{1,6}\s/.test(t)) issues.push("markdown");
+    if (/https?:\/\//.test(t)) issues.push("url");
+    var sentences = (toSpeech(t).match(/[^.!?]+[.!?]+/g) || []).length;
+    if (sentences > 6) issues.push("too_long:" + sentences);
+    if (t.length > 900) issues.push("too_many_chars:" + t.length);
+    return { ok: issues.length === 0, issues: issues, sentences: sentences };
+  }
+
+  function normalizeTranscript(t) {
+    var s = String(t || "").replace(/\s+/g, " ").trim();
+    if (!s) return "";
+    s = s.charAt(0).toUpperCase() + s.slice(1);
+    if (!/[.!?]$/.test(s)) s += /^(was|wer|wie|wo|wann|warum|wieso|weshalb|welche|welcher|welches|hat|ist|gibt|kann|soll|weiss|weisst|wott|wottsch|isch|het|wie viel|wieviel)\b/i.test(s) ? "?" : ".";
+    return s;
+  }
+
+  /* ---------- tiers ---------- */
+  // Basis = Web Speech / speechSynthesis (no keys). Pro = Whisper / ElevenLabs (keys in Settings).
+  // canExternalFetch=false inside the Claude artifact sandbox (CSP blocks other hosts) → Pro impossible there.
+  function chooseTier(env) {
+    env = env || {};
+    var stt, tts;
+    if (env.hasSpeakApp && (env.sttMode === "speakapp" || env.hasWebSpeech === false)) {
+      stt = { tier: "speakapp", engine: "speakapp", reason: env.sttMode === "speakapp" ? "SpeakApp gewählt" : "kein Mikrofon-Modus im Browser — SpeakApp-Aufnahmen" };
+    } else if (env.openaiKey && env.canExternalFetch !== false && env.hasMediaRecorder !== false) {
+      stt = { tier: "pro", engine: "whisper-1", reason: "OpenAI-Key gesetzt" };
+    } else if (env.hasWebSpeech !== false) {
+      stt = { tier: "basis", engine: "web-speech", reason: env.openaiKey
+        ? (env.canExternalFetch === false ? "Pro nicht möglich: Artifact-Sandbox blockiert externe Hosts" : "Pro nicht möglich: kein MediaRecorder")
+        : "kein OpenAI-Key" };
+    } else {
+      stt = { tier: "none", engine: "text", reason: "Browser ohne Spracherkennung — tippen" };
+    }
+    if (env.elevenKey && env.canExternalFetch !== false) {
+      tts = { tier: "pro", engine: "elevenlabs", reason: "ElevenLabs-Key gesetzt" };
+    } else if (env.hasSynth !== false) {
+      tts = { tier: "basis", engine: "speech-synthesis", reason: env.elevenKey ? "Pro nicht möglich: Artifact-Sandbox blockiert externe Hosts" : "kein ElevenLabs-Key" };
+    } else {
+      tts = { tier: "none", engine: "text", reason: "Browser ohne Sprachausgabe — nur Text" };
+    }
+    var label = (stt.tier === "pro" || tts.tier === "pro") ? "Pro" : (stt.tier === "none" && tts.tier === "none" ? "Text" : "Basis");
+    if (stt.tier === "speakapp") label = tts.tier === "pro" ? "Pro" : "SpeakApp";
+    return { stt: stt, tts: tts, label: label };
+  }
+  // the microphone is blocked (typical inside the claude.ai iframe on iPhone) → SpeakApp takes over if connected
+  function speakAppTier(env) {
+    env = env || {};
+    if (!env.hasSpeakApp) return null;
+    return { tier: "speakapp", engine: "speakapp", reason: "Mikrofon blockiert — Aufnahmen kommen aus SpeakApp", fellBack: true };
+  }
+
+  // a Pro engine failed at runtime (network, 401, CSP) → next lower tier, never a dead end
+  function fallbackTier(current, kind, env) {
+    env = env || {};
+    var next;
+    if (kind === "stt") {
+      next = current.tier === "pro"
+        ? (env.hasWebSpeech !== false ? { tier: "basis", engine: "web-speech" } : { tier: "none", engine: "text" })
+        : { tier: "none", engine: "text" };
+    } else {
+      next = current.tier === "pro"
+        ? (env.hasSynth !== false ? { tier: "basis", engine: "speech-synthesis" } : { tier: "none", engine: "text" })
+        : { tier: "none", engine: "text" };
+    }
+    next.reason = "Fallback nach Fehler in " + current.engine;
+    next.fellBack = true;
+    return next;
+  }
+
+  /* ---------- transport choice ---------- */
+  // artifact = claude.use("sample") (+ mcp Dropbox) — no key; direct = Anthropic key in Settings (local file)
+  function chooseTransport(env) {
+    env = env || {};
+    if (env.hasSample) return { kind: "artifact", brain: env.hasMcp ? "dropbox-connector" : "none", label: env.hasMcp ? "Claude-Artifact · Brain via Dropbox" : "Claude-Artifact · ohne Brain" };
+    if (env.anthropicKey) return { kind: "direct", brain: "dropbox-mcp", label: "Direkte API · Dropbox-MCP" };
+    return { kind: "none", brain: "none", label: "kein Zugang" };
+  }
+
+  /* ---------- errors → spoken + visible German messages ---------- */
+  var MESSAGES = {
+    mic_denied: {
+      spoken: "Ich kann dich nicht hören, das Mikrofon ist blockiert. Erlaube den Zugriff in den Browser-Einstellungen oder tippe deine Frage unten ein.",
+      visible: "Mikrofon blockiert. Zugriff im Browser erlauben (Schloss-Symbol in der Adresszeile; im Artifact ggf. die ZENTRALE in einem eigenen Tab öffnen) — oder Frage unten eintippen."
+    },
+    mic_unavailable: {
+      spoken: "Dieser Browser hat keine Spracherkennung. Tippe deine Frage unten ein, ich antworte trotzdem.",
+      visible: "Keine Spracherkennung in diesem Browser — Frage unten eintippen (Safari oder Chrome nutzen)."
+    },
+    offline: {
+      spoken: "Die Verbindung ist weg. Sobald du wieder Netz hast, frag einfach nochmal.",
+      visible: "Keine Internetverbindung. Frage wird nicht gesendet — bei Netz erneut versuchen."
+    },
+    api_error: {
+      spoken: "Das Brain antwortet gerade nicht, da ist ein Fehler passiert. Versuch es gleich nochmal.",
+      visible: "Brain-Anfrage fehlgeschlagen."
+    },
+    rate_limited: {
+      spoken: "Das Brain ist gerade überlastet. Warte einen Moment und frag dann nochmal.",
+      visible: "Zu viele Anfragen — kurz warten und erneut versuchen."
+    },
+    not_granted: {
+      spoken: "Du musst der ZENTRALE erst erlauben, Claude und Dropbox zu nutzen. Bestätige die Anfrage im Fenster und ruf nochmal an.",
+      visible: "Zugriff nicht erteilt. Die Freigabe für Claude / Dropbox im Artifact bestätigen, dann erneut anrufen."
+    },
+    empty_brain: {
+      spoken: "Dazu finde ich im Brain nichts. Formulier es anders, oder sag mir, ob ich es mir merken soll.",
+      visible: "Brain-Suche ohne Treffer."
+    },
+    brain_unreachable: {
+      spoken: "Ich komme gerade nicht an das Brain in der Dropbox. Ich antworte ohne Brain, aber nur aus allgemeinem Wissen.",
+      visible: "Dropbox-Connector nicht verbunden — Antworten ohne Brain-Zugriff."
+    },
+    no_transport: {
+      spoken: "Ich habe keinen Zugang zum Brain. Öffne die ZENTRALE als Claude-Artifact, oder hinterlege einen Anthropic-Key in den Settings.",
+      visible: "Kein Brain-Zugang: App als Claude-Artifact öffnen (claude.ai) oder Anthropic-API-Key unter Data & Settings eintragen."
+    },
+    cancelled: {
+      spoken: "",
+      visible: "Abgebrochen."
+    },
+    speakapp_switch: {
+      spoken: "Das Mikrofon ist hier blockiert, ich höre jetzt über SpeakApp. Nimm deine Frage dort auf, ich hole sie automatisch.",
+      visible: "Mikrofon im Artifact blockiert — Umschaltung auf SpeakApp: Frage in SpeakApp aufnehmen, hierher zurückkommen, die Aufnahme wird automatisch geholt."
+    },
+    speakapp_error: {
+      spoken: "Ich komme gerade nicht an SpeakApp ran. Tippe deine Frage unten ein oder versuch es gleich nochmal.",
+      visible: "SpeakApp-Connector nicht erreichbar (Freigabe im Artifact prüfen) — Frage unten eintippen."
+    },
+    speakapp_transcribe_error: {
+      spoken: "SpeakApp konnte die Aufnahme nicht transkribieren. Nimm sie bitte nochmal auf.",
+      visible: "SpeakApp meldet einen Transkriptionsfehler — Aufnahme wiederholen."
+    },
+    empty_answer: {
+      spoken: "Das Brain hat keine Antwort geliefert. Frag nochmal, vielleicht etwas anders.",
+      visible: "Leere Antwort vom Brain."
+    }
+  };
+
+  function messageFor(kind) {
+    return MESSAGES[kind] || MESSAGES.api_error;
+  }
+
+  function classifyError(err, ctx) {
+    ctx = ctx || {};
+    if (ctx.online === false) return "offline";
+    if (!err) return "api_error";
+    var code = err.code || err.name || "";
+    var msg = String(err.message || err.error || err || "").toLowerCase();
+    if (code === "not-allowed" || code === "service-not-allowed" || code === "NotAllowedError" || code === "PermissionDeniedError" || /permission denied|not allowed|mikrofon/.test(msg)) return "mic_denied";
+    if (code === "audio-capture" || code === "NotFoundError" || /no microphone|requested device not found/.test(msg)) return "mic_unavailable";
+    if (code === "cancelled" || code === "AbortError" || code === "aborted") return "cancelled";
+    if (code === "rate_limited" || /429|rate limit|overloaded|529/.test(msg)) return "rate_limited";
+    if (code === "not_in_manifest" || code === "server_not_found") return "speakapp_error";
+    if (code === "not_granted" || code === "not_declared" || code === "needs_reauth" || code === "server_not_connected" || code === "sampling_disabled") return "not_granted";
+    if (code === "network" || code === "TypeError" && /fetch|network|load failed/.test(msg) || /networkerror|failed to fetch|network request failed|load failed|err_internet_disconnected/.test(msg)) return "offline";
+    if (code === "empty_completion") return "empty_answer";
+    return "api_error";
+  }
+
+  /* ---------- turn bookkeeping ---------- */
+  function turnMeta(started, ended, hits, tier, transport) {
+    return {
+      ms: Math.max(0, (ended || 0) - (started || 0)),
+      hits: hits || 0,
+      tier: tier || "Basis",
+      transport: transport || "artifact"
+    };
+  }
+  function fmtMeta(meta) {
+    var parts = [];
+    if (meta.hits) parts.push(meta.hits + (meta.hits === 1 ? " Brain-Datei" : " Brain-Dateien"));
+    else parts.push("0 Brain-Treffer");
+    if (meta.ms) parts.push((meta.ms / 1000).toFixed(1) + " s");
+    if (meta.tier) parts.push(meta.tier);
+    return parts.join(" · ");
+  }
+
+  return {
+    BRAIN_PATH: BRAIN_PATH, MODEL: MODEL, API_URL: API_URL, MCP_BETA: MCP_BETA, DROPBOX_MCP: DROPBOX_MCP,
+    MAX_FILE_CHARS: MAX_FILE_CHARS, MAX_SEARCH_HITS: MAX_SEARCH_HITS,
+    systemPrompt: systemPrompt,
+    trimHistory: trimHistory, buildTurns: buildTurns, buildSampleInput: buildSampleInput, buildApiRequest: buildApiRequest,
+    parseApiResponse: parseApiResponse, extractMcpToolResult: extractMcpToolResult,
+    parseSearchPayload: parseSearchPayload, parseFetchPayload: parseFetchPayload,
+    toSpeech: toSpeech, speechChunks: speechChunks, speechCheck: speechCheck, normalizeTranscript: normalizeTranscript,
+    chooseTier: chooseTier, fallbackTier: fallbackTier, speakAppTier: speakAppTier, chooseTransport: chooseTransport,
+    parseSpeakAppList: parseSpeakAppList, parseSpeakAppRecording: parseSpeakAppRecording, cleanSpeakAppText: cleanSpeakAppText,
+    pickNewRecording: pickNewRecording, splitCsvRow: splitCsvRow,
+    classifyError: classifyError, messageFor: messageFor, MESSAGES: MESSAGES,
+    turnMeta: turnMeta, fmtMeta: fmtMeta
+  };
+});
+
+</script>
+<script>
+/* ============ brain-telefon.js — Brain-Telefon: a voice call with the CLAUDE BRAIN ============
+   Flow: tap → mic → transcript → Claude (with Dropbox brain search) → spoken answer → keep talking.
+   Transport: inside the Claude artifact via claude.use("sample") + claude.use("mcp") (no keys);
+   locally via the Messages API with an Anthropic key from Settings (Dropbox MCP connector).
+   STT/TTS tiers: Basis = Web Speech / speechSynthesis; Pro = Whisper / ElevenLabs (keys in Settings). */
+"use strict";
+
+/* ---------- keys live OUTSIDE the Store: never exported, never in JSON snapshots ---------- */
+var PhoneKeys = (function () {
+  var KEY = "zentrale-brain-phone-keys-v1";
+  var FIELDS = ["openai", "eleven", "elevenVoice", "anthropic", "dropboxToken"];
+  function get() {
+    var raw = null;
+    try { raw = localStorage.getItem(KEY); } catch (e) {}
+    var o = {};
+    try { o = raw ? JSON.parse(raw) : {}; } catch (e) { o = {}; }
+    var out = {};
+    FIELDS.forEach(function (f) { out[f] = (o && typeof o[f] === "string") ? o[f].trim() : ""; });
+    return out;
+  }
+  function set(patch) {
+    var cur = get();
+    FIELDS.forEach(function (f) { if (patch && typeof patch[f] === "string") cur[f] = patch[f].trim(); });
+    try { localStorage.setItem(KEY, JSON.stringify(cur)); } catch (e) {}
+    return cur;
+  }
+  function clear() { try { localStorage.removeItem(KEY); } catch (e) {} }
+  return { get: get, set: set, clear: clear, FIELDS: FIELDS, STORAGE_KEY: KEY };
+})();
+
+var BrainPhoneView = (function () {
+  var Core = window.BrainPhoneCore;
+  var DEFAULT_VOICE = "21m00Tcm4TlvDq8ikWAM"; // ElevenLabs "Rachel" (multilingual) — overridable in Settings
+
+  /* ---------- runtime detection (injected in tests via window.claude / globals) ---------- */
+  var rt = { resolved: false, sample: null, mcp: null, sampleTools: false, speakApp: false };
+  var STT_MODE_KEY = "zentrale-phone-stt-mode";   // "auto" | "speakapp" | "mic"
+  function sttMode() { try { return localStorage.getItem(STT_MODE_KEY) || "auto"; } catch (e) { return "auto"; } }
+  function setSttMode(m) { try { localStorage.setItem(STT_MODE_KEY, m); } catch (e) {} }
+
+  function isArtifactHost() {
+    return !!(window.claude && typeof window.claude.use === "function");
+  }
+  // inside the artifact sandbox, fetch to other hosts is blocked by CSP → Pro tiers impossible there
+  function canExternalFetch() {
+    if (window.__phoneForceExternalFetch !== undefined) return !!window.__phoneForceExternalFetch;
+    return !isArtifactHost();
+  }
+  function hasWebSpeech() { return !!(window.SpeechRecognition || window.webkitSpeechRecognition); }
+  function hasSynth() { return !!(window.speechSynthesis && window.SpeechSynthesisUtterance); }
+  function hasMediaRecorder() { return !!(window.MediaRecorder && navigator.mediaDevices && navigator.mediaDevices.getUserMedia); }
+
+  function resolveRuntime() {
+    if (rt.promise) return rt.promise;
+    rt.promise = (function () {
+      if (!isArtifactHost()) { rt.resolved = true; return Promise.resolve(rt); }
+      return Promise.all([
+        window.claude.use("sample").catch(function () { return null; }),
+        window.claude.use("mcp").catch(function () { return null; })
+      ]).then(function (r) {
+        rt.sample = r[0]; rt.mcp = r[1]; rt.resolved = true;
+        var servers = rt.mcp && typeof rt.mcp.listTools === "function"
+          ? rt.mcp.listTools().then(function (lt) {
+              var list = (lt && lt.servers) || [];
+              rt.speakApp = list.some(function (sv) { return /speak\s*app/i.test(sv.server || "") && sv.authStatus !== "needs_reauth"; });
+              rt.dropbox = list.some(function (sv) { return /dropbox/i.test(sv.server || ""); });
+            }).catch(function () { rt.speakApp = false; })
+          : Promise.resolve();
+        return servers.then(function () {
+        if (rt.sample && typeof rt.sample.limits === "function") {
+          return rt.sample.limits().then(function (lim) { rt.sampleTools = !!(lim && lim.tools); return rt; })
+            .catch(function () { rt.sampleTools = true; return rt; });
+        }
+        rt.sampleTools = !!rt.sample;
+        return rt;
+        });
+      });
+    })();
+    return rt.promise;
+  }
+
+  function env() {
+    var k = PhoneKeys.get();
+    return {
+      openaiKey: k.openai, elevenKey: k.eleven, anthropicKey: k.anthropic,
+      canExternalFetch: canExternalFetch(), hasWebSpeech: hasWebSpeech(), hasSynth: hasSynth(),
+      hasMediaRecorder: hasMediaRecorder(), hasSample: !!rt.sample, hasMcp: !!rt.mcp, online: navigator.onLine !== false,
+      hasSpeakApp: !!rt.speakApp, sttMode: sttMode()
+    };
+  }
+
+  /* ---------- call state ---------- */
+  var call = null;      // {phase, history:[{role,text,meta}], tier, transport, startedAt, abort, hits, status}
+  var ui = {};          // cached DOM refs for the active render
+  var listeners = [];   // test/debug hooks
+
+  function emit(ev, data) { listeners.forEach(function (fn) { try { fn(ev, data); } catch (e) {} }); }
+
+  function newCall() {
+    var e = env();
+    return {
+      phase: "idle", history: [], hits: 0, status: "",
+      tier: Core.chooseTier(e), transport: Core.chooseTransport(e),
+      startedAt: Date.now(), turnStart: 0, abort: null, rec: null, recStop: null, timer: null,
+      noSpeechCount: 0, active: false, interim: ""
+    };
+  }
+
+  function setPhase(phase, status) {
+    if (!call) return;
+    call.phase = phase;
+    call.status = status || "";
+    paintState();
+    emit("phase", { phase: phase, status: call.status });
+  }
+
+  /* ---------- transcript ---------- */
+  function pushTurn(role, text, meta) {
+    var t = { role: role, text: text, meta: meta || null, at: Date.now() };
+    call.history.push(t);
+    paintTranscript();
+    emit("turn", t);
+    return t;
+  }
+  function pushNotice(text, kind) {
+    var t = { role: "notice", text: text, kind: kind || "info", at: Date.now() };
+    call.history.push(t);
+    paintTranscript();
+    emit("notice", t);
+    return t;
+  }
+
+  /* ---------- STT: Basis (Web Speech) ---------- */
+  function listenWebSpeech(onResult, onError) {
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    var rec = new SR();
+    rec.lang = call.sttLang || "de-CH";
+    rec.interimResults = true;
+    rec.continuous = false;
+    rec.maxAlternatives = 1;
+    var finalText = "", done = false;
+    rec.onresult = function (ev) {
+      var interim = "";
+      for (var i = ev.resultIndex; i < ev.results.length; i++) {
+        var r = ev.results[i];
+        if (r.isFinal) finalText += r[0].transcript; else interim += r[0].transcript;
+      }
+      call.interim = finalText || interim;
+      paintInterim();
+    };
+    rec.onerror = function (ev) {
+      if (done) return;
+      done = true;
+      var code = ev && ev.error;
+      if (code === "language-not-supported" && rec.lang !== "de-DE") {
+        call.sttLang = "de-DE";
+        pushNotice("Schweizerdeutsch (de-CH) nicht verfügbar — Erkennung läuft auf de-DE.", "info");
+        return onError({ code: "retry" });
+      }
+      if (code === "no-speech" || code === "aborted") return onError({ code: code });
+      onError({ code: code || "unknown", message: "SpeechRecognition " + code });
+    };
+    rec.onend = function () {
+      if (done) return;
+      done = true;
+      var t = (finalText || call.interim || "").trim();
+      call.interim = "";
+      if (t) onResult(t); else onError({ code: "no-speech" });
+    };
+    try { rec.start(); } catch (e) { done = true; return onError({ code: "NotAllowedError", message: e.message }); }
+    call.rec = rec;
+    call.recStop = function () { done = true; try { rec.abort(); } catch (e) {} };
+  }
+
+  /* ---------- STT: Pro (Whisper via MediaRecorder + silence detection) ---------- */
+  function listenWhisper(onResult, onError) {
+    var keys = PhoneKeys.get();
+    var stream, recorder, ctx, chunks = [], stopped = false, spoke = false, silenceSince = 0, raf = 0, hardStop;
+    function cleanup() {
+      cancelAnimationFrame(raf);
+      clearTimeout(hardStop);
+      try { if (ctx) ctx.close(); } catch (e) {}
+      try { if (stream) stream.getTracks().forEach(function (t) { t.stop(); }); } catch (e) {}
+    }
+    function finish() {
+      if (stopped) return;
+      stopped = true;
+      try { if (recorder && recorder.state !== "inactive") recorder.stop(); else onError({ code: "no-speech" }); } catch (e) { onError({ code: "no-speech" }); }
+    }
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(function (s) {
+      stream = s;
+      var mime = ["audio/webm;codecs=opus", "audio/webm", "audio/mp4", "audio/ogg"].filter(function (m) {
+        return window.MediaRecorder.isTypeSupported && window.MediaRecorder.isTypeSupported(m);
+      })[0];
+      recorder = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream);
+      recorder.ondataavailable = function (e) { if (e.data && e.data.size) chunks.push(e.data); };
+      recorder.onstop = function () {
+        cleanup();
+        var blob = new Blob(chunks, { type: recorder.mimeType || "audio/webm" });
+        if (!spoke || blob.size < 2000) return onError({ code: "no-speech" });
+        setPhase("thinking", "Whisper transkribiert…");
+        var fd = new FormData();
+        fd.append("file", blob, "frage." + ((recorder.mimeType || "audio/webm").indexOf("mp4") >= 0 ? "mp4" : "webm"));
+        fd.append("model", "whisper-1");
+        fd.append("language", "de");
+        fd.append("prompt", "Schweizerdeutsch. Robin, Lohro, Kollektiv Oskar, ZENTRALE, Brain, ZHAW, Säntis, Simon, Jasmin, Oscar.");
+        fetch("https://api.openai.com/v1/audio/transcriptions", { method: "POST", headers: { Authorization: "Bearer " + keys.openai }, body: fd })
+          .then(function (r) { if (!r.ok) throw new Error("Whisper HTTP " + r.status); return r.json(); })
+          .then(function (j) { var t = (j && j.text || "").trim(); if (t) onResult(t); else onError({ code: "no-speech" }); })
+          .catch(function (e) { onError({ code: "pro-failed", message: e.message }); });
+      };
+      // silence detection
+      try {
+        ctx = new (window.AudioContext || window.webkitAudioContext)();
+        var src = ctx.createMediaStreamSource(stream), an = ctx.createAnalyser();
+        an.fftSize = 512; src.connect(an);
+        var buf = new Uint8Array(an.fftSize);
+        (function tick() {
+          if (stopped) return;
+          an.getByteTimeDomainData(buf);
+          var sum = 0;
+          for (var i = 0; i < buf.length; i++) { var v = (buf[i] - 128) / 128; sum += v * v; }
+          var rms = Math.sqrt(sum / buf.length);
+          call.level = rms; paintLevel();
+          var now = Date.now();
+          if (rms > 0.035) { spoke = true; silenceSince = 0; }
+          else if (spoke) { if (!silenceSince) silenceSince = now; else if (now - silenceSince > 1400) return finish(); }
+          raf = requestAnimationFrame(tick);
+        })();
+      } catch (e) { /* no analyser → rely on the hard stop / tap */ }
+      hardStop = setTimeout(finish, 30000);
+      recorder.start(250);
+    }).catch(function (e) { cleanup(); onError({ code: e && e.name || "NotAllowedError", message: e && e.message }); });
+    call.recStop = function () { if (!stopped) { stopped = true; cleanup(); try { recorder && recorder.state !== "inactive" && recorder.stop(); } catch (er) {} } };
+    call.recSend = finish;   // "Fertig" button: send now
+  }
+
+  /* ---------- STT: SpeakApp (recording made in the SpeakApp iPhone app, transcript fetched via the connector) ---------- */
+  var SPEAKAPP_POLL_MS = 4000;
+  function speakAppList(signal) {
+    return rt.mcp.callTool("SpeakApp", "list_recordings", { pageSize: 5, rationale: "Brain-Telefon: neue Sprachaufnahme von Robin als Frage holen." }, { signal: signal, cache: false })
+      .then(function (res) { return Core.parseSpeakAppList(res && (res.payload !== undefined ? res.payload : res)); });
+  }
+  function speakAppGet(id, signal) {
+    return rt.mcp.callTool("SpeakApp", "get_recording", { id: id, rationale: "Brain-Telefon: Transkript der neuen Aufnahme als gesprochene Frage lesen." }, { signal: signal, cache: false })
+      .then(function (res) { return Core.parseSpeakAppRecording(res && (res.payload !== undefined ? res.payload : res)); });
+  }
+  function listenSpeakApp(onResult, onError) {
+    var stopped = false, timer = null, ctl = new AbortController(), polls = 0;
+    call.consumedRecordings = call.consumedRecordings || {};
+    function stop() { stopped = true; clearTimeout(timer); try { ctl.abort(); } catch (e) {} document.removeEventListener("visibilitychange", onVis); }
+    function onVis() { if (!stopped && document.visibilityState === "visible") { clearTimeout(timer); poll(); } }
+    function schedule(ms) { if (stopped) return; clearTimeout(timer); timer = setTimeout(poll, ms); }
+    function useRecording(rec) {
+      stop();
+      setPhase("thinking", "Hole Aufnahme aus SpeakApp…");
+      speakAppGet(rec.id).then(function (r) {
+        if (!call || !call.active) return;
+        call.consumedRecordings[rec.id] = true;
+        call.speakAppBaseline = rec;
+        if (r.status === "error") return onError({ code: "speakapp_transcribe_error", message: r.error || "" });
+        if (!r.text) return onError({ code: "no-speech" });
+        emit("speakapp-recording", { id: rec.id, title: rec.title, text: r.text });
+        onResult(r.text);
+      }).catch(function (e) { if (!stopped || !call) onError({ code: e && e.code || "speakapp_error", message: e && e.message }); });
+    }
+    function poll() {
+      if (stopped || !call || !call.active) return;
+      polls++;
+      speakAppList(ctl.signal).then(function (items) {
+        if (stopped) return;
+        if (!call.speakAppBaseline) {
+          // first look: everything that exists now is old — only a NEW recording counts as the question
+          call.speakAppBaseline = items[0] || { id: null, createdAt: "1970-01-01T00:00:00Z" };
+          setPhase("listening", "SpeakApp: nimm deine Frage jetzt auf — ich hole sie automatisch.");
+          return schedule(SPEAKAPP_POLL_MS);
+        }
+        var pick = Core.pickNewRecording(items, call.speakAppBaseline, call.consumedRecordings);
+        if (pick.ready) return useRecording(pick.ready);
+        if (pick.errored) return onError({ code: "speakapp_transcribe_error" });
+        setPhase("listening", pick.pending ? "SpeakApp transkribiert deine Aufnahme…" : "SpeakApp: nimm deine Frage jetzt auf — ich hole sie automatisch.");
+        schedule(pick.pending ? 2500 : SPEAKAPP_POLL_MS);
+      }).catch(function (e) {
+        if (stopped) return;
+        if (e && (e.code === "cancelled" || e.name === "AbortError")) return;
+        if (polls <= 1) return onError({ code: e && e.code || "speakapp_error", message: e && e.message });
+        setPhase("listening", "SpeakApp gerade nicht erreichbar — versuche es weiter…");
+        schedule(SPEAKAPP_POLL_MS * 2);
+      });
+    }
+    document.addEventListener("visibilitychange", onVis);
+    call.recStop = stop;
+    // "Holen" button: take the newest finished recording even if it predates the call
+    call.recSend = function () {
+      clearTimeout(timer);
+      speakAppList(ctl.signal).then(function (items) {
+        if (stopped) return;
+        var done = items.filter(function (r) { return r.status === "done" && !call.consumedRecordings[r.id]; })[0];
+        if (done) useRecording(done); else { pushNotice("Keine neue SpeakApp-Aufnahme gefunden.", "info"); schedule(SPEAKAPP_POLL_MS); }
+      }).catch(function (e) { if (!stopped) onError({ code: e && e.code || "speakapp_error", message: e && e.message }); });
+    };
+    setPhase("listening", "Verbinde mit SpeakApp…");
+    poll();
+  }
+
+  function startListening() {
+    if (!call || !call.active) return;
+    call.interim = "";
+    setPhase("listening", call.tier.stt.tier === "pro" ? "Ich höre zu (Whisper)…" : "Ich höre zu…");
+    var onResult = function (text) {
+      if (!call || !call.active) return;
+      call.noSpeechCount = 0;
+      handleUserText(text);
+    };
+    var onError = function (err) {
+      if (!call || !call.active) return;
+      var code = err && err.code;
+      if (code === "retry") return startListening();
+      if (code === "no-speech" || code === "aborted") {
+        call.noSpeechCount++;
+        if (call.noSpeechCount >= 3) { setPhase("idle-in-call", "Nichts gehört. Tipp auf Sprechen oder tippe unten."); return; }
+        return startListening();
+      }
+      if (code === "speakapp_error" || code === "speakapp_transcribe_error") {
+        var mm = Core.messageFor(code);
+        pushNotice(mm.visible + (err.message ? " (" + String(err.message).slice(0, 80) + ")" : ""), "error");
+        emit("error", { kind: code, message: mm.visible });
+        setPhase("error", mm.visible);
+        speak(mm.spoken).then(function () {
+          if (!call || !call.active) return;
+          if (code === "speakapp_transcribe_error") startListening(); else setPhase("idle-in-call", "Frage unten eintippen — oder Aufnahme nochmal holen.");
+        });
+        return;
+      }
+      if (code === "pro-failed") {
+        call.tier.stt = Core.fallbackTier(call.tier.stt, "stt", env());
+        pushNotice("Whisper nicht erreichbar — Spracherkennung läuft jetzt auf Basis (Web Speech).", "warn");
+        paintState();
+        return startListening();
+      }
+      var kind = Core.classifyError(err, { online: navigator.onLine !== false });
+      if ((kind === "mic_denied" || kind === "mic_unavailable") && call.tier.stt.tier !== "speakapp" && rt.speakApp) {
+        // iPhone inside the claude.ai iframe: no microphone — SpeakApp becomes the ear
+        call.tier.stt = Core.speakAppTier(env());
+        call.tier.label = call.tier.tts.tier === "pro" ? "Pro" : "SpeakApp";
+        paintState();
+        var m = Core.messageFor("speakapp_switch");
+        pushNotice(m.visible, "warn");
+        emit("speakapp-switch", {});
+        speak(m.spoken).then(function () { if (call && call.active) startListening(); });
+        return;
+      }
+      failSpoken(kind, err);
+    };
+    if (call.tier.stt.tier === "speakapp") return listenSpeakApp(onResult, onError);
+    if (call.tier.stt.tier === "pro") return listenWhisper(onResult, onError);
+    if (call.tier.stt.tier === "basis") return listenWebSpeech(onResult, onError);
+    setPhase("idle-in-call", "Kein Mikrofon-Modus — Frage unten eintippen.");
+    if (!call.noMicNoticeShown) { call.noMicNoticeShown = true; failSpoken("mic_unavailable"); }
+  }
+
+  function stopListening() {
+    if (call && call.recStop) { try { call.recStop(); } catch (e) {} }
+    if (call) { call.rec = null; call.recStop = null; call.recSend = null; }
+  }
+
+  /* ---------- TTS ---------- */
+  var speaking = { audio: null, cancel: null };
+
+  function stopSpeaking() {
+    if (speaking.cancel) { try { speaking.cancel(); } catch (e) {} }
+    speaking.cancel = null; speaking.audio = null;
+    if (hasSynth()) { try { window.speechSynthesis.cancel(); } catch (e) {} }
+  }
+
+  function pickVoice() {
+    if (!hasSynth()) return null;
+    var voices = window.speechSynthesis.getVoices ? window.speechSynthesis.getVoices() : [];
+    var byLang = function (l) { return voices.filter(function (v) { return (v.lang || "").replace("_", "-").toLowerCase().indexOf(l) === 0; }); };
+    var pref = byLang("de-ch").concat(byLang("de-de"), byLang("de"));
+    var premium = pref.filter(function (v) { return /premium|enhanced|natural|siri|google/i.test(v.name); });
+    return premium[0] || pref[0] || null;
+  }
+
+  function speakSynth(text) {
+    return new Promise(function (resolve) {
+      if (!hasSynth()) return resolve(false);
+      var chunks = Core.speechChunks(text);
+      if (!chunks.length) return resolve(false);
+      var synth = window.speechSynthesis;
+      try { synth.cancel(); } catch (e) {}
+      var voice = pickVoice(), i = 0, cancelled = false;
+      speaking.cancel = function () { cancelled = true; try { synth.cancel(); } catch (e) {} resolve(false); };
+      (function next() {
+        if (cancelled) return;
+        if (i >= chunks.length) { speaking.cancel = null; return resolve(true); }
+        var u = new SpeechSynthesisUtterance(chunks[i++]);
+        u.lang = (voice && voice.lang) || "de-CH";
+        if (voice) u.voice = voice;
+        u.rate = 1.02; u.pitch = 1;
+        u.onend = next;
+        u.onerror = function () { next(); };
+        try { synth.speak(u); } catch (e) { console.warn("[Brain-Telefon] speechSynthesis failed:", e); speaking.cancel = null; resolve(false); }
+      })();
+    });
+  }
+
+  function speakEleven(text) {
+    var keys = PhoneKeys.get();
+    var voice = keys.elevenVoice || DEFAULT_VOICE;
+    var ctl = new AbortController();
+    speaking.cancel = function () { ctl.abort(); if (speaking.audio) { try { speaking.audio.pause(); } catch (e) {} } };
+    return fetch("https://api.elevenlabs.io/v1/text-to-speech/" + encodeURIComponent(voice) + "?output_format=mp3_44100_128", {
+      method: "POST", signal: ctl.signal,
+      headers: { "xi-api-key": keys.eleven, "content-type": "application/json", accept: "audio/mpeg" },
+      body: JSON.stringify({ text: Core.toSpeech(text), model_id: "eleven_multilingual_v2", voice_settings: { stability: 0.45, similarity_boost: 0.8 } })
+    }).then(function (r) {
+      if (!r.ok) throw new Error("ElevenLabs HTTP " + r.status);
+      return r.blob();
+    }).then(function (blob) {
+      return new Promise(function (resolve, reject) {
+        var a = new Audio(URL.createObjectURL(blob));
+        speaking.audio = a;
+        a.onended = function () { resolve(true); };
+        a.onerror = function () { reject(new Error("Audio playback failed")); };
+        a.play().catch(reject);
+      });
+    });
+  }
+
+  // never rejects: a broken voice must not break the conversation
+  function speak(text) {
+    if (!call) return Promise.resolve(false);
+    stopSpeaking();
+    var tier = call.tier.tts.tier;
+    var p;
+    if (tier === "none") p = Promise.resolve(false);
+    else if (tier === "pro") {
+      p = speakEleven(text).catch(function (e) {
+        if (e && e.name === "AbortError") return false;
+        call.tier.tts = Core.fallbackTier(call.tier.tts, "tts", env());
+        pushNotice("ElevenLabs nicht erreichbar — Stimme läuft jetzt auf Basis (System-Stimme).", "warn");
+        paintState();
+        return speakSynth(text);
+      });
+    } else p = speakSynth(text);
+    return p.catch(function (e) { console.warn("[Brain-Telefon] speak failed:", e); return false; });
+  }
+
+  /* ---------- the brain call (transport) ---------- */
+  function brainTools(signal) {
+    var mcp = rt.mcp;
+    if (!mcp) return [];
+    return [
+      {
+        name: "brain_search",
+        description: "Volltextsuche im CLAUDE BRAIN (Dropbox-Ordner " + Core.BRAIN_PATH + "). Liefert bis zu " + Core.MAX_SEARCH_HITS + " Treffer mit id, title, path, modified. Danach mit brain_read die relevanten lesen.",
+        inputSchema: { type: "object", properties: { query: { type: "string", description: "Suchbegriffe, kurz (Thema, Kunde, Projekt, Person)" } }, required: ["query"] },
+        execute: function (input, ctx) {
+          if (!call || !call.active) throw new Error("Anruf beendet");
+          var q = String(input && input.query || "").trim();
+          if (!q) return { results: [], note: "leere Suche" };
+          setPhase("thinking", "Brain durchsuchen: „" + q + "“");
+          return mcp.callTool("Dropbox", "search", { query: q, path: Core.BRAIN_PATH, max_results: Core.MAX_SEARCH_HITS }, { signal: ctx && ctx.signal || signal, cache: false })
+            .then(function (res) {
+              var hits = Core.parseSearchPayload(res && (res.payload !== undefined ? res.payload : res));
+              call.searches = (call.searches || 0) + 1;
+              call.turnSearches = (call.turnSearches || 0) + 1;
+              call.hits += hits.length;
+              emit("brain-search", { query: q, hits: hits.length });
+              return hits.length ? { results: hits } : { results: [], note: "Keine Treffer im Brain für „" + q + "“. Anders formulieren oder zugeben, dass nichts drinsteht." };
+            });
+        }
+      },
+      {
+        name: "brain_read",
+        description: "Liest den Text einer Brain-Datei. id = die id aus brain_search (z.B. id:AbC…) oder ein Dropbox-Pfad. Max. " + Core.MAX_FILE_CHARS + " Zeichen.",
+        inputSchema: { type: "object", properties: { id: { type: "string" } }, required: ["id"] },
+        execute: function (input, ctx) {
+          if (!call || !call.active) throw new Error("Anruf beendet");
+          var id = String(input && input.id || "").trim();
+          if (!id) throw new Error("id fehlt");
+          setPhase("thinking", "Lese Brain-Datei…");
+          return mcp.callTool("Dropbox", "fetch", { id: id }, { signal: ctx && ctx.signal || signal, cache: false })
+            .then(function (res) {
+              var f = Core.parseFetchPayload(res && (res.payload !== undefined ? res.payload : res));
+              call.reads = (call.reads || 0) + 1;
+              if (f.title) setPhase("thinking", "Gelesen: " + f.title);
+              emit("brain-read", { id: id, title: f.title });
+              return f.empty ? { note: "Datei leer oder nicht lesbar." } : { title: f.title, path: f.path, modified: f.modified, text: f.text };
+            });
+        }
+      }
+    ];
+  }
+
+  function askArtifact(history, text, signal) {
+    var tools = rt.sampleTools ? brainTools(signal) : [];
+    var input = Core.buildSampleInput(history, text, { brainAvailable: tools.length > 0 });
+    var opts = { modelTier: "default", signal: signal, onText: function (u) { if (u && u.text) { call.partial = u.text; paintPartial(); } } };
+    if (tools.length) opts.tools = tools;
+    return rt.sample(input, opts).then(function (res) {
+      return { text: (res && res.text || "").trim(), brain: tools.length > 0 };
+    });
+  }
+
+  function askDirect(history, text, signal) {
+    var keys = PhoneKeys.get();
+    var messages = Core.buildTurns(history, text);
+    var rounds = 0, hits = 0;
+    function round() {
+      var req = Core.buildApiRequest(history, text, { apiKey: keys.anthropic, dropboxToken: keys.dropboxToken, messages: messages });
+      setPhase("thinking", rounds ? "Brain liest weiter…" : "Brain denkt…");
+      return fetch(req.url, { method: req.method, headers: req.headers, body: JSON.stringify(req.body), signal: signal })
+        .then(function (r) { return r.json().then(function (j) { if (!r.ok && !j.error) throw new Error("HTTP " + r.status); return j; }); })
+        .then(function (json) {
+          var p = Core.parseApiResponse(json);
+          if (p.isError) { var e = new Error(p.error); e.code = /rate|overload/i.test(p.error) ? "rate_limited" : "api_error"; throw e; }
+          p.toolUses.forEach(function (u) { emit("brain-search", { query: JSON.stringify(u.input), hits: null }); });
+          hits += p.searchHits;
+          call.hits += p.searchHits;
+          if (p.stopReason === "pause_turn" && rounds < 3) {
+            rounds++;
+            messages = messages.concat([{ role: "assistant", content: json.content }]);
+            return round();
+          }
+          return { text: p.text, brain: true, usedBrain: p.usedBrain, searches: p.searches, hits: hits };
+        });
+    }
+    return round();
+  }
+
+  function ask(history, text, signal) {
+    if (call.transport.kind === "artifact") return askArtifact(history, text, signal);
+    if (call.transport.kind === "direct") return askDirect(history, text, signal);
+    var e = new Error("no transport"); e.code = "no_transport";
+    return Promise.reject(e);
+  }
+
+  /* ---------- one turn ---------- */
+  function handleUserText(rawText) {
+    var text = Core.normalizeTranscript(rawText);
+    if (!text || !call) return;
+    stopListening();
+    stopSpeaking();
+    if (call.abort) { try { call.abort.abort(); } catch (e) {} }
+    var before = call.history.filter(function (h) { return h.role === "user" || h.role === "assistant"; });
+    pushTurn("user", text);
+    if (navigator.onLine === false) return failSpoken("offline");
+    if (call.transport.kind === "none") return failSpoken("no_transport");
+    var ctl = new AbortController();
+    call.abort = ctl;
+    call.turnStart = Date.now();
+    call.partial = "";
+    call.turnSearches = 0;
+    var hitsBefore = call.hits;
+    setPhase("thinking", "Brain denkt…");
+    startTimer();
+    ask(before, text, ctl.signal).then(function (res) {
+      stopTimer();
+      if (!call || ctl.signal.aborted) return;
+      var answer = (res && res.text || "").trim();
+      var hits = call.hits - hitsBefore;
+      var meta = Core.turnMeta(call.turnStart, Date.now(), hits, call.tier.label, call.transport.kind);
+      var searched = res.searches || call.turnSearches || 0;
+      if (!answer) return failSpoken(hits === 0 && searched ? "empty_brain" : "empty_answer");
+      if (call.transport.kind === "artifact" && !res.brain) meta.noBrain = true;
+      if (searched && hits === 0) meta.emptyBrain = true;
+      pushTurn("assistant", answer, meta);
+      var check = Core.speechCheck(answer);
+      if (!check.ok) console.warn("[Brain-Telefon] answer not speech-friendly:", check.issues);
+      setPhase("speaking", "Brain spricht…");
+      return speak(answer).then(function () {
+        if (!call || !call.active) return;
+        if (call.phase === "speaking") startListening();
+      });
+    }).catch(function (err) {
+      stopTimer();
+      if (!call || ctl.signal.aborted) return;
+      var kind = Core.classifyError(err, { online: navigator.onLine !== false });
+      if (kind === "cancelled") return;
+      console.warn("[Brain-Telefon] ask failed:", err);
+      failSpoken(kind, err);
+    });
+  }
+
+  // every failure → visible notice in the transcript AND spoken, then back to listening
+  function failSpoken(kind, err) {
+    if (!call) return;
+    var m = Core.messageFor(kind);
+    var detail = err && err.message && kind === "api_error" ? " (" + String(err.message).slice(0, 120) + ")" : "";
+    pushNotice(m.visible + detail, kind === "empty_brain" || kind === "cancelled" ? "info" : "error");
+    emit("error", { kind: kind, message: m.visible });
+    setPhase("error", m.visible);
+    var p = m.spoken ? speak(m.spoken) : Promise.resolve(false);
+    p.then(function () {
+      if (!call || !call.active) return;
+      if (kind === "mic_denied" || kind === "mic_unavailable" || kind === "no_transport" || kind === "not_granted") {
+        setPhase("idle-in-call", "Frage unten eintippen — oder auflegen.");
+        return;
+      }
+      if (call.phase === "error") startListening();
+    });
+  }
+
+  /* ---------- call control ---------- */
+  function startCall() {
+    if (call && call.active) return;
+    call = newCall();
+    call.active = true;
+    setPhase("connecting", "Verbinde mit dem Brain…");
+    resolveRuntime().then(function () {
+      if (!call || !call.active) return;
+      var e = env();
+      call.tier = Core.chooseTier(e);
+      call.transport = Core.chooseTransport(e);
+      paintState();
+      emit("call-start", { tier: call.tier, transport: call.transport });
+      if (call.transport.kind === "artifact" && !rt.mcp) pushNotice(Core.messageFor("brain_unreachable").visible, "warn");
+      if (call.transport.kind === "none") { failSpoken("no_transport"); return; }
+      // warm up the system voice list (Safari loads voices lazily)
+      if (hasSynth() && window.speechSynthesis.getVoices) window.speechSynthesis.getVoices();
+      startListening();
+    });
+  }
+
+  function hangUp() {
+    if (!call) return;
+    stopListening();
+    stopSpeaking();
+    stopTimer();
+    if (call.abort) { try { call.abort.abort(); } catch (e) {} }
+    var turns = call.history.filter(function (h) { return h.role === "assistant"; }).length;
+    call.active = false;
+    call.phase = "ended";
+    call.status = "Aufgelegt · " + turns + (turns === 1 ? " Antwort" : " Antworten") + " · " + Math.round((Date.now() - call.startedAt) / 1000) + " s";
+    paintState();
+    emit("call-end", { turns: turns });
+  }
+
+  function interrupt() {   // tap while the brain speaks/thinks → stop everything and listen again
+    if (!call || !call.active) return;
+    if (call.phase === "thinking" && call.abort) {
+      try { call.abort.abort(); } catch (e) {}
+      stopTimer();
+      pushNotice("Anfrage abgebrochen.", "info");
+      emit("aborted", {});
+    }
+    stopSpeaking();
+    startListening();
+  }
+
+  /* ---------- timer for the "Brain denkt…" latency display ---------- */
+  var FILLERS = ["Moment, ich schau im Brain nach.", "Sekunde, ich lese das noch fertig.", "Einen Augenblick, ich such das raus."];
+  function startTimer() {
+    stopTimer();
+    call.fillerSaid = false;
+    call.timer = setInterval(function () {
+      if (!call || call.phase !== "thinking") return;
+      var s = ((Date.now() - call.turnStart) / 1000);
+      if (ui.timer) ui.timer.textContent = s.toFixed(1) + " s";
+      // phone feel: after a long silence the brain says it is still there (once per turn)
+      if (s > 7 && !call.fillerSaid && call.tier.tts.tier !== "none") {
+        call.fillerSaid = true;
+        call.fillerIdx = ((call.fillerIdx || 0) + 1) % FILLERS.length;
+        speak(FILLERS[call.fillerIdx]);
+        emit("filler", { text: FILLERS[call.fillerIdx] });
+      }
+    }, 200);
+  }
+  function stopTimer() { if (call && call.timer) { clearInterval(call.timer); call.timer = null; } if (ui.timer) ui.timer.textContent = ""; }
+
+  /* ---------- rendering ---------- */
+  function tierBadge() {
+    var t = call ? call.tier : Core.chooseTier(env());
+    var cls = t.label === "Pro" ? "pro" : (t.label === "Text" ? "text" : (t.label === "SpeakApp" ? "speakapp" : "basis"));
+    return '<span class="ph-tier ' + cls + '" title="STT: ' + esc(t.stt.engine + " — " + t.stt.reason) + ' · TTS: ' + esc(t.tts.engine + " — " + t.tts.reason) + '">' +
+      '<b>' + esc(t.label) + '</b> <small>' + esc(t.stt.tier === "pro" ? "Whisper" : t.stt.tier === "speakapp" ? "SpeakApp-Aufnahmen" : t.stt.tier === "basis" ? "Web Speech" : "Text") + ' · ' +
+      esc(t.tts.tier === "pro" ? "ElevenLabs" : t.tts.tier === "basis" ? "System-Stimme" : "nur Text") + '</small></span>';
+  }
+  function transportBadge() {
+    var tr = call ? call.transport : Core.chooseTransport(env());
+    var cls = tr.kind === "none" ? "off" : (tr.brain === "none" ? "warn" : "on");
+    return '<span class="ph-transport ' + cls + '">' + esc(tr.label) + '</span>';
+  }
+
+  function modeChip() {
+    if (!rt.speakApp) return "";
+    var mode = sttMode();
+    var onSpeak = mode === "speakapp" || (call && call.active && call.tier.stt.tier === "speakapp");
+    return '<button class="ph-mode" id="ph-mode" title="Wie hörst du? Mikro (Web Speech) oder Aufnahmen aus der SpeakApp">' +
+      (onSpeak ? "📱 SpeakApp" : "🎙️ Mikro") + ' <small>wechseln</small></button>';
+  }
+
+  function render(root) {
+    root.innerHTML =
+      '<div class="ph-wrap">' +
+        '<div class="ph-head">' +
+          '<h1 class="view-title">Brain-Telefon</h1>' +
+          '<p class="view-sub">Ruf dein CLAUDE BRAIN an. Sprechen, zuhören, weiterreden — die Antwort kommt aus deiner Dropbox.</p>' +
+        '</div>' +
+        '<div class="ph-status-row" id="ph-badges"></div>' +
+        '<div class="card ph-card">' +
+          '<div class="ph-transcript" id="ph-transcript"></div>' +
+          '<div class="ph-live" id="ph-live" hidden>' +
+            '<div class="ph-pulse" id="ph-pulse"><span></span><span></span><span></span></div>' +
+            '<div class="ph-live-text"><div class="ph-live-status" id="ph-live-status"></div><div class="ph-live-interim" id="ph-live-interim"></div><div class="ph-live-timer" id="ph-timer"></div></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="ph-dock">' +
+          '<form class="ph-type" id="ph-type-form" autocomplete="off">' +
+            '<input id="ph-type" placeholder="…oder tippen statt sprechen" aria-label="Frage tippen">' +
+            '<button type="submit" class="ghost" id="ph-type-send" title="Senden">↑</button>' +
+          '</form>' +
+          '<div class="ph-controls">' +
+            '<button class="ph-side" id="ph-mic" title="Nochmal sprechen" hidden>🎙️<small>Sprechen</small></button>' +
+            '<button class="ph-call" id="ph-call" aria-label="Anrufen"><span class="ph-call-icon">📞</span><span class="ph-call-label">Anrufen</span></button>' +
+            '<button class="ph-side" id="ph-stop" title="Unterbrechen" hidden>✋<small>Stopp</small></button>' +
+          '</div>' +
+          '<div class="ph-hint" id="ph-hint">Tippen → sprechen (auch Schweizerdeutsch) → das Brain antwortet mit Stimme.</div>' +
+        '</div>' +
+      '</div>';
+
+    ui = {
+      badges: $("#ph-badges", root), transcript: $("#ph-transcript", root), live: $("#ph-live", root), pulse: $("#ph-pulse", root),
+      liveStatus: $("#ph-live-status", root), interim: $("#ph-live-interim", root), timer: $("#ph-timer", root),
+      call: $("#ph-call", root), mic: $("#ph-mic", root), stop: $("#ph-stop", root), hint: $("#ph-hint", root),
+      form: $("#ph-type-form", root), input: $("#ph-type", root)
+    };
+    ui.call.onclick = function () { unlockAudio(); if (call && call.active) hangUp(); else startCall(); };
+    ui.mic.onclick = function () {
+      if (!call || !call.active) return startCall();
+      if (call.recSend && (call.phase === "listening" || call.tier.stt.tier === "speakapp")) { stopSpeaking(); return call.recSend(); }
+      stopSpeaking(); startListening();
+    };
+    ui.stop.onclick = interrupt;
+    ui.form.onsubmit = function (e) {
+      e.preventDefault();
+      var t = ui.input.value.trim();
+      if (!t) return;
+      unlockAudio();
+      ui.input.value = "";
+      injectText(t);
+    };
+    resolveRuntime().then(paintState);
+    paintState();
+    paintTranscript();
+    if (!window.__phoneResizeBound) {
+      window.__phoneResizeBound = true;
+      window.addEventListener("resize", function () {
+        var tb = $("#topbar");
+        if (tb) document.documentElement.style.setProperty("--topbar-h", tb.offsetHeight + "px");
+      });
+    }
+  }
+
+  function paintState() {
+    if (!ui.call) return;
+    var active = !!(call && call.active);
+    var phase = call ? call.phase : "idle";
+    ui.badges.innerHTML = tierBadge() + transportBadge() + modeChip();
+    var chip = $("#ph-mode", ui.badges);
+    if (chip) chip.onclick = function () {
+      var next = (sttMode() === "speakapp" || (call && call.active && call.tier.stt.tier === "speakapp")) ? "mic" : "speakapp";
+      setSttMode(next);
+      if (call && call.active) {
+        stopListening(); stopSpeaking();
+        call.tier = Core.chooseTier(env());
+        pushNotice(next === "speakapp" ? "Höre jetzt über SpeakApp-Aufnahmen." : "Höre jetzt über das Mikrofon.", "info");
+        startListening();
+      } else paintState();
+    };
+    ui.call.classList.toggle("active", active);
+    ui.call.querySelector(".ph-call-icon").textContent = active ? "📵" : "📞";
+    ui.call.querySelector(".ph-call-label").textContent = active ? "Auflegen" : "Anrufen";
+    ui.call.setAttribute("aria-label", active ? "Auflegen" : "Anrufen");
+    ui.live.hidden = !active;
+    ui.pulse.className = "ph-pulse " + phase;
+    ui.liveStatus.textContent = call ? call.status : "";
+    var spk = active && call.tier.stt.tier === "speakapp";
+    ui.mic.hidden = !active || phase === "thinking" || phase === "connecting" || (phase === "listening" && call.tier.stt.tier === "basis");
+    ui.mic.innerHTML = spk ? "📥<small>Holen</small>" : (active && phase === "listening" && call.tier.stt.tier === "pro" ? "✅<small>Fertig</small>" : "🎙️<small>Sprechen</small>");
+    ui.stop.hidden = !(active && (phase === "speaking" || phase === "thinking"));
+    ui.hint.textContent = !active
+      ? (call && call.phase === "ended" ? call.status : "Tippen → sprechen (auch Schweizerdeutsch) → das Brain antwortet mit Stimme.")
+      : phase === "listening" ? (call.tier.stt.tier === "speakapp" ? "In SpeakApp aufnehmen, dann zurück hierher. „Holen“ nimmt die neueste Aufnahme." : "Sprich jetzt. Pause = gesendet." + (call.tier.stt.tier === "pro" ? " Oder „Fertig“ tippen." : ""))
+      : phase === "thinking" ? "Das Brain sucht in der Dropbox…"
+      : phase === "speaking" ? "Tipp auf Stopp, um zu unterbrechen."
+      : phase === "connecting" ? "Verbinde…"
+      : "Nochmal sprechen oder unten tippen.";
+    document.body.classList.toggle("ph-in-call", active);
+    paintInterim();
+  }
+
+  function paintInterim() {
+    if (!ui.interim) return;
+    ui.interim.textContent = call && call.phase === "listening" ? (call.interim || "") : "";
+  }
+  function paintPartial() {
+    if (!ui.interim || !call) return;
+    if (call.phase === "thinking" && call.partial) ui.interim.textContent = Core.toSpeech(call.partial).slice(-160);
+  }
+  function paintLevel() {
+    if (!ui.pulse || !call) return;
+    var lvl = Math.min(1, (call.level || 0) * 6);
+    ui.pulse.style.setProperty("--lvl", (1 + lvl * 0.6).toFixed(2));
+  }
+
+  function paintTranscript() {
+    if (!ui.transcript) return;
+    if (!call || !call.history.length) {
+      ui.transcript.innerHTML = '<div class="ph-empty">' +
+        '<div class="ph-empty-icon">🧠</div>' +
+        '<div><strong>Noch kein Gespräch.</strong><br>Frag zum Beispiel: „Was weiss das Brain über die ZHAW-Kampagne?“ oder „Was haben wir mit Säntis abgemacht?“</div></div>';
+      return;
+    }
+    ui.transcript.innerHTML = call.history.map(function (h) {
+      if (h.role === "notice") return '<div class="ph-notice ' + esc(h.kind) + '">' + esc(h.text) + '</div>';
+      var meta = h.meta ? '<div class="ph-meta">' + esc(Core.fmtMeta(h.meta)) + (h.meta.emptyBrain ? ' · <em>ohne Brain-Treffer</em>' : '') + (h.meta.noBrain ? ' · <em>ohne Brain-Zugriff</em>' : '') + '</div>' : "";
+      return '<div class="ph-bubble ' + h.role + '"><div class="ph-bubble-text">' + esc(h.text) + '</div>' + meta + '</div>';
+    }).join("");
+    ui.transcript.scrollTop = ui.transcript.scrollHeight;
+  }
+
+  /* ---------- public / test API ---------- */
+  // text injection: same path as a spoken transcript (used by the typing field and the tests)
+  function injectText(text) {
+    if (!call || !call.active) {
+      call = newCall();
+      call.active = true;
+      setPhase("connecting", "Verbinde mit dem Brain…");
+      return resolveRuntime().then(function () {
+        var e = env();
+        call.tier = Core.chooseTier(e);
+        call.transport = Core.chooseTransport(e);
+        if (call.transport.kind === "artifact" && !rt.mcp) pushNotice(Core.messageFor("brain_unreachable").visible, "warn");
+        paintState();
+        emit("call-start", { tier: call.tier, transport: call.transport, typed: true });
+        handleUserText(text);
+      });
+    }
+    handleUserText(text);
+    return Promise.resolve();
+  }
+
+  // leaving the Brain-Telefon tab mid-call must never leave the microphone running
+  window.addEventListener("hashchange", function () {
+    if (call && call.active && !/^#\/(phone|telefon|call)\b/.test(location.hash || "")) hangUp();
+  });
+
+  // iOS unlocks speechSynthesis / <audio> only inside a user gesture — the tap on "Anrufen" is that gesture
+  function unlockAudio() {
+    if (window.__phoneAudioUnlocked) return;
+    window.__phoneAudioUnlocked = true;
+    try {
+      if (hasSynth()) { var u = new SpeechSynthesisUtterance(" "); u.volume = 0; window.speechSynthesis.speak(u); }
+    } catch (e) {}
+    try {
+      var a = new Audio("data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCA");
+      a.volume = 0; var p = a.play(); if (p && p.catch) p.catch(function () {});
+    } catch (e) {}
+  }
+
+  window.BrainPhone = {
+    startCall: startCall, hangUp: hangUp, injectText: injectText, interrupt: interrupt,
+    getState: function () { return call ? { phase: call.phase, active: call.active, history: call.history.slice(), tier: call.tier, transport: call.transport, hits: call.hits } : null; },
+    onEvent: function (fn) { listeners.push(fn); return function () { listeners = listeners.filter(function (x) { return x !== fn; }); }; },
+    runtime: function () { return rt; },
+    env: env,
+    setSttMode: setSttMode,
+    _resetForTest: function () { hangUp(); call = null; rt = { resolved: false, sample: null, mcp: null, sampleTools: false, speakApp: false }; }
+  };
+
+  return { render: render };
+})();
+
+</script>
+<script>
 /* ============ settings.js — data export/import (Dropbox workflow) + settings ============ */
 "use strict";
 
@@ -15523,6 +17134,7 @@ var SettingsView = (function () {
 
   function render(root) {
     var s = Store.get();
+    var keys = PhoneKeys.get();
     var stats = {
       ideas: s.ideas.length,
       projects: s.projects.length,
@@ -15572,6 +17184,22 @@ var SettingsView = (function () {
         '<button class="primary" id="s-save">Save settings</button>' +
       '</div>' +
 
+
+      '<h2 class="section-title">Brain-Telefon</h2>' +
+      '<div class="card" style="max-width:560px">' +
+        '<p class="muted" style="font-size:13px;margin-bottom:12px">Optional keys for the <strong>Pro</strong> tier (Whisper understands Swiss German far better; ElevenLabs sounds natural). Stored only in this browser — never in exports, never in the repo. Without keys the phone runs on the <strong>Basis</strong> tier (Web Speech + system voice).</p>' +
+        '<label class="field"><span>OpenAI API key (Whisper STT)</span><input type="password" id="k-openai" value="' + esc(keys.openai) + '" placeholder="sk-…" autocomplete="off"></label>' +
+        '<label class="field"><span>ElevenLabs API key (TTS)</span><input type="password" id="k-eleven" value="' + esc(keys.eleven) + '" placeholder="xi-…" autocomplete="off"></label>' +
+        '<label class="field"><span>ElevenLabs voice ID (optional)</span><input id="k-eleven-voice" value="' + esc(keys.elevenVoice) + '" placeholder="default: Rachel (multilingual)"></label>' +
+        '<details class="strategy-fold" style="margin-top:4px"><summary>Local use without the Claude artifact</summary>' +
+        '<p class="muted" style="font-size:12.5px;margin:6px 0 10px">Opened as a plain file, the phone cannot use the artifact runtime. An Anthropic key lets it call the Messages API directly (with the Dropbox MCP connector).</p>' +
+        '<label class="field"><span>Anthropic API key</span><input type="password" id="k-anthropic" value="' + esc(keys.anthropic) + '" placeholder="sk-ant-…" autocomplete="off"></label>' +
+        '<label class="field"><span>Dropbox MCP authorization token (optional)</span><input type="password" id="k-dropbox" value="' + esc(keys.dropboxToken) + '" autocomplete="off"></label>' +
+        '</details>' +
+        '<div class="row mt"><button class="primary" id="k-save">Save keys</button><button class="ghost danger" id="k-clear">Remove all keys</button>' +
+        '<span class="muted" style="font-size:12px" id="k-status">' + (keys.openai || keys.eleven ? 'Pro tier configured' : 'Basis tier (no keys)') + '</span></div>' +
+      '</div>' +
+
       '<h2 class="section-title">Danger Zone</h2>' +
       '<div class="card" style="max-width:560px">' +
         '<p class="muted" style="font-size:13px">Reset wipes all local edits and restores the original Notion/festival seed data. Export first if unsure.</p>' +
@@ -15592,6 +17220,12 @@ var SettingsView = (function () {
       st.updatedAt = new Date().toISOString();
       Store.save(); toast("Settings saved"); App.render();
     };
+    $("#k-save").onclick = function () {
+      PhoneKeys.set({ openai: $("#k-openai").value, eleven: $("#k-eleven").value, elevenVoice: $("#k-eleven-voice").value,
+        anthropic: $("#k-anthropic").value, dropboxToken: $("#k-dropbox").value });
+      toast("Keys saved in this browser only"); App.render();
+    };
+    $("#k-clear").onclick = function () { PhoneKeys.clear(); toast("Keys removed"); App.render(); };
     $("#s-reset").onclick = function () {
       openModal(
         '<h3>Reset all data?</h3><p style="font-size:14px">This deletes every local edit (challenge log, followers, plans...) and restores the seed. This cannot be undone.</p>' +
@@ -15619,13 +17253,14 @@ var App = (function () {
     festivals: FestivalsView,
     ideas: IdeasView,
     extern: ExternBrainView,
+    phone: BrainPhoneView,
     projects: ProjectsView,
     brain: BrainView,
     settings: SettingsView
   };
 
   // challenge: the daily-challenge chapter is closed — old links land on films
-  var ALIASES = { knowledge: "brain", challenge: "films" };
+  var ALIASES = { knowledge: "brain", challenge: "films", telefon: "phone", call: "phone" };
 
   function currentRoute() {
     var h = (location.hash || "#/dashboard").replace(/^#\//, "");
@@ -15636,8 +17271,16 @@ var App = (function () {
   function render() {
     var route = currentRoute();
     $$("#main-nav a").forEach(function (a) {
-      a.classList.toggle("active", a.getAttribute("data-route") === route);
+      var on = a.getAttribute("data-route") === route;
+      a.classList.toggle("active", on);
+      // the nav scrolls horizontally on phones — keep the active tab in view
+      if (on && a.scrollIntoView && window.innerWidth <= 720) {
+        try { a.scrollIntoView({ inline: "center", block: "nearest" }); } catch (e) {}
+      }
     });
+    document.body.classList.toggle("ph-view", route === "phone");
+    var tb = $("#topbar");
+    if (tb) document.documentElement.style.setProperty("--topbar-h", tb.offsetHeight + "px");
     var root = $("#view");
     routes[route].render(root);
     var s = Store.get();
