@@ -1653,3 +1653,241 @@ von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
 - Datum: 2026-09-03
 - Erkenntnis: 791 Kommentare bei 18,7k Views — das Verhältnis ist der Befund: Ein Keyword-CTA ('schreib GRAFIK in die Kommentare') erzeugt mehr Interaktion als jeder Hook. Der Beweis läuft über das Video selbst ('genauso habe ich die Animation in diesem Video erstellt') — die stärkste Form von Beleg. Für Robin: Wenn er ein Preset oder eine LUT anbietet, muss der Beweis das laufende Reel sein.
 - Transkript/Kernaussagen: (Via Notion-Sync 03.09.)
+
+### @jax.ungeschnitten — Gefühl beschreiben statt Wissen liefern
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcN3lHMgUsK/
+- Datum: 2026-09-05
+- Erkenntnis: Säule 1 ist die relevanteste: Wissen ist im Überfluss verfügbar, also gewinnt nicht wer erklärt, sondern wer beschreibt wie sich etwas anfühlt. Auf Way to Oscar heißt das: nicht „so baust du diesen Shot", sondern „ich weiß wie es sich anfühlt, wenn dein Material nicht trägt". Säule 2 (polarisierende Überzeugungen aussprechen) nutzt Robin am wenigsten.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @brett.fully — Identität zwischen Value-Posts streuen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dce28HQPt0Q/
+- Datum: 2026-09-05
+- Erkenntnis: Die eigentliche Erkenntnis steckt in der Feed-Sequenz: „me, value, value, me, me, value" statt sechsmal Value hintereinander. Robins Feed läuft aktuell auf reinem Value und genau das ist laut diesem Reel der Grund, warum Vertrauen fehlt. Konkret: Zwischen die Lehr-Reels gehören Identitäts-Posts, sichtbar im Raster.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @foundedceo — Wahrnehmung formen ist Teil der Arbeit
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dcg7UxGRIvg/
+- Datum: 2026-09-05
+- Erkenntnis: Alexandr Wang beschreibt Palantir als „acting troupe kombiniert mit Software-Firma" — exakt das Modell, nach dem Kollektiv Oskar funktioniert, nur unbewusst. Die Wahrnehmung des Studios ist keine Nachbereitung der Arbeit, sondern gleichrangige Arbeit. 4,4x Outlier bei einem reinen Podcast-Ausschnitt zeigt: Ein einzelner starker Satz trägt ein ganzes Reel.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @jay.kaizen — Creator- statt Consumer-Consciousness vor der Kamera
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcejAAkz2ng/
+- Datum: 2026-09-05
+- Erkenntnis: 10% Engagement bei 15k Views — der Dialog-Skit bindet stark, weil der eine Klon die Einwände des Zuschauers spricht. Für Robins Voiceover-Reels übertragbar: Einwand laut aussprechen, dann beantworten. Bester Satz: Wer in „consumer consciousness" filmt, will etwas vom Zuschauer nehmen — und genau das erzeugt die Anspannung.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @jay.kaizen — Kamera-Angst ist Angst vor Ablehnung
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcegC5VztId/
+- Datum: 2026-09-05
+- Erkenntnis: Teil 1 macht 48k Views und 2,4x Outlier, Teil 2 nur 15k — der Sprung kostet zwei Drittel des Publikums. Teil 1 muss allein funktionieren und darf nicht nur Setup sein. Handwerklich stark: Kaltstart mitten in einem misslungenen Take, was sofort Identifikation erzeugt statt eine These zu behaupten.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @bitterbuilds — Reibung senken statt Disziplin erhöhen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DceJhZoxQPr/
+- Datum: 2026-09-05
+- Erkenntnis: Stärkster Wert im Batch — 7,2x Outlier bei 662k Views — und die Struktur ist in 48 Sekunden komplett: bekanntes Alltagsdetail, versteckte Geschäftsentscheidung dahinter, dann Übertragung auf das Leben des Zuschauers. Robin kann das Gerüst auf Kino anwenden. Inhaltlich umsetzbar: Kamera aufgebaut lassen, Timeline offen lassen, damit der nächste Dreh ohne Startwiderstand beginnt.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @tmsproductions_ — Tool ehrlich testen, Serie als Gerüst
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcUlaj8SNQ1/
+- Datum: 2026-09-05
+- Erkenntnis: 4,8x Outlier mit dem simpelsten Aufbau: fremdes Tool testen, Aufwand ehrlich nennen (zwei Stunden), Urteil fällen. Die Ehrlichkeit über die Hürde ist der Vertrauensmotor. Zweiter Punkt: Das Seriengerüst „Tag 10 von 100" gibt jedem Reel einen Grund zurückzukommen — für Way to Oscar direkt übertragbar.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @it.is.joao — Abstand plus Zoom statt Kamera nah am Gesicht
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dceg9M8RfsS/
+- Datum: 2026-09-05
+- Erkenntnis: Ein rein filmisches Reel mit 153k Views und 2,2x Outlier — Thema: Brennweite und Abstand statt Kamera-Preis. Robins Heimatgebiet, und er könnte es präziser erklären (der Effekt heißt Perspektivverzerrung, nicht „Kameras sind rund"). Das Muster zum Kopieren: Behauptung, sofortiger Vorher-Nachher-Beleg im selben Reel, Auflösung erst am Ende.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @yuvirayz — Genre-Trope in Alltagslocation, 12 Mio Views
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dcd75PYxxNl/
+- Datum: 2026-09-05
+- Erkenntnis: 12,1 Mio Views und 12% Engagement mit einem Skit, der komplett aus Genre-Zitat besteht — keine Lehre, nur bekannte Filmsprache in eine Schule verlegt. Das Format, das Robin als Filmemacher am direktesten bedienen könnte und aktuell gar nicht bespielt: „Diese Filme, in denen [Trope]" als Serie. Spannung entsteht durch Leere im Bild, nicht durch Schnitttempo.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @contenize — Nicht ob CTA, sondern ob er weiterhilft
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dcf-XBpEf77/
+- Datum: 2026-09-05
+- Erkenntnis: Direkter Widerspruch zu früheren Einträgen mit starken Keyword-CTAs — der Unterschied ist die Nuance: Ein CTA schadet, wenn er unterbricht, und hilft, wenn er der nächste logische Schritt ist. „Schreib GRAFIK in die Kommentare" funktioniert, „Buch ein Gespräch" nicht. Das Reaction-Format selbst kostet fast keine Produktion.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @shai.hq — Apple-Design-Guidelines als Claude Skill
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dca53kjBjqr/
+- Datum: 2026-09-06
+- Erkenntnis: 4.084 Kommentare bei 175k Views — der Keyword-CTA ist der eigentliche Motor, weil er genau das liefert, was der Zuschauer gerade sehen will. Das Format 'jemand hat X in ein Tool gepackt → hier der eine Use-Case → hol dir die Anleitung' lässt sich 1:1 auf Filmmaking-Workflows übertragen (LUTs, Skript-Templates, Schnitt-Presets).
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @bryce_jv — Kurzfilm-Empfehlung als Szenario öffnen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DailVuEgwqZ/
+- Datum: 2026-09-06
+- Erkenntnis: 10% Engagement-Rate mit minimalem Produktionsaufwand: Kurzfilm empfehlen, aber als hypothetisches Szenario öffnen statt als Review. Der 'Imagine you...'-Einstieg macht den Zuschauer zur Figur, bevor ein Filmtitel fällt. Für Robins Film-Reels: erst das Gefühl des Films erzeugen, dann den Titel nennen.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @calebralston — 70/20/10 Content-Verteilung
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dcgmbr-yuyA/
+- Datum: 2026-09-06
+- Erkenntnis: Direkt anwendbarer Verteilungsschlüssel: 70% bewährte Formate, 20% Variationen, 10% echte Experimente ohne Datenbasis. Das 10%-Feld ist für einen Filmmaker der Ort, an dem sich Handschrift bildet — und das Erste, was bei Performance-Druck gestrichen wird. Praktisch: Bei 10 Reels pro Monat ist 1 Reel bewusst unsicher eingeplant.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @mr.paidsocial — AI-Bots als benanntes Produktionsteam
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dcbs_IGNw5J/
+- Datum: 2026-09-06
+- Erkenntnis: Outlier 27,6x — stärkster Performance-Wert des Batches. Grund ist die Konkretheit: nicht 'AI kann Videos schneiden', sondern 'fertiger YouTube-Intro plus eigenes Review-Interface im Frame.io-Stil'. Das Benennen der Bots als Team-Mitglieder macht Abstraktes greifbar — übertragbar auf die ZENTRALE und Robins Skills. Fürs eigene Reel: Ergebnis zuerst zeigen, dann zurückspulen.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @rasheedonfilm — Gawx-Look via FilmVision Pro nachgebaut
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcZr3k1M2T5/
+- Datum: 2026-09-06
+- Erkenntnis: 30 Sekunden, kein Gesicht, kein 'Warum' — nur die exakte Node-Reihenfolge, trotzdem 82k Views. Bei technischen Filmmaking-Themen ist Vollständigkeit wichtiger als Verständlichkeit, weil der Zuschauer speichert statt versteht. Format mit fast null Produktionsaufwand (Screenrecording + Voiceover). Konkreter Hinweis: Gawx' Look läuft über FilmVision Pro.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @kurtjenkins.studio — Bücher nach Problem statt Genre empfehlen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcbcVpVBkx0/
+- Datum: 2026-09-06
+- Erkenntnis: Empfehlungs-Reels nicht nach Genre sortieren, sondern nach dem Problem des Zuschauers ('wenn du willst, dass dein Publikum heult...'). Direkt übertragbar auf Equipment, Filme oder Schnitt-Tools — drei Items, jedes mit konkretem emotionalem Outcome statt Feature-Beschreibung. Die dreifache Wiederholung derselben Items hält 118 Sekunden Retention ohne neue Information.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @zlliott — 5 Schritte zu identitätsbasierter Audience
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcNyuwas8Av/
+- Datum: 2026-09-06
+- Erkenntnis: Strukturell das sauberste Reel des Batches: Jeder Schritt endet mit einem Cliffhanger auf den nächsten — der Retention-Mechanismus, der 88 Sekunden trägt. Zwei der fünf Schritte sind für Robin ohne Kontroverse nutzbar: 'Create a world' (Way to Oscar als fortlaufende Lore) und 'Turn audience into identity'. Die Enemy-Mechanik nur sanft — Gatekeeper der Branche statt Personen.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @din_films — Wetter nachträglich per AI ändern
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcX-t7ut4L4/
+- Datum: 2026-09-06
+- Erkenntnis: 652 Kommentare bei 64k Views mit zwei gesprochenen Wörtern — der ganze Wert liegt im Vorher/Nachher-Split plus Keyword-CTA. Lehre: Wenn das Ergebnis visuell selbsterklärend ist, ist jedes Wort Erklärung ein Retention-Verlust. Praktisch relevant als Werkzeug: Wetter im Nachhinein ändern spart den Nachdreh bei grauem Himmel.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @cinemasster_ — McConaughey gegen Arthouse-Signaling
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcWeOMiODVa/
+- Datum: 2026-09-06
+- Erkenntnis: 1,79 Mio Views mit reinem Clip-Cut — inhaltlich exakt Robins Thema: Man muss keinen Arthouse-Geschmack simulieren, um Filmemacher zu sein. Für Way to Oscar eine sofort verwendbare Position ('ich mag Blockbuster und arbeite trotzdem auf einen Oscar hin'). Formathinweis: fremde Interview-Clips sind reichweitenstark, aber ohne eigene Nuance austauschbar.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @themarketinginterns — Tutorial als Dialog statt Vortrag
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dc3J0ZggZr_/
+- Datum: 2026-09-07
+- Erkenntnis: Das Format ist interessanter als der Inhalt: Statt in die Kamera zu erklären, lässt der Creator die Frage von jemand anderem stellen — der Zuschauer identifiziert sich mit dem Fragenden statt sich belehrt zu fühlen. Genau das Problem hat Robin bei Erklär-Reels, und ein zweiter Mensch im Bild (Simon, Lue, Jasmin) löst es ohne Mehraufwand. Inhaltlich direkt anwendbar auf Robins Claude-Workflows: 'lean, simple, concise', 'high confidence', mehrere Loops.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @prevostreaming — Kurzfilm als Logline pitchen
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dc6sL0VpKBQ/
+- Datum: 2026-09-07
+- Erkenntnis: 8% Engagement — bester Wert im Batch — mit einem reinen Kurzfilm-Pitch. Erstens als Format: Ein Kurzfilm wird nicht mit 'schaut mal' beworben, sondern mit einem Ein-Satz-Logline, der wie ein Trailer funktioniert; so müsste Robin seine eigenen Kurzfilme anteasern. Zweitens als Kanal: PREVO nimmt kostenlose Einreichungen an und hat eine Feedback-Schleife zu den Regisseuren — ein konkreter Distributionsweg ohne Festival-Budget.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @shai.hq — Keyword-CTA verwandelt Reichweite in DMs
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DcyYJIjBEQr/
+- Datum: 2026-09-07
+- Erkenntnis: 1.423 Kommentare bei 141k Views — der Keyword-CTA ('comment library') ist der eigentliche Motor, nicht der Inhalt; 35 Sekunden, drei Tools, kein Wort zuviel. Übertragbare Mechanik für Robin: eine Ressource, die er ohnehin besitzt (Presets, LUT-Pack, Shot-Listen, Reel-Blueprints), wird zum DM-Keyword statt zum Link in Bio — das verwandelt Reichweite in eine Kontaktliste. Voraussetzung ist ein Listicle mit drei konkret benannten Dingen.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @cameronmcalderon — Serienformat 'So würde ich den Spot drehen'
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DczjhiOsg4E/
+- Datum: 2026-09-07
+- Erkenntnis: Das beste Format-Fundstück im Batch: ein wiederkehrendes Serienformat, das nur Sprache und Schnittbilder kostet, aber Regie-Kompetenz beweist, ohne dass ein Kunde je gebucht hat — und nebenbei ein Pitch an die Marke ist. Robin könnte das eins zu eins als 'So würde ich einen Spot für [Marke] drehen' führen, mit Schweizer Marken, unbegrenztem Nachschub und eingebautem Kommentar-CTA. Struktur: erst benennen was alle in der Kategorie verkaufen, dann das Gegenteil behaupten, dann in Bildern statt Adjektiven beschreiben.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @digital_spaghetti — Indie-Games lösten Distribution, Film nicht
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dc1eT_lzZto/
+- Datum: 2026-09-07
+- Erkenntnis: 670k Views und Outlier 25,4x — das reichweitenstärkste Reel des Batches und thematisch das wichtigste. Der Gedanke 'Ein Mensch kann ein Spiel bauen, das Game of the Year wird — aber ein Film von einem Menschen gilt automatisch als gescheitert' ist die präziseste Formulierung von Robins eigener These. Kein Reel zum Nachbauen, sondern eine Position zum Weiterdenken: Way to Oscar könnte die Antwort auf diese offene Frage sein, und die Nachfrage ist nachgewiesen.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @titarvl — 14 Sekunden reichen für 204 Kommentare
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dc1bf2HtoFQ/
+- Datum: 2026-09-07
+- Erkenntnis: 204 Kommentare bei nur 7.847 Views — eine Conversion-Rate, die die meisten viralen Reels nicht erreichen: 14 Sekunden, ein Versprechen, ein Keyword. Die Lehre ist die Dauer, nicht das Produkt: Wenn der Wert in einem Satz sagbar ist, kostet jede zusätzliche Sekunde Conversion. Nebenbei: ein Framer-Portfolio-Template für Filmemacher ist genau das, was Robin für seine Regie-Seite braucht.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @myfirstmilpod — Eine Zahl macht die These teilbar
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dc6IF8jzD4E/
+- Datum: 2026-09-07
+- Erkenntnis: Outlier 5,7x mit einem 39-Sekunden-Podcast-Schnipsel, dessen ganze Kraft in einer merkbaren Zahl liegt ('80% Fokus ist halb so gut wie 90%'). Für Robins Reels: Eine These wird teilbar, wenn sie eine konkrete Zahl bekommt, auch wenn die Zahl gefühlt statt gemessen ist. Inhaltlich trifft es Robins Realität — Lohro, Kollektiv Oskar, Next Shot, Story Wins parallel ist definitionsgemäß Multitasking; 'was ist gerade das EINE Problem' ist ein sauberer Wochenfilter.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @storyandplotclasses — Auf der Seite explizit, im Bild subtil
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dc_fA_vR-Le/
+- Datum: 2026-09-08
+- Erkenntnis: Die handwerklich nützlichste Unterscheidung im Batch: „Auf der Leinwand subtil, auf dem Papier explizit." Robin schreibt seine Kurzfilme und Reels selbst — die Regel löst genau das Problem, an dem Drehbücher scheitern, nämlich dass der Autor die Absicht im Kopf hat und die Seite sie nicht transportiert. Formatseitig belegt der Reel, dass ein 3,5-Minuten-Talking-Head ohne Schnittfeuerwerk trägt, wenn der erste Satz eine geltende Regel umdreht.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @nateherkai — Das eigene AI-System als Content-Format
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/Dc-Awvkhdop/
+- Datum: 2026-09-08
+- Erkenntnis: Inhaltlich exakt das, was Robin mit ZENTRALE, BIG BRAIN und den Skills bereits gebaut hat — nur dass Herkai es sichtbar macht und daraus 2.320 Kommentare auf 63k Views zieht. Die Lehre ist keine technische, sondern eine Content-Lehre: Robins internes System ist selbst ein Reel-Format. Mechanik zum Kopieren: beeindruckende Übersicht als Hook, Funktionen in 5-Sekunden-Häppchen, kostenloses Setup-Kit gegen Kommentar-Keyword.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @higgsfield.ai — Prompt-Demo ersetzt Voiceover komplett
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DaxlBf9C717/
+- Datum: 2026-09-08
+- Erkenntnis: 453k Views ohne ein einziges Gesicht und ohne erklärenden Satz — der ganze Reel besteht aus Prompts und deren Ergebnissen in After Effects. Wenn das Ergebnis spektakulär genug ist, ersetzt die Demo das Voiceover und der Prompt wird zum Text-Overlay. Schwachpunkt zum Lernen: Der Hook nennt nur das Produkt statt den Nutzen — mit einem Vorteils-Hook wäre der Outlier vermutlich höher als 1,7x.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @mosseri — Vier Ranking-Prinzipien neben Engagement
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DdENi2fP59I/
+- Datum: 2026-09-10
+- Erkenntnis: Der Instagram-Chef erklärt, was der Algorithmus über Engagement hinaus belohnt. Originalität: eigene Aufnahmen werden aktiv besser verteilt als Reposts — Risiko für Story Wins, Vorteil für Way to Oscar. Recency: Instagram misst den Anteil der Impressions auf Posts unter 24 Stunden, verzögertes Posten kostet Reichweite. Breaking Content: jeder Post wird aktiv bei Nicht-Followern getestet, kleine Accounts bekommen bei JEDEM Post eine neue Chance.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @jonas_frewert — ChatGPT findet dich nur über Bing
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DdEX9HOBjoW/
+- Datum: 2026-09-10
+- Erkenntnis: Praktisch: wer will, dass ChatGPT die eigene Firma nennt, muss die Website in den Bing Webmaster Tools eintragen — 2 Minuten, bei fast niemandem gemacht. Formatseitig die sauberste Kurzform des Problem-Solution-Reels: Fehlannahme (0–7s), Ursache (7–18s), Fix live zeigen (18–33s), Nutzen + CTA (33–41s). ER von nur 1% zeigt die Grenze: reine Tutorials binden nicht.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @jettfranzen — Delusional optimism als Cheat Code
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DdAQTQsxfbb/
+- Datum: 2026-09-10
+- Erkenntnis: Inhaltlich exakt Robins Way-to-Oscar-These: an einen Oscar zu glauben ist rechnerisch unvernünftig und genau deshalb der Vorteil. Der Reel liefert die Sprache dafür — 'delusionally optimistic' als Kompliment umdeuten, Pessimismus als risikoloses Klugklingen entlarven. Struktur bemerkenswert: der Produkt-Pivot sitzt bei Sekunde 23 mitten im Reel, nicht am Ende — und trotzdem 6% ER und Outlier 1,8x.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @roninxsocials — Systeme statt Tipps geben
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DdDTdCZxZVw/
+- Datum: 2026-09-10
+- Erkenntnis: Vier anwendbare Regeln aus Dan Koes 234-Mio-Views-Artikel: extreme Zeitzusage, Novelty, Greatest Hits recyceln, Systeme statt Tipps. Der vierte Punkt fehlt Robin am meisten — ein Reel mit komplettem Ablauf wird gespeichert und wieder aufgerufen, ein Tipp wird geliked und vergessen. Punkt 3 ist die Erlaubnis, sich selbst zu wiederholen: die eigenen besten Reels sind Rohmaterial, nicht verbrannt.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)
+
+### @storyandplotclasses — Aufgabenziel statt Zeitziel
+- Quelle: Instagram Reel
+- Original-Link: https://www.instagram.com/reel/DdBxehlxcnr/
+- Datum: 2026-09-10
+- Erkenntnis: Kern: Zeitziel vs. Aufgabenziel — 'zwei Stunden schreiben' produziert Suchbewegung, 'die Badezimmer-Szene schreiben' produziert Seiten. Übertragbar auf Robins Schnitt- und Drehtage. Der Reel selbst ist ein Negativbeispiel für Verpackung: 125 Sekunden für einen Gedanken, der nach 30 fertig ist — Outlier 0,1x. Die Idee war gut genug, die Verdichtung fehlte.
+- Transkript/Kernaussagen: (Via Notion-Sync 10.09.)

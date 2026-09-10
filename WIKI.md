@@ -85,7 +85,7 @@ Zwei Spuren:
 Erkenntnisse von aussen (YouTube, Instagram, Podcasts, Artikel) — klar getrennt
 von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
 **→ Vollständige Liste + Eintragsformat: [`EXTERNE-ERKENNTNISSE.md`](EXTERNE-ERKENNTNISSE.md)**
-(Stand 03.09.2026: 234 Einträge. In der App farblich nach Themen: Growth/Craft/Mindset/Story/Business. Notion wird trotz Dropbox-Umstellung der Skills weiter befüllt — der Donnerstags-Sync Notion→ZENTRALE funktioniert weiterhin und bleibt aktiv, solange dort Einträge landen.)
+(Stand 10.09.2026: 268 Einträge. In der App farblich nach Themen: Growth/Craft/Mindset/Story/Business. Notion wird weiter täglich befüllt — der Donnerstags-Sync Notion→ZENTRALE läuft.)
 
 ## Kommunikation mit Robin
 
@@ -96,4 +96,4 @@ von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
 - Credit-effizient arbeiten: kleine JSONs greppen, nie seed.js/dist lesen.
 
 ---
-*Zuletzt aktualisiert: 2026-09-03 (Donnerstags-Routine: Notion-Sync +32 Einträge — darunter der 632×-Kurzfilm-Serien-Befund) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*
+*Zuletzt aktualisiert: 2026-09-10 (Donnerstags-Routine: Notion-Sync +34 Einträge; Mosseri-Ranking-Regeln, Kurzfilm-Serie bestätigt sich weiter) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*
