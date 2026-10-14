@@ -48,6 +48,7 @@ Zwei Spuren:
 - Kamera: **Sony FX3**. No-Budget-Produktionen mit Umfeld als Cast.
 - Second-Brain-Quelle: Notion (Ideen, Video-Pipeline, YouTube-Pipeline, Filme DB, Masterplan).
 - **Talking-Head-Flow (Spur B, ab KW42):** Dropbox `Projekte/Lohro/23-01-12 Vlog Wöchentlich/04_TALKING_HEAD_FLOW/` — Vorgaben in `00_VORGABEN` (WORKFLOW v2, untertitel, branding, musik), pro Woche `2026-KWxx/01_RAW … 06_CAPTION` + BERICHT.md. Pipeline im Repo `tools/talking-head/` (Whisper large-v3, Pegel-Schnitte, Gawx-Grading-Fit, ASS-Grafik, Premiere-XML + .jsx). Erste 2 Test-Reels 14.10.2026. Learnings: Brand-LUT allein trifft Gawx nie (Belichtung vor LUT + Korrektur); Mikro = Kanal 2; Cloud-Session kann keine Binärdateien in die Dropbox schreiben; Dreh-Checkliste in WORKFLOW v2.
+- **Kurzfilm-Raw-Cut-Flow (ab 14.10.2026):** Dropbox `…/23-01-12 Vlog Wöchentlich/05_KURZFILM_RAWCUT_FLOW/` — pro Film eine Kopie von `_VORLAGE_FILM`. Erster Lauf: **Haifilm** (`2026-01-24_Haifilm/`, Material aus `Claude/kurzfilm hai`): Raw-Cut v01 (1:57, 16 Szenen, beste Takes + Alternativen als deaktivierte Spuren im Premiere-XML), Take-Log mit Begründungen. Offen: 5 Szenen ohne Material (2 DANGER-Schild, 4 ECU Augen, 5 Fischschwärme, 7 Foto in der Hand, 16 Foto im Schnee), Szene 11 (Wurf) unsicher. Pipeline `tools/kurzfilm-rawcut/`.
 
 ## Schlüsselfakten & Entscheide
 
@@ -97,4 +98,4 @@ von Robins eigenen Ideen. Jeder Eintrag MUSS den Original-Link enthalten.
 - Credit-effizient arbeiten: kleine JSONs greppen, nie seed.js/dist lesen.
 
 ---
-*Zuletzt aktualisiert: 2026-10-14 (Talking-Head-Flow: erste Test-Reels KW42, WORKFLOW v2, Pipeline tools/talking-head) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*
+*Zuletzt aktualisiert: 2026-10-14 (Talking-Head-Flow: erste Test-Reels KW42, WORKFLOW v2, Pipeline tools/talking-head; Haifilm Raw-Cut v01) — bei jedem neuen Second-Brain-Eintrag mitpflegen.*

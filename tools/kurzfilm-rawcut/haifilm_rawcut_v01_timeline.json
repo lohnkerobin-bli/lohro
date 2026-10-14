@@ -1,0 +1,233 @@
+{
+ "timeline": [
+  {
+   "scene": 1,
+   "label": "Jonas greift nach oben, Panik im Schnee",
+   "src": "3_jonas_handgranate.mp4",
+   "dropbox": "echt/3 jonas handgranate.mp4",
+   "in": 0.0,
+   "out": 7.0,
+   "rec_in": 0.0,
+   "rec_out": 7.0
+  },
+  {
+   "scene": 2,
+   "label": "DANGER-Schild am Pfosten (echt)",
+   "src": null,
+   "dropbox": null,
+   "in": 0,
+   "out": 2.0,
+   "rec_in": 7.0,
+   "rec_out": 9.0
+  },
+  {
+   "scene": 3,
+   "label": "Jonas laeuft durchs Tal",
+   "src": "1_JONAS_LAUFEN.mp4",
+   "dropbox": "echt/1 JONAS LAUFEN.mp4",
+   "in": 0.0,
+   "out": 6.36,
+   "rec_in": 9.0,
+   "rec_out": 15.36
+  },
+  {
+   "scene": 4,
+   "label": "ECU Gesicht / Augen, kalt (echt)",
+   "src": null,
+   "dropbox": null,
+   "in": 0,
+   "out": 2.0,
+   "rec_in": 15.36,
+   "rec_out": 17.36
+  },
+  {
+   "scene": 5,
+   "label": "Fischschwaerme vor der Sonne (AI)",
+   "src": null,
+   "dropbox": null,
+   "in": 0,
+   "out": 2.0,
+   "rec_in": 17.36,
+   "rec_out": 19.36
+  },
+  {
+   "scene": 6,
+   "label": "Rueckblende: Familie gluecklich",
+   "src": "Familie_120715.mp4",
+   "dropbox": "ai_familie/hf_20260625_120715_f015fd56-....mp4",
+   "in": 0.0,
+   "out": 4.04,
+   "rec_in": 19.36,
+   "rec_out": 23.4
+  },
+  {
+   "scene": 7,
+   "label": "Hand haelt altes Foto (echt + AI-Foto)",
+   "src": null,
+   "dropbox": null,
+   "in": 0,
+   "out": 2.0,
+   "rec_in": 23.4,
+   "rec_out": 25.4
+  },
+  {
+   "scene": 8,
+   "label": "Jonas sitzt am Boden",
+   "src": "jonas_sitzt.mp4",
+   "dropbox": "echt/Jonas sitzt.mp4",
+   "in": 0.0,
+   "out": 4.0,
+   "rec_in": 25.4,
+   "rec_out": 29.4
+  },
+  {
+   "scene": 8,
+   "label": "Jonas schaut nach oben",
+   "src": "2_JONAS_HOCHSCHAUEN.mp4",
+   "dropbox": "echt/2 JONAS HOCHSCHAUEN.mp4",
+   "in": 0.0,
+   "out": 4.8,
+   "rec_in": 29.4,
+   "rec_out": 34.2
+  },
+  {
+   "scene": 9,
+   "label": "Jonas beginnt zu rennen",
+   "src": "6_JONAS_RENNEN.mp4",
+   "dropbox": "echt/6 JONAS RENNEN.mp4",
+   "in": 0.0,
+   "out": 7.2,
+   "rec_in": 34.2,
+   "rec_out": 41.4
+  },
+  {
+   "scene": 10,
+   "label": "Hai ueber Bergpanorama, Profil + Maul frontal",
+   "src": "Hai_Verfolgung3_episch.mp4",
+   "dropbox": "ai_hai/hHai Verfolgung3 episch_....mp4",
+   "in": 0.0,
+   "out": 8.04,
+   "rec_in": 41.4,
+   "rec_out": 49.44
+  },
+  {
+   "scene": 11,
+   "label": "Wurfbewegung (unsicher, s. Take-Log)",
+   "src": "3_jonas_handgranate.mp4",
+   "dropbox": "echt/3 jonas handgranate.mp4",
+   "in": 7.0,
+   "out": 11.8,
+   "rec_in": 49.44,
+   "rec_out": 54.24
+  },
+  {
+   "scene": 12,
+   "label": "Hai fliegt auf Jonas zu (POV)",
+   "src": "8_HAI_FLIEGT_AUF_JONAS_ZU.mp4",
+   "dropbox": "echt/8 HAI FLIEGT AUF JONAS ZU.mp4",
+   "in": 0.0,
+   "out": 9.2,
+   "rec_in": 54.24,
+   "rec_out": 63.44
+  },
+  {
+   "scene": 12,
+   "label": "Verfolgung: Hai naehert sich",
+   "src": "Hai_Verfolgung2_schnell.mp4",
+   "dropbox": "ai_hai/Hai Verfolgung2 schnell_....mp4",
+   "in": 0.0,
+   "out": 7.04,
+   "rec_in": 63.44,
+   "rec_out": 70.48
+  },
+  {
+   "scene": 12,
+   "label": "Granaten-Flugbahn ins Maul",
+   "src": "H02_granate_anflug_maul.mp4",
+   "dropbox": "ai_hai/02_granate_anflug_maul_eff92c82.mp4",
+   "in": 0.0,
+   "out": 5.0,
+   "rec_in": 70.48,
+   "rec_out": 75.48
+  },
+  {
+   "scene": 13,
+   "label": "Jonas schiesst (Wald)",
+   "src": "5_JONAS_PISTOLE_SCHIESSEN.mp4",
+   "dropbox": "echt/5 JONAS PISTOLE SCHIESSEN.mp4",
+   "in": 0.0,
+   "out": 12.52,
+   "rec_in": 75.48,
+   "rec_out": 88.0
+  },
+  {
+   "scene": 13,
+   "label": "Schuesse prallen am Hai ab",
+   "src": "Hai_Schuesse_prallen_ab.mp4",
+   "dropbox": "ai_hai/Hai Schuesse prallen ab....mp4",
+   "in": 0.0,
+   "out": 4.04,
+   "rec_in": 88.0,
+   "rec_out": 92.04
+  },
+  {
+   "scene": 14,
+   "label": "Verschneiter Hang, Figur klein",
+   "src": "7_JONAS_HANDGRANATE_UND_HAI.mp4",
+   "dropbox": "echt/7 JONAS HANDGRANATE UND HAI.mp4",
+   "in": 0.0,
+   "out": 7.64,
+   "rec_in": 92.04,
+   "rec_out": 99.68
+  },
+  {
+   "scene": 15,
+   "label": "Granate im Maul, Feuerball",
+   "src": "Granate_ins_Maul_Hai_explodiert.mp4",
+   "dropbox": "ai_hai/Granate fliegt ins Maul Hai explodiert_....mp4",
+   "in": 0.0,
+   "out": 10.04,
+   "rec_in": 99.68,
+   "rec_out": 109.72
+  },
+  {
+   "scene": 15,
+   "label": "Jonas wird geworfen",
+   "src": "4_JONAS_EXPLOSION.mp4",
+   "dropbox": "echt/4 JONAS EXPLOSION.mp4",
+   "in": 0.0,
+   "out": 4.96,
+   "rec_in": 109.72,
+   "rec_out": 114.68
+  },
+  {
+   "scene": 16,
+   "label": "Familienfoto liegt im Schnee (AI-Foto)",
+   "src": null,
+   "dropbox": null,
+   "in": 0,
+   "out": 2.0,
+   "rec_in": 114.68,
+   "rec_out": 116.68
+  }
+ ],
+ "alts": {
+  "6": [
+   "Familie_115049.mp4"
+  ],
+  "10": [
+   "Hai_Verfolgung1.mp4",
+   "Hai_dreht_zu_Kamera.mp4",
+   "Hai_schwimmt_ueber_Kamera.mp4"
+  ],
+  "13": [
+   "H03_hai_ueber_berge.mp4",
+   "H04_hai_narbe_detail.mp4"
+  ],
+  "15": [
+   "Granate_fliegt_und_Hai_explodiert.mp4",
+   "H01_granate_maul_explosion.mp4"
+  ]
+ },
+ "duration": 116.68
+}
