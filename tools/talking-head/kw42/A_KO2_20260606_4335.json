@@ -1,0 +1,113 @@
+{
+ "id": "A",
+ "clip": "KO2_20260606_4335",
+ "thema": "authentic-together",
+ "variant": "blau",
+ "src": "dl/KO2_20260606_4335.MP4",
+ "voice": "work/KO2_20260606_4335_R.wav",
+ "segments": [
+  [
+   3.86,
+   15.71
+  ],
+  [
+   16.24,
+   17.32
+  ],
+  [
+   17.67,
+   19.73
+  ],
+  [
+   20.04,
+   23.76
+  ],
+  [
+   24.26,
+   29.45
+  ],
+  [
+   29.78,
+   30.88
+  ],
+  [
+   32.43,
+   34.31
+  ],
+  [
+   37.0,
+   42.64
+  ],
+  [
+   42.78,
+   43.49
+  ]
+ ],
+ "removed": {
+  "0.00-3.86": "Reinlaufen + 'And' (Ansatz)",
+  "15.70-16.24": "'and' (Fuellwort)",
+  "17.32-17.67": "Pause 0.51 s",
+  "19.73-20.04": "Pause 0.47 s",
+  "23.76-24.26": "gedehntes 'and' (Fuellwort)",
+  "29.45-29.78": "Pause 0.49 s",
+  "30.88-32.43": "'because, yeah, yeah' (Fuellwoerter)",
+  "34.30-37.00": "'And, yeah,' + Pausen",
+  "42.64-42.78": "Pause vor 'shark' von 0.44 auf 0.30 s gekuerzt (bewusster Beat)",
+  "43.50-50.88": "'I can show you shortly the current state.' + Aufstehen (Teaser ohne Einloesung)"
+ },
+ "music": "dl/music/ES_Inbound.wav",
+ "music_in": 20.0,
+ "cutaways": [
+  {
+   "from_src": 38.56,
+   "to_src": 42.76,
+   "file": "dl/v2v/8_HAI_FLIEGT_AUF_JONAS_ZU.mp4",
+   "in": 3.0,
+   "note": "Hai-POV (Haifilm Shot 8) ueber 'a small short movie about a' - Robin steht hier auf und verlaesst das Bild"
+  },
+  {
+   "from_src": 42.76,
+   "to_src": "END",
+   "file": "dl/v2v/3_jonas_handgranate.mp4",
+   "in": 1.2,
+   "note": "Jonas schreit (Haifilm Shot 3) auf 'shark.' + 0.6 s Nachlauf"
+  }
+ ],
+ "tail": 0.6,
+ "graphics": {
+  "headline": {
+   "word": "authentic",
+   "text": "AUTHENTIC",
+   "y": 430
+  },
+  "card": {
+   "words": [
+    "what",
+    "you",
+    "want",
+    "to",
+    "see"
+   ],
+   "text": "WHAT DO YOU\\NWANT TO SEE?"
+  },
+  "serif": {
+   "words": [
+    "let's",
+    "figure",
+    "this",
+    "thing",
+    "out",
+    "together"
+   ],
+   "text": "let's figure this thing out together."
+  }
+ },
+ "framing": {
+  "mode": "fixed",
+  "cx": 0.49,
+  "base_zoom": 1.0,
+  "punch": 1.12,
+  "face_y_out": 0.4
+ },
+ "grade_key": "A_4335_v2"
+}

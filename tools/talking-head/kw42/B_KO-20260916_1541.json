@@ -1,0 +1,79 @@
+{
+ "id": "B",
+ "clip": "KO-20260916_1541",
+ "thema": "look-into-the-lens",
+ "variant": "rot",
+ "src": "dl/KO-20260916_1541.MP4",
+ "voice": "work/KO-20260916_1541_R.wav",
+ "segments": [
+  [
+   16.78,
+   17.02
+  ],
+  [
+   17.28,
+   20.1
+  ],
+  [
+   20.76,
+   23.2
+  ],
+  [
+   24.0,
+   27.44
+  ],
+  [
+   27.96,
+   30.74
+  ],
+  [
+   31.06,
+   33.6
+  ]
+ ],
+ "removed": {
+  "0.00-16.78": "Intro 'So, that's actually a test how it looks...' (Meta) + 'I speak here in my cozy room...' (Kontext, schwacher Einstieg)",
+  "17.02-17.28": "Hook gestrafft (Pause 0.36 s nach 'For')",
+  "20.10-20.76": "gedehntes 'and' + Pause",
+  "23.20-24.00": "'and' + Pause 0.8 s",
+  "27.44-27.96": "Pause 0.68 s",
+  "30.74-31.06": "Pause 0.65 s gekuerzt",
+  "33.60-37.44": "Rest (Stille/Ende)"
+ },
+ "music": "dl/music/ES_Some.mp3",
+ "music_in": 12.0,
+ "tail": 0.0,
+ "cutaways": [],
+ "graphics": {
+  "headline": {
+   "word": "camera",
+   "text": "CAMERA",
+   "y": 1060
+  },
+  "card": {
+   "words": [
+    "speak",
+    "it",
+    "in",
+    "here"
+   ],
+   "text": "SPEAK IT\\NIN HERE."
+  },
+  "serif": {
+   "words": [
+    "more",
+    "connection",
+    "with",
+    "you"
+   ],
+   "text": "more connection with you."
+  }
+ },
+ "framing": {
+  "mode": "faces",
+  "base_zoom": 1.06,
+  "punch": 1.18,
+  "face_y_out": 0.37
+ },
+ "grade_key": "B_1541"
+}
